@@ -53,7 +53,7 @@ actually wired up matches those targets, and warns immediately if not.
                             file and printed at shutdown
 
   CAVEAT: preprocessing_data.py's resample_to_grid() currently skips any
-  column with dtype == object (see its `if df[col].dtype == object: continue`).
+  column with dtype == object (see its `if not pd.api.types.is_numeric_dtype(df[col]): continue`).
   frame_id and the covariance strings are object-dtype, so they'll be captured
   in the raw CSVs here but will NOT automatically survive into *_filtered.csv
   or fusion_ready.csv unless preprocessing_data.py is also updated to parse
