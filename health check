@@ -1,0 +1,136 @@
+#!/usr/bin/env python3
+"""
+health_check.py — run this after recording ANY new session, before it
+ever gets used by rnn_fusion_v2.py or lidar_fusion_v2.py. On PASS, the
+session is automatically added to session_registry.json's good_sessions
+(no manual editing of any .py file). On FAIL, it's added to
+excluded_sessions with the specific reason, and never silently used.
+
+WHAT THIS CATCHES (verified against real data from this project):
+flat/degenerate sensor signals — the exact category of bug that produced
+session 20260714_014615's dead IMU (orientation stuck at ~1e-7 rad for an
+entire recording while the robot genuinely turned ~6 rad). The thresholds
+below are set directly from that real diagnosis, not guessed.
+
+WHAT THIS DOES NOT YET CATCH — stated plainly, not silently skipped:
+an RMSE-based comparison against known-good sessions, which needs
+ekf_fusion.py's actual source (its exact output format) to build without
+guessing. Until that's added, a session can pass this check's sensor-level
+tests while still having some other, subtler problem an EKF-RMSE
+comparison would catch. This is a real gap, not a false all-clear.
+
+Usage:
+    python3 health_check.py <session_name>
+"""
+
+import sys
+import os
+import numpy as np
+import pandas as pd
+
+from session_registry import LOG_DIR, add_good_session, add_excluded_session
+
+REQUIRED_FILES = [
+    'imu_filtered_{s}.csv',
+    'odom_filtered_{s}.csv',
+    'scan_filtered_{s}.csv',
+    'ground_truth_filtered_{s}.csv',
+]
+
+# Thresholds justified directly from the real dead-IMU diagnosis earlier
+# in this project: that session's IMU theta range was ~2e-7 rad and its
+# angular_vel_z had abs-mean ~0.0068 with a tiny range (~0.04 to -0.04
+# rad/s) despite real commanded turns up to 1.46 rad/s. These thresholds
+# sit well below any genuine turning session's real values but well above
+# that dead session's numbers, so they catch the same failure mode again
+# without being so tight they'd false-positive on ordinary sensor noise.
+IMU_THETA_RANGE_MIN = 0.5     # radians; dead session measured ~2e-7
+ANGVEL_Z_STD_MIN = 0.005      # dead session's angular_vel_z std was far below this
+
+
+def quat_to_yaw(oz, ow):
+    return 2 * np.arctan2(oz, ow)
+
+
+def check_session(session: str):
+    """Returns (passed: bool, reasons: list[str]). Reasons is empty on pass."""
+    reasons = []
+
+    missing = [pat.format(s=session) for pat in REQUIRED_FILES
+               if not os.path.exists(os.path.join(LOG_DIR, pat.format(s=session)))]
+    if missing:
+        reasons.append(f"Missing required files: {', '.join(missing)}")
+        return False, reasons  # can't check further without the files
+
+    imu = pd.read_csv(os.path.join(LOG_DIR, f'imu_filtered_{session}.csv'))
+    theta = quat_to_yaw(imu['orient_z'], imu['orient_w'])
+    theta_range = float(theta.max() - theta.min())
+    if theta_range < IMU_THETA_RANGE_MIN:
+        reasons.append(
+            f"IMU orientation flat: theta range={theta_range:.6f} rad "
+            f"(need >= {IMU_THETA_RANGE_MIN}) — matches the exact dead-IMU "
+            f"signature found in session 20260714_014615")
+
+    angvel_std = float(imu['angular_vel_z'].std())
+    if angvel_std < ANGVEL_Z_STD_MIN:
+        reasons.append(
+            f"IMU angular_vel_z suspiciously flat: std={angvel_std:.6f} "
+            f"(need >= {ANGVEL_Z_STD_MIN})")
+
+    odom = pd.read_csv(os.path.join(LOG_DIR, f'odom_filtered_{session}.csv'))
+    if 'linear_x' in odom.columns and float(odom['linear_x'].std()) == 0.0:
+        reasons.append("odom linear_x is constant (zero variance) — robot "
+                        "likely never moved, or odom logging is broken")
+
+    # NOT YET IMPLEMENTED — see module docstring. Left as an explicit,
+    # visible gap rather than silently skipped.
+    # TODO(needs ekf_fusion.py source): run EKF against this session,
+    # compare RMSE to the range already seen across good_sessions, fail
+    # if far outside that range.
+
+    return (len(reasons) == 0), reasons
+
+
+def find_latest_session() -> str:
+    """
+    Auto-detects the most recently recorded session by file creation time,
+    so you never have to type a session name to check it. This is safe
+    automation, unlike auto-picking a "latest = trusted" session for
+    training (which is what caused the dead-IMU bug to slip through
+    originally): this only decides WHAT to check, not WHAT to trust — the
+    actual health check below still has to genuinely pass before anything
+    gets treated as good.
+    """
+    candidates = [f for f in os.listdir(LOG_DIR) if f.startswith('imu_filtered_')
+                  and f.endswith('.csv') and '_fault_' not in f]
+    if not candidates:
+        raise FileNotFoundError(f"No imu_filtered_*.csv files found in {LOG_DIR}")
+    latest = max(candidates, key=lambda f: os.path.getctime(os.path.join(LOG_DIR, f)))
+    # strip 'imu_filtered_' prefix and '.csv' suffix to recover the session name
+    return latest[len('imu_filtered_'):-len('.csv')]
+
+
+if __name__ == '__main__':
+    if len(sys.argv) < 2:
+        session = find_latest_session()
+        print(f"No session given — auto-detected most recent recording: {session}\n")
+    else:
+        session = sys.argv[1]
+    passed, reasons = check_session(session)
+
+    if passed:
+        add_good_session(session)
+        print(f"PASS: {session}")
+        print(f"  Added to good_sessions in session_registry.json")
+    else:
+        reason_str = '; '.join(reasons)
+        add_excluded_session(session, reason_str)
+        print(f"FAIL: {session}")
+        print(f"  Added to excluded_sessions in session_registry.json")
+        for r in reasons:
+            print(f"  - {r}")
+
+    print("\nNOTE: this checks for flat/degenerate sensor signals only —")
+    print("the same category of bug found in the dead-IMU session. It does")
+    print("NOT yet run an RMSE comparison against ekf_fusion.py (needs that")
+    print("script's source to build without guessing its output format).")
