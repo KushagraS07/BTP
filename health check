@@ -76,10 +76,11 @@ REQUIRED_FILES = [
     'odom_filtered_{s}.csv',
     'scan_filtered_{s}.csv',
     'ground_truth_filtered_{s}.csv',
+    'cmd_vel_filtered_{s}.csv',
 ]
-# cmd_vel_filtered is NOT in REQUIRED_FILES: its absence degrades the
-# turn-detection gate gracefully (see load_cmd_vel) rather than failing
-# the whole session outright, since it isn't needed for every check.
+# cmd_vel_filtered IS required: the turn-gating logic genuinely depends
+# on it, so a session missing it should be a real health-check failure,
+# not a silently-degraded warning.
 
 
 # ---------------------------------------------------------------------------
