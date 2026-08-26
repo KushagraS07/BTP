@@ -1,0 +1,196 @@
+"""
+compare_adaptive_vs_fixed.py — Phase 1 gate check.
+
+Runs AdaptiveDiffDriveEKF (heuristic_adaptive_ekf.py) and the fixed
+DiffDriveEKF baseline (ekf_fusion.py's run_ekf_core) on the SAME real
+session data, computes RMSE against ground truth for both, and reports
+whether the adaptive version beats fixed on single-sensor fault sessions
+— the Phase 1 gate from the framework doc (§20 "Adaptive EKF" row).
+
+Loads good sessions the same way validate_faults.py does (live from
+session_registry, not hardcoded), so this reflects the current 7-session
+state, not stale session lists.
+
+Usage:
+    python3 compare_adaptive_vs_fixed.py            # full run against real
+                                                       session data (requires
+                                                       VM/file access)
+    python3 compare_adaptive_vs_fixed.py --dry-run  # NOT YET IMPLEMENTED —
+                                                       currently just prints
+                                                       a message and exits.
+                                                       For synthetic-data
+                                                       testing without VM
+                                                       access, use the
+                                                       phase1/test*.py
+                                                       scripts instead.
+"""
+import sys
+import os
+import glob
+import numpy as np
+import pandas as pd
+
+sys.path.insert(0, os.path.expanduser("~/ws_mobile/scripts"))
+
+DRY_RUN = "--dry-run" in sys.argv
+LOG_DIR = os.path.expanduser("~/ws_mobile/sensor_logs")
+
+
+def get_col(df, candidates, default=None):
+    for c in candidates:
+        if c in df.columns:
+            return df[c].values
+    if default is not None:
+        return np.full(len(df), default)
+    raise KeyError(f"None of {candidates} found in columns {list(df.columns)}")
+
+
+def quat_to_yaw(oz, ow):
+    return np.arctan2(2 * ow * oz, 1 - 2 * oz * oz)
+
+
+def load_session_arrays(session_id):
+    """
+    Loads one session's imu/odom/ground-truth CSVs and returns the exact
+    same arrays run_ekf_core / run_adaptive_ekf_core expect. Column names
+    verified against the real schema in the handoff doc.
+    """
+    imu_path = os.path.join(LOG_DIR, f"imu_filtered_{session_id}.csv")
+    odom_path = os.path.join(LOG_DIR, f"odom_filtered_{session_id}.csv")
+
+    imu_df = pd.read_csv(imu_path)
+    odom_df = pd.read_csv(odom_path)
+
+    n = min(len(imu_df), len(odom_df))
+    imu_df = imu_df.iloc[:n].reset_index(drop=True)
+    odom_df = odom_df.iloc[:n].reset_index(drop=True)
+
+    odom_x = get_col(odom_df, ["pos_x"])
+    odom_y = get_col(odom_df, ["pos_y"])
+    odom_oz = get_col(odom_df, ["orient_z"])
+    odom_ow = get_col(odom_df, ["orient_w"], default=1.0)
+    odom_theta = quat_to_yaw(odom_oz, odom_ow)
+
+    imu_oz_ow_check = "imu_orient_z" in imu_df.columns and "imu_orient_w" in imu_df.columns
+    if imu_oz_ow_check:
+        imu_theta = quat_to_yaw(imu_df["imu_orient_z"].values, imu_df["imu_orient_w"].values)
+    elif "orient_z" in imu_df.columns and "orient_w" in imu_df.columns:
+        imu_theta = quat_to_yaw(imu_df["orient_z"].values, imu_df["orient_w"].values)
+    else:
+        imu_theta = odom_theta.copy()
+
+    # Prefer cmd_vel_filtered (commanded velocity) per ekf_fusion.py's own
+    # preference order, confirmed always present post cmd_vel-copy fix.
+    cmd_path = os.path.join(LOG_DIR, f"cmd_vel_filtered_{session_id}.csv")
+    if os.path.exists(cmd_path):
+        cmd_df = pd.read_csv(cmd_path).iloc[:n].reset_index(drop=True)
+        v_lin = get_col(cmd_df, ["linear_x"])
+        omega = get_col(cmd_df, ["angular_z"])
+    else:
+        print(f"  WARNING: no cmd_vel_filtered for {session_id}, falling back to sensor-derived")
+        v_lin = get_col(odom_df, ["lin_vel_x", "linear_x", "odom_linear_x", "vel_x"])
+        omega = get_col(imu_df, ["ang_vel_z", "angular_vel_z", "imu_angular_vel_z", "angular_z"])
+
+    timestamps = get_col(odom_df, ["timestamp"])
+
+    return odom_x, odom_y, odom_theta, v_lin, omega, imu_theta, timestamps
+
+
+def load_ground_truth(session_id):
+    gt_path = os.path.join(LOG_DIR, f"ground_truth_filtered_{session_id}.csv")
+    if not os.path.exists(gt_path):
+        return None
+    gt_df = pd.read_csv(gt_path)
+    gt_x = get_col(gt_df, ["gt_x"])
+    gt_y = get_col(gt_df, ["gt_y"])
+    return gt_x, gt_y
+
+
+def rmse(x, y, gt_x, gt_y):
+    n = min(len(x), len(gt_x))
+    return float(np.sqrt(np.mean((x[:n] - gt_x[:n]) ** 2 + (y[:n] - gt_y[:n]) ** 2)))
+
+
+def compare_one(session_id, from_ekf_core, from_adaptive_core):
+    arrays = load_session_arrays(session_id)
+    gt = load_ground_truth(session_id)
+    if gt is None:
+        print(f"  {session_id}: SKIPPED (no ground truth)")
+        return None
+    gt_x, gt_y = gt
+
+    fixed_out = from_ekf_core(*arrays, 0.0, 0.0, 0.0)
+    adaptive_out = from_adaptive_core(*arrays, 0.0, 0.0, 0.0)
+
+    fixed_rmse = rmse(fixed_out[0], fixed_out[1], gt_x, gt_y)
+    adaptive_rmse = rmse(adaptive_out[0], adaptive_out[1], gt_x, gt_y)
+    odom_scale = adaptive_out[7]
+    imu_scale = adaptive_out[8]
+
+    beats = adaptive_rmse < fixed_rmse
+    print(f"  {session_id}: fixed={fixed_rmse:.4f}m  adaptive={adaptive_rmse:.4f}m  "
+          f"{'BEATS' if beats else 'does not beat'} fixed  "
+          f"(odom_scale>1: {(odom_scale>1.0001).mean():.1%}, imu_scale>1: {(imu_scale>1.0001).mean():.1%})")
+    return fixed_rmse, adaptive_rmse, beats
+
+
+def main():
+    if DRY_RUN:
+        print("--dry-run not implemented for real-session comparison; "
+              "use the phase1/test*.py synthetic scripts for that instead.")
+        return
+
+    from ekf_fusion import run_ekf_core
+    from heuristic_adaptive_ekf import run_adaptive_ekf_core
+    from session_registry import get_good_sessions
+
+    good_sessions = get_good_sessions()
+    print(f"Good sessions (from session_registry): {good_sessions}\n")
+
+    print("=== BASELINE SESSIONS (no fault) ===")
+    results = []
+    for sid in good_sessions:
+        r = compare_one(sid, run_ekf_core, run_adaptive_ekf_core)
+        if r:
+            results.append(r)
+
+    print("\n=== FAULT SESSIONS ===")
+    # Confirmed naming: cmd_vel_filtered_{baseline_session}_fault_{sensor}_{fault_type}_{severity}.csv
+    fault_sessions = sorted(set(
+        f.split("cmd_vel_filtered_")[-1].replace(".csv", "")
+        for f in glob.glob(os.path.join(LOG_DIR, "cmd_vel_filtered_*_fault_*.csv"))
+    ))
+    if not fault_sessions:
+        print("  No fault sessions found matching cmd_vel_filtered_*_fault_*.csv pattern — "
+              "check naming convention with: ls ~/ws_mobile/sensor_logs/ | grep fault | head")
+    fault_results = []
+    for sid in fault_sessions:
+        r = compare_one(sid, run_ekf_core, run_adaptive_ekf_core)
+        if r:
+            fault_results.append((sid, r))
+
+    n_beats = sum(1 for _, (_, _, beats) in fault_results if beats)
+    print(f"\n=== PHASE 1 GATE (reporting only — no pass/fail threshold is") 
+    print(f"    defined by the framework doc, so none is invented here) ===")
+    print(f"Adaptive beats fixed on {n_beats}/{len(fault_results)} fault sessions")
+
+    # Breakdown by fault TYPE (sensor_faulttype_severity, stripped of the
+    # baseline session prefix) so the pattern across all 7 sessions is
+    # visible in one place, not inferred from a single session's printout.
+    from collections import defaultdict
+    by_type = defaultdict(lambda: [0, 0])  # fault_key -> [beats, total]
+    for sid, (_, _, beats) in fault_results:
+        # sid looks like {baseline}_fault_{sensor}_{fault_type}_{severity}
+        fault_key = sid.split("_fault_", 1)[-1]
+        by_type[fault_key][1] += 1
+        if beats:
+            by_type[fault_key][0] += 1
+
+    print(f"\n=== BREAKDOWN BY FAULT TYPE (across all {len(good_sessions)} sessions) ===")
+    for fault_key in sorted(by_type):
+        beats, total = by_type[fault_key]
+        print(f"  {fault_key:30s}: beats fixed {beats}/{total}")
+
+
+if __name__ == "__main__":
+    main()
