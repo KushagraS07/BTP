@@ -1,0 +1,508 @@
+#!/usr/bin/env python3
+"""
+fault_injection.py — Phase 0 of the LSTM terrain/reliability framework.
+
+Injects controllable faults (noise, bias, drift, dropout, delay) into a
+REAL recorded session's IMU or odometry file, per the failure-mode tables
+in the framework doc (Sections 11-13). Produces a new synthetic "session"
+that ekf_fusion.py can run against COMPLETELY UNMODIFIED — no code changes
+needed downstream, just point SESSION at the new fault-session name.
+
+HOW THIS WORKS (why ekf_fusion.py needs zero changes):
+ekf_fusion.py's load_latest() resolves files as f'{prefix}_filtered_{SESSION}.csv'.
+So for a fault named e.g. '20260712_144326_fault_imu_noise_high', this script
+creates ALL of that session's required files under the new name — copying the
+baseline session's odom/scan/ground_truth unchanged, and writing ONLY the
+faulted IMU file. ekf_fusion.py then just needs SESSION repointed to the new
+name; every file it looks for exists, in the schema it already expects.
+
+SEVERITY DESIGN: rather than hardcoded absolute units (which would need
+per-sensor-model tuning), severity is a MULTIPLIER of each column's own
+observed standard deviation within that baseline session. This is more
+robust across differently-scaled columns (angular_vel vs linear_acc) and
+is standard practice in fault-injection literature. Mapped to the paper
+doc's own qualitative levels (low/medium/high/extreme, small/medium/large,
+short/medium/long) via the *_SEVERITY dicts below.
+
+VALIDATION GATE (Phase 0, from the pipeline doc): for each fault type,
+confirm it measurably degrades EKF RMSE, in the expected direction, using
+ekf_fusion.py UNMODIFIED. This script only injects faults and prepares the
+fault-session directory — it does NOT run ekf_fusion.py itself (deliberately
+kept separate: one script does one job). See the printed instructions at
+the end of main() for the exact next command.
+"""
+
+import os
+import shutil
+import numpy as np
+import pandas as pd
+
+LOG_DIR = os.path.expanduser('~/ws_mobile/sensor_logs')
+
+# ── CONFIG — confirmed columns ──────────────────────────────────────────
+# Confirmed directly from this project's own terminal output earlier:
+# imu_filtered_<session>.csv columns.
+#
+# RETARGETED (see HANDOFF notes on the cmd_vel fix): angular_vel_*/linear_acc_*
+# were the original default, but tracing ekf_fusion.py's actual data flow
+# showed these columns have NO path into the EKF's output once cmd_vel is
+# correctly present (predict() uses cmd_vel's v/omega; update_imu_theta()
+# uses ONLY orient_z/orient_w via quat_to_yaw() -- angular_vel_z/linear_acc
+# are read into the 'omega' fallback variable but that fallback is only used
+# when cmd_vel_filtered is absent, which is no longer the normal case).
+# Kept below for reference / optional use, but IMU_NOISE_COLS now defaults
+# to the orientation-derived yaw column instead (see IMU_ORIENTATION_TARGET
+# and the make_fault_session() quaternion round-trip below).
+IMU_RAW_NOISE_COLS = ['angular_vel_x', 'angular_vel_y', 'angular_vel_z',
+                       'linear_acc_x', 'linear_acc_y', 'linear_acc_z']
+IMU_TIMESTAMP_COL = 'timestamp'
+
+# IMU faults now target orientation (orient_z/orient_w) via a derived yaw
+# angle, since that's the ONLY IMU-derived quantity update_imu_theta() (the
+# theta measurement update, R_imu=0.005) actually reads. orient_z/orient_w
+# form a constrained unit-norm quaternion pair (with orient_x=orient_y=0 for
+# this planar robot) -- perturbing them independently would produce invalid
+# quaternions, not just "noisier heading". So the fault is applied to the
+# DERIVED yaw angle (a free scalar, safe to perturb with the existing
+# noise/bias/drift/dropout functions unmodified), then re-encoded back to a
+# valid unit quaternion: orient_z = sin(yaw/2), orient_w = cos(yaw/2). This
+# exactly inverts ekf_fusion.py's own quat_to_yaw() (confirmed formula:
+# yaw = atan2(2*w*z, 1 - 2*z*z)), so a zero-severity round-trip reproduces
+# the original orient_z/orient_w exactly.
+IMU_ORIENTATION_TARGET = True
+IMU_YAW_TEMP_COL = '_imu_yaw_temp'
+IMU_NOISE_COLS = [IMU_YAW_TEMP_COL]
+
+# CONFIRMED from real odom_filtered_20260712_144326.csv (via --inspect):
+# columns are timestamp, time_sec, time_nsec, pos_x, pos_y, pos_z, orient_x,
+# orient_y, orient_z, orient_w, linear_x, angular_z.
+#
+# RETARGETED: linear_x/angular_z were the original default on the reasoning
+# that they fed ekf_fusion.py's predict() step directly. That was true only
+# when cmd_vel_filtered was absent (the pre-fix bug -- see the cmd_vel copy
+# fix in make_fault_session's file-copy loop). With cmd_vel correctly
+# present, predict() uses cmd_vel's linear_x/angular_z instead, and
+# linear_x/angular_z here have NO path into the EKF at all anymore.
+# update_odometry() -- the odometry measurement update that runs every
+# step regardless of predict() -- computes s_meas/phi_meas from CONSECUTIVE
+# DIFFERENCES of pos_x/pos_y/odom_theta (see run_ekf_core(), d_odom_x =
+# np.diff(odom_x, ...)). pos_x/pos_y are therefore now the only odometry
+# columns with a real, always-active path into RMSE.
+ODOM_RAW_NOISE_COLS = ['linear_x', 'angular_z']
+ODOM_NOISE_COLS = ['pos_x', 'pos_y']
+ODOM_TIMESTAMP_COL = 'timestamp'
+
+# ── Severity mappings (multiplier of the column's own std, or seconds/fraction) ──
+NOISE_SEVERITY = {'low': 1.0, 'medium': 3.0, 'high': 6.0, 'extreme': 12.0}
+BIAS_SEVERITY = {'small': 1.0, 'medium': 3.0, 'large': 6.0}
+DRIFT_SEVERITY = {'slow': 1.0, 'medium': 3.0, 'fast': 6.0}
+DROPOUT_SEVERITY = {'short': 0.05, 'medium': 0.15, 'long': 0.35}  # fraction of session, held constant
+DELAY_SEVERITY = {'small': 0.1, 'medium': 0.5, 'large': 2.0}  # seconds
+
+
+def inspect_columns(session: str):
+    """Prints every column in this session's imu/odom filtered files.
+    Read-only — doesn't touch or create anything."""
+    for prefix in ['imu', 'odom']:
+        path = os.path.join(LOG_DIR, f'{prefix}_filtered_{session}.csv')
+        if not os.path.exists(path):
+            print(f"  {prefix}_filtered_{session}.csv NOT FOUND at {path}")
+            continue
+        df = pd.read_csv(path, nrows=1)
+        print(f"\n  {prefix}_filtered_{session}.csv columns:")
+        for c in df.columns:
+            print(f"    {c}")
+
+
+def inject_noise(df: pd.DataFrame, cols: list, severity_mult: float,
+                  rng: np.random.Generator) -> pd.DataFrame:
+    """Adds Gaussian noise to each column, std scaled by severity_mult
+    times that column's OWN observed std (not a hardcoded absolute unit).
+    Takes an explicit rng (np.random.default_rng(seed)) rather than using
+    global numpy random state, so the exact same fault can be reproduced
+    later by reusing the same seed — required for a reproducible paper.
+    Returns (faulted_df, stats) with the actual injected noise std per
+    column in real physical units, not just the abstract multiplier."""
+    out = df.copy()
+    stats = {}
+    for c in cols:
+        col_std = out[c].std()
+        if col_std == 0 or np.isnan(col_std):
+            continue  # constant column, nothing meaningful to scale noise against
+        injected_std = col_std * severity_mult
+        out[c] = out[c] + rng.normal(0, injected_std, len(out))
+        stats[c] = {'baseline_std': float(col_std), 'injected_noise_std': float(injected_std)}
+    return out, stats
+
+
+def inject_position_bias(df: pd.DataFrame, cols: list, severity_mult: float,
+                          start_frac: float = 0.0):
+    """For columns that reach the EKF ONLY via consecutive differencing
+    (e.g. odom pos_x/pos_y, which run_ekf_core() differences into
+    s_meas/phi_meas) -- a flat constant offset like inject_bias() applies
+    CANCELS EXACTLY under differencing: diff(x + const) == diff(x). This
+    was CONFIRMED on real data (max diff between faulted/baseline
+    consecutive-differences: ~1e-14, floating-point noise, not a small
+    real effect) -- not a hypothesis.
+
+    Physically, real encoder/odometry bias is a constant VELOCITY error,
+    which naturally compounds into a linearly GROWING position error over
+    time -- this is the classic dead-reckoning drift failure mode. This
+    function reproduces that shape: a constant PER-STEP increment (scaled
+    by severity_mult * that column's own per-step diff std, not the raw
+    column std, since diff-std reflects typical per-step motion magnitude)
+    accumulated from start_frac onward, so the resulting per-step diff
+    seen by run_ekf_core() is a real, nonzero, physically-motivated
+    constant offset rather than a jump instantly cancelled at rows>0.
+
+    Returns (faulted_df, stats) with the actual per-step increment and
+    resulting final accumulated offset in real physical units."""
+    out = df.copy()
+    n = len(out)
+    start_idx = int(n * start_frac)
+    stats = {}
+    for c in cols:
+        step_diffs = np.diff(out[c].values)
+        diff_std = np.std(step_diffs)
+        if diff_std == 0 or np.isnan(diff_std):
+            continue
+        per_step_increment = diff_std * severity_mult
+        ramp_len = n - start_idx
+        if ramp_len <= 0:
+            continue
+        accumulated = np.arange(ramp_len) * per_step_increment
+        out.loc[out.index[start_idx:], c] = out.loc[out.index[start_idx:], c].values + accumulated
+        stats[c] = {
+            'baseline_step_diff_std': float(diff_std),
+            'per_step_increment': float(per_step_increment),
+            'final_accumulated_offset': float(accumulated[-1]),
+        }
+    return out, stats
+
+
+def inject_bias(df: pd.DataFrame, cols: list, severity_mult: float,
+                 start_frac: float = 0.0):
+    """Adds a CONSTANT offset (severity_mult * column's own std) starting
+    at start_frac through the session and continuing to the end. Returns
+    (faulted_df, stats) where stats reports the ACTUAL offset applied in
+    each column's real physical units, not just the abstract multiplier —
+    a manifest that only says 'severity_value: 6.0' tells a reader nothing
+    about what was physically injected without also knowing the column's
+    own std; this records the resolved real-unit value directly.
+
+    NOTE: this is correct ONLY for columns read DIRECTLY by the EKF (e.g.
+    the derived IMU yaw column, read directly by update_imu_theta). For
+    columns that reach the EKF only via consecutive differencing (e.g.
+    odom pos_x/pos_y), a flat offset cancels exactly under differencing --
+    use inject_position_bias() instead. See its docstring for the
+    confirmed real-data evidence."""
+    out = df.copy()
+    n = len(out)
+    start_idx = int(n * start_frac)
+    stats = {}
+    for c in cols:
+        col_std = out[c].std()
+        if col_std == 0 or np.isnan(col_std):
+            continue
+        offset = col_std * severity_mult
+        out.loc[out.index[start_idx:], c] = out.loc[out.index[start_idx:], c] + offset
+        stats[c] = {'baseline_std': float(col_std), 'injected_offset': float(offset)}
+    return out, stats
+
+
+def inject_drift(df: pd.DataFrame, cols: list, final_mult: float,
+                  start_frac: float = 0.0):
+    """Adds a LINEARLY GROWING bias, from 0 at start_frac to
+    final_mult * column's own std by the end of the session. Returns
+    (faulted_df, stats) with the actual final real-unit offset per column."""
+    out = df.copy()
+    n = len(out)
+    start_idx = int(n * start_frac)
+    ramp_len = n - start_idx
+    stats = {}
+    if ramp_len <= 0:
+        return out, stats
+    ramp = np.linspace(0, 1, ramp_len)
+    for c in cols:
+        col_std = out[c].std()
+        if col_std == 0 or np.isnan(col_std):
+            continue
+        final_offset = col_std * final_mult
+        offset = ramp * final_offset
+        out.loc[out.index[start_idx:], c] = out.loc[out.index[start_idx:], c].values + offset
+        stats[c] = {'baseline_std': float(col_std), 'final_injected_offset': float(final_offset)}
+    return out, stats
+
+
+def quat_to_yaw(oz, ow) -> np.ndarray:
+    """Exact match to ekf_fusion.py's quat_to_yaw() -- assumes orient_x=
+    orient_y=0 (valid for a planar differential-drive robot's z-only
+    rotation). yaw = atan2(2*w*z, 1 - 2*z*z)."""
+    oz = np.asarray(oz, dtype=float)
+    ow = np.asarray(ow, dtype=float)
+    return np.arctan2(2.0 * ow * oz, 1.0 - 2.0 * oz * oz)
+
+
+def yaw_to_quat(yaw):
+    """Inverse of quat_to_yaw() -- re-encodes a yaw angle as a valid
+    unit-norm planar quaternion (orient_z, orient_w). Exact round-trip:
+    yaw_to_quat(quat_to_yaw(oz, ow)) == (oz, ow) for any valid input,
+    since sin(yaw/2)**2 + cos(yaw/2)**2 == 1 always."""
+    yaw = np.asarray(yaw, dtype=float)
+    return np.sin(yaw / 2.0), np.cos(yaw / 2.0)
+
+
+def inject_measurement_hold(df: pd.DataFrame, cols: list, frac: float,
+                             start_frac: float = 0.4):
+    """
+    FIX (naming — reviewer correctly flagged this): this simulates
+    'dropout' the way Sections 11-13 use that term, but the MECHANISM is
+    a measurement hold (last known value frozen/repeated over a
+    contiguous block), NOT row removal or NaN. The paper-facing fault
+    TYPE stays 'dropout' everywhere (matching the framework doc's own
+    vocabulary, which matters for traceability against Sections 11-13),
+    but the function itself is named for what it actually does, and the
+    manifest records it explicitly as 'measurement_hold' so nobody reading
+    it later mistakes this for real data loss.
+
+    Returns (faulted_df, stats) with exactly which rows/timespan were
+    frozen and to what value, in real units.
+    """
+    out = df.copy()
+    n = len(out)
+    start_idx = int(n * start_frac)
+    block_len = int(n * frac)
+    end_idx = min(start_idx + block_len, n)
+    stats = {}
+    if start_idx >= end_idx:
+        return out, stats
+    freeze_row = out.iloc[start_idx - 1] if start_idx > 0 else out.iloc[0]
+    for c in cols:
+        frozen_value = freeze_row[c]
+        out.loc[out.index[start_idx:end_idx], c] = frozen_value
+        stats[c] = {
+            'mechanism': 'measurement_hold (frozen value, not row removal/NaN)',
+            'frozen_value': float(frozen_value),
+            'frozen_fraction_of_session': float(frac),
+            'frozen_row_start_idx': int(start_idx),
+            'frozen_row_end_idx': int(end_idx),
+        }
+    return out, stats
+
+
+def inject_delay(df: pd.DataFrame, timestamp_col: str, seconds: float) -> pd.DataFrame:
+    """Shifts this sensor's timestamps forward, simulating late/asynchronous
+    data — downstream timestamp-sync logic will align the wrong samples."""
+    out = df.copy()
+    out[timestamp_col] = out[timestamp_col] + seconds
+    return out
+
+
+FAULT_TYPES_ALL = ['noise', 'bias', 'drift', 'dropout', 'delay']
+
+
+def generate_all_faults(baseline_sessions: list = None, sensors: list = None,
+                         seed: int = 0) -> list:
+    """
+    Generates the FULL fault matrix — every fault type x every severity
+    level already defined in this file's *_SEVERITY dicts — across every
+    given baseline session and sensor. This is safe to automate (unlike
+    e.g. ekf_fusion.py's SESSION) because it only ever pulls baselines
+    from the already-curated good_sessions registry, and only ever
+    mechanically applies fault definitions that already exist in this
+    file — it never invents a new trust decision, just expands an
+    already-fully-specified matrix so you don't have to call
+    make_fault_session() by hand dozens of times.
+
+    baseline_sessions: defaults to ALL of session_registry's good_sessions
+        (Section 24 wants "multiple trajectories" — the more good
+        baselines faulted, the richer the eventual experiment set).
+    sensors: defaults to ['imu', 'odom'].
+
+    Returns the list of every fault session name created.
+    """
+    from session_registry import get_good_sessions
+    if baseline_sessions is None:
+        baseline_sessions = get_good_sessions()
+    if sensors is None:
+        sensors = ['imu', 'odom']
+
+    plan = []
+    for baseline in baseline_sessions:
+        for sensor in sensors:
+            for fault_type in FAULT_TYPES_ALL:
+                sev_map = DELAY_SEVERITY if fault_type == 'delay' else FAULT_SEVERITY_MAPS[fault_type]
+                for severity in sev_map:
+                    plan.append((baseline, sensor, fault_type, severity))
+
+    print(f"  Fault matrix: {len(baseline_sessions)} baseline(s) x {len(sensors)} "
+          f"sensor(s) x {len(FAULT_TYPES_ALL)} fault types = {len(plan)} sessions to create")
+
+    created = []
+    for baseline, sensor, fault_type, severity in plan:
+        try:
+            s = make_fault_session(baseline, sensor, fault_type, severity, seed=seed)
+            created.append(s)
+        except Exception as e:
+            print(f"  SKIPPED {baseline}/{sensor}/{fault_type}/{severity}: {e}")
+
+    print(f"\n  Done: {len(created)}/{len(plan)} fault sessions created.")
+    return created
+
+
+FAULT_FNS = {
+    'noise': lambda df, cols, sev, sev_map, rng: inject_noise(df, cols, sev_map[sev], rng),
+    'bias': lambda df, cols, sev, sev_map, rng: inject_bias(df, cols, sev_map[sev]),
+    'drift': lambda df, cols, sev, sev_map, rng: inject_drift(df, cols, sev_map[sev]),
+    'dropout': lambda df, cols, sev, sev_map, rng: inject_measurement_hold(df, cols, sev_map[sev]),
+}
+FAULT_SEVERITY_MAPS = {
+    'noise': NOISE_SEVERITY, 'bias': BIAS_SEVERITY,
+    'drift': DRIFT_SEVERITY, 'dropout': DROPOUT_SEVERITY,
+}
+
+
+def make_fault_session(baseline_session: str, sensor: str, fault_type: str,
+                        severity: str, cols: list = None,
+                        timestamp_col: str = None, seed: int = 0) -> str:
+    """
+    Creates a new fault-session directory-equivalent (same LOG_DIR, new
+    session-name prefix) with ALL files ekf_fusion.py needs, so it can run
+    completely unmodified against it. Returns the new session name.
+
+    seed: passed to np.random.default_rng() for the noise fault type, so
+    the EXACT same fault can be reproduced later by calling this again
+    with the same seed. Other fault types (bias/drift/dropout/delay) are
+    already fully deterministic (no randomness involved), so seed only
+    matters for 'noise' — but is accepted uniformly for a consistent API.
+    Also written into the metadata manifest so a fault session's exact
+    randomness is recorded, not just implied.
+    """
+    if sensor not in ('imu', 'odom'):
+        raise ValueError("sensor must be 'imu' or 'odom'")
+    if sensor == 'odom' and fault_type != 'delay' and not ODOM_NOISE_COLS and cols is None:
+        raise ValueError(
+            "ODOM_NOISE_COLS is empty. Run `python3 fault_injection.py "
+            "--inspect <session>` first, then fill in ODOM_NOISE_COLS at "
+            "the top of this file with your real odom column names before "
+            "injecting an odom fault. (delay doesn't need this — it only "
+            "needs a timestamp column — so this check is skipped for it.)")
+
+    default_cols = IMU_NOISE_COLS if sensor == 'imu' else ODOM_NOISE_COLS
+    default_ts = IMU_TIMESTAMP_COL if sensor == 'imu' else ODOM_TIMESTAMP_COL
+    cols = cols or default_cols
+    timestamp_col = timestamp_col or default_ts
+
+    fault_session = f"{baseline_session}_fault_{sensor}_{fault_type}_{severity}"
+
+    # Copy every OTHER required file unchanged under the new session name,
+    # so ekf_fusion.py's load_latest() finds everything it expects.
+    for prefix in ['odom', 'imu', 'scan', 'ground_truth', 'cmd_vel']:
+        if prefix == sensor:
+            continue  # this one gets the fault, handled below
+        src = os.path.join(LOG_DIR, f'{prefix}_filtered_{baseline_session}.csv')
+        if not os.path.exists(src):
+            # ground_truth uses a different naming convention in this project
+            src = os.path.join(LOG_DIR, f'ground_truth_filtered_{baseline_session}.csv')
+        if os.path.exists(src):
+            dst = src.replace(baseline_session, fault_session)
+            shutil.copy2(src, dst)
+
+    # Apply the fault to the target sensor file.
+    src_path = os.path.join(LOG_DIR, f'{sensor}_filtered_{baseline_session}.csv')
+    if not os.path.exists(src_path):
+        raise FileNotFoundError(f"Baseline file not found: {src_path}")
+    df = pd.read_csv(src_path)
+
+    rng = np.random.default_rng(seed)
+    if fault_type == 'delay':
+        # FIX (point 7, partial): delay already reports an exact physical
+        # value (seconds) — no abstract multiplier to resolve, unlike
+        # noise/bias/drift. Noted here rather than silently treated the
+        # same as the others, since it genuinely isn't the same shape.
+        severity_value = DELAY_SEVERITY[severity]
+        faulted = inject_delay(df, timestamp_col, severity_value)
+        injected_stats = {timestamp_col: {'shift_seconds': float(severity_value)}}
+        mechanism = 'delay (timestamp shift — no abstract multiplier involved)'
+    else:
+        severity_value = FAULT_SEVERITY_MAPS[fault_type][severity]
+        if sensor == 'imu' and IMU_ORIENTATION_TARGET:
+            # Derive a free scalar yaw column, fault THAT (safe -- no
+            # quaternion constraint on a plain angle), then re-encode back
+            # to a valid unit quaternion. See IMU_ORIENTATION_TARGET's
+            # comment above for why raw orient_z/orient_w can't be faulted
+            # directly.
+            df = df.copy()
+            df[IMU_YAW_TEMP_COL] = quat_to_yaw(df['orient_z'], df['orient_w'])
+            faulted, injected_stats = FAULT_FNS[fault_type](
+                df, cols, severity, FAULT_SEVERITY_MAPS[fault_type], rng)
+            faulted['orient_z'], faulted['orient_w'] = yaw_to_quat(faulted[IMU_YAW_TEMP_COL])
+            faulted = faulted.drop(columns=[IMU_YAW_TEMP_COL])
+            mechanism_suffix = ' (applied to derived yaw, re-encoded to orient_z/orient_w)'
+        elif sensor == 'odom' and fault_type == 'bias':
+            # CONFIRMED on real data: a flat offset on pos_x/pos_y cancels
+            # exactly under run_ekf_core()'s consecutive differencing (max
+            # diff ~1e-14, floating-point noise). Use the accumulating
+            # per-step version instead -- see inject_position_bias()'s
+            # docstring for the full explanation and evidence.
+            faulted, injected_stats = inject_position_bias(df, cols, severity_value)
+            mechanism_suffix = ' (accumulating per-step offset, not flat -- flat cancels under differencing, confirmed on real data)'
+        else:
+            faulted, injected_stats = FAULT_FNS[fault_type](
+                df, cols, severity, FAULT_SEVERITY_MAPS[fault_type], rng)
+            mechanism_suffix = ''
+        mechanism = ('measurement_hold (frozen value, NOT row removal/NaN)'
+                     if fault_type == 'dropout' else fault_type) + mechanism_suffix
+
+    dst_path = os.path.join(LOG_DIR, f'{sensor}_filtered_{fault_session}.csv')
+    faulted.to_csv(dst_path, index=False)
+
+    # ── Metadata manifest ────────────────────────────────────────────────
+    # Written so a fault session's exact configuration is recoverable from
+    # its own directory months later, without reverse-engineering the
+    # filename. FIX (points 3+6): now includes 'injected_stats' — the
+    # ACTUAL physical values applied per column (e.g. real noise std in
+    # rad/s, real bias offset in m/s²), not just the abstract severity
+    # multiplier. A manifest that only said "severity_value: 6.0" told a
+    # reader nothing without separately knowing that column's own std;
+    # injected_stats resolves that into real units directly.
+    import json
+    from datetime import datetime, timezone
+    manifest = {
+        'fault_session': fault_session,
+        'baseline_session': baseline_session,
+        'sensor': sensor,
+        'fault_type': fault_type,
+        'mechanism': mechanism,
+        'severity_label': severity,
+        'severity_value': severity_value,
+        'columns': cols,
+        'timestamp_col': timestamp_col if fault_type == 'delay' else None,
+        'injected_stats': injected_stats,
+        'seed': seed,
+        'created_utc': datetime.now(timezone.utc).isoformat(),
+    }
+    manifest_path = os.path.join(LOG_DIR, f'fault_meta_{fault_session}.json')
+    with open(manifest_path, 'w') as f:
+        json.dump(manifest, f, indent=2)
+
+    print(f"  Created fault session: {fault_session}")
+    print(f"    Faulted file: {os.path.basename(dst_path)}")
+    print(f"    Other files copied unchanged from {baseline_session}")
+    print(f"    Manifest: {os.path.basename(manifest_path)}")
+    return fault_session
+
+
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) >= 3 and sys.argv[1] == '--inspect':
+        inspect_columns(sys.argv[2])
+        sys.exit(0)
+
+    print(__doc__)
+    print("\nUsage:")
+    print("  python3 fault_injection.py --inspect <session>")
+    print("      Prints imu/odom column names for a real session (do this first).")
+    print("\n  Or import and call make_fault_session() directly, e.g.:")
+    print("      from fault_injection import make_fault_session")
+    print("      make_fault_session('20260712_144326', 'imu', 'noise', 'high')")
