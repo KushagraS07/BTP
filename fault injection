@@ -99,6 +99,29 @@ DRIFT_SEVERITY = {'slow': 1.0, 'medium': 3.0, 'fast': 6.0}
 DROPOUT_SEVERITY = {'short': 0.05, 'medium': 0.15, 'long': 0.35}  # fraction of session, held constant
 DELAY_SEVERITY = {'small': 0.1, 'medium': 0.5, 'large': 2.0}  # seconds
 
+# ── LiDAR fault config (Section 13) ─────────────────────────────────────
+LIDAR_TIMESTAMP_COL = 'timestamp'
+
+def get_lidar_range_cols(df: pd.DataFrame) -> list:
+    """Beam columns are per-session (count fixed at 540 by preprocess_data.py's
+    N_BEAMS, but discovered dynamically here rather than hardcoded, matching
+    lidar_fusion.py's own range_cols filter exactly."""
+    return sorted(
+        [c for c in df.columns if c.startswith('range_') and c.split('_', 1)[1].isdigit()],
+        key=lambda c: int(c.split('_')[1]))
+
+# Fraction of beams per frame set to no-return (§13 "Return loss")
+LIDAR_RETURN_LOSS_SEVERITY = {'low': 0.05, 'medium': 0.15, 'high': 0.35, 'extreme': 0.60}
+
+# Fraction of FRAMES (rows) fully corrupted with randomized ranges (§13 "Scan corruption")
+LIDAR_CORRUPTION_SEVERITY = {'mild': 0.05, 'moderate': 0.15, 'severe': 0.35}
+
+# Fractional range scale error, simulating poor scan matching / miscalibration (§13)
+LIDAR_MATCHING_SEVERITY = {'mild': 0.05, 'moderate': 0.15, 'severe': 0.30}
+
+# Dropout/delay reuse the SAME severity dicts already defined for IMU/odom —
+# these are generic (fraction of session / seconds), not sensor-specific.
+
 
 def inspect_columns(session: str):
     """Prints every column in this session's imu/odom filtered files.
@@ -251,6 +274,75 @@ def yaw_to_quat(yaw):
     yaw = np.asarray(yaw, dtype=float)
     return np.sin(yaw / 2.0), np.cos(yaw / 2.0)
 
+def inject_lidar_return_loss(df: pd.DataFrame, range_cols: list, frac: float,
+                             range_max: float, rng: np.random.Generator):
+    """Randomly marks `frac` of beams per frame as no-return, by setting them
+    to range_max — lidar_fusion.py's own estimate_position_correction()
+    already treats r >= range_max as invalid."""
+    out = df.copy()
+    arr = out[range_cols].values.astype(float)
+    mask = rng.random(arr.shape) < frac
+    arr[mask] = range_max
+    out[range_cols] = arr
+
+    stats = {
+        'fraction_beams_lost_per_frame': float(frac),
+        'no_return_sentinel': float(range_max),
+        'total_beams_affected': int(mask.sum())
+    }
+
+    return out, stats
+
+
+def inject_lidar_scan_corruption(df: pd.DataFrame, range_cols: list, frac: float,
+                                 rng: np.random.Generator,
+                                 range_min: float = 0.10,
+                                 range_max_valid: float = 2.50):
+    """Fully randomizes ALL beams for `frac` of frames (rows), simulating
+    corrupted scans."""
+    out = df.copy()
+    n = len(out)
+
+    n_corrupt = max(1, int(n * frac))
+
+    corrupt_idx = rng.choice(n, size=n_corrupt, replace=False)
+
+    arr = out[range_cols].values.astype(float)
+
+    arr[corrupt_idx, :] = rng.uniform(
+        range_min,
+        range_max_valid,
+        size=(n_corrupt, len(range_cols))
+    )
+
+    out[range_cols] = arr
+
+    stats = {
+        'fraction_frames_corrupted': float(frac),
+        'n_frames_corrupted': int(n_corrupt)
+    }
+
+    return out, stats
+
+
+def inject_lidar_scale_error(df: pd.DataFrame, range_cols: list,
+                             scale_frac: float):
+    """Applies a systematic fractional scale error to all valid ranges."""
+    out = df.copy()
+
+    arr = out[range_cols].values.astype(float)
+
+    valid = np.isfinite(arr)
+
+    arr[valid] = arr[valid] * (1.0 + scale_frac)
+
+    out[range_cols] = arr
+
+    stats = {
+        'scale_fraction_applied': float(scale_frac)
+    }
+
+    return out, stats
 
 def inject_measurement_hold(df: pd.DataFrame, cols: list, frac: float,
                              start_frac: float = 0.4):
@@ -325,15 +417,23 @@ def generate_all_faults(baseline_sessions: list = None, sensors: list = None,
     if baseline_sessions is None:
         baseline_sessions = get_good_sessions()
     if sensors is None:
-        sensors = ['imu', 'odom']
+        sensors = ['imu', 'odom', 'lidar']
 
     plan = []
     for baseline in baseline_sessions:
-        for sensor in sensors:
-            for fault_type in FAULT_TYPES_ALL:
-                sev_map = DELAY_SEVERITY if fault_type == 'delay' else FAULT_SEVERITY_MAPS[fault_type]
-                for severity in sev_map:
-                    plan.append((baseline, sensor, fault_type, severity))
+     for sensor in sensors:
+        fault_types = LIDAR_FAULT_TYPES if sensor == 'lidar' else FAULT_TYPES_ALL
+
+        for fault_type in fault_types:
+            sev_map = (
+                LIDAR_SEVERITY_MAPS[fault_type]
+                if sensor == 'lidar'
+                else DELAY_SEVERITY if fault_type == 'delay'
+                else FAULT_SEVERITY_MAPS[fault_type]
+            )
+
+            for severity in sev_map:
+                plan.append((baseline, sensor, fault_type, severity))
 
     print(f"  Fault matrix: {len(baseline_sessions)} baseline(s) x {len(sensors)} "
           f"sensor(s) x {len(FAULT_TYPES_ALL)} fault types = {len(plan)} sessions to create")
@@ -360,7 +460,15 @@ FAULT_SEVERITY_MAPS = {
     'noise': NOISE_SEVERITY, 'bias': BIAS_SEVERITY,
     'drift': DRIFT_SEVERITY, 'dropout': DROPOUT_SEVERITY,
 }
-
+LIDAR_FAULT_TYPES = ['noise', 'return_loss', 'corruption', 'scale_error', 'dropout', 'delay']
+LIDAR_SEVERITY_MAPS = {
+    'noise': NOISE_SEVERITY,
+    'return_loss': LIDAR_RETURN_LOSS_SEVERITY,
+    'corruption': LIDAR_CORRUPTION_SEVERITY,
+    'scale_error': LIDAR_MATCHING_SEVERITY,
+    'dropout': DROPOUT_SEVERITY,
+    'delay': DELAY_SEVERITY,
+}
 
 def make_fault_session(baseline_session: str, sensor: str, fault_type: str,
                         severity: str, cols: list = None,
@@ -378,8 +486,8 @@ def make_fault_session(baseline_session: str, sensor: str, fault_type: str,
     Also written into the metadata manifest so a fault session's exact
     randomness is recorded, not just implied.
     """
-    if sensor not in ('imu', 'odom'):
-        raise ValueError("sensor must be 'imu' or 'odom'")
+    if sensor not in ('imu', 'odom', 'lidar'):
+        raise ValueError("sensor must be 'imu', 'odom', or 'lidar'")
     if sensor == 'odom' and fault_type != 'delay' and not ODOM_NOISE_COLS and cols is None:
         raise ValueError(
             "ODOM_NOISE_COLS is empty. Run `python3 fault_injection.py "
@@ -388,7 +496,7 @@ def make_fault_session(baseline_session: str, sensor: str, fault_type: str,
             "injecting an odom fault. (delay doesn't need this — it only "
             "needs a timestamp column — so this check is skipped for it.)")
 
-    default_cols = IMU_NOISE_COLS if sensor == 'imu' else ODOM_NOISE_COLS
+    default_cols = IMU_NOISE_COLS if sensor == 'imu' else (None if sensor == 'lidar' else ODOM_NOISE_COLS)
     default_ts = IMU_TIMESTAMP_COL if sensor == 'imu' else ODOM_TIMESTAMP_COL
     cols = cols or default_cols
     timestamp_col = timestamp_col or default_ts
@@ -398,7 +506,7 @@ def make_fault_session(baseline_session: str, sensor: str, fault_type: str,
     # Copy every OTHER required file unchanged under the new session name,
     # so ekf_fusion.py's load_latest() finds everything it expects.
     for prefix in ['odom', 'imu', 'scan', 'ground_truth', 'cmd_vel']:
-        if prefix == sensor:
+        if prefix == sensor or (sensor == 'lidar' and prefix == 'scan'):
             continue  # this one gets the fault, handled below
         src = os.path.join(LOG_DIR, f'{prefix}_filtered_{baseline_session}.csv')
         if not os.path.exists(src):
@@ -410,10 +518,17 @@ def make_fault_session(baseline_session: str, sensor: str, fault_type: str,
 
     # Apply the fault to the target sensor file.
     src_path = os.path.join(LOG_DIR, f'{sensor}_filtered_{baseline_session}.csv')
+
+    if sensor == 'lidar':
+        src_path = os.path.join(
+            LOG_DIR,
+            f'scan_filtered_{baseline_session}.csv'
+    )
+
     if not os.path.exists(src_path):
         raise FileNotFoundError(f"Baseline file not found: {src_path}")
-    df = pd.read_csv(src_path)
 
+    df = pd.read_csv(src_path)
     rng = np.random.default_rng(seed)
     if fault_type == 'delay':
         # FIX (point 7, partial): delay already reports an exact physical
@@ -424,6 +539,35 @@ def make_fault_session(baseline_session: str, sensor: str, fault_type: str,
         faulted = inject_delay(df, timestamp_col, severity_value)
         injected_stats = {timestamp_col: {'shift_seconds': float(severity_value)}}
         mechanism = 'delay (timestamp shift — no abstract multiplier involved)'
+
+    elif sensor == 'lidar':
+        range_cols = cols or get_lidar_range_cols(df)
+        range_max = float(df['range_max'].iloc[0])
+        severity_value = LIDAR_SEVERITY_MAPS[fault_type][severity]
+
+        if fault_type == 'noise':
+            faulted, injected_stats = inject_noise(df, range_cols, severity_value, rng)
+        elif fault_type == 'return_loss':
+            faulted, injected_stats = inject_lidar_return_loss(
+                df, range_cols, severity_value, range_max, rng
+        )
+        elif fault_type == 'corruption':
+            faulted, injected_stats = inject_lidar_scan_corruption(
+                df, range_cols, severity_value, rng
+        )
+        elif fault_type == 'scale_error':
+            faulted, injected_stats = inject_lidar_scale_error(
+                df, range_cols, severity_value
+        )
+        elif fault_type == 'dropout':
+            faulted, injected_stats = inject_measurement_hold(
+                df, range_cols, severity_value
+        )
+        else:
+            raise ValueError(f"Unknown LiDAR fault_type: {fault_type}")
+
+        mechanism = fault_type
+
     else:
         severity_value = FAULT_SEVERITY_MAPS[fault_type][severity]
         if sensor == 'imu' and IMU_ORIENTATION_TARGET:
@@ -454,7 +598,8 @@ def make_fault_session(baseline_session: str, sensor: str, fault_type: str,
         mechanism = ('measurement_hold (frozen value, NOT row removal/NaN)'
                      if fault_type == 'dropout' else fault_type) + mechanism_suffix
 
-    dst_path = os.path.join(LOG_DIR, f'{sensor}_filtered_{fault_session}.csv')
+    dst_path = os.path.join(LOG_DIR, f'scan_filtered_{fault_session}.csv') if sensor == 'lidar' \
+        else os.path.join(LOG_DIR, f'{sensor}_filtered_{fault_session}.csv')
     faulted.to_csv(dst_path, index=False)
 
     # ── Metadata manifest ────────────────────────────────────────────────
