@@ -1,0 +1,349 @@
+#!/usr/bin/env python3
+"""
+build_training_dataset.py
+
+Phase 2 dataset assembly, two stages:
+
+  STAGE 1 (build_session_features): for every session (7 baselines + 224
+  fault sessions = 231 total), assembles one flat CSV
+  `features_{session}.csv` with every feature + label aligned by row,
+  UNWINDOWED. Written so you can inspect raw features/labels before
+  committing to any windowing choice.
+
+  STAGE 2 (build_windowed_folds): reads all features_{session}.csv files,
+  slides a causal window (default 50 rows / ~1s at 50Hz, per the framework
+  doc's starting hyperparameter) over each session, and writes one .npz
+  per leave-one-baseline-session-out fold (7 folds total, rotating which
+  of the 7 baselines' full fault tree is held out as test).
+
+FEATURE SOURCES (all traced to real, already-verified files/functions --
+see conversation history for how each was confirmed):
+  - innov_s, innov_phi, innov_imu_theta, cov_trace
+        <- ekf_fused_output_{session}.csv (already computed, Phase 0/1)
+  - odom_scale, imu_scale (post-clip R-inflation factors from Phase 1's
+    heuristic-adaptive EKF; NOTE: these saturate to exactly 1.0 for any
+    step where the raw chi-squared score is below threshold -- this is a
+    known limitation of this feature, not a bug in this script. The raw
+    pre-clip score is NOT exposed by run_adaptive_ekf_core()'s current
+    return signature, and that function is NOT modified here since
+    compare_adaptive_vs_fixed.py unpacks its return positionally and
+    already produced the validated Phase 1 result.)
+        <- run_adaptive_ekf_core(), called fresh per session via
+           load_session_arrays() -- BOTH imported directly from
+           compare_adaptive_vs_fixed.py / heuristic_adaptive_ekf.py,
+           not reimplemented, to avoid reintroducing the two fallback-
+           logic bugs already found and fixed in that file this session.
+  - imu_angular_vel_z, imu_linear_acc_x/y/z
+        <- imu_filtered_{session}.csv (raw; "mathematically inert" for
+           the EKF's own state correction per ekf_fusion.py's own
+           comments, but a candidate novel LSTM feature per framework doc)
+  - odom_linear_x, odom_angular_z
+        <- odom_filtered_{session}.csv (same rationale)
+  - r_imu_prev, r_odom_prev
+        <- reliability_labels_{session}.csv, shifted by 1 row (feedback
+           loop per framework Figure 1); first row's "previous" value
+           defaults to 1.0 (fully reliable before the session starts)
+
+           KNOWN LIMITATION (flagged, not yet resolved -- do not lose
+           track of this before trusting final reported numbers):
+           these are built here from TRUE ground-truth labels (teacher
+           forcing). At deployment, ground-truth r_i(t) is never
+           observable -- only ever predicted -- so the real feedback
+           signal must be the model's OWN previous prediction, not the
+           true label. This is the standard train/inference mismatch
+           (exposure bias) in any autoregressive-style feedback feature.
+           It does not block using this feature (deployment is
+           mechanically fine: maintain a rolling buffer of the model's
+           own past outputs), but the TRAINED model's test-fold RMSE
+           computed this way is an OPEN-LOOP (teacher-forced) number,
+           not necessarily representative of real closed-loop behavior.
+           REQUIRED before trusting final Phase 2 results: evaluate the
+           trained model in CLOSED-LOOP mode too (feeding back its own
+           r_i(t-1) predictions instead of true labels) on the held-out
+           test fold, and report both numbers. If closed-loop degrades
+           substantially, revisit via scheduled sampling during training
+           rather than assuming open-loop RMSE alone is sufficient. This
+           evaluation belongs in the training/evaluation script (not
+           built yet), not this dataset-assembly stage.
+
+LABELS:
+  - r_imu, r_odom <- reliability_labels_{session}.csv (see
+    generate_reliability_labels.py for full derivation/verification)
+
+Usage:
+    python3 build_training_dataset.py --stage1        # build flat CSVs
+    python3 build_training_dataset.py --stage2         # build windowed folds
+    python3 build_training_dataset.py --stage1 --stage2  # both
+"""
+
+import argparse
+import sys
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+
+SENSOR_LOGS_DIR = Path.home() / "ws_mobile" / "sensor_logs"
+SCRIPTS_DIR = Path.home() / "ws_mobile" / "scripts"
+
+sys.path.insert(0, str(SCRIPTS_DIR))
+from compare_adaptive_vs_fixed import load_session_arrays  # noqa: E402
+from heuristic_adaptive_ekf import run_adaptive_ekf_core  # noqa: E402
+from health_check import check_session  # noqa: E402
+
+WINDOW_SIZE = 50  # ~1s at 50Hz, per framework doc's starting hyperparameter
+
+FEATURE_COLS = [
+    "innov_s", "innov_phi", "innov_imu_theta",
+    "odom_scale", "imu_scale",
+    "imu_angular_vel_z", "imu_linear_acc_x", "imu_linear_acc_y", "imu_linear_acc_z",
+    "odom_linear_x", "odom_angular_z",
+    # r_imu_prev, r_odom_prev: see earlier note -- excluded, caused severe
+    # exposure bias (~50x worse closed-loop RMSE), confirmed empirically.
+    #
+    # cov_trace: DELIBERATELY EXCLUDED as of this version, second ablation.
+    # FINDING: unlike innovations/raw sensor signals (exogenous, determined
+    # by physical data independent of any R choice), cov_trace = trace(P)
+    # is causally DOWNSTREAM of the LSTM's own past R decisions once the
+    # model actually drives a real EKF (lstm_adaptive_ekf.py). During
+    # training, cov_trace was generated entirely by Phase 1's heuristic
+    # chi-squared gate -- a process totally independent of anything the
+    # LSTM would ever predict. At deployment, cov_trace reflects the
+    # model's OWN choices feeding back into itself one step removed: a
+    # slightly miscalibrated r(t) changes P, which changes cov_trace(t),
+    # which becomes an input the model sees at t+1, compounding forward.
+    # CONFIRMED empirically on session 20260712_141740: by row 5, online
+    # cov_trace had already diverged to ~3.03 vs offline/training's 1.02
+    # (~3x), while every other feature matched training-time values to
+    # within floating-point precision -- isolating cov_trace as the sole
+    # source of feature-distribution shift. This is the same underlying
+    # exposure-bias phenomenon as r_imu_prev/r_odom_prev, operating
+    # through the covariance channel instead of a literal label feature.
+]
+LABEL_COLS = ["r_imu", "r_odom"]
+
+
+def discover_all_sessions() -> list[str]:
+    """Every session with an ekf_fused_output CSV -- baselines AND fault
+    sessions, LiDAR-fault sessions excluded (Phase 2 scope is IMU+odom
+    only). ALSO excludes any session whose baseline fails health_check's
+    gate (e.g. the dead-IMU session 20260714_014615) -- such a baseline
+    never gets a reliability_labels CSV from generate_reliability_labels.py
+    (by design), so attempting to build features for it or its fault tree
+    here would just fail on a missing file. Filtering here up front makes
+    that explicit rather than surfacing as a FileNotFoundError per fault
+    session."""
+    sessions = []
+    for f in sorted(SENSOR_LOGS_DIR.glob("ekf_fused_output_*.csv")):
+        session = f.stem[len("ekf_fused_output_"):]
+        if "_fault_lidar_" in session:
+            continue
+        sessions.append(session)
+
+    baselines = sorted(set(session_to_baseline(s) for s in sessions))
+    good_baselines = set()
+    for b in baselines:
+        passed, reasons = check_session(b)
+        if passed:
+            good_baselines.add(b)
+        else:
+            print(f"excluding baseline {b} and its fault tree (health_check FAIL): {reasons}")
+
+    return [s for s in sessions if session_to_baseline(s) in good_baselines]
+
+
+def session_to_baseline(session: str) -> str:
+    """'{baseline}_fault_{sensor}_{fault_type}_{severity}' -> baseline.
+    A plain baseline session (no '_fault_' substring) maps to itself."""
+    return session.split("_fault_")[0]
+
+
+def parse_fault_info(session: str, baseline: str) -> tuple:
+    """Returns (sensor, fault_type, severity) or (None, None, None) for baselines."""
+    if session == baseline:
+        return None, None, None
+    remainder = session[len(baseline) + len("_fault_"):]
+    parts = remainder.split("_")
+    if len(parts) != 3:
+        raise ValueError(f"Unexpected fault session name shape: {session} -> {parts}")
+    return tuple(parts)  # sensor, fault_type, severity
+
+
+def build_session_features(session: str):
+    """Stage 1: assemble one flat, unwindowed features_{session}.csv."""
+    ekf_path = SENSOR_LOGS_DIR / f"ekf_fused_output_{session}.csv"
+    imu_path = SENSOR_LOGS_DIR / f"imu_filtered_{session}.csv"
+    odom_path = SENSOR_LOGS_DIR / f"odom_filtered_{session}.csv"
+    labels_path = SENSOR_LOGS_DIR / f"reliability_labels_{session}.csv"
+
+    df_ekf = pd.read_csv(ekf_path)
+    df_imu = pd.read_csv(imu_path)
+    df_odom = pd.read_csv(odom_path)
+    df_labels = pd.read_csv(labels_path)
+
+    n = len(df_ekf)
+    # Never silently truncate to a shorter length -- if these disagree,
+    # something upstream is misaligned and needs investigating, not masking.
+    for name, df in [("imu_filtered", df_imu), ("odom_filtered", df_odom),
+                      ("reliability_labels", df_labels)]:
+        if len(df) != n:
+            raise ValueError(
+                f"{session}: row count mismatch -- ekf_fused_output has {n} rows, "
+                f"{name} has {len(df)} rows"
+            )
+
+    odom_x, odom_y, odom_theta, v_lin, omega, imu_theta, timestamps = \
+        load_session_arrays(session)
+    adaptive_out = run_adaptive_ekf_core(
+        odom_x, odom_y, odom_theta, v_lin, omega, imu_theta, timestamps,
+        0.0, 0.0, 0.0
+    )
+    odom_scale = adaptive_out[7]
+    imu_scale = adaptive_out[8]
+    if len(odom_scale) != n:
+        raise ValueError(
+            f"{session}: run_adaptive_ekf_core returned {len(odom_scale)} rows, "
+            f"expected {n}"
+        )
+
+    r_imu_prev = df_labels["r_imu"].shift(1).fillna(1.0).values
+    r_odom_prev = df_labels["r_odom"].shift(1).fillna(1.0).values
+
+    # innov_imu_theta / imu_scale: SHIFTED by one row here, deliberately.
+    # ekf_fused_output's innov_imu_theta(t) was computed by Phase 1's
+    # run_adaptive_ekf_core() AFTER that same row's odom update had
+    # already corrected the state -- i.e. it reflects "what the imu
+    # innovation looks like once odom is done." But lstm_adaptive_ekf.py
+    # must decide odom's own R BEFORE imu's current-step innovation can
+    # exist (that update hasn't happened yet) -- so deployment feeds the
+    # PREVIOUS timestep's innov_imu_theta/imu_scale as input at row t.
+    # Without this shift, training would see the current-row value while
+    # deployment sees the previous-row value for the exact same feature
+    # name -- a genuine, avoidable train/deploy distribution mismatch.
+    # Shifting here makes both sides see the identical causal signal.
+    innov_imu_theta_shifted = df_ekf["innov_imu_theta"].shift(1).fillna(0.0).values
+    imu_scale_shifted = pd.Series(imu_scale).shift(1).fillna(1.0).values
+
+    out = pd.DataFrame({
+        "timestamp": df_ekf["timestamp"].values,
+        "innov_s": df_ekf["innov_s"].values,
+        "innov_phi": df_ekf["innov_phi"].values,
+        "innov_imu_theta": innov_imu_theta_shifted,
+        "cov_trace": df_ekf["cov_trace"].values,
+        "odom_scale": odom_scale,
+        "imu_scale": imu_scale_shifted,
+        "imu_angular_vel_z": df_imu["angular_vel_z"].values,
+        "imu_linear_acc_x": df_imu["linear_acc_x"].values,
+        "imu_linear_acc_y": df_imu["linear_acc_y"].values,
+        "imu_linear_acc_z": df_imu["linear_acc_z"].values,
+        "odom_linear_x": df_odom["linear_x"].values,
+        "odom_angular_z": df_odom["angular_z"].values,
+        "r_imu_prev": r_imu_prev,
+        "r_odom_prev": r_odom_prev,
+        "r_imu": df_labels["r_imu"].values,
+        "r_odom": df_labels["r_odom"].values,
+    })
+    out_path = SENSOR_LOGS_DIR / f"features_{session}.csv"
+    out.to_csv(out_path, index=False)
+    return out_path, n
+
+
+def stage1_main():
+    sessions = discover_all_sessions()
+    print(f"found {len(sessions)} sessions (baselines + fault sessions, LiDAR excluded)\n")
+    ok, failed = 0, []
+    for session in sessions:
+        try:
+            path, n = build_session_features(session)
+            print(f"wrote {path.name} (n={n})")
+            ok += 1
+        except Exception as e:
+            print(f"FAILED {session}: {e}")
+            failed.append(session)
+    print(f"\nstage 1 done: {ok}/{len(sessions)} succeeded")
+    if failed:
+        print(f"failed sessions: {failed}")
+
+
+def make_windows(df: pd.DataFrame, window_size: int):
+    """Causal sliding windows: window ending at row t uses rows
+    [t-window_size+1, t], label is r_imu/r_odom AT row t (the last row
+    of the window) -- matches real-time deployment (predict using only
+    past + current data, not future). float32 (not float64) to roughly
+    halve memory across ~231 sessions' worth of windows."""
+    feats = df[FEATURE_COLS].values.astype(np.float32)
+    labels = df[LABEL_COLS].values.astype(np.float32)
+    n = len(df)
+    if n < window_size:
+        return np.empty((0, window_size, len(FEATURE_COLS)), dtype=np.float32), \
+               np.empty((0, len(LABEL_COLS)), dtype=np.float32)
+    X = np.stack([feats[i - window_size + 1: i + 1] for i in range(window_size - 1, n)])
+    y = labels[window_size - 1:]
+    return X, y
+
+
+def stage2_main():
+    sessions = discover_all_sessions()  # already health-gate-filtered
+    good_baselines = sorted(set(session_to_baseline(s) for s in sessions
+                                 if s == session_to_baseline(s)))
+    print(f"\n{len(good_baselines)} good baselines, building {len(good_baselines)} LOBO folds\n",
+          flush=True)
+
+    session_data = {}
+    for idx, session in enumerate(sessions, 1):
+        path = SENSOR_LOGS_DIR / f"features_{session}.csv"
+        if not path.exists():
+            print(f"SKIPPING {session}: no features CSV (run --stage1 first)", flush=True)
+            continue
+        df = pd.read_csv(path)
+        baseline = session_to_baseline(session)
+        sensor, fault_type, severity = parse_fault_info(session, baseline)
+        X, y = make_windows(df, WINDOW_SIZE)
+        session_data[session] = {
+            "baseline": baseline, "sensor": sensor,
+            "fault_type": fault_type, "severity": severity,
+            "X": X, "y": y,
+        }
+        print(f"[{idx}/{len(sessions)}] windowed {session} -> {X.shape[0]} windows", flush=True)
+
+    for held_out in good_baselines:
+        train_X, train_y, train_meta = [], [], []
+        test_X, test_y, test_meta = [], [], []
+        for session, d in session_data.items():
+            bucket = (test_X, test_y, test_meta) if d["baseline"] == held_out \
+                else (train_X, train_y, train_meta)
+            bx, by, bm = bucket
+            bx.append(d["X"])
+            by.append(d["y"])
+            bm.extend([session] * len(d["X"]))
+
+        train_X = np.concatenate(train_X) if train_X else np.empty((0, WINDOW_SIZE, len(FEATURE_COLS)), dtype=np.float32)
+        train_y = np.concatenate(train_y) if train_y else np.empty((0, len(LABEL_COLS)), dtype=np.float32)
+        test_X = np.concatenate(test_X) if test_X else np.empty((0, WINDOW_SIZE, len(FEATURE_COLS)), dtype=np.float32)
+        test_y = np.concatenate(test_y) if test_y else np.empty((0, len(LABEL_COLS)), dtype=np.float32)
+
+        out_path = SENSOR_LOGS_DIR / f"fold_{held_out}.npz"
+        np.savez(
+            out_path,
+            train_X=train_X, train_y=train_y, train_session=np.array(train_meta),
+            test_X=test_X, test_y=test_y, test_session=np.array(test_meta),
+            feature_names=np.array(FEATURE_COLS), label_names=np.array(LABEL_COLS),
+            window_size=WINDOW_SIZE, held_out_baseline=held_out,
+        )
+        print(f"wrote {out_path.name}: train={train_X.shape}, test={test_X.shape}", flush=True)
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--stage1", action="store_true", help="build per-session flat feature CSVs")
+    parser.add_argument("--stage2", action="store_true", help="build windowed LOBO fold .npz files")
+    args = parser.parse_args()
+
+    if not args.stage1 and not args.stage2:
+        parser.print_help()
+        sys.exit(0)
+
+    if args.stage1:
+        stage1_main()
+    if args.stage2:
+        stage2_main()
