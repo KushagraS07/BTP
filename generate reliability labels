@@ -1,0 +1,221 @@
+#!/usr/bin/env python3
+"""
+generate_reliability_labels.py
+
+Generates r_true(t) ground-truth reliability labels for IMU and odom channels,
+for Phase 2 of the LSTM reliability estimation framework.
+
+Formulas below are traced directly to fault_injection.py's real injection
+functions (confirmed via source inspection, not inferred from field names
+alone):
+
+  inject_bias()           -> FLAT offset  (col_std * severity_mult), IMU only
+  inject_position_bias()  -> UNBOUNDED RAMP: offset(i) = i * per_step_increment
+  inject_drift()          -> BOUNDED RAMP: offset(i) = (i/(ramp_len-1)) * final_offset
+  inject_noise()          -> FLAT stochastic std (col_std * severity_mult)
+  inject_measurement_hold()-> WINDOWED (frozen rows -> r=0)
+  delay faults            -> r_true = 1.0 (Phase 0: structurally invisible
+                              to this pipeline stage, confirmed via
+                              real-data diff ~1e-14)
+
+Confirmed assumption: start_frac = 0.0 for all bias/drift/noise faults in
+this dataset (no override passed in make_fault_session() calls) — so ramps
+start at row 0, not partway through the session. If this assumption ever
+changes (a manifest shows a non-zero start_frac), this script will need
+updating; it is NOT currently read from the manifest because the field
+isn't stored there.
+
+Output: reliability_labels_{fault_session}.csv in SENSOR_LOGS_DIR, columns:
+    timestamp, r_imu, r_odom
+
+Usage:
+    python3 generate_reliability_labels.py
+"""
+
+import json
+import sys
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+
+SENSOR_LOGS_DIR = Path.home() / "ws_mobile" / "sensor_logs"
+SCRIPTS_DIR = Path.home() / "ws_mobile" / "scripts"
+
+sys.path.insert(0, str(SCRIPTS_DIR))
+from health_check import check_session  # noqa: E402
+
+
+def discover_baseline_sessions() -> list[str]:
+    """Auto-detect baseline sessions: any ekf_fused_output_*.csv NOT
+    containing '_fault_' in its session id, cross-checked against
+    health_check.py's real check_session() gate (same standard as Phase 0's
+    7-good/3-excluded split). Logs every candidate's pass/fail explicitly --
+    no silent inclusion/exclusion."""
+    candidates = []
+    for f in sorted(SENSOR_LOGS_DIR.glob("ekf_fused_output_*.csv")):
+        session = f.stem[len("ekf_fused_output_"):]
+        if "_fault_" in session:
+            continue
+        candidates.append(session)
+
+    good = []
+    print(f"found {len(candidates)} candidate baseline sessions, running health_check gate:")
+    for session in candidates:
+        passed, reasons = check_session(session)
+        status = "PASS" if passed else f"FAIL ({'; '.join(reasons)})"
+        print(f"  {session}: {status}")
+        if passed:
+            good.append(session)
+    print(f"-> {len(good)}/{len(candidates)} sessions passed and will be used as baselines\n")
+    return good
+
+
+BASELINE_SESSIONS = discover_baseline_sessions()
+
+
+def n_rows_for_session(session: str) -> pd.DataFrame:
+    """Load the ekf_fused_output CSV for a session (baseline or fault) —
+    this is the row-aligned timeline the LSTM features/labels must match."""
+    path = SENSOR_LOGS_DIR / f"ekf_fused_output_{session}.csv"
+    if not path.exists():
+        raise FileNotFoundError(f"Missing ekf_fused_output for session: {session}")
+    df = pd.read_csv(path)
+    return df
+
+
+def flat_r(severity_value: float) -> float:
+    """Flat degradation: IMU bias, odom noise, IMU noise.
+
+    NOTE for methodology write-up: this is a CONSTRUCTED synthetic
+    ground-truth target (a monotonic decreasing function of injected
+    severity), not a physically derived measure of true sensor
+    reliability. The framework's own output formula R_i(t) = R_i,0/(r_i(t)+eps)
+    is what's citable directly; this label formula should be described as
+    "a normalized synthetic reliability target constructed as a monotonic
+    inverse function of injected degradation magnitude," not as ground truth
+    in an absolute physical sense."""
+    return 1.0 / (1.0 + severity_value)
+
+
+def position_bias_r(n: int, per_step_increment: float, baseline_step_diff_std: float) -> np.ndarray:
+    """Unbounded ramp: odom 'bias' (inject_position_bias). start_idx=0 confirmed."""
+    i = np.arange(n)
+    offset = i * per_step_increment
+    return 1.0 / (1.0 + offset / baseline_step_diff_std)
+
+
+def drift_r(n: int, final_offset: float, baseline_std: float) -> np.ndarray:
+    """Bounded ramp: inject_drift (IMU or odom). start_idx=0, ramp_len=n confirmed."""
+    ramp = np.linspace(0.0, 1.0, n)
+    offset = ramp * final_offset
+    return 1.0 / (1.0 + offset / baseline_std)
+
+
+def dropout_r(n: int, start_idx: int, end_idx: int) -> np.ndarray:
+    """Windowed: 1.0 outside frozen window, 0.0 inside (inject_measurement_hold).
+
+    IMPORTANT: end_idx is EXCLUSIVE, matching the real injection slice
+    `out.index[start_idx:end_idx]` (confirmed via source inspection —
+    standard Python slice semantics, not inclusive). Do NOT add +1 here;
+    an earlier version of this script had that off-by-one bug."""
+    r = np.ones(n)
+    r[start_idx:end_idx] = 0.0
+    return r
+
+
+def compute_sensor_r(n: int, manifest: dict) -> np.ndarray:
+    """Dispatch on the actual fields present in injected_stats, not on
+    fault_type alone, since 'bias' means different mechanisms for IMU vs odom."""
+    fault_type = manifest["fault_type"]
+    if fault_type == "delay":
+        # Not asserting delay is "reliable" in a physical sense -- this
+        # excludes delay from degradation-label supervision, per Phase 0's
+        # confirmed real-data finding that a uniform timestamp shift cancels
+        # algebraically in ekf_fusion.py's dt computation (diff ~1e-14).
+        return np.ones(n)
+
+    stats = manifest["injected_stats"]
+    # Combine across columns (e.g. odom pos_x + pos_y) conservatively: take
+    # the MIN r_true across columns at each timestep, since the sensor is
+    # only as reliable as its worst-affected channel.
+    col_curves = []
+    for col, s in stats.items():
+        if "frozen_row_start_idx" in s:
+            col_curves.append(dropout_r(n, s["frozen_row_start_idx"], s["frozen_row_end_idx"]))
+        elif "per_step_increment" in s:
+            col_curves.append(position_bias_r(n, s["per_step_increment"], s["baseline_step_diff_std"]))
+        elif "final_injected_offset" in s:
+            col_curves.append(drift_r(n, s["final_injected_offset"], s["baseline_std"]))
+        elif "injected_offset" in s:
+            col_curves.append(np.full(n, flat_r(manifest["severity_value"])))
+        elif "injected_noise_std" in s:
+            col_curves.append(np.full(n, flat_r(manifest["severity_value"])))
+        else:
+            raise ValueError(f"Unrecognized injected_stats schema for column {col}: {s.keys()}")
+
+    if not col_curves:
+        raise ValueError(
+            f"No usable injected_stats for {manifest.get('fault_session', 'unknown')} "
+            f"(all columns had zero/NaN std and were skipped by the injector)"
+        )
+    return np.min(np.vstack(col_curves), axis=0)
+
+
+def process_fault_session(manifest_path: Path):
+    manifest = json.loads(manifest_path.read_text())
+    session = manifest["fault_session"]
+    sensor = manifest["sensor"]
+
+    df = n_rows_for_session(session)
+    n = len(df)
+
+    r_imu = np.ones(n)
+    r_odom = np.ones(n)
+
+    r_curve = compute_sensor_r(n, manifest)
+    if sensor == "imu":
+        r_imu = r_curve
+    elif sensor == "odom":
+        r_odom = r_curve
+    else:
+        raise ValueError(f"Unknown sensor '{sensor}' in {manifest_path}")
+
+    out = pd.DataFrame({
+        "timestamp": df["timestamp"].values,
+        "r_imu": r_imu,
+        "r_odom": r_odom,
+    })
+    out_path = SENSOR_LOGS_DIR / f"reliability_labels_{session}.csv"
+    out.to_csv(out_path, index=False)
+    print(f"wrote {out_path} (n={n}, sensor={sensor}, fault_type={manifest['fault_type']})")
+
+
+def process_baseline_session(session: str):
+    df = n_rows_for_session(session)
+    n = len(df)
+    out = pd.DataFrame({
+        "timestamp": df["timestamp"].values,
+        "r_imu": np.ones(n),
+        "r_odom": np.ones(n),
+    })
+    out_path = SENSOR_LOGS_DIR / f"reliability_labels_{session}.csv"
+    out.to_csv(out_path, index=False)
+    print(f"wrote {out_path} (n={n}, baseline)")
+
+
+def main():
+    for session in BASELINE_SESSIONS:
+        process_baseline_session(session)
+
+    manifest_paths = sorted(SENSOR_LOGS_DIR.glob("fault_meta_*.json"))
+    print(f"\nfound {len(manifest_paths)} fault manifests\n")
+    for mp in manifest_paths:
+        try:
+            process_fault_session(mp)
+        except Exception as e:
+            print(f"SKIPPED {mp.name}: {e}")
+
+
+if __name__ == "__main__":
+    main()
