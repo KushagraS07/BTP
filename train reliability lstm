@@ -1,0 +1,427 @@
+#!/usr/bin/env python3
+"""
+train_reliability_lstm.py
+
+Trains the Phase 2 reliability-estimation LSTM on one (or all 7) leave-one-
+baseline-out folds produced by build_training_dataset.py --stage2.
+
+CURRENT DEFAULT (as of the exposure-bias ablation): r_imu_prev/r_odom_prev
+are NOT in FEATURE_COLS (see build_training_dataset.py for why -- with
+them included, the model learned to copy the true previous label instead
+of reading innov_s/innov_phi/cov_trace/scale, giving excellent open-loop
+RMSE but ~50x worse sequential-rollout RMSE). With them absent, there is
+NO self-referential feedback feature at all, so:
+
+  - "open-loop" (batched window evaluation) and "closed-loop" (sequential,
+    one window at a time) are mathematically the same computation on the
+    same inputs -- the closed-loop rollout in this configuration is a
+    SEQUENTIAL-CONSISTENCY CHECK confirming batched and one-at-a-time
+    inference agree, not a genuine autoregressive evaluation. Matched
+    RMSE should equal open-loop RMSE (up to floating point) whenever
+    has_feedback is False inside closed_loop_eval().
+
+If r_imu_prev/r_odom_prev are ever reintroduced to FEATURE_COLS (e.g. to
+test scheduled sampling as a fix for the exposure-bias finding instead of
+ablating the feature), closed_loop_eval() automatically detects their
+presence (via has_feedback) and performs a genuine closed-loop rollout,
+feeding back the model's own prior predictions instead of true labels --
+that is the scenario the code was originally written for and still
+supports; it just isn't the active configuration right now.
+
+Architecture: small on purpose (per framework doc's own reasoning -- with
+only 7 baseline sessions worth of data, a large model risks overfitting;
+small and citable beats large and overfit). 1-2 layer LSTM, two separate
+sigmoid output heads (r_imu, r_odom) sharing the LSTM backbone.
+
+Usage:
+    python3 train_reliability_lstm.py --fold 20260712_141740
+    python3 train_reliability_lstm.py --all-folds --closed-loop
+    (--all-folds trains on every fold_*.npz found on disk, not a fixed
+    count of 7 -- this scales automatically if more baselines are added)
+"""
+
+import argparse
+import sys
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+import torch
+import torch.nn as nn
+from torch.utils.data import TensorDataset, DataLoader
+
+SENSOR_LOGS_DIR = Path.home() / "ws_mobile" / "sensor_logs"
+
+SEED = 42
+np.random.seed(SEED)
+torch.manual_seed(SEED)
+if torch.cuda.is_available():
+    torch.cuda.manual_seed_all(SEED)
+
+
+class ReliabilityLSTM(nn.Module):
+    """Small, shared LSTM backbone + two independent sigmoid heads."""
+
+    def __init__(self, input_size, hidden_size=64, num_layers=1, dropout=0.0):
+        super().__init__()
+        self.lstm = nn.LSTM(input_size, hidden_size, num_layers, batch_first=True)
+        self.dropout = nn.Dropout(dropout)
+        self.head_imu = nn.Linear(hidden_size, 1)
+        self.head_odom = nn.Linear(hidden_size, 1)
+
+    def forward(self, x):
+        out, _ = self.lstm(x)
+        last = self.dropout(out[:, -1, :])  # final timestep's hidden state
+        r_imu = torch.sigmoid(self.head_imu(last))
+        r_odom = torch.sigmoid(self.head_odom(last))
+        return torch.cat([r_imu, r_odom], dim=1)
+
+
+def session_to_baseline(session: str) -> str:
+    return session.split("_fault_")[0]
+
+
+def train_one_fold(fold_path: Path, epochs, batch_size, hidden_size, num_layers, lr, dropout, baseline_weight, device):
+    d = np.load(fold_path, allow_pickle=True)
+    train_X_all, train_y_all = d["train_X"], d["train_y"]
+    train_session_all = d["train_session"]
+    test_X, test_y = d["test_X"], d["test_y"]
+    feature_names = [str(f) for f in d["feature_names"]]
+    window_size = int(d["window_size"])
+    held_out = str(d["held_out_baseline"])
+    test_sessions = d["test_session"]
+
+    # Internal validation split, carved out of TRAINING baselines only
+    # (session/group-based, not a random window split -- windows overlap
+    # heavily within a session, so a random split would leak near-
+    # duplicate data across the fit/val boundary). The held-out LOBO test
+    # fold is never touched until the single final evaluation below.
+    train_baselines = sorted(set(session_to_baseline(s) for s in train_session_all))
+    val_baseline = train_baselines[0]  # deterministic choice, reproducible
+    val_mask = np.array([session_to_baseline(s) == val_baseline for s in train_session_all])
+    fit_mask = ~val_mask
+
+    fit_X, fit_y = train_X_all[fit_mask], train_y_all[fit_mask]
+    fit_session = train_session_all[fit_mask]
+    val_X, val_y = train_X_all[val_mask], train_y_all[val_mask]
+    val_session = train_session_all[val_mask]
+    print(f"[{held_out}] internal validation baseline: {val_baseline} "
+          f"(fit={len(fit_X)} windows, val={len(val_X)} windows)", flush=True)
+
+    # Per-sample loss weight: a "pure baseline" window (session == its own
+    # baseline, i.e. r=1.0 throughout, no fault) is a tiny minority of fit
+    # data (~1/33 of sessions per baseline, since each baseline's full
+    # fault tree dominates). This class imbalance is the likely root cause
+    # of two related findings: (1) the model underpredicts reliability
+    # even on clean held-out baselines, and (2) it likely over-inflates R
+    # unnecessarily on many real fault sessions too, since "expect
+    # degradation" was the dominant training signal. Upweighting baseline
+    # windows directly counters this without changing architecture.
+    is_baseline_window = np.array([session_to_baseline(s) == s for s in fit_session])
+    sample_weight = np.where(is_baseline_window, baseline_weight, 1.0).astype(np.float32)
+    n_baseline_windows = is_baseline_window.sum()
+    print(f"[{held_out}] baseline windows: {n_baseline_windows}/{len(fit_X)} "
+          f"({100*n_baseline_windows/len(fit_X):.1f}%), weighted {baseline_weight}x "
+          f"-> effective share {100*n_baseline_windows*baseline_weight/(n_baseline_windows*baseline_weight + (len(fit_X)-n_baseline_windows)):.1f}%",
+          flush=True)
+
+    # Normalization fit on FIT split only (not val, not test).
+    fit_flat = fit_X.reshape(-1, fit_X.shape[-1])
+    mean = fit_flat.mean(axis=0)
+    std = fit_flat.std(axis=0)
+    std[std == 0] = 1.0
+    fit_X = ((fit_X - mean) / std).astype(np.float32)
+    val_X = ((val_X - mean) / std).astype(np.float32)
+    test_X = ((test_X - mean) / std).astype(np.float32)
+    mean, std = mean.astype(np.float32), std.astype(np.float32)
+
+    fit_loader = DataLoader(
+        TensorDataset(torch.from_numpy(fit_X), torch.from_numpy(fit_y), torch.from_numpy(sample_weight)),
+        batch_size=batch_size, shuffle=True)
+    val_loader = DataLoader(
+        TensorDataset(torch.from_numpy(val_X), torch.from_numpy(val_y)),
+        batch_size=2048, shuffle=False)
+
+    model = ReliabilityLSTM(input_size=fit_X.shape[-1], hidden_size=hidden_size,
+                             num_layers=num_layers, dropout=dropout).to(device)
+    opt = torch.optim.Adam(model.parameters(), lr=lr)
+    loss_fn = nn.MSELoss(reduction="none")
+
+    best_val = float("inf")
+    best_state = None
+    best_epoch = -1
+    for epoch in range(1, epochs + 1):
+        model.train()
+        total = 0.0
+        for xb, yb, wb in fit_loader:
+            xb, yb, wb = xb.to(device), yb.to(device), wb.to(device)
+            opt.zero_grad()
+            pred = model(xb)
+            per_sample_loss = loss_fn(pred, yb).mean(dim=1)  # mean over r_imu/r_odom
+            loss = (per_sample_loss * wb).sum() / wb.sum()
+            loss.backward()
+            opt.step()
+            total += loss.item() * len(xb)
+        fit_mse = total / len(fit_X)
+
+        model.eval()
+        total = 0.0
+        with torch.no_grad():
+            for xb, yb in val_loader:
+                xb, yb = xb.to(device), yb.to(device)
+                total += loss_fn(model(xb), yb).mean().item() * len(xb)
+        val_mse = total / len(val_X)
+        print(f"[{held_out}] epoch {epoch}/{epochs} fit_mse={fit_mse:.5f} "
+              f"val_mse={val_mse:.5f}", flush=True)
+
+        if val_mse < best_val:
+            best_val = val_mse
+            best_epoch = epoch
+            best_state = {k: v.clone() for k, v in model.state_dict().items()}
+
+    print(f"[{held_out}] restoring best checkpoint from epoch {best_epoch} "
+          f"(val_mse={best_val:.5f})", flush=True)
+    model.load_state_dict(best_state)
+
+    # DIAGNOSTIC: split validation MSE into baseline-only vs fault-only
+    # windows. Pooled val_mse (used above for epoch/checkpoint selection)
+    # is dominated by fault windows (~97% of any baseline's val set), so
+    # it cannot show whether baseline_weight is actually helping the
+    # thing it's meant to fix (baseline-session calibration) -- a
+    # hyperparameter sweep over baseline_weight should be judged on
+    # val_mse_baseline specifically, not the pooled number.
+    is_baseline_val = np.array([session_to_baseline(s) == s for s in val_session])
+    model.eval()
+    val_preds = []
+    with torch.no_grad():
+        for xb, _ in val_loader:
+            val_preds.append(model(xb.to(device)).cpu().numpy())
+    val_preds = np.concatenate(val_preds)
+    val_sq_err = ((val_preds - val_y) ** 2).mean(axis=1)
+    val_mse_baseline = float(val_sq_err[is_baseline_val].mean()) if is_baseline_val.any() else float("nan")
+    val_mse_fault = float(val_sq_err[~is_baseline_val].mean()) if (~is_baseline_val).any() else float("nan")
+    print(f"[{held_out}] val split: baseline-only val_mse={val_mse_baseline:.5f} "
+          f"(n={is_baseline_val.sum()}), fault-only val_mse={val_mse_fault:.5f} "
+          f"(n={(~is_baseline_val).sum()})", flush=True)
+
+    # SINGLE final evaluation on the held-out LOBO test fold -- touched
+    # exactly once, here, never during the epoch loop above.
+    test_loader = DataLoader(
+        TensorDataset(torch.from_numpy(test_X), torch.from_numpy(test_y)),
+        batch_size=2048, shuffle=False)
+    model.eval()
+    preds = []
+    with torch.no_grad():
+        for xb, _ in test_loader:
+            preds.append(model(xb.to(device)).cpu().numpy())
+    preds = np.concatenate(preds)
+    open_rmse_imu = float(np.sqrt(np.mean((preds[:, 0] - test_y[:, 0]) ** 2)))
+    open_rmse_odom = float(np.sqrt(np.mean((preds[:, 1] - test_y[:, 1]) ** 2)))
+    print(f"[{held_out}] OPEN-LOOP test RMSE: r_imu={open_rmse_imu:.4f} "
+          f"r_odom={open_rmse_odom:.4f}", flush=True)
+
+    # Trivial baselines, for context on whether the model is actually
+    # informative or close to a naive predictor:
+    #  - "always reliable": predict r=1.0 for every sample (naive
+    #    physical assumption that nothing ever degrades)
+    #  - "fit mean": predict the fit-set's mean r value for every sample
+    #    (standard trivial regression baseline)
+    fit_mean = fit_y.mean(axis=0)  # [mean_r_imu, mean_r_odom], computed on FIT only
+    always_one_rmse_imu = float(np.sqrt(np.mean((1.0 - test_y[:, 0]) ** 2)))
+    always_one_rmse_odom = float(np.sqrt(np.mean((1.0 - test_y[:, 1]) ** 2)))
+    fit_mean_rmse_imu = float(np.sqrt(np.mean((fit_mean[0] - test_y[:, 0]) ** 2)))
+    fit_mean_rmse_odom = float(np.sqrt(np.mean((fit_mean[1] - test_y[:, 1]) ** 2)))
+    print(f"[{held_out}] BASELINE (always r=1.0): r_imu={always_one_rmse_imu:.4f} "
+          f"r_odom={always_one_rmse_odom:.4f}", flush=True)
+    print(f"[{held_out}] BASELINE (fit-mean r={fit_mean[0]:.3f}/{fit_mean[1]:.3f}): "
+          f"r_imu={fit_mean_rmse_imu:.4f} r_odom={fit_mean_rmse_odom:.4f}", flush=True)
+    test_mean = test_y.mean(axis=0)
+    test_std = test_y.std(axis=0)
+    print(f"[{held_out}] test-set label distribution: "
+          f"r_imu mean={test_mean[0]:.3f} std={test_std[0]:.3f}, "
+          f"r_odom mean={test_mean[1]:.3f} std={test_std[1]:.3f} "
+          f"(vs fit-set mean {fit_mean[0]:.3f}/{fit_mean[1]:.3f} -- a large gap here "
+          f"suggests this held-out baseline's fault mix genuinely differs from the "
+          f"other 6, which would explain harder generalization, not necessarily a bug)",
+          flush=True)
+
+    ckpt_path = SENSOR_LOGS_DIR / f"model_{held_out}.pt"
+    torch.save({
+        "model_state": model.state_dict(), "mean": mean, "std": std,
+        "feature_names": feature_names, "window_size": window_size,
+        "hidden_size": hidden_size, "num_layers": num_layers,
+        "best_epoch": best_epoch, "best_val_mse": best_val,
+    }, ckpt_path)
+    print(f"saved {ckpt_path}", flush=True)
+
+    return {
+        "held_out": held_out, "model": model, "mean": mean, "std": std,
+        "feature_names": feature_names, "window_size": window_size,
+        "test_sessions": sorted(set(test_sessions.tolist())),
+        "open_rmse_imu": open_rmse_imu, "open_rmse_odom": open_rmse_odom,
+        "always_one_rmse_imu": always_one_rmse_imu, "always_one_rmse_odom": always_one_rmse_odom,
+        "fit_mean_rmse_imu": fit_mean_rmse_imu, "fit_mean_rmse_odom": fit_mean_rmse_odom,
+    }
+
+
+def closed_loop_eval(model, mean, std, feature_names, window_size, test_sessions, device):
+    """Sequential per-session rollout: if r_imu_prev/r_odom_prev are
+    present in feature_names, they're overwritten with the MODEL'S OWN
+    prior predictions (never the true label) -- the real deployment
+    scenario. If those features are ABSENT (current default, per the
+    ablation finding documented in build_training_dataset.py), there is
+    no self-referential feedback at all, so this function just re-runs
+    inference sequentially per session as a correctness check -- its
+    result should match open-loop RMSE exactly (same model, same inputs,
+    just computed one window at a time instead of batched)."""
+    idx_imu_prev = feature_names.index("r_imu_prev") if "r_imu_prev" in feature_names else None
+    idx_odom_prev = feature_names.index("r_odom_prev") if "r_odom_prev" in feature_names else None
+    has_feedback = idx_imu_prev is not None and idx_odom_prev is not None
+
+    model.eval()
+    per_session = {}
+    sq_err_imu_full = sq_err_odom_full = 0.0
+    sq_err_imu_matched = sq_err_odom_matched = 0.0
+    n_full = n_matched = 0
+
+    with torch.no_grad():
+        for session in test_sessions:
+            path = SENSOR_LOGS_DIR / f"features_{session}.csv"
+            df = pd.read_csv(path)
+            feats = df[feature_names].values.astype(np.float32).copy()
+            true_r_imu = df["r_imu"].values
+            true_r_odom = df["r_odom"].values
+            n = len(df)
+
+            pred_imu_prev, pred_odom_prev = 1.0, 1.0  # same default as training
+            preds_imu = np.zeros(n, dtype=np.float32)
+            preds_odom = np.zeros(n, dtype=np.float32)
+
+            for t in range(n):
+                if has_feedback:
+                    feats[t, idx_imu_prev] = pred_imu_prev
+                    feats[t, idx_odom_prev] = pred_odom_prev
+
+                start = max(0, t - window_size + 1)
+                window = feats[start:t + 1]
+                if len(window) < window_size:
+                    pad = np.repeat(window[[0]], window_size - len(window), axis=0)
+                    window = np.concatenate([pad, window], axis=0)
+
+                window_norm = (window - mean) / std
+                x = torch.from_numpy(window_norm[None, ...]).to(device)
+                pred = model(x).cpu().numpy()[0]
+                preds_imu[t], preds_odom[t] = pred[0], pred[1]
+                pred_imu_prev, pred_odom_prev = float(pred[0]), float(pred[1])
+
+            err_imu = (preds_imu - true_r_imu) ** 2
+            err_odom = (preds_odom - true_r_odom) ** 2
+
+            sq_err_imu_full += err_imu.sum()
+            sq_err_odom_full += err_odom.sum()
+            n_full += n
+
+            matched_imu = err_imu[window_size - 1:]
+            matched_odom = err_odom[window_size - 1:]
+            sq_err_imu_matched += matched_imu.sum()
+            sq_err_odom_matched += matched_odom.sum()
+            n_matched += len(matched_imu)
+
+            per_session[session] = {
+                "rmse_imu_full": float(np.sqrt(err_imu.mean())),
+                "rmse_odom_full": float(np.sqrt(err_odom.mean())),
+                "rmse_imu_matched": float(np.sqrt(matched_imu.mean())) if len(matched_imu) else float("nan"),
+                "rmse_odom_matched": float(np.sqrt(matched_odom.mean())) if len(matched_odom) else float("nan"),
+            }
+
+    return {
+        "pooled_rmse_imu_full": float(np.sqrt(sq_err_imu_full / n_full)),
+        "pooled_rmse_odom_full": float(np.sqrt(sq_err_odom_full / n_full)),
+        "pooled_rmse_imu_matched": float(np.sqrt(sq_err_imu_matched / n_matched)),
+        "pooled_rmse_odom_matched": float(np.sqrt(sq_err_odom_matched / n_matched)),
+        "per_session": per_session,
+    }
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--fold", type=str, help="baseline session id, e.g. 20260712_141740")
+    parser.add_argument("--all-folds", action="store_true")
+    parser.add_argument("--epochs", type=int, default=15)
+    parser.add_argument("--batch-size", type=int, default=256)
+    parser.add_argument("--hidden-size", type=int, default=64)
+    parser.add_argument("--num-layers", type=int, default=1)
+    parser.add_argument("--lr", type=float, default=1e-3)
+    parser.add_argument("--dropout", type=float, default=0.0)
+    parser.add_argument("--baseline-weight", type=float, default=1.0,
+                         help="loss weight multiplier for pure baseline (r=1.0) windows, "
+                              "to counter their ~3%% share of training data")
+    parser.add_argument("--closed-loop", action="store_true",
+                         help="also run the slower per-session closed-loop rollout eval")
+    args = parser.parse_args()
+
+    if not args.fold and not args.all_folds:
+        parser.error("specify --fold <baseline_id> or --all-folds")
+
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    print(f"using device: {device}", flush=True)
+
+    if args.all_folds:
+        fold_paths = sorted(SENSOR_LOGS_DIR.glob("fold_*.npz"))
+    else:
+        fold_paths = [SENSOR_LOGS_DIR / f"fold_{args.fold}.npz"]
+        if not fold_paths[0].exists():
+            sys.exit(f"no such fold file: {fold_paths[0]}")
+
+    all_results = []
+    for fp in fold_paths:
+        r = train_one_fold(fp, args.epochs, args.batch_size, args.hidden_size,
+                            args.num_layers, args.lr, args.dropout, args.baseline_weight, device)
+        if args.closed_loop:
+            has_feedback = "r_imu_prev" in r["feature_names"] and "r_odom_prev" in r["feature_names"]
+            if not has_feedback:
+                print(f"[{r['held_out']}] NOTE: no r_prev feedback feature present -- "
+                      f"closed-loop below is a sequential-consistency check "
+                      f"(should match open-loop), not a genuine autoregressive "
+                      f"evaluation.", flush=True)
+            cl = closed_loop_eval(r["model"], r["mean"], r["std"], r["feature_names"],
+                                   r["window_size"], r["test_sessions"], device)
+            r["closed_rmse_imu_matched"] = cl["pooled_rmse_imu_matched"]
+            r["closed_rmse_odom_matched"] = cl["pooled_rmse_odom_matched"]
+            r["closed_rmse_imu_full"] = cl["pooled_rmse_imu_full"]
+            r["closed_rmse_odom_full"] = cl["pooled_rmse_odom_full"]
+            print(f"[{r['held_out']}] CLOSED-LOOP RMSE (matched, directly vs open-loop): "
+                  f"r_imu={cl['pooled_rmse_imu_matched']:.4f} "
+                  f"r_odom={cl['pooled_rmse_odom_matched']:.4f}", flush=True)
+            print(f"[{r['held_out']}] CLOSED-LOOP RMSE (full, incl. warm-up, deployment-realistic): "
+                  f"r_imu={cl['pooled_rmse_imu_full']:.4f} "
+                  f"r_odom={cl['pooled_rmse_odom_full']:.4f}", flush=True)
+        all_results.append(r)
+
+    if len(all_results) > 1:
+        print("\n=== summary across folds (mean +/- std) ===")
+        open_imu = [r["open_rmse_imu"] for r in all_results]
+        open_odom = [r["open_rmse_odom"] for r in all_results]
+        print(f"model                r_imu:  {np.mean(open_imu):.4f} +/- {np.std(open_imu):.4f}")
+        print(f"model                r_odom: {np.mean(open_odom):.4f} +/- {np.std(open_odom):.4f}")
+        a1_imu = [r["always_one_rmse_imu"] for r in all_results]
+        a1_odom = [r["always_one_rmse_odom"] for r in all_results]
+        print(f"baseline (r=1.0)     r_imu:  {np.mean(a1_imu):.4f} +/- {np.std(a1_imu):.4f}")
+        print(f"baseline (r=1.0)     r_odom: {np.mean(a1_odom):.4f} +/- {np.std(a1_odom):.4f}")
+        fm_imu = [r["fit_mean_rmse_imu"] for r in all_results]
+        fm_odom = [r["fit_mean_rmse_odom"] for r in all_results]
+        print(f"baseline (fit-mean)  r_imu:  {np.mean(fm_imu):.4f} +/- {np.std(fm_imu):.4f}")
+        print(f"baseline (fit-mean)  r_odom: {np.mean(fm_odom):.4f} +/- {np.std(fm_odom):.4f}")
+        if args.closed_loop:
+            cm_imu = [r["closed_rmse_imu_matched"] for r in all_results]
+            cm_odom = [r["closed_rmse_odom_matched"] for r in all_results]
+            cf_imu = [r["closed_rmse_imu_full"] for r in all_results]
+            cf_odom = [r["closed_rmse_odom_full"] for r in all_results]
+            print(f"closed-loop (matched) r_imu:  {np.mean(cm_imu):.4f} +/- {np.std(cm_imu):.4f}")
+            print(f"closed-loop (matched) r_odom: {np.mean(cm_odom):.4f} +/- {np.std(cm_odom):.4f}")
+            print(f"closed-loop (full)    r_imu:  {np.mean(cf_imu):.4f} +/- {np.std(cf_imu):.4f}")
+            print(f"closed-loop (full)    r_odom: {np.mean(cf_odom):.4f} +/- {np.std(cf_odom):.4f}")
+
+
+if __name__ == "__main__":
+    main()
