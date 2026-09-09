@@ -2,8 +2,9 @@
 """
 fault_injection.py — Phase 0 of the LSTM terrain/reliability framework.
 
-Injects controllable faults (noise, bias, drift, dropout, delay) into a
-REAL recorded session's IMU or odometry file, per the failure-mode tables
+Injects controllable faults (noise, bias, drift, dropout, delay, plus
+LiDAR-specific return_loss/corruption/scale_error) into a REAL recorded
+session's IMU, odometry, or LiDAR scan file, per the failure-mode tables
 in the framework doc (Sections 11-13). Produces a new synthetic "session"
 that ekf_fusion.py can run against COMPLETELY UNMODIFIED — no code changes
 needed downstream, just point SESSION at the new fault-session name.
@@ -38,56 +39,17 @@ import numpy as np
 import pandas as pd
 
 LOG_DIR = os.path.expanduser('~/ws_mobile/sensor_logs')
+SCRIPTS_DIR = os.path.expanduser('~/ws_mobile/scripts')
 
 # ── CONFIG — confirmed columns ──────────────────────────────────────────
-# Confirmed directly from this project's own terminal output earlier:
-# imu_filtered_<session>.csv columns.
-#
-# RETARGETED (see HANDOFF notes on the cmd_vel fix): angular_vel_*/linear_acc_*
-# were the original default, but tracing ekf_fusion.py's actual data flow
-# showed these columns have NO path into the EKF's output once cmd_vel is
-# correctly present (predict() uses cmd_vel's v/omega; update_imu_theta()
-# uses ONLY orient_z/orient_w via quat_to_yaw() -- angular_vel_z/linear_acc
-# are read into the 'omega' fallback variable but that fallback is only used
-# when cmd_vel_filtered is absent, which is no longer the normal case).
-# Kept below for reference / optional use, but IMU_NOISE_COLS now defaults
-# to the orientation-derived yaw column instead (see IMU_ORIENTATION_TARGET
-# and the make_fault_session() quaternion round-trip below).
 IMU_RAW_NOISE_COLS = ['angular_vel_x', 'angular_vel_y', 'angular_vel_z',
                        'linear_acc_x', 'linear_acc_y', 'linear_acc_z']
 IMU_TIMESTAMP_COL = 'timestamp'
 
-# IMU faults now target orientation (orient_z/orient_w) via a derived yaw
-# angle, since that's the ONLY IMU-derived quantity update_imu_theta() (the
-# theta measurement update, R_imu=0.005) actually reads. orient_z/orient_w
-# form a constrained unit-norm quaternion pair (with orient_x=orient_y=0 for
-# this planar robot) -- perturbing them independently would produce invalid
-# quaternions, not just "noisier heading". So the fault is applied to the
-# DERIVED yaw angle (a free scalar, safe to perturb with the existing
-# noise/bias/drift/dropout functions unmodified), then re-encoded back to a
-# valid unit quaternion: orient_z = sin(yaw/2), orient_w = cos(yaw/2). This
-# exactly inverts ekf_fusion.py's own quat_to_yaw() (confirmed formula:
-# yaw = atan2(2*w*z, 1 - 2*z*z)), so a zero-severity round-trip reproduces
-# the original orient_z/orient_w exactly.
 IMU_ORIENTATION_TARGET = True
 IMU_YAW_TEMP_COL = '_imu_yaw_temp'
 IMU_NOISE_COLS = [IMU_YAW_TEMP_COL]
 
-# CONFIRMED from real odom_filtered_20260712_144326.csv (via --inspect):
-# columns are timestamp, time_sec, time_nsec, pos_x, pos_y, pos_z, orient_x,
-# orient_y, orient_z, orient_w, linear_x, angular_z.
-#
-# RETARGETED: linear_x/angular_z were the original default on the reasoning
-# that they fed ekf_fusion.py's predict() step directly. That was true only
-# when cmd_vel_filtered was absent (the pre-fix bug -- see the cmd_vel copy
-# fix in make_fault_session's file-copy loop). With cmd_vel correctly
-# present, predict() uses cmd_vel's linear_x/angular_z instead, and
-# linear_x/angular_z here have NO path into the EKF at all anymore.
-# update_odometry() -- the odometry measurement update that runs every
-# step regardless of predict() -- computes s_meas/phi_meas from CONSECUTIVE
-# DIFFERENCES of pos_x/pos_y/odom_theta (see run_ekf_core(), d_odom_x =
-# np.diff(odom_x, ...)). pos_x/pos_y are therefore now the only odometry
-# columns with a real, always-active path into RMSE.
 ODOM_RAW_NOISE_COLS = ['linear_x', 'angular_z']
 ODOM_NOISE_COLS = ['pos_x', 'pos_y']
 ODOM_TIMESTAMP_COL = 'timestamp'
@@ -96,8 +58,8 @@ ODOM_TIMESTAMP_COL = 'timestamp'
 NOISE_SEVERITY = {'low': 1.0, 'medium': 3.0, 'high': 6.0, 'extreme': 12.0}
 BIAS_SEVERITY = {'small': 1.0, 'medium': 3.0, 'large': 6.0}
 DRIFT_SEVERITY = {'slow': 1.0, 'medium': 3.0, 'fast': 6.0}
-DROPOUT_SEVERITY = {'short': 0.05, 'medium': 0.15, 'long': 0.35}  # fraction of session, held constant
-DELAY_SEVERITY = {'small': 0.1, 'medium': 0.5, 'large': 2.0}  # seconds
+DROPOUT_SEVERITY = {'short': 0.05, 'medium': 0.15, 'long': 0.35}
+DELAY_SEVERITY = {'small': 0.1, 'medium': 0.5, 'large': 2.0}
 
 # ── LiDAR fault config (Section 13) ─────────────────────────────────────
 LIDAR_TIMESTAMP_COL = 'timestamp'
@@ -110,22 +72,12 @@ def get_lidar_range_cols(df: pd.DataFrame) -> list:
         [c for c in df.columns if c.startswith('range_') and c.split('_', 1)[1].isdigit()],
         key=lambda c: int(c.split('_')[1]))
 
-# Fraction of beams per frame set to no-return (§13 "Return loss")
 LIDAR_RETURN_LOSS_SEVERITY = {'low': 0.05, 'medium': 0.15, 'high': 0.35, 'extreme': 0.60}
-
-# Fraction of FRAMES (rows) fully corrupted with randomized ranges (§13 "Scan corruption")
 LIDAR_CORRUPTION_SEVERITY = {'mild': 0.05, 'moderate': 0.15, 'severe': 0.35}
-
-# Fractional range scale error, simulating poor scan matching / miscalibration (§13)
 LIDAR_MATCHING_SEVERITY = {'mild': 0.05, 'moderate': 0.15, 'severe': 0.30}
-
-# Dropout/delay reuse the SAME severity dicts already defined for IMU/odom —
-# these are generic (fraction of session / seconds), not sensor-specific.
 
 
 def inspect_columns(session: str):
-    """Prints every column in this session's imu/odom filtered files.
-    Read-only — doesn't touch or create anything."""
     for prefix in ['imu', 'odom']:
         path = os.path.join(LOG_DIR, f'{prefix}_filtered_{session}.csv')
         if not os.path.exists(path):
@@ -135,23 +87,25 @@ def inspect_columns(session: str):
         print(f"\n  {prefix}_filtered_{session}.csv columns:")
         for c in df.columns:
             print(f"    {c}")
+    scan_path = os.path.join(LOG_DIR, f'scan_filtered_{session}.csv')
+    if not os.path.exists(scan_path):
+        print(f"  scan_filtered_{session}.csv NOT FOUND at {scan_path}")
+    else:
+        df = pd.read_csv(scan_path, nrows=1)
+        range_cols = get_lidar_range_cols(df)
+        other_cols = [c for c in df.columns if c not in range_cols]
+        print(f"\n  scan_filtered_{session}.csv: {len(range_cols)} range_* beam columns "
+              f"({range_cols[0]}..{range_cols[-1]}), plus: {other_cols}")
 
 
 def inject_noise(df: pd.DataFrame, cols: list, severity_mult: float,
                   rng: np.random.Generator) -> pd.DataFrame:
-    """Adds Gaussian noise to each column, std scaled by severity_mult
-    times that column's OWN observed std (not a hardcoded absolute unit).
-    Takes an explicit rng (np.random.default_rng(seed)) rather than using
-    global numpy random state, so the exact same fault can be reproduced
-    later by reusing the same seed — required for a reproducible paper.
-    Returns (faulted_df, stats) with the actual injected noise std per
-    column in real physical units, not just the abstract multiplier."""
     out = df.copy()
     stats = {}
     for c in cols:
         col_std = out[c].std()
         if col_std == 0 or np.isnan(col_std):
-            continue  # constant column, nothing meaningful to scale noise against
+            continue
         injected_std = col_std * severity_mult
         out[c] = out[c] + rng.normal(0, injected_std, len(out))
         stats[c] = {'baseline_std': float(col_std), 'injected_noise_std': float(injected_std)}
@@ -160,26 +114,6 @@ def inject_noise(df: pd.DataFrame, cols: list, severity_mult: float,
 
 def inject_position_bias(df: pd.DataFrame, cols: list, severity_mult: float,
                           start_frac: float = 0.0):
-    """For columns that reach the EKF ONLY via consecutive differencing
-    (e.g. odom pos_x/pos_y, which run_ekf_core() differences into
-    s_meas/phi_meas) -- a flat constant offset like inject_bias() applies
-    CANCELS EXACTLY under differencing: diff(x + const) == diff(x). This
-    was CONFIRMED on real data (max diff between faulted/baseline
-    consecutive-differences: ~1e-14, floating-point noise, not a small
-    real effect) -- not a hypothesis.
-
-    Physically, real encoder/odometry bias is a constant VELOCITY error,
-    which naturally compounds into a linearly GROWING position error over
-    time -- this is the classic dead-reckoning drift failure mode. This
-    function reproduces that shape: a constant PER-STEP increment (scaled
-    by severity_mult * that column's own per-step diff std, not the raw
-    column std, since diff-std reflects typical per-step motion magnitude)
-    accumulated from start_frac onward, so the resulting per-step diff
-    seen by run_ekf_core() is a real, nonzero, physically-motivated
-    constant offset rather than a jump instantly cancelled at rows>0.
-
-    Returns (faulted_df, stats) with the actual per-step increment and
-    resulting final accumulated offset in real physical units."""
     out = df.copy()
     n = len(out)
     start_idx = int(n * start_frac)
@@ -205,20 +139,6 @@ def inject_position_bias(df: pd.DataFrame, cols: list, severity_mult: float,
 
 def inject_bias(df: pd.DataFrame, cols: list, severity_mult: float,
                  start_frac: float = 0.0):
-    """Adds a CONSTANT offset (severity_mult * column's own std) starting
-    at start_frac through the session and continuing to the end. Returns
-    (faulted_df, stats) where stats reports the ACTUAL offset applied in
-    each column's real physical units, not just the abstract multiplier —
-    a manifest that only says 'severity_value: 6.0' tells a reader nothing
-    about what was physically injected without also knowing the column's
-    own std; this records the resolved real-unit value directly.
-
-    NOTE: this is correct ONLY for columns read DIRECTLY by the EKF (e.g.
-    the derived IMU yaw column, read directly by update_imu_theta). For
-    columns that reach the EKF only via consecutive differencing (e.g.
-    odom pos_x/pos_y), a flat offset cancels exactly under differencing --
-    use inject_position_bias() instead. See its docstring for the
-    confirmed real-data evidence."""
     out = df.copy()
     n = len(out)
     start_idx = int(n * start_frac)
@@ -235,9 +155,6 @@ def inject_bias(df: pd.DataFrame, cols: list, severity_mult: float,
 
 def inject_drift(df: pd.DataFrame, cols: list, final_mult: float,
                   start_frac: float = 0.0):
-    """Adds a LINEARLY GROWING bias, from 0 at start_frac to
-    final_mult * column's own std by the end of the session. Returns
-    (faulted_df, stats) with the actual final real-unit offset per column."""
     out = df.copy()
     n = len(out)
     start_idx = int(n * start_frac)
@@ -258,27 +175,17 @@ def inject_drift(df: pd.DataFrame, cols: list, final_mult: float,
 
 
 def quat_to_yaw(oz, ow) -> np.ndarray:
-    """Exact match to ekf_fusion.py's quat_to_yaw() -- assumes orient_x=
-    orient_y=0 (valid for a planar differential-drive robot's z-only
-    rotation). yaw = atan2(2*w*z, 1 - 2*z*z)."""
     oz = np.asarray(oz, dtype=float)
     ow = np.asarray(ow, dtype=float)
     return np.arctan2(2.0 * ow * oz, 1.0 - 2.0 * oz * oz)
 
 
 def yaw_to_quat(yaw):
-    """Inverse of quat_to_yaw() -- re-encodes a yaw angle as a valid
-    unit-norm planar quaternion (orient_z, orient_w). Exact round-trip:
-    yaw_to_quat(quat_to_yaw(oz, ow)) == (oz, ow) for any valid input,
-    since sin(yaw/2)**2 + cos(yaw/2)**2 == 1 always."""
     yaw = np.asarray(yaw, dtype=float)
     return np.sin(yaw / 2.0), np.cos(yaw / 2.0)
 
 def inject_lidar_return_loss(df: pd.DataFrame, range_cols: list, frac: float,
                              range_max: float, rng: np.random.Generator):
-    """Randomly marks `frac` of beams per frame as no-return, by setting them
-    to range_max — lidar_fusion.py's own estimate_position_correction()
-    already treats r >= range_max as invalid."""
     out = df.copy()
     arr = out[range_cols].values.astype(float)
     mask = rng.random(arr.shape) < frac
@@ -297,11 +204,25 @@ def inject_lidar_return_loss(df: pd.DataFrame, range_cols: list, frac: float,
 def inject_lidar_scan_corruption(df: pd.DataFrame, range_cols: list, frac: float,
                                  rng: np.random.Generator,
                                  range_min: float = 0.10,
-                                 range_max_valid: float = 2.50):
+                                 range_max_valid: float = None):
     """Fully randomizes ALL beams for `frac` of frames (rows), simulating
-    corrupted scans."""
+    corrupted scans.
+
+    range_max_valid: if None (default), derived from this session's own
+    'range_max' column -- CONFIRMED on real data (scan_filtered_
+    20260712_141740.csv) that range_max=2.5000..., matching this
+    function's old hardcoded default exactly for THIS session, but that
+    was a coincidence, not a guarantee -- deriving it per-session matches
+    this file's own stated design philosophy (severity/bounds scaled from
+    each session's own real values, not hardcoded absolutes) and avoids a
+    silent wrong bound if a future session uses a differently-configured
+    LiDAR. range_min is still a hardcoded default (0.10m) since no real
+    beam in the sample data approaches it -- low risk, but pass explicitly
+    if a session's real minimum sensor range is known to differ."""
     out = df.copy()
     n = len(out)
+    if range_max_valid is None:
+        range_max_valid = float(df['range_max'].iloc[0])
 
     n_corrupt = max(1, int(n * frac))
 
@@ -319,47 +240,53 @@ def inject_lidar_scan_corruption(df: pd.DataFrame, range_cols: list, frac: float
 
     stats = {
         'fraction_frames_corrupted': float(frac),
-        'n_frames_corrupted': int(n_corrupt)
+        'n_frames_corrupted': int(n_corrupt),
+        'range_max_valid_used': float(range_max_valid),
     }
 
     return out, stats
 
 
 def inject_lidar_scale_error(df: pd.DataFrame, range_cols: list,
-                             scale_frac: float):
-    """Applies a systematic fractional scale error to all valid ranges."""
+                             scale_frac: float, range_max: float = None):
+    """Applies a systematic fractional scale error to all valid ranges.
+
+    CONFIRMED BUG FIXED: beams sitting at range_max are the no-return
+    SENTINEL value (see inject_lidar_return_loss()), not a real
+    measurement -- CONFIRMED on real data that real beam values get
+    within ~0.0004m of range_max=2.5000..., so scaling every "finite"
+    value indiscriminately would corrupt genuine no-return sentinels
+    (turning them into fake in-range-looking values) and could push
+    real near-max readings above range_max. Sentinel beams (within
+    floating-point tolerance of range_max) are now excluded from scaling
+    and left untouched.
+
+    range_max: if None (default), derived from this session's own
+    'range_max' column rather than requiring the caller to know it."""
     out = df.copy()
+
+    if range_max is None:
+        range_max = float(df['range_max'].iloc[0])
 
     arr = out[range_cols].values.astype(float)
 
-    valid = np.isfinite(arr)
+    is_sentinel = np.isclose(arr, range_max, atol=1e-6)
+    valid = np.isfinite(arr) & ~is_sentinel
 
     arr[valid] = arr[valid] * (1.0 + scale_frac)
 
     out[range_cols] = arr
 
     stats = {
-        'scale_fraction_applied': float(scale_frac)
+        'scale_fraction_applied': float(scale_frac),
+        'range_max_used': float(range_max),
+        'n_sentinel_beams_excluded': int(is_sentinel.sum()),
     }
 
     return out, stats
 
 def inject_measurement_hold(df: pd.DataFrame, cols: list, frac: float,
                              start_frac: float = 0.4):
-    """
-    FIX (naming — reviewer correctly flagged this): this simulates
-    'dropout' the way Sections 11-13 use that term, but the MECHANISM is
-    a measurement hold (last known value frozen/repeated over a
-    contiguous block), NOT row removal or NaN. The paper-facing fault
-    TYPE stays 'dropout' everywhere (matching the framework doc's own
-    vocabulary, which matters for traceability against Sections 11-13),
-    but the function itself is named for what it actually does, and the
-    manifest records it explicitly as 'measurement_hold' so nobody reading
-    it later mistakes this for real data loss.
-
-    Returns (faulted_df, stats) with exactly which rows/timespan were
-    frozen and to what value, in real units.
-    """
     out = df.copy()
     n = len(out)
     start_idx = int(n * start_frac)
@@ -383,11 +310,67 @@ def inject_measurement_hold(df: pd.DataFrame, cols: list, frac: float,
 
 
 def inject_delay(df: pd.DataFrame, timestamp_col: str, seconds: float) -> pd.DataFrame:
-    """Shifts this sensor's timestamps forward, simulating late/asynchronous
-    data — downstream timestamp-sync logic will align the wrong samples."""
     out = df.copy()
     out[timestamp_col] = out[timestamp_col] + seconds
     return out
+
+
+def inject_delay_raw(df: pd.DataFrame, seconds: float) -> pd.DataFrame:
+    """
+    Delay injection for RAW (pre-preprocessing) files -- the redesigned
+    delay mechanism, distinct from inject_delay() above which only shifts
+    an already-resampled file's standalone 'timestamp' column (confirmed
+    in Phase 0 to have ZERO measurable effect: on already-resampled data
+    a uniform timestamp shift cancels algebraically in ekf_fusion.py's
+    dt = timestamps[i]-timestamps[i-1] subtraction).
+
+    CRITICAL DIFFERENCE from inject_delay(): raw files carry the delay's
+    real source of truth in 'time_sec'/'time_nsec' (int64 columns), NOT
+    the standalone 'timestamp' column. CONFIRMED via real inspection of
+    preprocess_data.py's make_timestamp(df): it UNCONDITIONALLY
+    recomputes timestamp = time_sec + time_nsec*1e-9 whenever both source
+    columns are present, and every process_<sensor>() function calls
+    make_timestamp() immediately after loading raw data. Shifting only
+    'timestamp' on a raw file would therefore be silently erased the
+    moment preprocess_data.py re-runs on it -- this function shifts
+    time_sec/time_nsec instead, so the delay survives make_timestamp()'s
+    recomputation and genuinely desyncs this sensor from the others once
+    resample_to_grid() interpolates each sensor independently onto the
+    shared timeline. This is architecturally different from the old
+    mechanism: here, the shifted sensor's value at shared grid-time T is
+    genuinely interpolated from what it reported at T-seconds, not just a
+    relabeled timestamp on already-synced data.
+
+    Returns (faulted_df, stats) with the real applied shift in seconds,
+    for the manifest.
+    """
+    out = df.copy()
+    if "time_sec" not in out.columns or "time_nsec" not in out.columns:
+        raise ValueError(
+            "inject_delay_raw requires raw time_sec/time_nsec columns -- "
+            "got columns: " + ", ".join(out.columns))
+    combined = out["time_sec"].astype(float) + out["time_nsec"].astype(float) * 1e-9
+    shifted = combined + seconds
+    new_sec = np.floor(shifted).astype(np.int64)
+    # round(), not truncate, to avoid systematic sub-nanosecond drift from
+    # repeated float conversion; clip guards the rare boundary case where
+    # rounding pushes nsec to exactly 1e9 (would make the split invalid).
+    new_nsec = np.round((shifted - new_sec) * 1e9).astype(np.int64)
+    overflow = new_nsec >= 1_000_000_000
+    new_sec[overflow] += 1
+    new_nsec[overflow] -= 1_000_000_000
+    out["time_sec"] = new_sec
+    out["time_nsec"] = new_nsec
+    if "timestamp" in out.columns:
+        # Updated for consistency even though make_timestamp() will
+        # recompute it from time_sec/time_nsec anyway during
+        # preprocess_data.py's next run -- avoids a confusing
+        # intermediate state if this raw file is inspected before that.
+        out["timestamp"] = new_sec.astype(float) + new_nsec.astype(float) * 1e-9
+    stats = {"shift_seconds": float(seconds),
+             "mechanism": "raw time_sec/time_nsec shift (survives make_timestamp() "
+                          "recomputation), NOT a post-resampling timestamp-column shift"}
+    return out, stats
 
 
 FAULT_TYPES_ALL = ['noise', 'bias', 'drift', 'dropout', 'delay']
@@ -395,24 +378,6 @@ FAULT_TYPES_ALL = ['noise', 'bias', 'drift', 'dropout', 'delay']
 
 def generate_all_faults(baseline_sessions: list = None, sensors: list = None,
                          seed: int = 0) -> list:
-    """
-    Generates the FULL fault matrix — every fault type x every severity
-    level already defined in this file's *_SEVERITY dicts — across every
-    given baseline session and sensor. This is safe to automate (unlike
-    e.g. ekf_fusion.py's SESSION) because it only ever pulls baselines
-    from the already-curated good_sessions registry, and only ever
-    mechanically applies fault definitions that already exist in this
-    file — it never invents a new trust decision, just expands an
-    already-fully-specified matrix so you don't have to call
-    make_fault_session() by hand dozens of times.
-
-    baseline_sessions: defaults to ALL of session_registry's good_sessions
-        (Section 24 wants "multiple trajectories" — the more good
-        baselines faulted, the richer the eventual experiment set).
-    sensors: defaults to ['imu', 'odom'].
-
-    Returns the list of every fault session name created.
-    """
     from session_registry import get_good_sessions
     if baseline_sessions is None:
         baseline_sessions = get_good_sessions()
@@ -435,8 +400,9 @@ def generate_all_faults(baseline_sessions: list = None, sensors: list = None,
             for severity in sev_map:
                 plan.append((baseline, sensor, fault_type, severity))
 
-    print(f"  Fault matrix: {len(baseline_sessions)} baseline(s) x {len(sensors)} "
-          f"sensor(s) x {len(FAULT_TYPES_ALL)} fault types = {len(plan)} sessions to create")
+    print(f"  Fault matrix: {len(plan)} sessions to create "
+          f"({len(baseline_sessions)} baseline(s) x {len(sensors)} sensor(s), "
+          f"fault-type count varies by sensor)")
 
     created = []
     for baseline, sensor, fault_type, severity in plan:
@@ -470,24 +436,153 @@ LIDAR_SEVERITY_MAPS = {
     'delay': DELAY_SEVERITY,
 }
 
+# Maps sensor name -> its RAW file's actual prefix. CONFIRMED via real ls
+# output that LiDAR's raw file uses 'scan_' (matching its filtered-stage
+# name), NOT 'lidar_' -- do not assume symmetry with sensor names.
+RAW_SENSOR_PREFIX = {'imu': 'imu', 'odom': 'odom', 'lidar': 'scan'}
+# Every raw file preprocess_data.py's main() consumes, beyond the 3 above
+# -- copied unchanged for whichever sensor ISN'T the delay target.
+RAW_OTHER_PREFIXES = ['ground_truth', 'cmd_vel']
+
+
+def make_delay_fault_session_raw(baseline_session: str, sensor: str,
+                                  severity: str, seed: int = 0) -> str:
+    """
+    Redesigned delay fault injection, operating on RAW pre-preprocessing
+    files rather than already-filtered ones. CONFIRMED necessary because
+    the original mechanism (inject_delay(), shifting an already-resampled
+    file's standalone 'timestamp' column) has ZERO measurable effect on
+    real EKF RMSE: on already-synced data, a uniform timestamp shift
+    cancels algebraically in ekf_fusion.py's dt = timestamps[i]-
+    timestamps[i-1] subtraction (confirmed via real-data diff, ~1e-14).
+
+    This function instead: (1) copies every OTHER sensor's RAW file
+    unchanged under the new fault-session name, (2) applies
+    inject_delay_raw() -- which shifts time_sec/time_nsec, confirmed via
+    real inspection of preprocess_data.py's make_timestamp() to be the
+    only shift that survives its unconditional recomputation of
+    'timestamp' -- to the target sensor's RAW file, (3) re-runs
+    preprocess_data.py on this new raw fault session as a subprocess,
+    so resample_to_grid() genuinely interpolates the shifted sensor from
+    stale data at each shared grid timestamp, producing a REAL
+    desynchronization between sensors, not just relabeled timestamps on
+    already-synced data.
+
+    CONFIRMED SAFE for session isolation: preprocess_data.py is fully
+    SESSION-scoped via sys.argv[1] (raw files are '{prefix}_{SESSION}.csv',
+    load_latest() resolves by exact session match), and process_cmd_vel()
+    -- once flagged as a possible exception bypassing this -- was
+    confirmed via real source inspection to already use the same
+    SESSION-aware load_latest() as every other sensor. Running this for
+    one new fault session does not touch any other session's files.
+
+    Returns the new fault_session name.
+    """
+    if sensor not in RAW_SENSOR_PREFIX:
+        raise ValueError(f"sensor must be one of {list(RAW_SENSOR_PREFIX)}")
+    if severity not in DELAY_SEVERITY:
+        raise ValueError(f"severity must be one of {list(DELAY_SEVERITY)}")
+
+    fault_session = f"{baseline_session}_fault_{sensor}_delay_{severity}"
+    target_prefix = RAW_SENSOR_PREFIX[sensor]
+
+    # Copy every OTHER sensor's raw file unchanged under the new name.
+    other_prefixes = [p for p in RAW_SENSOR_PREFIX.values() if p != target_prefix]
+    other_prefixes += RAW_OTHER_PREFIXES
+    for prefix in other_prefixes:
+        src = os.path.join(LOG_DIR, f'{prefix}_{baseline_session}.csv')
+        if os.path.exists(src):
+            dst = os.path.join(LOG_DIR, f'{prefix}_{fault_session}.csv')
+            shutil.copy2(src, dst)
+        else:
+            print(f"  NOTE: no raw {prefix}_{baseline_session}.csv found -- "
+                  f"skipping copy (may be expected, e.g. no cmd_vel logged "
+                  f"for this session)")
+
+    # Apply the raw-level delay to the target sensor.
+    src_path = os.path.join(LOG_DIR, f'{target_prefix}_{baseline_session}.csv')
+    if not os.path.exists(src_path):
+        raise FileNotFoundError(f"Raw baseline file not found: {src_path}")
+    df = pd.read_csv(src_path)
+    severity_value = DELAY_SEVERITY[severity]
+    faulted, injected_stats = inject_delay_raw(df, severity_value)
+    dst_path = os.path.join(LOG_DIR, f'{target_prefix}_{fault_session}.csv')
+    faulted.to_csv(dst_path, index=False)
+
+    # Re-run preprocessing on the new raw fault session to regenerate
+    # genuinely-desynced filtered outputs.
+    import subprocess
+    import sys as _sys
+    preprocess_script = os.path.join(SCRIPTS_DIR, 'preprocess_data.py')
+    proc = subprocess.run(
+        [_sys.executable, preprocess_script, fault_session],
+        cwd=SCRIPTS_DIR, capture_output=True, text=True, timeout=300)
+    if proc.returncode != 0:
+        raise RuntimeError(
+            f"preprocess_data.py failed for {fault_session} "
+            f"(exit code {proc.returncode}). stderr tail:\n{proc.stderr[-1500:]}")
+
+    # rnn_smoothed_output copy -- same reasoning as the main
+    # make_fault_session() path (rnn_fusion_v2.py never reads LiDAR/scan
+    # data, confirmed, so unaffected by a delay fault regardless of which
+    # sensor is targeted).
+    rnn_src = os.path.join(LOG_DIR, f'rnn_smoothed_output_{baseline_session}.csv')
+    if os.path.exists(rnn_src):
+        shutil.copy2(rnn_src, os.path.join(LOG_DIR, f'rnn_smoothed_output_{fault_session}.csv'))
+    else:
+        print(f"  NOTE: no rnn_smoothed_output_{baseline_session}.csv found -- "
+              f"skipped copying it")
+
+    import json
+    from datetime import datetime, timezone
+    manifest = {
+        'fault_session': fault_session,
+        'baseline_session': baseline_session,
+        'sensor': sensor,
+        'fault_type': 'delay',
+        'mechanism': ('delay_raw_redesign: RAW time_sec/time_nsec shift, followed by a full '
+                      're-run of preprocess_data.py -- genuinely desyncs this sensor from '
+                      'others via independent resample_to_grid() interpolation, unlike the '
+                      'original post-resampling timestamp-column shift which cancels '
+                      'algebraically in ekf_fusion.py\'s dt computation (confirmed ~1e-14 '
+                      'real-data diff, zero measurable effect)'),
+        'severity_label': severity,
+        'severity_value': severity_value,
+        'columns': None,
+        'timestamp_col': 'time_sec/time_nsec (raw, pre-preprocessing)',
+        'injected_stats': {f'{target_prefix}_raw': injected_stats},
+        'seed': seed,
+        'created_utc': datetime.now(timezone.utc).isoformat(),
+    }
+    manifest_path = os.path.join(LOG_DIR, f'fault_meta_{fault_session}.json')
+    with open(manifest_path, 'w') as f:
+        json.dump(manifest, f, indent=2)
+
+    print(f"  Created RAW-REDESIGNED delay fault session: {fault_session}")
+    print(f"    Faulted raw file: {os.path.basename(dst_path)}")
+    print(f"    Re-ran preprocess_data.py {fault_session} -- regenerated filtered outputs")
+    print(f"    Manifest: {os.path.basename(manifest_path)}")
+    return fault_session
+
+
 def make_fault_session(baseline_session: str, sensor: str, fault_type: str,
                         severity: str, cols: list = None,
                         timestamp_col: str = None, seed: int = 0) -> str:
-    """
-    Creates a new fault-session directory-equivalent (same LOG_DIR, new
-    session-name prefix) with ALL files ekf_fusion.py needs, so it can run
-    completely unmodified against it. Returns the new session name.
-
-    seed: passed to np.random.default_rng() for the noise fault type, so
-    the EXACT same fault can be reproduced later by calling this again
-    with the same seed. Other fault types (bias/drift/dropout/delay) are
-    already fully deterministic (no randomness involved), so seed only
-    matters for 'noise' — but is accepted uniformly for a consistent API.
-    Also written into the metadata manifest so a fault session's exact
-    randomness is recorded, not just implied.
-    """
     if sensor not in ('imu', 'odom', 'lidar'):
         raise ValueError("sensor must be 'imu', 'odom', or 'lidar'")
+
+    # REDESIGN: delay now routes to the raw-file-based mechanism (see
+    # make_delay_fault_session_raw()'s docstring for why -- the original
+    # post-resampling timestamp-column shift below has CONFIRMED zero
+    # measurable effect, since it cancels algebraically in ekf_fusion.py's
+    # dt computation). Routing here means every existing caller (e.g.
+    # generate_all_faults()) gets the fix automatically, no call-site
+    # changes needed. The old delay branch further below is now DEAD CODE
+    # for normal use, kept only for direct reference/comparison, not
+    # reachable through this function anymore.
+    if fault_type == 'delay':
+        return make_delay_fault_session_raw(baseline_session, sensor, severity, seed=seed)
+
     if sensor == 'odom' and fault_type != 'delay' and not ODOM_NOISE_COLS and cols is None:
         raise ValueError(
             "ODOM_NOISE_COLS is empty. Run `python3 fault_injection.py "
@@ -503,20 +598,38 @@ def make_fault_session(baseline_session: str, sensor: str, fault_type: str,
 
     fault_session = f"{baseline_session}_fault_{sensor}_{fault_type}_{severity}"
 
-    # Copy every OTHER required file unchanged under the new session name,
-    # so ekf_fusion.py's load_latest() finds everything it expects.
     for prefix in ['odom', 'imu', 'scan', 'ground_truth', 'cmd_vel']:
         if prefix == sensor or (sensor == 'lidar' and prefix == 'scan'):
-            continue  # this one gets the fault, handled below
+            continue
         src = os.path.join(LOG_DIR, f'{prefix}_filtered_{baseline_session}.csv')
         if not os.path.exists(src):
-            # ground_truth uses a different naming convention in this project
             src = os.path.join(LOG_DIR, f'ground_truth_filtered_{baseline_session}.csv')
         if os.path.exists(src):
             dst = src.replace(baseline_session, fault_session)
             shutil.copy2(src, dst)
 
-    # Apply the fault to the target sensor file.
+    # rnn_smoothed_output_{session}.csv: doesn't follow the '{prefix}_
+    # filtered_{session}.csv' naming pattern the loop above assumes, so it
+    # needs its own copy step. CONFIRMED via grep on rnn_fusion_v2.py's
+    # real source that it never reads scan_filtered/LiDAR data at all
+    # (consumes only ekf output + ground truth) -- so this file is
+    # identical regardless of fault type or sensor, safe to copy unchanged
+    # for every fault session, not just LiDAR ones. Without this,
+    # lidar_fusion_v2.py's run_lidar_fusion_single() can't run on ANY
+    # fault session (its missing-file check fails immediately looking for
+    # rnn_smoothed_output_{fault_session}.csv, which never existed before
+    # this fix -- this gap was silent because LiDAR fusion validation was
+    # never previously run against fault sessions).
+    rnn_src = os.path.join(LOG_DIR, f'rnn_smoothed_output_{baseline_session}.csv')
+    if os.path.exists(rnn_src):
+        rnn_dst = os.path.join(LOG_DIR, f'rnn_smoothed_output_{fault_session}.csv')
+        shutil.copy2(rnn_src, rnn_dst)
+    else:
+        print(f"  NOTE: no rnn_smoothed_output_{baseline_session}.csv found -- "
+              f"skipped copying it (lidar_fusion_v2.py won't be runnable on "
+              f"{fault_session} until this baseline's RNN fusion stage has "
+              f"been run at least once)")
+
     src_path = os.path.join(LOG_DIR, f'{sensor}_filtered_{baseline_session}.csv')
 
     if sensor == 'lidar':
@@ -531,17 +644,23 @@ def make_fault_session(baseline_session: str, sensor: str, fault_type: str,
     df = pd.read_csv(src_path)
     rng = np.random.default_rng(seed)
     if fault_type == 'delay':
-        # FIX (point 7, partial): delay already reports an exact physical
-        # value (seconds) — no abstract multiplier to resolve, unlike
-        # noise/bias/drift. Noted here rather than silently treated the
-        # same as the others, since it genuinely isn't the same shape.
+        # UNREACHABLE in normal use -- make_fault_session() routes 'delay'
+        # to make_delay_fault_session_raw() at the top of this function,
+        # before this line. Kept only for direct reference/comparison
+        # against the redesigned mechanism; this old post-resampling
+        # timestamp-column shift has CONFIRMED zero measurable effect on
+        # real EKF RMSE (cancels algebraically in dt computation).
         severity_value = DELAY_SEVERITY[severity]
         faulted = inject_delay(df, timestamp_col, severity_value)
         injected_stats = {timestamp_col: {'shift_seconds': float(severity_value)}}
-        mechanism = 'delay (timestamp shift — no abstract multiplier involved)'
+        mechanism = 'delay (timestamp shift — no abstract multiplier involved) [SUPERSEDED, unreachable]'
 
     elif sensor == 'lidar':
         range_cols = cols or get_lidar_range_cols(df)
+        cols = range_cols  # record the ACTUAL resolved beam columns in the
+                            # manifest below, not the None placeholder --
+                            # matches IMU/odom's existing behavior of
+                            # recording real columns used, for reproducibility
         range_max = float(df['range_max'].iloc[0])
         severity_value = LIDAR_SEVERITY_MAPS[fault_type][severity]
 
@@ -553,11 +672,11 @@ def make_fault_session(baseline_session: str, sensor: str, fault_type: str,
         )
         elif fault_type == 'corruption':
             faulted, injected_stats = inject_lidar_scan_corruption(
-                df, range_cols, severity_value, rng
+                df, range_cols, severity_value, rng, range_max_valid=range_max
         )
         elif fault_type == 'scale_error':
             faulted, injected_stats = inject_lidar_scale_error(
-                df, range_cols, severity_value
+                df, range_cols, severity_value, range_max=range_max
         )
         elif fault_type == 'dropout':
             faulted, injected_stats = inject_measurement_hold(
@@ -571,11 +690,6 @@ def make_fault_session(baseline_session: str, sensor: str, fault_type: str,
     else:
         severity_value = FAULT_SEVERITY_MAPS[fault_type][severity]
         if sensor == 'imu' and IMU_ORIENTATION_TARGET:
-            # Derive a free scalar yaw column, fault THAT (safe -- no
-            # quaternion constraint on a plain angle), then re-encode back
-            # to a valid unit quaternion. See IMU_ORIENTATION_TARGET's
-            # comment above for why raw orient_z/orient_w can't be faulted
-            # directly.
             df = df.copy()
             df[IMU_YAW_TEMP_COL] = quat_to_yaw(df['orient_z'], df['orient_w'])
             faulted, injected_stats = FAULT_FNS[fault_type](
@@ -584,11 +698,6 @@ def make_fault_session(baseline_session: str, sensor: str, fault_type: str,
             faulted = faulted.drop(columns=[IMU_YAW_TEMP_COL])
             mechanism_suffix = ' (applied to derived yaw, re-encoded to orient_z/orient_w)'
         elif sensor == 'odom' and fault_type == 'bias':
-            # CONFIRMED on real data: a flat offset on pos_x/pos_y cancels
-            # exactly under run_ekf_core()'s consecutive differencing (max
-            # diff ~1e-14, floating-point noise). Use the accumulating
-            # per-step version instead -- see inject_position_bias()'s
-            # docstring for the full explanation and evidence.
             faulted, injected_stats = inject_position_bias(df, cols, severity_value)
             mechanism_suffix = ' (accumulating per-step offset, not flat -- flat cancels under differencing, confirmed on real data)'
         else:
@@ -602,15 +711,6 @@ def make_fault_session(baseline_session: str, sensor: str, fault_type: str,
         else os.path.join(LOG_DIR, f'{sensor}_filtered_{fault_session}.csv')
     faulted.to_csv(dst_path, index=False)
 
-    # ── Metadata manifest ────────────────────────────────────────────────
-    # Written so a fault session's exact configuration is recoverable from
-    # its own directory months later, without reverse-engineering the
-    # filename. FIX (points 3+6): now includes 'injected_stats' — the
-    # ACTUAL physical values applied per column (e.g. real noise std in
-    # rad/s, real bias offset in m/s²), not just the abstract severity
-    # multiplier. A manifest that only said "severity_value: 6.0" told a
-    # reader nothing without separately knowing that column's own std;
-    # injected_stats resolves that into real units directly.
     import json
     from datetime import datetime, timezone
     manifest = {
