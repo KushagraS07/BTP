@@ -1,0 +1,159 @@
+#!/usr/bin/env python3
+"""
+validate_lidar_faults.py
+
+Systematic validation of LiDAR fault injection, mirroring validate_faults.py's
+structure/rigor (Phase 0's gate: "faults measurably degrade RMSE in the
+expected direction"), extended to LiDAR via lidar_fusion_v2.py instead of
+ekf_fusion.py (which never reads scan_filtered_*.csv at all -- confirmed).
+
+KEY FINDING FROM PILOT TESTING (single baseline, before this systematic run):
+LiDAR correction is heavily damped by design (ALPHA=0.98 -> LiDAR gets at
+most ~2% weight in the final fused position). At this REAL, deployed value,
+scale_error/return_loss/corruption ALL showed negligible RMSE change vs
+baseline (<0.2%). Re-tested at a diagnostic ALPHA=0.5 (25x more LiDAR
+weight, NOT the deployed value, used only to probe the underlying
+mechanism): corruption showed a real, clear degradation (+3.1%), while
+scale_error and return_loss remained near-invisible even with much more
+weight -- for different, fault-specific mechanistic reasons (scale_error:
+per-beam errors from many different angles average out under the
+correction's np.mean() aggregation; return_loss: exclusion of invalid
+beams from an already-large 540-beam set barely changes the surviving
+sample's correction quality).
+
+This script runs BOTH the real deployed ALPHA and the diagnostic ALPHA
+across ALL good baselines, ALL 6 LiDAR fault types (return_loss,
+corruption, scale_error, plus noise/dropout/delay reusing IMU/odom's
+generic severity maps and injection functions), and ALL severities --
+noise/dropout/delay were only validated through the EKF path in Phase 0,
+never through THIS downstream consumer (lidar_fusion_v2.py), so their
+effect here is genuinely untested, not "already covered."
+
+ALPHA=0.98 is NOT changed by this script -- confirmed as a deliberate,
+correct design value (not stale), not something to "fix."
+
+Usage:
+    python3 validate_lidar_faults.py
+"""
+
+import sys
+from pathlib import Path
+
+import pandas as pd
+
+SCRIPTS_DIR = Path.home() / "ws_mobile" / "scripts"
+sys.path.insert(0, str(SCRIPTS_DIR))
+
+from fault_injection import make_fault_session, LIDAR_SEVERITY_MAPS  # noqa: E402
+from health_check import check_session  # noqa: E402
+
+DIAGNOSTIC_ALPHA = 0.5  # NOT the deployed value -- probe-only, to reveal
+                        # whether a fault mechanism is fundamentally
+                        # detectable at all, independent of fusion weight
+
+LIDAR_FAULT_TYPES = [
+    "return_loss",
+    "corruption",
+    "scale_error",
+    "noise",
+    "dropout",
+    "delay",
+]
+
+
+def discover_good_baselines() -> list[str]:
+    SENSOR_LOGS_DIR = Path.home() / "ws_mobile" / "sensor_logs"
+    candidates = set()
+    for f in SENSOR_LOGS_DIR.glob("ekf_fused_output_*.csv"):
+        session = f.stem[len("ekf_fused_output_"):]
+        if "_fault_" not in session:
+            candidates.add(session)
+    good = []
+    for c in sorted(candidates):
+        passed, reasons = check_session(c)
+        if passed:
+            good.append(c)
+        else:
+            print(f"excluding baseline {c}: {reasons}")
+    return good
+
+
+def run_at_alpha(session: str, alpha: float):
+    """Runs lidar_fusion_v2 at a given ALPHA WITHOUT modifying the
+    deployed file -- overrides the module-level constant in-memory only,
+    for this process's lifetime."""
+    import lidar_fusion_v2
+    lidar_fusion_v2.ALPHA = alpha
+    from lidar_fusion_v2 import run_lidar_fusion_single
+    result = run_lidar_fusion_single(session)
+    if result is None:
+        return None
+    return result[0]  # RMSE
+
+
+def main():
+    good_baselines = discover_good_baselines()
+    print(f"\n{len(good_baselines)} good baselines: {good_baselines}\n")
+
+    rows = []
+    for baseline in good_baselines:
+        # RNN output must exist for this baseline for fusion to run at all.
+        rnn_path = Path.home() / "ws_mobile" / "sensor_logs" / f"rnn_smoothed_output_{baseline}.csv"
+        if not rnn_path.exists():
+            print(f"SKIPPING baseline {baseline}: no rnn_smoothed_output "
+                  f"(run rnn_fusion_v2.py's stage for this session first)")
+            continue
+
+        baseline_rmse_deployed = run_at_alpha(baseline, 0.98)
+        baseline_rmse_diag = run_at_alpha(baseline, DIAGNOSTIC_ALPHA)
+        if baseline_rmse_deployed is None or baseline_rmse_diag is None:
+            print(f"SKIPPING baseline {baseline}: fusion returned None")
+            continue
+
+        for fault_type in LIDAR_FAULT_TYPES:
+            for severity in LIDAR_SEVERITY_MAPS[fault_type]:
+                try:
+                    fault_session = make_fault_session(
+                        baseline, "lidar", fault_type, severity, seed=0)
+                except Exception as e:
+                    print(f"  FAILED to create {baseline}/{fault_type}/{severity}: {e}")
+                    continue
+
+                rmse_deployed = run_at_alpha(fault_session, 0.98)
+                rmse_diag = run_at_alpha(fault_session, DIAGNOSTIC_ALPHA)
+                if rmse_deployed is None or rmse_diag is None:
+                    print(f"  SKIPPED {fault_session}: fusion returned None")
+                    continue
+
+                rows.append({
+                    "baseline": baseline, "fault_type": fault_type, "severity": severity,
+                    "baseline_rmse_deployed": baseline_rmse_deployed,
+                    "fault_rmse_deployed": rmse_deployed,
+                    "ratio_deployed": rmse_deployed / baseline_rmse_deployed,
+                    "baseline_rmse_diag": baseline_rmse_diag,
+                    "fault_rmse_diag": rmse_diag,
+                    "ratio_diag": rmse_diag / baseline_rmse_diag,
+                })
+                print(f"  {fault_session}: deployed ratio={rows[-1]['ratio_deployed']:.4f}, "
+                      f"diagnostic ratio={rows[-1]['ratio_diag']:.4f}")
+
+    if not rows:
+        print("\nno results")
+        return
+
+    df = pd.DataFrame(rows)
+    out_path = Path.home() / "ws_mobile" / "sensor_logs" / "lidar_fault_validation_results.csv"
+    df.to_csv(out_path, index=False)
+    print(f"\nwrote {out_path}")
+
+    print("\n=== summary by fault type (mean ratio, >1.0 = degraded) ===")
+    for fault_type, g in df.groupby("fault_type"):
+        print(f"  {fault_type}:")
+        print(f"    deployed (ALPHA=0.98):     mean ratio={g['ratio_deployed'].mean():.4f}  "
+              f"(n={len(g)}, detectable={100*(g['ratio_deployed']>1.02).mean():.0f}% of cases >2% worse)")
+        print(f"    diagnostic (ALPHA={DIAGNOSTIC_ALPHA}): mean ratio={g['ratio_diag'].mean():.4f}  "
+              f"(n={len(g)}, detectable={100*(g['ratio_diag']>1.02).mean():.0f}% of cases >2% worse)")
+
+
+if __name__ == "__main__":
+    main()
