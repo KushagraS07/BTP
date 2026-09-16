@@ -17,6 +17,9 @@ alone):
   delay faults            -> r_true = 1.0 (Phase 0: structurally invisible
                               to this pipeline stage, confirmed via
                               real-data diff ~1e-14)
+  slip (Phase 3, B.3)     -> WINDOWED degradation: r=1.0 outside detected
+                              slip_events windows, flat_r(scale_factor-1.0)
+                              inside them (see slip_r() below)
 
 Confirmed assumption: start_frac = 0.0 for all bias/drift/noise faults in
 this dataset (no override passed in make_fault_session() calls) — so ramps
@@ -124,6 +127,22 @@ def dropout_r(n: int, start_idx: int, end_idx: int) -> np.ndarray:
     return r
 
 
+def slip_r(n: int, windows: list, scale_factor: float) -> np.ndarray:
+    """Windowed degradation, reusing flat_r's monotonic-decreasing-in-
+    distortion-magnitude convention (dropout_r's windowing + flat_r's
+    magnitude mapping). scale_factor is the multiplicative distortion
+    slip_injection.py applied (e.g. 1.6 = 60% over-reported motion);
+    the DEGRADATION MAGNITUDE flat_r expects is (scale_factor - 1.0),
+    not scale_factor itself -- other fault types' severity_value is
+    already an added-distortion magnitude, not a multiplicative factor,
+    so this subtraction keeps the same semantics flat_r was built for."""
+    r = np.ones(n)
+    r_active = flat_r(scale_factor - 1.0)
+    for w in windows:
+        r[w["start_idx"]:w["end_idx"]] = r_active
+    return r
+
+
 def compute_sensor_r(n: int, manifest: dict) -> np.ndarray:
     """Dispatch on the actual fields present in injected_stats, not on
     fault_type alone, since 'bias' means different mechanisms for IMU vs odom."""
@@ -134,6 +153,10 @@ def compute_sensor_r(n: int, manifest: dict) -> np.ndarray:
         # confirmed real-data finding that a uniform timestamp shift cancels
         # algebraically in ekf_fusion.py's dt computation (diff ~1e-14).
         return np.ones(n)
+
+    if fault_type == "slip":
+        stats = manifest["injected_stats"]
+        return slip_r(n, stats["windows"], manifest["severity_value"])
 
     stats = manifest["injected_stats"]
     # Combine across columns (e.g. odom pos_x + pos_y) conservatively: take
