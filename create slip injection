@@ -1,0 +1,232 @@
+#!/usr/bin/env python3
+"""
+slip_injection.py — Phase 3, Part B (P_slip) fault injection.
+
+Adapts fault_injection.py's conventions (per-session-std severity scaling,
+manifest-driven reproducibility, copy-other-files-unchanged pattern) to a
+genuinely new mechanism: slip is EVENT-TRIGGERED, detected from each
+baseline session's own real cmd_vel vs odom data, not a fixed-window
+distortion like noise/bias/drift/dropout/delay.
+
+Import target: fault_injection.py (LOG_DIR, SCRIPTS_DIR must already point
+at ~/paper_ws/sensor_logs and ~/paper_ws/scripts — see the two edits noted
+alongside this file).
+
+REQUIRES: cmd_vel_filtered_{session}.csv to exist (timestamp, linear_x,
+angular_z) alongside odom_filtered_{session}.csv. If your preprocessing
+pipeline doesn't currently produce a filtered cmd_vel file, add that stage
+before running this — event detection needs the *commanded* signal, not
+raw cmd_vel.
+
+THRESHOLDS ARE LOCKED, per A.2's discipline ("fix the threshold in
+advance, not after seeing the result"): ACCEL_THRESH=0.05 was checked
+against a real longitudinal deceleration event, TURN_THRESH=0.15 against
+a real rotation-in-place event (0.8 rad/s plateau, clean ramp-down
+crossing at ~t=4.29s). Both hold correctly on the sessions reviewed.
+Do not re-tune these per additional session without a pre-registered
+reason — iterative adjustment after seeing more data is the exact
+pattern A.2 rules out.
+"""
+
+import os
+import json
+import shutil
+import numpy as np
+import pandas as pd
+from datetime import datetime, timezone
+
+from fault_injection import LOG_DIR, quat_to_yaw, yaw_to_quat  # reuse his config/paths
+
+CMD_VEL_TS_COL = 'timestamp'
+CMD_VEL_LINEAR_COL = 'linear_x'
+CMD_VEL_ANGULAR_COL = 'angular_z'
+
+# Multiplicative distortion of REAL recorded displacement/rotation during
+# the window (odometry over-reports motion by this fraction -- physically:
+# wheel spins without full traction, encoder counts more rotation than
+# actual travel). NOT a multiplier of the column's own step-to-step std --
+# that was the bug: this baseline data is a near-noiseless clean simulated
+# trajectory (real step variance ~1e-13), so std-based scaling was
+# invisible at any severity. Scaling the real, non-tiny displacement itself
+# fixes that.
+SLIP_SEVERITY = {'mild': 1.15, 'moderate': 1.35, 'severe': 1.6}
+
+ACCEL_THRESH = 0.05      # m/s^2, on cmd_vel linear_x derivative
+TURN_THRESH = 0.15       # rad/s, on cmd_vel angular_z magnitude
+MIN_DURATION_S = 0.1     # ignore flagged runs shorter than this (noise rejection)
+
+
+def _flags_to_windows(flags: np.ndarray, ts: np.ndarray, min_duration_s: float):
+    """Collapse a boolean per-sample flag array into contiguous (start_idx,
+    end_idx, start_time, end_time) windows, dropping runs shorter than
+    min_duration_s. flags is assumed aligned 1:1 with ts (caller pads if
+    flags came from a diff of length n-1)."""
+    windows = []
+    n = len(flags)
+    i = 0
+    while i < n:
+        if flags[i]:
+            start = i
+            while i < n and flags[i]:
+                i += 1
+            end = i  # exclusive
+            duration = ts[end - 1] - ts[start]
+            if duration >= min_duration_s:
+                windows.append({
+                    'start_idx': int(start), 'end_idx': int(end),
+                    'start_time': float(ts[start]), 'end_time': float(ts[end - 1]),
+                })
+        else:
+            i += 1
+    return windows
+
+
+def detect_accel_events(cmd_df: pd.DataFrame, accel_thresh: float = ACCEL_THRESH,
+                         min_duration_s: float = MIN_DURATION_S) -> list:
+    """Longitudinal slip candidate windows: |d(linear_x)/dt| over threshold."""
+    ts = cmd_df[CMD_VEL_TS_COL].values.astype(float)
+    v = cmd_df[CMD_VEL_LINEAR_COL].values.astype(float)
+    dt = np.diff(ts)
+    dt[dt == 0] = np.nan
+    accel = np.diff(v) / dt
+    flags = np.abs(accel) > accel_thresh
+    # accel[i] corresponds to the interval (ts[i], ts[i+1]); align flag to ts[i+1]
+    flags_full = np.concatenate([[False], flags])
+    windows = _flags_to_windows(flags_full, ts, min_duration_s)
+    for w in windows:
+        w['type'] = 'longitudinal'
+    return windows
+
+
+def detect_turn_events(cmd_df: pd.DataFrame, turn_thresh: float = TURN_THRESH,
+                        min_duration_s: float = MIN_DURATION_S) -> list:
+    """Turning slip candidate windows: |angular_z| over threshold."""
+    ts = cmd_df[CMD_VEL_TS_COL].values.astype(float)
+    w_z = cmd_df[CMD_VEL_ANGULAR_COL].values.astype(float)
+    flags = np.abs(w_z) > turn_thresh
+    windows = _flags_to_windows(flags, ts, min_duration_s)
+    for w in windows:
+        w['type'] = 'turning'
+    return windows
+
+
+def inject_slip(odom_df: pd.DataFrame, windows: list, scale_factor: float) -> tuple:
+    """Distort odom's reported motion only inside detected event windows, by
+    scaling the window's REAL recorded displacement/rotation (not the
+    column's own step-to-step std -- that was invisible on this clean,
+    near-noiseless simulated data). The introduced offset is carried
+    forward past the window end, matching real dead-reckoning drift (slip
+    error doesn't self-correct once the event ends). Longitudinal windows
+    scale pos_x/pos_y; turning windows scale yaw (re-encoded to
+    orient_z/orient_w)."""
+    out = odom_df.copy()
+    stats = {'windows': windows, 'scale_factor': scale_factor}
+    yaw = quat_to_yaw(out['orient_z'].values, out['orient_w'].values)
+    yaw_touched = False
+
+    for w in windows:
+        s, e = w['start_idx'], w['end_idx']
+        if e <= s:
+            continue
+        if w['type'] == 'longitudinal':
+            for col in ('pos_x', 'pos_y'):
+                vals = out[col].values.copy()
+                base = vals[s]
+                scaled = base + (vals[s:e] - base) * scale_factor
+                offset_end = scaled[-1] - vals[e - 1]
+                vals[s:e] = scaled
+                vals[e:] = vals[e:] + offset_end
+                out[col] = vals
+        elif w['type'] == 'turning':
+            base = yaw[s]
+            scaled = base + (yaw[s:e] - base) * scale_factor
+            offset_end = scaled[-1] - yaw[e - 1]
+            yaw[s:e] = scaled
+            yaw[e:] = yaw[e:] + offset_end
+            yaw_touched = True
+
+    if yaw_touched:
+        out['orient_z'], out['orient_w'] = yaw_to_quat(yaw)
+    return out, stats
+
+
+def make_slip_fault_session(baseline_session: str, severity: str, seed: int = 0,
+                             accel_thresh: float = ACCEL_THRESH,
+                             turn_thresh: float = TURN_THRESH,
+                             min_duration_s: float = MIN_DURATION_S) -> str:
+    if severity not in SLIP_SEVERITY:
+        raise ValueError(f"severity must be one of {list(SLIP_SEVERITY)}")
+
+    fault_session = f"{baseline_session}_fault_odom_slip_{severity}"
+
+    cmd_path = os.path.join(LOG_DIR, f'cmd_vel_filtered_{baseline_session}.csv')
+    odom_path = os.path.join(LOG_DIR, f'odom_filtered_{baseline_session}.csv')
+    if not os.path.exists(cmd_path):
+        raise FileNotFoundError(
+            f"cmd_vel_filtered_{baseline_session}.csv not found — slip detection "
+            f"needs the commanded-velocity signal, not just odom.")
+    if not os.path.exists(odom_path):
+        raise FileNotFoundError(f"Baseline odom file not found: {odom_path}")
+
+    cmd_df = pd.read_csv(cmd_path)
+    odom_df = pd.read_csv(odom_path)
+
+    windows = (detect_accel_events(cmd_df, accel_thresh, min_duration_s)
+               + detect_turn_events(cmd_df, turn_thresh, min_duration_s))
+    windows.sort(key=lambda w: w['start_idx'])
+
+    faulted_odom, injected_stats = inject_slip(odom_df, windows, SLIP_SEVERITY[severity])
+
+    # Copy every other file unchanged, matching fault_injection.py's pattern.
+    for prefix in ['imu', 'scan', 'ground_truth', 'cmd_vel']:
+        src = os.path.join(LOG_DIR, f'{prefix}_filtered_{baseline_session}.csv')
+        if os.path.exists(src):
+            shutil.copy2(src, src.replace(baseline_session, fault_session))
+
+    rnn_src = os.path.join(LOG_DIR, f'rnn_smoothed_output_{baseline_session}.csv')
+    if os.path.exists(rnn_src):
+        shutil.copy2(rnn_src, os.path.join(LOG_DIR, f'rnn_smoothed_output_{fault_session}.csv'))
+
+    dst_path = os.path.join(LOG_DIR, f'odom_filtered_{fault_session}.csv')
+    faulted_odom.to_csv(dst_path, index=False)
+
+    manifest = {
+        'fault_session': fault_session,
+        'baseline_session': baseline_session,
+        'sensor': 'odom',
+        'fault_type': 'slip',
+        'mechanism': ('event_triggered: windows detected from real cmd_vel '
+                      '(accel/turn thresholding), NOT a fixed continuous/manifest '
+                      'window like other fault types. See slip_events for the '
+                      'exact windows used — the label generator must read these '
+                      'directly, not re-derive them independently (B.3).'),
+        'severity_label': severity,
+        'severity_value': SLIP_SEVERITY[severity],
+        'detection_params': {
+            'accel_thresh': accel_thresh, 'turn_thresh': turn_thresh,
+            'min_duration_s': min_duration_s,
+        },
+        'slip_events': windows,
+        'injected_stats': injected_stats,
+        'seed': seed,
+        'created_utc': datetime.now(timezone.utc).isoformat(),
+    }
+    manifest_path = os.path.join(LOG_DIR, f'fault_meta_{fault_session}.json')
+    with open(manifest_path, 'w') as f:
+        json.dump(manifest, f, indent=2)
+
+    print(f"  Created fault session: {fault_session}")
+    print(f"    Events detected: {len(windows)} "
+          f"({sum(1 for w in windows if w['type']=='longitudinal')} longitudinal, "
+          f"{sum(1 for w in windows if w['type']=='turning')} turning)")
+    print(f"    Manifest: {os.path.basename(manifest_path)}")
+    return fault_session
+
+
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) < 3:
+        print("Usage: python3 slip_injection.py <baseline_session> <severity>")
+        print(f"  severity one of: {list(SLIP_SEVERITY)}")
+        sys.exit(1)
+    make_slip_fault_session(sys.argv[1], sys.argv[2])
