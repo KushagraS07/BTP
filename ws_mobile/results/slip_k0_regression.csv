@@ -1,0 +1,15 @@
+session,model,rows,rows_equal,x_equal,y_equal,theta_equal,r_imu_equal,r_odom_equal,max_abs_dx,max_abs_dy,max_abs_dtheta,live_k10_changes,PASS,rmse_L,phase2_table_equal
+20261009_140649,20260712_141740,2704,True,True,True,True,True,True,0.0,0.0,0.0,True,True,,
+20261009_140649,20260712_144326,2704,True,True,True,True,True,True,0.0,0.0,0.0,True,True,,
+20261009_140649,20260824_094119,2704,True,True,True,True,True,True,0.0,0.0,0.0,True,True,,
+20261009_140649,20260824_095427,2704,True,True,True,True,True,True,0.0,0.0,0.0,True,True,,
+20261009_140649,20260824_095712,2704,True,True,True,True,True,True,0.0,0.0,0.0,True,True,,
+20261009_140649,20260824_095915,2704,True,True,True,True,True,True,0.0,0.0,0.0,True,True,,
+20261009_140649,20260824_100318,2704,True,True,True,True,True,True,0.0,0.0,0.0,True,True,,
+20261005_175524,20260712_141740,2704,True,True,True,True,True,True,0.0,0.0,0.0,True,True,0.4844290730376172,True
+20261005_175524,20260712_144326,2704,True,True,True,True,True,True,0.0,0.0,0.0,True,True,0.4819809076391924,True
+20261005_175524,20260824_094119,2704,True,True,True,True,True,True,0.0,0.0,0.0,True,True,0.48348482354831024,True
+20261005_175524,20260824_095427,2704,True,True,True,True,True,True,0.0,0.0,0.0,True,True,0.4854920517769377,True
+20261005_175524,20260824_095712,2704,True,True,True,True,True,True,0.0,0.0,0.0,True,True,0.4842881992588208,True
+20261005_175524,20260824_095915,2704,True,True,True,True,True,True,0.0,0.0,0.0,True,True,0.48427998737096273,True
+20261005_175524,20260824_100318,2704,True,True,True,True,True,True,0.0,0.0,0.0,True,True,0.4841304936243814,True

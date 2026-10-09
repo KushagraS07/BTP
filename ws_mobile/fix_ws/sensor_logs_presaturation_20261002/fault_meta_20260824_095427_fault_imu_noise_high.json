@@ -1,0 +1,21 @@
+{
+  "fault_session": "20260824_095427_fault_imu_noise_high",
+  "baseline_session": "20260824_095427",
+  "sensor": "imu",
+  "fault_type": "noise",
+  "mechanism": "noise (applied to derived yaw, re-encoded to orient_z/orient_w)",
+  "severity_label": "high",
+  "severity_value": 6.0,
+  "columns": [
+    "_imu_yaw_temp"
+  ],
+  "timestamp_col": null,
+  "injected_stats": {
+    "_imu_yaw_temp": {
+      "baseline_std": 1.600050219661321,
+      "injected_noise_std": 9.600301317967926
+    }
+  },
+  "seed": 0,
+  "created_utc": "2026-08-24T04:35:41.402683+00:00"
+}

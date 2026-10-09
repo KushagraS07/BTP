@@ -1,0 +1,21 @@
+{
+  "fault_session": "20260712_141740_fault_imu_drift_slow",
+  "baseline_session": "20260712_141740",
+  "sensor": "imu",
+  "fault_type": "drift",
+  "mechanism": "drift (applied to derived yaw, re-encoded to orient_z/orient_w)",
+  "severity_label": "slow",
+  "severity_value": 1.0,
+  "columns": [
+    "_imu_yaw_temp"
+  ],
+  "timestamp_col": null,
+  "injected_stats": {
+    "_imu_yaw_temp": {
+      "baseline_std": 1.6531334410972258,
+      "final_injected_offset": 1.6531334410972258
+    }
+  },
+  "seed": 0,
+  "created_utc": "2026-08-24T04:35:20.311728+00:00"
+}

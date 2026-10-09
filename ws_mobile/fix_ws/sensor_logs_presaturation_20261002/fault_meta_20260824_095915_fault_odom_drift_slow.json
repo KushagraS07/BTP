@@ -1,0 +1,26 @@
+{
+  "fault_session": "20260824_095915_fault_odom_drift_slow",
+  "baseline_session": "20260824_095915",
+  "sensor": "odom",
+  "fault_type": "drift",
+  "mechanism": "drift",
+  "severity_label": "slow",
+  "severity_value": 1.0,
+  "columns": [
+    "pos_x",
+    "pos_y"
+  ],
+  "timestamp_col": null,
+  "injected_stats": {
+    "pos_x": {
+      "baseline_std": 2.300079421855161,
+      "final_injected_offset": 2.300079421855161
+    },
+    "pos_y": {
+      "baseline_std": 0.8245877243109591,
+      "final_injected_offset": 0.8245877243109591
+    }
+  },
+  "seed": 0,
+  "created_utc": "2026-08-24T04:35:49.824027+00:00"
+}

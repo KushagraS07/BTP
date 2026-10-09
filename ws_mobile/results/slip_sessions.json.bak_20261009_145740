@@ -1,0 +1,13 @@
+{
+  "slip_sessions": [
+    "20261009_140649"
+  ],
+  "info": {
+    "20261009_140649": {
+      "role": "gate",
+      "note": "B2 slip gate: corridor patch stop/start",
+      "health_check_passed": true,
+      "added": "2026-10-09T14:08:35"
+    }
+  }
+}

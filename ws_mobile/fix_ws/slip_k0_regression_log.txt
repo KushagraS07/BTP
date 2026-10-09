@@ -1,0 +1,20 @@
+frozen files OK (6 scripts + 7 models match final_freeze.sha256)
+sessions: ['20261009_140649', '20261005_175524']; models: 7
+  20261009_140649 model 20260712_141740: rows 2704, x/y/theta equal True/True/True, r equal True/True, k=10 changes output: True  -> PASS
+  20261009_140649 model 20260712_144326: rows 2704, x/y/theta equal True/True/True, r equal True/True, k=10 changes output: True  -> PASS
+  20261009_140649 model 20260824_094119: rows 2704, x/y/theta equal True/True/True, r equal True/True, k=10 changes output: True  -> PASS
+  20261009_140649 model 20260824_095427: rows 2704, x/y/theta equal True/True/True, r equal True/True, k=10 changes output: True  -> PASS
+  20261009_140649 model 20260824_095712: rows 2704, x/y/theta equal True/True/True, r equal True/True, k=10 changes output: True  -> PASS
+  20261009_140649 model 20260824_095915: rows 2704, x/y/theta equal True/True/True, r equal True/True, k=10 changes output: True  -> PASS
+  20261009_140649 model 20260824_100318: rows 2704, x/y/theta equal True/True/True, r equal True/True, k=10 changes output: True  -> PASS
+  20261005_175524 model 20260712_141740: rows 2704, x/y/theta equal True/True/True, r equal True/True, k=10 changes output: True, reproduces Phase 2 table: True  -> PASS
+  20261005_175524 model 20260712_144326: rows 2704, x/y/theta equal True/True/True, r equal True/True, k=10 changes output: True, reproduces Phase 2 table: True  -> PASS
+  20261005_175524 model 20260824_094119: rows 2704, x/y/theta equal True/True/True, r equal True/True, k=10 changes output: True, reproduces Phase 2 table: True  -> PASS
+  20261005_175524 model 20260824_095427: rows 2704, x/y/theta equal True/True/True, r equal True/True, k=10 changes output: True, reproduces Phase 2 table: True  -> PASS
+  20261005_175524 model 20260824_095712: rows 2704, x/y/theta equal True/True/True, r equal True/True, k=10 changes output: True, reproduces Phase 2 table: True  -> PASS
+  20261005_175524 model 20260824_095915: rows 2704, x/y/theta equal True/True/True, r equal True/True, k=10 changes output: True, reproduces Phase 2 table: True  -> PASS
+  20261005_175524 model 20260824_100318: rows 2704, x/y/theta equal True/True/True, r equal True/True, k=10 changes output: True, reproduces Phase 2 table: True  -> PASS
+
+wrote /home/kushagra/ws_mobile/results/slip_k0_regression.csv
+
+k=0 REGRESSION: PASS (14/14 session x model runs identical)

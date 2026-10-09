@@ -1,0 +1,202 @@
+using device: cpu
+[20260712_141740] internal validation baseline: 20260712_144326 (fit=321972 windows, val=45507 windows)
+[20260712_141740] baseline windows: 9759/321972 (3.0%), weighted 5.0x -> effective share 13.5%
+[20260712_141740] epoch 1/15 fit_mse=0.08502 val_mse=0.08998
+[20260712_141740] epoch 2/15 fit_mse=0.08071 val_mse=0.08663
+[20260712_141740] epoch 3/15 fit_mse=0.07798 val_mse=0.08364
+[20260712_141740] epoch 4/15 fit_mse=0.07386 val_mse=0.08170
+[20260712_141740] epoch 5/15 fit_mse=0.07033 val_mse=0.08012
+[20260712_141740] epoch 6/15 fit_mse=0.07011 val_mse=0.08112
+[20260712_141740] epoch 7/15 fit_mse=0.06838 val_mse=0.07865
+[20260712_141740] epoch 8/15 fit_mse=0.06782 val_mse=0.08071
+[20260712_141740] epoch 9/15 fit_mse=0.06676 val_mse=0.08239
+[20260712_141740] epoch 10/15 fit_mse=0.06572 val_mse=0.10413
+[20260712_141740] epoch 11/15 fit_mse=0.06855 val_mse=0.07779
+[20260712_141740] epoch 12/15 fit_mse=0.06757 val_mse=0.07953
+[20260712_141740] epoch 13/15 fit_mse=0.06579 val_mse=0.09058
+[20260712_141740] epoch 14/15 fit_mse=0.06628 val_mse=0.08212
+[20260712_141740] epoch 15/15 fit_mse=0.06783 val_mse=0.10882
+[20260712_141740] restoring best checkpoint from epoch 11 (val_mse=0.07779)
+[20260712_141740] val split: baseline-only val_mse=0.06630 (n=1379), fault-only val_mse=0.07814 (n=44128)
+[20260712_141740] OPEN-LOOP test RMSE: r_imu=0.2497 r_odom=0.3107
+[20260712_141740] BASELINE (always r=1.0): r_imu=0.4091 r_odom=0.4598
+[20260712_141740] BASELINE (fit-mean r=0.765/0.735): r_imu=0.3406 r_odom=0.3819
+[20260712_141740] test-set label distribution: r_imu mean=0.773 std=0.341, r_odom mean=0.744 std=0.382 (vs fit-set mean 0.765/0.735 -- a large gap here suggests this held-out baseline's fault mix genuinely differs from the other 6, which would explain harder generalization, not necessarily a bug)
+saved /home/kushagra/ws_mobile/sensor_logs/model_20260712_141740.pt
+[20260712_141740] NOTE: no r_prev feedback feature present -- closed-loop below is a sequential-consistency check (should match open-loop), not a genuine autoregressive evaluation.
+[20260712_141740] CLOSED-LOOP RMSE (matched, directly vs open-loop): r_imu=0.2497 r_odom=0.3107
+[20260712_141740] CLOSED-LOOP RMSE (full, incl. warm-up, deployment-realistic): r_imu=0.2488 r_odom=0.3104
+[20260712_144326] internal validation baseline: 20260712_141740 (fit=321972 windows, val=123189 windows)
+[20260712_144326] baseline windows: 9759/321972 (3.0%), weighted 5.0x -> effective share 13.5%
+[20260712_144326] epoch 1/15 fit_mse=0.08515 val_mse=0.08813
+[20260712_144326] epoch 2/15 fit_mse=0.08072 val_mse=0.08696
+[20260712_144326] epoch 3/15 fit_mse=0.07866 val_mse=0.08745
+[20260712_144326] epoch 4/15 fit_mse=0.07932 val_mse=0.08724
+[20260712_144326] epoch 5/15 fit_mse=0.07534 val_mse=0.08413
+[20260712_144326] epoch 6/15 fit_mse=0.07114 val_mse=0.08481
+[20260712_144326] epoch 7/15 fit_mse=0.06931 val_mse=0.08433
+[20260712_144326] epoch 8/15 fit_mse=0.06937 val_mse=0.09558
+[20260712_144326] epoch 9/15 fit_mse=0.06840 val_mse=0.09102
+[20260712_144326] epoch 10/15 fit_mse=0.06721 val_mse=0.08177
+[20260712_144326] epoch 11/15 fit_mse=0.06722 val_mse=0.09529
+[20260712_144326] epoch 12/15 fit_mse=0.06469 val_mse=0.08514
+[20260712_144326] epoch 13/15 fit_mse=0.06218 val_mse=0.08022
+[20260712_144326] epoch 14/15 fit_mse=0.06194 val_mse=0.07392
+[20260712_144326] epoch 15/15 fit_mse=0.06377 val_mse=0.08785
+[20260712_144326] restoring best checkpoint from epoch 14 (val_mse=0.07392)
+[20260712_144326] val split: baseline-only val_mse=0.05020 (n=3733), fault-only val_mse=0.07466 (n=119456)
+[20260712_144326] OPEN-LOOP test RMSE: r_imu=0.2364 r_odom=0.3203
+[20260712_144326] BASELINE (always r=1.0): r_imu=0.4121 r_odom=0.4643
+[20260712_144326] BASELINE (fit-mean r=0.765/0.735): r_imu=0.3408 r_odom=0.3823
+[20260712_144326] test-set label distribution: r_imu mean=0.768 std=0.341, r_odom mean=0.736 std=0.382 (vs fit-set mean 0.765/0.735 -- a large gap here suggests this held-out baseline's fault mix genuinely differs from the other 6, which would explain harder generalization, not necessarily a bug)
+saved /home/kushagra/ws_mobile/sensor_logs/model_20260712_144326.pt
+[20260712_144326] NOTE: no r_prev feedback feature present -- closed-loop below is a sequential-consistency check (should match open-loop), not a genuine autoregressive evaluation.
+[20260712_144326] CLOSED-LOOP RMSE (matched, directly vs open-loop): r_imu=0.2364 r_odom=0.3203
+[20260712_144326] CLOSED-LOOP RMSE (full, incl. warm-up, deployment-realistic): r_imu=0.2364 r_odom=0.3185
+[20260824_094119] internal validation baseline: 20260712_141740 (fit=287454 windows, val=123189 windows)
+[20260824_094119] baseline windows: 8713/287454 (3.0%), weighted 5.0x -> effective share 13.5%
+[20260824_094119] epoch 1/15 fit_mse=0.08621 val_mse=0.08872
+[20260824_094119] epoch 2/15 fit_mse=0.08084 val_mse=0.09093
+[20260824_094119] epoch 3/15 fit_mse=0.07625 val_mse=0.08739
+[20260824_094119] epoch 4/15 fit_mse=0.07193 val_mse=0.09151
+[20260824_094119] epoch 5/15 fit_mse=0.06947 val_mse=0.08385
+[20260824_094119] epoch 6/15 fit_mse=0.06807 val_mse=0.09522
+[20260824_094119] epoch 7/15 fit_mse=0.06665 val_mse=0.08751
+[20260824_094119] epoch 8/15 fit_mse=0.06473 val_mse=0.08668
+[20260824_094119] epoch 9/15 fit_mse=0.06497 val_mse=0.09237
+[20260824_094119] epoch 10/15 fit_mse=0.06381 val_mse=0.09813
+[20260824_094119] epoch 11/15 fit_mse=0.06228 val_mse=0.09172
+[20260824_094119] epoch 12/15 fit_mse=0.06246 val_mse=0.08450
+[20260824_094119] epoch 13/15 fit_mse=0.06117 val_mse=0.10864
+[20260824_094119] epoch 14/15 fit_mse=0.06228 val_mse=0.09547
+[20260824_094119] epoch 15/15 fit_mse=0.06168 val_mse=0.10192
+[20260824_094119] restoring best checkpoint from epoch 5 (val_mse=0.08385)
+[20260824_094119] val split: baseline-only val_mse=0.04557 (n=3733), fault-only val_mse=0.08504 (n=119456)
+[20260824_094119] OPEN-LOOP test RMSE: r_imu=0.2624 r_odom=0.3705
+[20260824_094119] BASELINE (always r=1.0): r_imu=0.4173 r_odom=0.4625
+[20260824_094119] BASELINE (fit-mean r=0.767/0.734): r_imu=0.3416 r_odom=0.3814
+[20260824_094119] test-set label distribution: r_imu mean=0.760 std=0.342, r_odom mean=0.738 std=0.381 (vs fit-set mean 0.767/0.734 -- a large gap here suggests this held-out baseline's fault mix genuinely differs from the other 6, which would explain harder generalization, not necessarily a bug)
+saved /home/kushagra/ws_mobile/sensor_logs/model_20260824_094119.pt
+[20260824_094119] NOTE: no r_prev feedback feature present -- closed-loop below is a sequential-consistency check (should match open-loop), not a genuine autoregressive evaluation.
+[20260824_094119] CLOSED-LOOP RMSE (matched, directly vs open-loop): r_imu=0.2624 r_odom=0.3705
+[20260824_094119] CLOSED-LOOP RMSE (full, incl. warm-up, deployment-realistic): r_imu=0.2620 r_odom=0.3700
+[20260824_095427] internal validation baseline: 20260712_141740 (fit=298608 windows, val=123189 windows)
+[20260824_095427] baseline windows: 9051/298608 (3.0%), weighted 5.0x -> effective share 13.5%
+[20260824_095427] epoch 1/15 fit_mse=0.08499 val_mse=0.08793
+[20260824_095427] epoch 2/15 fit_mse=0.08004 val_mse=0.08673
+[20260824_095427] epoch 3/15 fit_mse=0.07635 val_mse=0.09155
+[20260824_095427] epoch 4/15 fit_mse=0.07236 val_mse=0.08762
+[20260824_095427] epoch 5/15 fit_mse=0.06977 val_mse=0.12595
+[20260824_095427] epoch 6/15 fit_mse=0.06756 val_mse=0.10346
+[20260824_095427] epoch 7/15 fit_mse=0.06914 val_mse=0.08789
+[20260824_095427] epoch 8/15 fit_mse=0.06800 val_mse=0.09464
+[20260824_095427] epoch 9/15 fit_mse=0.06957 val_mse=0.08697
+[20260824_095427] epoch 10/15 fit_mse=0.06800 val_mse=0.08332
+[20260824_095427] epoch 11/15 fit_mse=0.06442 val_mse=0.09314
+[20260824_095427] epoch 12/15 fit_mse=0.06327 val_mse=0.09765
+[20260824_095427] epoch 13/15 fit_mse=0.06283 val_mse=0.08877
+[20260824_095427] epoch 14/15 fit_mse=0.06486 val_mse=0.08954
+[20260824_095427] epoch 15/15 fit_mse=0.06218 val_mse=0.11154
+[20260824_095427] restoring best checkpoint from epoch 10 (val_mse=0.08332)
+[20260824_095427] val split: baseline-only val_mse=0.06248 (n=3733), fault-only val_mse=0.08397 (n=119456)
+[20260824_095427] OPEN-LOOP test RMSE: r_imu=0.2575 r_odom=0.3412
+[20260824_095427] BASELINE (always r=1.0): r_imu=0.4130 r_odom=0.4655
+[20260824_095427] BASELINE (fit-mean r=0.765/0.735): r_imu=0.3412 r_odom=0.3817
+[20260824_095427] test-set label distribution: r_imu mean=0.767 std=0.341, r_odom mean=0.733 std=0.382 (vs fit-set mean 0.765/0.735 -- a large gap here suggests this held-out baseline's fault mix genuinely differs from the other 6, which would explain harder generalization, not necessarily a bug)
+saved /home/kushagra/ws_mobile/sensor_logs/model_20260824_095427.pt
+[20260824_095427] NOTE: no r_prev feedback feature present -- closed-loop below is a sequential-consistency check (should match open-loop), not a genuine autoregressive evaluation.
+[20260824_095427] CLOSED-LOOP RMSE (matched, directly vs open-loop): r_imu=0.2575 r_odom=0.3412
+[20260824_095427] CLOSED-LOOP RMSE (full, incl. warm-up, deployment-realistic): r_imu=0.2578 r_odom=0.3401
+[20260824_095712] internal validation baseline: 20260712_141740 (fit=316759 windows, val=123189 windows)
+[20260824_095712] baseline windows: 9601/316759 (3.0%), weighted 5.0x -> effective share 13.5%
+[20260824_095712] epoch 1/15 fit_mse=0.08499 val_mse=0.08758
+[20260824_095712] epoch 2/15 fit_mse=0.08041 val_mse=0.08730
+[20260824_095712] epoch 3/15 fit_mse=0.07598 val_mse=0.08565
+[20260824_095712] epoch 4/15 fit_mse=0.07314 val_mse=0.08653
+[20260824_095712] epoch 5/15 fit_mse=0.06965 val_mse=0.08370
+[20260824_095712] epoch 6/15 fit_mse=0.06767 val_mse=0.09044
+[20260824_095712] epoch 7/15 fit_mse=0.06754 val_mse=0.08092
+[20260824_095712] epoch 8/15 fit_mse=0.06570 val_mse=0.09743
+[20260824_095712] epoch 9/15 fit_mse=0.06440 val_mse=0.09452
+[20260824_095712] epoch 10/15 fit_mse=0.06521 val_mse=0.07600
+[20260824_095712] epoch 11/15 fit_mse=0.06666 val_mse=0.08097
+[20260824_095712] epoch 12/15 fit_mse=0.06490 val_mse=0.09149
+[20260824_095712] epoch 13/15 fit_mse=0.06394 val_mse=0.08244
+[20260824_095712] epoch 14/15 fit_mse=0.06468 val_mse=0.12972
+[20260824_095712] epoch 15/15 fit_mse=0.06295 val_mse=0.08375
+[20260824_095712] restoring best checkpoint from epoch 10 (val_mse=0.07600)
+[20260824_095712] val split: baseline-only val_mse=0.03100 (n=3733), fault-only val_mse=0.07740 (n=119456)
+[20260824_095712] OPEN-LOOP test RMSE: r_imu=0.2540 r_odom=0.3202
+[20260824_095712] BASELINE (always r=1.0): r_imu=0.4118 r_odom=0.4681
+[20260824_095712] BASELINE (fit-mean r=0.765/0.736): r_imu=0.3420 r_odom=0.3822
+[20260824_095712] test-set label distribution: r_imu mean=0.770 std=0.342, r_odom mean=0.730 std=0.382 (vs fit-set mean 0.765/0.736 -- a large gap here suggests this held-out baseline's fault mix genuinely differs from the other 6, which would explain harder generalization, not necessarily a bug)
+saved /home/kushagra/ws_mobile/sensor_logs/model_20260824_095712.pt
+[20260824_095712] NOTE: no r_prev feedback feature present -- closed-loop below is a sequential-consistency check (should match open-loop), not a genuine autoregressive evaluation.
+[20260824_095712] CLOSED-LOOP RMSE (matched, directly vs open-loop): r_imu=0.2540 r_odom=0.3202
+[20260824_095712] CLOSED-LOOP RMSE (full, incl. warm-up, deployment-realistic): r_imu=0.2526 r_odom=0.3186
+[20260824_095915] internal validation baseline: 20260712_141740 (fit=309135 windows, val=123189 windows)
+[20260824_095915] baseline windows: 9370/309135 (3.0%), weighted 5.0x -> effective share 13.5%
+[20260824_095915] epoch 1/15 fit_mse=0.08496 val_mse=0.08898
+[20260824_095915] epoch 2/15 fit_mse=0.08047 val_mse=0.08766
+[20260824_095915] epoch 3/15 fit_mse=0.07706 val_mse=0.08262
+[20260824_095915] epoch 4/15 fit_mse=0.07299 val_mse=0.08070
+[20260824_095915] epoch 5/15 fit_mse=0.07072 val_mse=0.08131
+[20260824_095915] epoch 6/15 fit_mse=0.06911 val_mse=0.08984
+[20260824_095915] epoch 7/15 fit_mse=0.06835 val_mse=0.09311
+[20260824_095915] epoch 8/15 fit_mse=0.06879 val_mse=0.08443
+[20260824_095915] epoch 9/15 fit_mse=0.06783 val_mse=0.08967
+[20260824_095915] epoch 10/15 fit_mse=0.06632 val_mse=0.09072
+[20260824_095915] epoch 11/15 fit_mse=0.06946 val_mse=0.08393
+[20260824_095915] epoch 12/15 fit_mse=0.06590 val_mse=0.10180
+[20260824_095915] epoch 13/15 fit_mse=0.06807 val_mse=0.09066
+[20260824_095915] epoch 14/15 fit_mse=0.06365 val_mse=0.11924
+[20260824_095915] epoch 15/15 fit_mse=0.06752 val_mse=0.08495
+[20260824_095915] restoring best checkpoint from epoch 4 (val_mse=0.08070)
+[20260824_095915] val split: baseline-only val_mse=0.03288 (n=3733), fault-only val_mse=0.08220 (n=119456)
+[20260824_095915] OPEN-LOOP test RMSE: r_imu=0.2461 r_odom=0.3153
+[20260824_095915] BASELINE (always r=1.0): r_imu=0.4145 r_odom=0.4661
+[20260824_095915] BASELINE (fit-mean r=0.766/0.735): r_imu=0.3401 r_odom=0.3823
+[20260824_095915] test-set label distribution: r_imu mean=0.763 std=0.340, r_odom mean=0.733 std=0.382 (vs fit-set mean 0.766/0.735 -- a large gap here suggests this held-out baseline's fault mix genuinely differs from the other 6, which would explain harder generalization, not necessarily a bug)
+saved /home/kushagra/ws_mobile/sensor_logs/model_20260824_095915.pt
+[20260824_095915] NOTE: no r_prev feedback feature present -- closed-loop below is a sequential-consistency check (should match open-loop), not a genuine autoregressive evaluation.
+[20260824_095915] CLOSED-LOOP RMSE (matched, directly vs open-loop): r_imu=0.2461 r_odom=0.3153
+[20260824_095915] CLOSED-LOOP RMSE (full, incl. warm-up, deployment-realistic): r_imu=0.2460 r_odom=0.3145
+[20260824_100318] internal validation baseline: 20260712_141740 (fit=303467 windows, val=123189 windows)
+[20260824_100318] baseline windows: 9196/303467 (3.0%), weighted 5.0x -> effective share 13.5%
+[20260824_100318] epoch 1/15 fit_mse=0.08598 val_mse=0.09630
+[20260824_100318] epoch 2/15 fit_mse=0.08073 val_mse=0.08728
+[20260824_100318] epoch 3/15 fit_mse=0.07678 val_mse=0.11150
+[20260824_100318] epoch 4/15 fit_mse=0.07173 val_mse=0.09720
+[20260824_100318] epoch 5/15 fit_mse=0.06838 val_mse=0.13844
+[20260824_100318] epoch 6/15 fit_mse=0.06648 val_mse=0.13279
+[20260824_100318] epoch 7/15 fit_mse=0.06444 val_mse=0.13797
+[20260824_100318] epoch 8/15 fit_mse=0.06279 val_mse=0.18216
+[20260824_100318] epoch 9/15 fit_mse=0.06265 val_mse=0.17344
+[20260824_100318] epoch 10/15 fit_mse=0.06123 val_mse=0.14312
+[20260824_100318] epoch 11/15 fit_mse=0.06112 val_mse=0.16147
+[20260824_100318] epoch 12/15 fit_mse=0.06138 val_mse=0.16245
+[20260824_100318] epoch 13/15 fit_mse=0.05846 val_mse=0.14971
+[20260824_100318] epoch 14/15 fit_mse=0.05859 val_mse=0.13267
+[20260824_100318] epoch 15/15 fit_mse=0.05894 val_mse=0.11945
+[20260824_100318] restoring best checkpoint from epoch 2 (val_mse=0.08728)
+[20260824_100318] val split: baseline-only val_mse=0.04150 (n=3733), fault-only val_mse=0.08871 (n=119456)
+[20260824_100318] OPEN-LOOP test RMSE: r_imu=0.2648 r_odom=0.3231
+[20260824_100318] BASELINE (always r=1.0): r_imu=0.4137 r_odom=0.4638
+[20260824_100318] BASELINE (fit-mean r=0.765/0.734): r_imu=0.3416 r_odom=0.3817
+[20260824_100318] test-set label distribution: r_imu mean=0.767 std=0.342, r_odom mean=0.736 std=0.382 (vs fit-set mean 0.765/0.734 -- a large gap here suggests this held-out baseline's fault mix genuinely differs from the other 6, which would explain harder generalization, not necessarily a bug)
+saved /home/kushagra/ws_mobile/sensor_logs/model_20260824_100318.pt
+[20260824_100318] NOTE: no r_prev feedback feature present -- closed-loop below is a sequential-consistency check (should match open-loop), not a genuine autoregressive evaluation.
+[20260824_100318] CLOSED-LOOP RMSE (matched, directly vs open-loop): r_imu=0.2648 r_odom=0.3231
+[20260824_100318] CLOSED-LOOP RMSE (full, incl. warm-up, deployment-realistic): r_imu=0.2634 r_odom=0.3221
+
+=== summary across folds (mean +/- std) ===
+model                r_imu:  0.2530 +/- 0.0091
+model                r_odom: 0.3288 +/- 0.0192
+baseline (r=1.0)     r_imu:  0.4131 +/- 0.0023
+baseline (r=1.0)     r_odom: 0.4643 +/- 0.0025
+baseline (fit-mean)  r_imu:  0.3411 +/- 0.0006
+baseline (fit-mean)  r_odom: 0.3819 +/- 0.0003
+closed-loop (matched) r_imu:  0.2530 +/- 0.0091
+closed-loop (matched) r_odom: 0.3288 +/- 0.0192
+closed-loop (full)    r_imu:  0.2524 +/- 0.0089
+closed-loop (full)    r_odom: 0.3277 +/- 0.0193

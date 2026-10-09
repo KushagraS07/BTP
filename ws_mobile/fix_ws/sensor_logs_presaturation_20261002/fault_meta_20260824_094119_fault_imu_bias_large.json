@@ -1,0 +1,21 @@
+{
+  "fault_session": "20260824_094119_fault_imu_bias_large",
+  "baseline_session": "20260824_094119",
+  "sensor": "imu",
+  "fault_type": "bias",
+  "mechanism": "bias (applied to derived yaw, re-encoded to orient_z/orient_w)",
+  "severity_label": "large",
+  "severity_value": 6.0,
+  "columns": [
+    "_imu_yaw_temp"
+  ],
+  "timestamp_col": null,
+  "injected_stats": {
+    "_imu_yaw_temp": {
+      "baseline_std": 1.7763525832944584,
+      "injected_offset": 10.658115499766751
+    }
+  },
+  "seed": 0,
+  "created_utc": "2026-08-24T04:35:36.339390+00:00"
+}

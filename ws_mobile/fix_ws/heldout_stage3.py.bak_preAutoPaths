@@ -1,0 +1,341 @@
+#!/usr/bin/env python3
+"""
+heldout_stage3.py -- Stage 3 (D2 delay labels + retraining) of the pre-registered
+held-out evaluation: fix_ws/PREREG_heldout.md, Stage 3 + Addendum A (frozen 15:50 IST).
+
+Modes:
+  --check
+      A.4 sanity checks ONLY. It computes D2 labels in memory for the 42 training-delay
+      sessions and the 18 held-out delay sessions. It writes nothing except
+      fix_ws/stage3_check.csv. Safe to run now.
+
+  --train --kushagra-ok
+      The full Stage 3 run. It is only allowed after Kushagra has agreed.
+        1. re-runs --check; aborts on failure
+        2. backs up models, ALL labels, features and generate_reliability_labels.py (fold npz:
+           sha256 only; rebuilt and verified on restore)
+           to fix_ws/models_preD2/, plus the Stage 1 result table (the frozen reference)
+        3. installs scripts/delay_labels_d2.py and patches the delay branch of
+           generate_reliability_labels.py (one anchor, checked first)
+        4. regenerates labels, build_training_dataset --stage1/--stage2, then
+           train_reliability_lstm --all-folds --closed-loop --baseline-weight 5.0
+           (the reported configuration, unchanged)
+        5. evaluates the 7 new models on the held-out sessions with heldout_stage1's
+           unchanged step6 + report
+        6. applies the pre-registered verdict.
+             PASS: the new models stay.
+             FAIL, or any error after step 2: everything is restored automatically
+             (the D2 models are kept in fix_ws/models_D2/ for the record).
+
+  --restore
+      Manual restore from fix_ws/models_preD2/ (e.g. after an interrupted run).
+
+Usage:  cd ~/ws_mobile/scripts && python3 ../fix_ws/heldout_stage3.py --check 2>&1 | tee ../fix_ws/stage3_check.log
+"""
+import argparse
+import filecmp
+import glob
+import hashlib
+import json
+import os
+import shutil
+import subprocess
+import sys
+
+import numpy as np
+import pandas as pd
+
+WS = os.path.expanduser('~/ws_mobile')
+S = os.path.join(WS, 'scripts')
+LOG = os.path.join(WS, 'sensor_logs')
+FIX = os.path.join(WS, 'fix_ws')
+BAK = os.path.join(FIX, 'models_preD2')
+D2DIR = os.path.join(FIX, 'models_D2')
+OUT3 = os.path.join(FIX, 'stage3_out')
+STEPLOGS = os.path.join(FIX, 'stage3_logs')
+sys.path.insert(0, FIX)
+sys.path.insert(0, S)
+os.chdir(S)
+PY = sys.executable
+
+from delay_labels_d2 import delay_r  # noqa: E402
+
+# ---- PRE-REGISTERED (PREREG_heldout.md Stage 3 + Addendum A) -- do not change ------
+TRAIN = ['20260712_141740', '20260712_144326', '20260824_094119', '20260824_095427',
+         '20260824_095712', '20260824_095915', '20260824_100318']
+HELDOUT = json.load(open(os.path.join(FIX, 'heldout_sessions.json')))['heldout_sessions']
+SEVS = ['small', 'medium', 'large']
+FAULTY = 0.5                 # faulty row: r < 0.5
+MAX_LOSS = 2.0               # other fault types may lose at most 2 wins vs Stage 1 linear
+REF_DESCRIPTIVE = 5.0        # >= 5/9 IMU-delay reference: REPORTED ONLY
+# ---------------------------------------------------------------------------------------
+
+ANCHOR_OLD = '''    if fault_type == "delay":
+        # Not asserting delay is "reliable" in a physical sense -- this
+        # excludes delay from degradation-label supervision, per Phase 0's
+        # confirmed real-data finding that a uniform timestamp shift cancels
+        # algebraically in ekf_fusion.py's dt computation (diff ~1e-14).
+        return np.ones(n)
+'''
+ANCHOR_NEW = '''    if fault_type == "delay":
+        # D2 (fix_ws/PREREG_heldout.md, Addendum A, frozen 2026-10-03): the raw-shift
+        # delay redesign DOES desynchronise the sensor (H1: large delay raises RMSE
+        # 6/6 held-out), so r = 1 was a wrong label. Same convention as the other
+        # labels: r = 1 / (1 + |actual injected error| / baseline column std).
+        from delay_labels_d2 import delay_r
+        r = delay_r(manifest)
+        if len(r) != n:
+            raise ValueError(f"D2 delay label length {len(r)} != {n}")
+        return r
+'''
+
+
+def log(m=''):
+    print(m, flush=True)
+
+
+def meta(s):
+    return json.load(open(os.path.join(LOG, f'fault_meta_{s}.json')))
+
+
+# ------------------------------------------------------------------ A.4 checks
+def check():
+    log('=== A.4 sanity checks (D2 labels computed in memory; nothing written) ===')
+    rows = []
+    for group, bases in (('train', TRAIN), ('heldout', HELDOUT)):
+        for b in bases:
+            for sensor in ('imu', 'odom'):
+                for v in SEVS:
+                    s = f'{b}_fault_{sensor}_delay_{v}'
+                    r = delay_r(meta(s))
+                    rows.append(dict(group=group, baseline=b, sensor=sensor, severity=v, session=s,
+                                     n=len(r), mean_r=float(r.mean()),
+                                     frac_lt1=float((r < 1 - 1e-12).mean()),
+                                     frac_faulty=float((r < FAULTY).mean()),
+                                     n_faulty=int((r < FAULTY).sum())))
+    df = pd.DataFrame(rows)
+    df.to_csv(os.path.join(FIX, 'stage3_check.csv'), index=False)
+
+    ok = True
+    log(f'\n{"baseline":<17}{"sensor":<6}' + ''.join(f'{v:>18}' for v in SEVS) + '   monotonic')
+    for group in ('train', 'heldout'):
+        log(f'-- {group} (mean r | fraction r<{FAULTY})')
+        for (b, sensor), g in df[df.group == group].groupby(['baseline', 'sensor'], sort=False):
+            g = g.set_index('severity').loc[SEVS]
+            mono = g.mean_r.iloc[0] >= g.mean_r.iloc[1] >= g.mean_r.iloc[2]
+            log(f'{b:<17}{sensor:<6}' + ''.join(f'{g.mean_r[v]:>9.3f} | {g.frac_faulty[v]:>5.1%}'
+                                                for v in SEVS) + f'   {"yes" if mono else "NO"}')
+            if group == 'train' and not mono:
+                ok = False
+    tr = df[df.group == 'train']
+    zero = tr[tr.frac_lt1 == 0].session.tolist()
+    n_mono = sum(1 for _, g in tr.groupby(['baseline', 'sensor'])
+                 if (lambda m: m[0] >= m[1] >= m[2])(g.set_index('severity').loc[SEVS].mean_r.values))
+    log(f'\nTraining sessions with 0 rows r<1: {len(zero)} {zero if zero else ""}')
+    log(f'Monotonic baseline-sensor pairs: {n_mono}/14 (rule: 14/14)')
+    if zero:
+        ok = False
+    ho = df[(df.group == 'heldout') & (df.sensor == 'imu')]
+    log(f'Held-out IMU-delay faulty rows (r<{FAULTY}): {int(ho.n_faulty.sum())} (Stage 3 criterion 1a needs > 0)')
+    log(f'\nA.4 verdict: {"PASS -> retraining may start (after Kushagra agrees)" if ok else "ABORT -> do not retrain; log as deviation"}')
+    log('Saved: fix_ws/stage3_check.csv')
+    return ok, int(ho.n_faulty.sum())
+
+
+# ------------------------------------------------------------------ backup / restore
+def sha(p):
+    h = hashlib.sha256()
+    with open(p, 'rb') as f:
+        for chunk in iter(lambda: f.read(1 << 22), b''):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def backup_list():
+    # fold_*.npz (~9.7 GB) are NOT copied: they are rebuilt from labels + features on
+    # restore and verified against these sha256 fingerprints.
+    pats = ['model_*.pt', 'reliability_labels_*.csv', 'features_*.csv']
+    files = []
+    for p in pats:
+        files += [os.path.basename(f) for f in glob.glob(os.path.join(LOG, p))]
+    return sorted(set(files))
+
+
+def snapshot():
+    return {f: (os.path.getsize(os.path.join(LOG, f)), os.path.getmtime(os.path.join(LOG, f)))
+            for f in os.listdir(LOG) if os.path.isfile(os.path.join(LOG, f))}
+
+
+def do_backup():
+    if os.path.exists(os.path.join(BAK, 'MANIFEST.json')):
+        sys.exit('ABORT: fix_ws/models_preD2/ already holds a backup. Run --restore first or inspect it.')
+    files = backup_list()
+    need = sum(os.path.getsize(os.path.join(LOG, f)) for f in files) / 1e9
+    free = shutil.disk_usage(WS).free / 1e9
+    log(f'Backup: {len(files)} files, {need:.2f} GB; disk free {free:.1f} GB')
+    if free < need + 4:
+        sys.exit(f'ABORT: need >= {need + 4:.1f} GB free (backup + 4 GB headroom).')
+    folds = sorted(os.path.basename(f) for f in glob.glob(os.path.join(LOG, 'fold_*.npz')))
+    log(f'Fingerprinting {len(folds)} fold files (sha256) ...')
+    fold_sha = {f: sha(os.path.join(LOG, f)) for f in folds}
+    os.makedirs(BAK, exist_ok=True)
+    for f in files:
+        shutil.copy2(os.path.join(LOG, f), os.path.join(BAK, f))
+    shutil.copy2(os.path.join(S, 'generate_reliability_labels.py'),
+                 os.path.join(BAK, 'generate_reliability_labels.py.script'))
+    ref = os.path.join(FIX, 'stage1_frozen_models.csv')
+    if not os.path.exists(ref):
+        shutil.copy2(os.path.join(FIX, 'heldout_stage1_models.csv'), ref)
+    json.dump({'files': files, 'fold_sha': fold_sha, 'snapshot': snapshot()},
+              open(os.path.join(BAK, 'MANIFEST.json'), 'w'))
+    log(f'Backed up to fix_ws/models_preD2/ ; Stage 1 reference -> fix_ws/stage1_frozen_models.csv')
+
+
+def do_restore():
+    man = json.load(open(os.path.join(BAK, 'MANIFEST.json')))
+    for f in man['files']:
+        shutil.copy2(os.path.join(BAK, f), os.path.join(LOG, f))
+    shutil.copy2(os.path.join(BAK, 'generate_reliability_labels.py.script'),
+                 os.path.join(S, 'generate_reliability_labels.py'))
+    log('Rebuilding fold files from the restored labels + features ...')
+    run('R1_dataset_stage1', [PY, '-u', 'scripts/build_training_dataset.py', '--stage1'], WS)
+    run('R2_dataset_stage2', [PY, '-u', 'scripts/build_training_dataset.py', '--stage2'], WS)
+    for f in man['files']:  # stage1 may have rewritten features: put the originals back exactly
+        shutil.copy2(os.path.join(BAK, f), os.path.join(LOG, f))
+    fold_bad = [f for f, h in man['fold_sha'].items()
+                if not os.path.exists(os.path.join(LOG, f)) or sha(os.path.join(LOG, f)) != h]
+    log(f'Fold files rebuilt: {len(man["fold_sha"])}; sha256 mismatches: {len(fold_bad)} '
+        f'{fold_bad if fold_bad else "(all identical)"}')
+    shutil.copy2(os.path.join(BAK, 'generate_reliability_labels.py.script'),
+                 os.path.join(S, 'generate_reliability_labels.py'))
+    d2mod = os.path.join(S, 'delay_labels_d2.py')
+    if os.path.exists(d2mod):
+        os.remove(d2mod)
+    bad = [f for f in man['files'] if not filecmp.cmp(os.path.join(BAK, f), os.path.join(LOG, f), shallow=False)]
+    if not filecmp.cmp(os.path.join(BAK, 'generate_reliability_labels.py.script'),
+                       os.path.join(S, 'generate_reliability_labels.py'), shallow=False):
+        bad.append('generate_reliability_labels.py')
+    old = man['snapshot']
+    now = snapshot()
+    changed_other = sorted(f for f in now if f not in man['files'] and
+                           (f not in old or now[f] != tuple(old[f])))
+    log(f'Restored {len(man["files"])} files + generate_reliability_labels.py; mismatches: {len(bad)} {bad if bad else "(all identical)"}')
+    if changed_other:
+        log(f'NOTE: {len(changed_other)} other sensor_logs files changed or appeared during the run '
+            f'(not in the backup set), e.g. {changed_other[:8]}')
+    os.rename(os.path.join(BAK, 'MANIFEST.json'), os.path.join(BAK, 'MANIFEST.restored.json'))
+
+
+def run(name, cmd, cwd):
+    os.makedirs(STEPLOGS, exist_ok=True)
+    p = os.path.join(STEPLOGS, f'{name}.log')
+    log(f'  START {name}')
+    with open(p, 'w') as f:
+        rc = subprocess.run(cmd, cwd=cwd, stdout=f, stderr=subprocess.STDOUT).returncode
+    if rc != 0:
+        raise RuntimeError(f'{name} exited {rc} (see {p})')
+    log(f'  OK    {name}')
+
+
+# ------------------------------------------------------------------ verdict
+def wins_by_type(df):
+    d = df[df.sensor.notna() & (df.fault_type != 'biasmid')]
+    w = (d.lstm_linear < d.fixed)
+    return w.groupby([d.sensor, d.fault_type, d.model]).sum().groupby(level=[0, 1]).mean()
+
+
+def verdict(new, ref, n_faulty):
+    wn, wr = wins_by_type(new), wins_by_type(ref)
+    log('\n\n========== STAGE 3 (D2) REPORT ==========')
+    log(f'{"sensor/fault":<16}{"Stage1 linear":>14}{"D2 linear":>11}{"change":>8}')
+    for k in wr.index:
+        log(f'{k[0] + "/" + k[1]:<16}{wr[k]:>14.2f}{wn[k]:>11.2f}{wn[k] - wr[k]:>+8.2f}')
+    c1a = n_faulty > 0
+    c1b = wn[('imu', 'delay')] >= wr[('imu', 'delay')]
+    losers = [f'{k[0]}/{k[1]} ({wn[k] - wr[k]:+.2f})' for k in wr.index
+              if k != ('imu', 'delay') and wn[k] < wr[k] - MAX_LOSS]
+    c2 = not losers
+    log(f'\n  [{"PASS" if c1a else "FAIL"}] 1a held-out IMU-delay faulty rows > 0 ({n_faulty})')
+    log(f'  [{"PASS" if c1b else "FAIL"}] 1b IMU-delay wins {wn[("imu", "delay")]:.2f} >= Stage 1 {wr[("imu", "delay")]:.2f}')
+    log(f'  [{"PASS" if c2 else "FAIL"}] 2  no other type loses > {MAX_LOSS:.0f} wins' + (f': {losers}' if losers else ''))
+    log(f'  (descriptive only) IMU-delay wins vs the >= {REF_DESCRIPTIVE:.0f}/9 reference: '
+        f'{wn[("imu", "delay")]:.2f}/9 -> {"met" if wn[("imu", "delay")] >= REF_DESCRIPTIVE else "not met"}')
+    log(f'  (reported) odom-delay wins: Stage 1 {wr[("odom", "delay")]:.2f} -> D2 {wn[("odom", "delay")]:.2f}')
+    for name, d in (('Stage 1', ref), ('D2', new)):
+        b = d[d.sensor.isna()].groupby('model')[['fixed', 'lstm_linear']].mean().mean()
+        log(f'  (reported) {name} held-out baselines mean RMSE: fixed {b.fixed:.4f}  linear {b.lstm_linear:.4f}')
+    ok = c1a and c1b and c2
+    log(f'\nStage 3 verdict: {"PASS -> D2 models adopted" if ok else "FAIL -> previous models restored"}')
+    return ok
+
+
+def train():
+    ok, n_faulty = check()
+    if not ok:
+        sys.exit('ABORT: A.4 sanity checks failed. Nothing changed.')
+    g = open(os.path.join(S, 'generate_reliability_labels.py')).read()
+    if g.count(ANCHOR_OLD) != 1:
+        sys.exit('ABORT: delay anchor not found exactly once in generate_reliability_labels.py. Nothing changed.')
+    do_backup()
+    adopted = False
+    try:
+        shutil.copy2(os.path.join(FIX, 'delay_labels_d2.py'), os.path.join(S, 'delay_labels_d2.py'))
+        open(os.path.join(S, 'generate_reliability_labels.py'), 'w').write(g.replace(ANCHOR_OLD, ANCHOR_NEW))
+        log('\nInstalled D2 labels in generate_reliability_labels.py')
+        run('01_labels', [PY, '-u', 'generate_reliability_labels.py'], S)
+        # it also rewrote held-out labels: put the D3 biasmid labels back exactly
+        for f in glob.glob(os.path.join(BAK, 'reliability_labels_*_biasmid_*.csv')):
+            shutil.copy2(f, os.path.join(LOG, os.path.basename(f)))
+        for b in TRAIN:
+            for sensor in ('imu', 'odom'):
+                for v in SEVS:
+                    r = pd.read_csv(os.path.join(LOG, f'reliability_labels_{b}_fault_{sensor}_delay_{v}.csv'))
+                    if (r[f'r_{sensor}'] >= 1).all():
+                        raise RuntimeError(f'labels for {b}/{sensor}/{v} are still all 1')
+        run('02_dataset_stage1', [PY, '-u', 'scripts/build_training_dataset.py', '--stage1'], WS)
+        run('03_dataset_stage2', [PY, '-u', 'scripts/build_training_dataset.py', '--stage2'], WS)
+        run('04_lstm_train', [PY, '-u', 'scripts/train_reliability_lstm.py',
+                              '--all-folds', '--closed-loop', '--baseline-weight', '5.0'], WS)
+        os.makedirs(D2DIR, exist_ok=True)
+        for f in glob.glob(os.path.join(LOG, 'model_*.pt')):
+            shutil.copy2(f, D2DIR)
+
+        log('\n=== evaluating the 7 D2 models on the held-out sessions (heldout_stage1 step6, unchanged) ===')
+        import heldout_stage1 as H
+        os.makedirs(OUT3, exist_ok=True)
+        H.FIX = OUT3
+        new, det = H.step6_models()
+        H.report(new, det)
+        ref = pd.read_csv(os.path.join(FIX, 'stage1_frozen_models.csv'))
+        adopted = verdict(new, ref, n_faulty)
+    finally:
+        if not adopted:
+            log('\nRestoring the previous models, labels, features and script ...')
+            do_restore()
+    if adopted:
+        os.rename(os.path.join(BAK, 'MANIFEST.json'), os.path.join(BAK, 'MANIFEST.adopted.json'))
+        log('D2 adopted. Backup of the previous state kept in fix_ws/models_preD2/.')
+    log('Outputs: fix_ws/stage3_out/heldout_stage1_models.csv (D2 models), fix_ws/models_D2/, fix_ws/stage3_logs/')
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    g = ap.add_mutually_exclusive_group(required=True)
+    g.add_argument('--check', action='store_true')
+    g.add_argument('--train', action='store_true')
+    g.add_argument('--restore', action='store_true')
+    ap.add_argument('--kushagra-ok', action='store_true',
+                    help='confirms Kushagra explicitly agreed to retraining (Addendum A condition)')
+    a = ap.parse_args()
+    if a.check:
+        check()
+    elif a.restore:
+        do_restore()
+    else:
+        if not a.kushagra_ok:
+            sys.exit('Retraining needs Kushagra\'s explicit agreement: re-run with --train --kushagra-ok.')
+        train()
+
+
+if __name__ == '__main__':
+    main()

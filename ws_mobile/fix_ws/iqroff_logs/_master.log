@@ -1,0 +1,29 @@
+nohup: ignoring input
+[2026-10-02 21:58:24] pipeline start (from step 1); python=/usr/bin/python3
+[2026-10-02 21:58:24] disk free: 13.1 GB
+[2026-10-02 21:58:24] START 01_faults
+[2026-10-02 22:06:50] OK    01_faults
+[2026-10-02 22:06:50] START 02_validate_faults
+[2026-10-02 22:12:29] OK    02_validate_faults
+[2026-10-02 22:12:29] START 03_rnn
+[2026-10-02 22:12:57] OK    03_rnn
+[2026-10-02 22:12:57] START 04_rnn_refresh
+[2026-10-02 22:12:57] refreshed 364; missing []
+[2026-10-02 22:12:57] OK    04_rnn_refresh
+[2026-10-02 22:12:57] START 05_lidar
+[2026-10-02 22:13:09] OK    05_lidar
+[2026-10-02 22:13:09] START 06_lidar_faults
+[2026-10-02 22:24:38] OK    06_lidar_faults
+[2026-10-02 22:24:38] START 07_labels
+[2026-10-02 22:24:41] OK    07_labels
+[2026-10-02 22:24:41] disk free: 13.1 GB
+[2026-10-02 22:24:41] START 08_dataset_stage1
+[2026-10-02 22:27:56] OK    08_dataset_stage1
+[2026-10-02 22:27:56] START 09_dataset_stage2
+[2026-10-02 22:29:13] OK    09_dataset_stage2
+[2026-10-02 22:29:13] START 10_lstm_train
+[2026-10-03 01:36:33] OK    10_lstm_train
+[2026-10-03 01:36:33] START 11_compare_phase1
+[2026-10-03 01:38:44] OK    11_compare_phase1
+[2026-10-03 01:38:44] START 12_lstm_adaptive_ekf
+[2026-10-03 01:38:54] ABORT: 12_lstm_adaptive_ekf exited with code 1 (see /home/kushagra/ws_mobile/fix_ws/iqroff_logs/12_lstm_adaptive_ekf.log)

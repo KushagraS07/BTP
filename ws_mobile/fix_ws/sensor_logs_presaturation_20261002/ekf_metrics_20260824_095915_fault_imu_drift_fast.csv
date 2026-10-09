@@ -1,0 +1,5 @@
+metric,value_m
+RMSE,73.94352003722497
+MAE,70.80986427254122
+Std,21.298058061705557
+ground_truth_is_real,True

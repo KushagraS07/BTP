@@ -1,0 +1,164 @@
+nohup: ignoring input
+  Commanded accumulated rotation: 19.4603 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=1.7% (raw columns present)
+  Commanded accumulated rotation: 13.5249 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=7.5% (raw columns present)
+  Commanded accumulated rotation: 15.2765 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=0.0% (NO raw columns)
+excluding baseline 20260714_014615 and its fault tree (health_check FAIL): ['IMU orientation failed to respond to commanded turning: IMU theta range=0.000000 rad, commanded accumulated rotation=15.276486 rad (need IMU range >= 0.5) — matches the dead-IMU signature previously found in session 20260714_014615']
+  Commanded accumulated rotation: 78.6733 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=98.6% (raw columns present)
+  WARNING: 98.6% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  Commanded accumulated rotation: 33.3239 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=100.0% (raw columns present)
+  WARNING: 100.0% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  Commanded accumulated rotation: 25.6286 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=99.5% (raw columns present)
+  WARNING: 99.5% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  Commanded accumulated rotation: 67.1143 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=100.0% (raw columns present)
+  WARNING: 100.0% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  Commanded accumulated rotation: 47.8286 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=100.0% (raw columns present)
+  WARNING: 100.0% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+evaluating 119 sessions x 4 variants
+[1/119] 20260712_141740: fixed=0.332 linear=0.332 squared=0.332 gate05=0.332 exclude=0.332
+[2/119] 20260712_141740_fault_imu_bias_large: fixed=9.083 linear=9.081 squared=9.059 gate05=6.824 exclude=6.824
+[3/119] 20260712_141740_fault_imu_bias_medium: fixed=5.833 linear=5.833 squared=5.830 gate05=4.657 exclude=4.657
+[4/119] 20260712_141740_fault_imu_bias_small: fixed=6.809 linear=6.808 squared=6.808 gate05=6.809 exclude=6.732
+[5/119] 20260712_141740_fault_imu_delay_large: fixed=2.575 linear=2.575 squared=2.575 gate05=2.575 exclude=2.575
+[6/119] 20260712_141740_fault_imu_delay_medium: fixed=0.733 linear=0.733 squared=0.733 gate05=0.733 exclude=0.733
+[7/119] 20260712_141740_fault_imu_delay_small: fixed=0.368 linear=0.368 squared=0.368 gate05=0.368 exclude=0.368
+[8/119] 20260712_141740_fault_imu_drift_fast: fixed=8.445 linear=8.446 squared=8.453 gate05=6.626 exclude=7.291
+[9/119] 20260712_141740_fault_imu_drift_medium: fixed=6.625 linear=6.628 squared=6.638 gate05=7.512 exclude=6.720
+[10/119] 20260712_141740_fault_imu_drift_slow: fixed=3.380 linear=3.380 squared=3.380 gate05=3.380 exclude=3.707
+[11/119] 20260712_141740_fault_imu_dropout_long: fixed=10.557 linear=8.125 squared=8.125 gate05=8.125 exclude=8.125
+[12/119] 20260712_141740_fault_imu_dropout_medium: fixed=3.647 linear=1.652 squared=1.652 gate05=1.652 exclude=1.652
+[13/119] 20260712_141740_fault_imu_dropout_short: fixed=0.820 linear=0.351 squared=0.351 gate05=0.351 exclude=0.351
+[14/119] 20260712_141740_fault_imu_noise_extreme: fixed=4.183 linear=6.680 squared=5.845 gate05=3.338 exclude=3.338
+[15/119] 20260712_141740_fault_imu_noise_high: fixed=4.058 linear=4.503 squared=8.660 gate05=2.152 exclude=2.152
+[16/119] 20260712_141740_fault_imu_noise_low: fixed=2.080 linear=1.907 squared=2.041 gate05=2.080 exclude=1.500
+[17/119] 20260712_141740_fault_imu_noise_medium: fixed=4.438 linear=4.906 squared=6.461 gate05=2.412 exclude=2.412
+[18/119] 20260712_144326: fixed=0.528 linear=0.528 squared=0.528 gate05=0.528 exclude=0.528
+[19/119] 20260712_144326_fault_imu_bias_large: fixed=7.237 linear=7.251 squared=7.298 gate05=7.017 exclude=7.017
+[20/119] 20260712_144326_fault_imu_bias_medium: fixed=4.467 linear=4.465 squared=4.449 gate05=3.628 exclude=3.628
+[21/119] 20260712_144326_fault_imu_bias_small: fixed=5.695 linear=5.696 squared=5.698 gate05=5.695 exclude=4.412
+[22/119] 20260712_144326_fault_imu_delay_large: fixed=2.013 linear=2.013 squared=2.013 gate05=2.013 exclude=2.013
+[23/119] 20260712_144326_fault_imu_delay_medium: fixed=1.083 linear=1.083 squared=1.083 gate05=1.083 exclude=1.083
+[24/119] 20260712_144326_fault_imu_delay_small: fixed=0.633 linear=0.633 squared=0.633 gate05=0.633 exclude=0.633
+[25/119] 20260712_144326_fault_imu_drift_fast: fixed=5.772 linear=5.776 squared=5.805 gate05=6.727 exclude=6.937
+[26/119] 20260712_144326_fault_imu_drift_medium: fixed=8.349 linear=8.347 squared=8.346 gate05=7.872 exclude=7.299
+[27/119] 20260712_144326_fault_imu_drift_slow: fixed=3.860 linear=3.859 squared=3.858 gate05=3.860 exclude=3.004
+[28/119] 20260712_144326_fault_imu_dropout_long: fixed=1.905 linear=0.440 squared=0.440 gate05=0.440 exclude=0.440
+[29/119] 20260712_144326_fault_imu_dropout_medium: fixed=0.345 linear=0.334 squared=0.334 gate05=0.334 exclude=0.334
+[30/119] 20260712_144326_fault_imu_dropout_short: fixed=0.421 linear=0.430 squared=0.430 gate05=0.430 exclude=0.430
+[31/119] 20260712_144326_fault_imu_noise_extreme: fixed=3.701 linear=5.185 squared=3.954 gate05=0.900 exclude=0.900
+[32/119] 20260712_144326_fault_imu_noise_high: fixed=3.831 linear=3.218 squared=3.419 gate05=1.156 exclude=1.156
+[33/119] 20260712_144326_fault_imu_noise_low: fixed=2.171 linear=2.417 squared=2.564 gate05=2.170 exclude=0.825
+[34/119] 20260712_144326_fault_imu_noise_medium: fixed=5.748 linear=4.565 squared=4.050 gate05=1.200 exclude=1.200
+[35/119] 20260824_094119: fixed=0.647 linear=0.647 squared=0.647 gate05=0.647 exclude=0.647
+[36/119] 20260824_094119_fault_imu_bias_large: fixed=12.658 linear=12.673 squared=12.659 gate05=8.288 exclude=8.288
+[37/119] 20260824_094119_fault_imu_bias_medium: fixed=7.270 linear=7.272 squared=7.308 gate05=4.283 exclude=4.283
+[38/119] 20260824_094119_fault_imu_bias_small: fixed=11.699 linear=11.695 squared=11.690 gate05=11.699 exclude=10.538
+[39/119] 20260824_094119_fault_imu_delay_large: fixed=2.226 linear=2.226 squared=2.226 gate05=2.226 exclude=2.226
+[40/119] 20260824_094119_fault_imu_delay_medium: fixed=2.560 linear=2.559 squared=2.559 gate05=2.559 exclude=2.559
+[41/119] 20260824_094119_fault_imu_delay_small: fixed=0.862 linear=0.862 squared=0.862 gate05=0.862 exclude=0.862
+[42/119] 20260824_094119_fault_imu_drift_fast: fixed=14.930 linear=14.933 squared=14.926 gate05=13.257 exclude=13.823
+[43/119] 20260824_094119_fault_imu_drift_medium: fixed=10.626 linear=10.626 squared=10.637 gate05=11.561 exclude=9.541
+[44/119] 20260824_094119_fault_imu_drift_slow: fixed=3.354 linear=3.355 squared=3.356 gate05=3.354 exclude=5.468
+[45/119] 20260824_094119_fault_imu_dropout_long: fixed=5.743 linear=1.147 squared=1.147 gate05=1.147 exclude=1.147
+[46/119] 20260824_094119_fault_imu_dropout_medium: fixed=0.702 linear=0.564 squared=0.564 gate05=0.564 exclude=0.564
+[47/119] 20260824_094119_fault_imu_dropout_short: fixed=0.647 linear=0.699 squared=0.699 gate05=0.699 exclude=0.699
+[48/119] 20260824_094119_fault_imu_noise_extreme: fixed=8.467 linear=10.404 squared=12.467 gate05=11.875 exclude=11.875
+[49/119] 20260824_094119_fault_imu_noise_high: fixed=5.106 linear=5.550 squared=9.706 gate05=11.475 exclude=11.475
+[50/119] 20260824_094119_fault_imu_noise_low: fixed=4.534 linear=3.102 squared=3.333 gate05=4.534 exclude=7.751
+[51/119] 20260824_094119_fault_imu_noise_medium: fixed=7.157 linear=7.613 squared=10.661 gate05=11.378 exclude=11.378
+[52/119] 20260824_095427: fixed=2.341 linear=2.341 squared=2.341 gate05=2.341 exclude=2.341
+[53/119] 20260824_095427_fault_imu_bias_large: fixed=16.805 linear=16.816 squared=16.647 gate05=11.405 exclude=11.405
+[54/119] 20260824_095427_fault_imu_bias_medium: fixed=12.117 linear=12.136 squared=12.124 gate05=9.478 exclude=9.478
+[55/119] 20260824_095427_fault_imu_bias_small: fixed=11.236 linear=11.235 squared=11.230 gate05=11.236 exclude=8.164
+[56/119] 20260824_095427_fault_imu_delay_large: fixed=4.282 linear=4.282 squared=4.282 gate05=4.282 exclude=4.282
+[57/119] 20260824_095427_fault_imu_delay_medium: fixed=1.220 linear=1.220 squared=1.220 gate05=1.220 exclude=1.220
+[58/119] 20260824_095427_fault_imu_delay_small: fixed=2.179 linear=2.179 squared=2.179 gate05=2.179 exclude=2.179
+[59/119] 20260824_095427_fault_imu_drift_fast: fixed=13.361 linear=13.372 squared=13.370 gate05=10.382 exclude=9.064
+[60/119] 20260824_095427_fault_imu_drift_medium: fixed=12.318 linear=12.320 squared=12.318 gate05=8.783 exclude=9.027
+[61/119] 20260824_095427_fault_imu_drift_slow: fixed=6.143 linear=6.143 squared=6.144 gate05=6.142 exclude=6.228
+[62/119] 20260824_095427_fault_imu_dropout_long: fixed=14.849 linear=6.886 squared=6.886 gate05=6.886 exclude=6.886
+[63/119] 20260824_095427_fault_imu_dropout_medium: fixed=6.460 linear=3.247 squared=3.247 gate05=3.247 exclude=3.247
+[64/119] 20260824_095427_fault_imu_dropout_short: fixed=2.209 linear=2.353 squared=2.353 gate05=2.353 exclude=2.353
+[65/119] 20260824_095427_fault_imu_noise_extreme: fixed=7.125 linear=14.473 squared=3.707 gate05=5.795 exclude=5.795
+[66/119] 20260824_095427_fault_imu_noise_high: fixed=8.813 linear=9.486 squared=11.291 gate05=7.033 exclude=7.033
+[67/119] 20260824_095427_fault_imu_noise_low: fixed=3.883 linear=3.735 squared=2.801 gate05=3.883 exclude=5.614
+[68/119] 20260824_095427_fault_imu_noise_medium: fixed=10.687 linear=8.674 squared=11.864 gate05=5.674 exclude=5.674
+[69/119] 20260824_095712: fixed=2.171 linear=2.171 squared=2.171 gate05=2.171 exclude=2.171
+[70/119] 20260824_095712_fault_imu_bias_large: fixed=8.326 linear=8.303 squared=8.083 gate05=5.646 exclude=5.646
+[71/119] 20260824_095712_fault_imu_bias_medium: fixed=6.154 linear=6.148 squared=6.110 gate05=3.823 exclude=3.823
+[72/119] 20260824_095712_fault_imu_bias_small: fixed=6.536 linear=6.537 squared=6.539 gate05=6.536 exclude=5.080
+[73/119] 20260824_095712_fault_imu_delay_large: fixed=3.705 linear=3.705 squared=3.705 gate05=3.705 exclude=3.705
+[74/119] 20260824_095712_fault_imu_delay_medium: fixed=2.200 linear=2.200 squared=2.200 gate05=2.200 exclude=2.200
+[75/119] 20260824_095712_fault_imu_delay_small: fixed=2.166 linear=2.166 squared=2.166 gate05=2.166 exclude=2.166
+[76/119] 20260824_095712_fault_imu_drift_fast: fixed=6.907 linear=6.891 squared=6.842 gate05=5.653 exclude=7.077
+[77/119] 20260824_095712_fault_imu_drift_medium: fixed=7.448 linear=7.442 squared=7.423 gate05=6.082 exclude=5.952
+[78/119] 20260824_095712_fault_imu_drift_slow: fixed=4.034 linear=4.035 squared=4.035 gate05=4.034 exclude=3.685
+[79/119] 20260824_095712_fault_imu_dropout_long: fixed=7.891 linear=4.832 squared=4.832 gate05=4.832 exclude=4.832
+[80/119] 20260824_095712_fault_imu_dropout_medium: fixed=2.299 linear=2.309 squared=2.309 gate05=2.309 exclude=2.309
+[81/119] 20260824_095712_fault_imu_dropout_short: fixed=2.180 linear=2.175 squared=2.175 gate05=2.175 exclude=2.175
+[82/119] 20260824_095712_fault_imu_noise_extreme: fixed=3.686 linear=3.631 squared=4.294 gate05=4.677 exclude=4.677
+[83/119] 20260824_095712_fault_imu_noise_high: fixed=3.489 linear=5.714 squared=4.964 gate05=5.547 exclude=5.547
+[84/119] 20260824_095712_fault_imu_noise_low: fixed=2.348 linear=3.023 squared=1.847 gate05=2.347 exclude=3.021
+[85/119] 20260824_095712_fault_imu_noise_medium: fixed=4.195 linear=4.782 squared=4.670 gate05=4.756 exclude=4.756
+[86/119] 20260824_095915: fixed=1.179 linear=1.179 squared=1.179 gate05=1.179 exclude=1.179
+[87/119] 20260824_095915_fault_imu_bias_large: fixed=12.263 linear=12.242 squared=12.216 gate05=7.592 exclude=7.592
+[88/119] 20260824_095915_fault_imu_bias_medium: fixed=6.549 linear=6.533 squared=6.555 gate05=7.649 exclude=7.649
+[89/119] 20260824_095915_fault_imu_bias_small: fixed=17.361 linear=17.367 squared=17.368 gate05=17.361 exclude=9.598
+[90/119] 20260824_095915_fault_imu_delay_large: fixed=2.795 linear=2.795 squared=2.795 gate05=2.795 exclude=2.795
+[91/119] 20260824_095915_fault_imu_delay_medium: fixed=1.091 linear=1.091 squared=1.091 gate05=1.091 exclude=1.091
+[92/119] 20260824_095915_fault_imu_delay_small: fixed=1.062 linear=1.062 squared=1.062 gate05=1.062 exclude=1.062
+[93/119] 20260824_095915_fault_imu_drift_fast: fixed=12.429 linear=12.402 squared=12.472 gate05=14.678 exclude=11.953
+[94/119] 20260824_095915_fault_imu_drift_medium: fixed=16.597 linear=16.588 squared=16.569 gate05=9.411 exclude=5.631
+[95/119] 20260824_095915_fault_imu_drift_slow: fixed=5.878 linear=5.889 squared=5.903 gate05=5.878 exclude=6.588
+[96/119] 20260824_095915_fault_imu_dropout_long: fixed=3.900 linear=6.576 squared=6.576 gate05=6.576 exclude=6.576
+[97/119] 20260824_095915_fault_imu_dropout_medium: fixed=3.469 linear=4.431 squared=4.431 gate05=4.431 exclude=4.431
+[98/119] 20260824_095915_fault_imu_dropout_short: fixed=1.902 linear=1.301 squared=1.301 gate05=1.301 exclude=1.301
+[99/119] 20260824_095915_fault_imu_noise_extreme: fixed=11.486 linear=13.510 squared=13.206 gate05=8.405 exclude=8.405
+[100/119] 20260824_095915_fault_imu_noise_high: fixed=12.941 linear=13.225 squared=11.352 gate05=6.067 exclude=6.067
+[101/119] 20260824_095915_fault_imu_noise_low: fixed=8.123 linear=6.849 squared=5.454 gate05=8.123 exclude=6.713
+[102/119] 20260824_095915_fault_imu_noise_medium: fixed=11.036 linear=11.876 squared=9.689 gate05=6.709 exclude=6.709
+[103/119] 20260824_100318: fixed=0.944 linear=0.944 squared=0.944 gate05=0.944 exclude=0.944
+[104/119] 20260824_100318_fault_imu_bias_large: fixed=7.812 linear=7.762 squared=7.450 gate05=6.648 exclude=6.648
+[105/119] 20260824_100318_fault_imu_bias_medium: fixed=7.156 linear=7.157 squared=7.131 gate05=8.173 exclude=8.173
+[106/119] 20260824_100318_fault_imu_bias_small: fixed=5.504 linear=5.497 squared=5.484 gate05=5.504 exclude=4.870
+[107/119] 20260824_100318_fault_imu_delay_large: fixed=2.526 linear=2.526 squared=2.526 gate05=2.526 exclude=2.526
+[108/119] 20260824_100318_fault_imu_delay_medium: fixed=1.338 linear=1.338 squared=1.338 gate05=1.338 exclude=1.338
+[109/119] 20260824_100318_fault_imu_delay_small: fixed=1.004 linear=1.004 squared=1.004 gate05=1.004 exclude=1.004
+[110/119] 20260824_100318_fault_imu_drift_fast: fixed=13.004 linear=12.975 squared=12.897 gate05=5.819 exclude=7.492
+[111/119] 20260824_100318_fault_imu_drift_medium: fixed=7.021 linear=7.019 squared=7.026 gate05=7.695 exclude=5.251
+[112/119] 20260824_100318_fault_imu_drift_slow: fixed=2.718 linear=2.719 squared=2.719 gate05=2.718 exclude=3.466
+[113/119] 20260824_100318_fault_imu_dropout_long: fixed=7.382 linear=4.137 squared=4.137 gate05=4.137 exclude=4.137
+[114/119] 20260824_100318_fault_imu_dropout_medium: fixed=2.239 linear=0.995 squared=0.995 gate05=0.995 exclude=0.995
+[115/119] 20260824_100318_fault_imu_dropout_short: fixed=0.944 linear=1.018 squared=1.018 gate05=1.018 exclude=1.018
+[116/119] 20260824_100318_fault_imu_noise_extreme: fixed=4.075 linear=13.516 squared=7.769 gate05=5.275 exclude=5.275
+[117/119] 20260824_100318_fault_imu_noise_high: fixed=4.905 linear=7.751 squared=5.360 gate05=4.652 exclude=4.652
+[118/119] 20260824_100318_fault_imu_noise_low: fixed=1.706 linear=1.789 squared=2.084 gate05=1.706 exclude=3.994
+[119/119] 20260824_100318_fault_imu_noise_medium: fixed=4.187 linear=5.820 squared=8.556 gate05=5.117 exclude=5.117
+
+=== IMU-fault sessions (n=112): beats fixed, mean RMSE ===
+variant         wins  mean RMSE   pass?
+fixed              -      5.706
+heuristic    44/112       5.982   no
+linear       56/112       5.734   no
+squared      57/112       5.675   PASS
+gate05       73/112       4.861   PASS
+exclude      75/112       4.708   PASS
+
+=== by IMU fault type: wins vs fixed ===
+fault       heuristic     linear    squared     gate05    exclude
+bias          15/21      12/21      13/21      16/21      19/21  
+delay          6/21      13/21      13/21      13/21      13/21  
+drift          3/21       9/21       7/21      14/21      13/21  
+dropout       10/21      14/21      14/21      14/21      14/21  
+noise         10/28       8/28      10/28      16/28      16/28  
+
+no-fault baselines (n=7) mean RMSE: fixed=1.1632 heuristic=1.1625 linear=1.1632 squared=1.1632 gate05=1.1632 exclude=1.1632
+
+Saved: /home/kushagra/ws_mobile/fix_ws/oracle_mapping_results.csv

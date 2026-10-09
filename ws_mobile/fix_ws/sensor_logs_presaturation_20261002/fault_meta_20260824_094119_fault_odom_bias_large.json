@@ -1,0 +1,28 @@
+{
+  "fault_session": "20260824_094119_fault_odom_bias_large",
+  "baseline_session": "20260824_094119",
+  "sensor": "odom",
+  "fault_type": "bias",
+  "mechanism": "bias (accumulating per-step offset, not flat -- flat cancels under differencing, confirmed on real data)",
+  "severity_label": "large",
+  "severity_value": 6.0,
+  "columns": [
+    "pos_x",
+    "pos_y"
+  ],
+  "timestamp_col": null,
+  "injected_stats": {
+    "pos_x": {
+      "baseline_step_diff_std": 0.015361029668950537,
+      "per_step_increment": 0.09216617801370322,
+      "final_accumulated_offset": 227.92695822788806
+    },
+    "pos_y": {
+      "baseline_step_diff_std": 0.015670127289750587,
+      "per_step_increment": 0.09402076373850352,
+      "final_accumulated_offset": 232.5133487253192
+    }
+  },
+  "seed": 0,
+  "created_utc": "2026-08-24T04:35:39.444824+00:00"
+}

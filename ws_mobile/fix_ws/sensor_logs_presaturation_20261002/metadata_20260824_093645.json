@@ -1,0 +1,121 @@
+{
+  "session_id": "20260824_093645",
+  "started_at": "2026-08-24T09:36:45.738890",
+  "log_dir": "/home/kushagra/ws_mobile/sensor_logs",
+  "ground_truth_source": "pose",
+  "paper_table1_targets": {
+    "lidar": {
+      "angle_span_deg": 270.0,
+      "resolution_deg": 0.5,
+      "range_min_m": 0.1,
+      "range_max_m": 2.5
+    },
+    "imu": {
+      "output_hz": 50.0
+    },
+    "odometry": {
+      "output_hz": 100.0
+    }
+  },
+  "lidar_geometry_detected": {
+    "angle_span_deg": 269.999,
+    "resolution_deg": 0.5009,
+    "range_min_m": 0.10000000149011612,
+    "range_max_m": 2.5
+  },
+  "files": {
+    "imu": "imu_20260824_093645.csv",
+    "odom": "odom_20260824_093645.csv",
+    "scan": "scan_20260824_093645.csv",
+    "ground_truth": "ground_truth_20260824_093645.csv",
+    "cmd_vel": "cmd_vel_20260824_093645.csv",
+    "frequency_log": "frequency_log_20260824_093645.csv"
+  },
+  "session_duration_sec": 326.535,
+  "message_counts": {
+    "imu": 3717,
+    "odom": 3717,
+    "scan": 744,
+    "cmd_vel": 51,
+    "gt": 3718
+  },
+  "average_rates_hz": {
+    "imu": 11.383,
+    "odom": 11.383,
+    "scan": 2.278,
+    "cmd_vel": 0.156,
+    "gt": 11.386
+  },
+  "sample_statistics": {
+    "imu_angular_vel_z": {
+      "count": 3717,
+      "mean": -0.082761,
+      "std": 0.972147,
+      "min": -4.111268,
+      "max": 3.019479
+    },
+    "imu_linear_acc_x": {
+      "count": 3717,
+      "mean": -0.230945,
+      "std": 1.943568,
+      "min": -11.985883,
+      "max": 34.964177
+    },
+    "odom_linear_x": {
+      "count": 3717,
+      "mean": 0.44232,
+      "std": 0.821305,
+      "min": -1.5,
+      "max": 1.5
+    },
+    "odom_pos_x": {
+      "count": 3717,
+      "mean": -2.150414,
+      "std": 2.030348,
+      "min": -7.194527,
+      "max": 1.005714
+    },
+    "odom_pos_y": {
+      "count": 3717,
+      "mean": -2.394833,
+      "std": 2.513338,
+      "min": -7.491525,
+      "max": 1.973369
+    },
+    "cmd_vel_linear_x": {
+      "count": 51,
+      "mean": 0.682107,
+      "std": 1.113135,
+      "min": -2.527235,
+      "max": 2.527235
+    },
+    "cmd_vel_angular_z": {
+      "count": 51,
+      "mean": -0.424577,
+      "std": 1.974468,
+      "min": -5.05447,
+      "max": 5.05447
+    },
+    "lidar_mean_range": {
+      "count": 743,
+      "mean": 1.683095,
+      "std": 0.432655,
+      "min": 0.583134,
+      "max": 2.463819
+    },
+    "gt_pos_x": {
+      "count": 3718,
+      "mean": -0.778259,
+      "std": 2.557763,
+      "min": -7.490016,
+      "max": 4.557361
+    },
+    "gt_pos_y": {
+      "count": 3718,
+      "mean": -2.866043,
+      "std": 2.471492,
+      "min": -6.419445,
+      "max": 2.341
+    }
+  }
+}

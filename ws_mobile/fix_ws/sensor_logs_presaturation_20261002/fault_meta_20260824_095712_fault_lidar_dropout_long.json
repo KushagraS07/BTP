@@ -1,0 +1,4336 @@
+{
+  "fault_session": "20260824_095712_fault_lidar_dropout_long",
+  "baseline_session": "20260824_095712",
+  "sensor": "lidar",
+  "fault_type": "dropout",
+  "mechanism": "dropout",
+  "severity_label": "long",
+  "severity_value": 0.35,
+  "columns": [
+    "range_0",
+    "range_1",
+    "range_2",
+    "range_3",
+    "range_4",
+    "range_5",
+    "range_6",
+    "range_7",
+    "range_8",
+    "range_9",
+    "range_10",
+    "range_11",
+    "range_12",
+    "range_13",
+    "range_14",
+    "range_15",
+    "range_16",
+    "range_17",
+    "range_18",
+    "range_19",
+    "range_20",
+    "range_21",
+    "range_22",
+    "range_23",
+    "range_24",
+    "range_25",
+    "range_26",
+    "range_27",
+    "range_28",
+    "range_29",
+    "range_30",
+    "range_31",
+    "range_32",
+    "range_33",
+    "range_34",
+    "range_35",
+    "range_36",
+    "range_37",
+    "range_38",
+    "range_39",
+    "range_40",
+    "range_41",
+    "range_42",
+    "range_43",
+    "range_44",
+    "range_45",
+    "range_46",
+    "range_47",
+    "range_48",
+    "range_49",
+    "range_50",
+    "range_51",
+    "range_52",
+    "range_53",
+    "range_54",
+    "range_55",
+    "range_56",
+    "range_57",
+    "range_58",
+    "range_59",
+    "range_60",
+    "range_61",
+    "range_62",
+    "range_63",
+    "range_64",
+    "range_65",
+    "range_66",
+    "range_67",
+    "range_68",
+    "range_69",
+    "range_70",
+    "range_71",
+    "range_72",
+    "range_73",
+    "range_74",
+    "range_75",
+    "range_76",
+    "range_77",
+    "range_78",
+    "range_79",
+    "range_80",
+    "range_81",
+    "range_82",
+    "range_83",
+    "range_84",
+    "range_85",
+    "range_86",
+    "range_87",
+    "range_88",
+    "range_89",
+    "range_90",
+    "range_91",
+    "range_92",
+    "range_93",
+    "range_94",
+    "range_95",
+    "range_96",
+    "range_97",
+    "range_98",
+    "range_99",
+    "range_100",
+    "range_101",
+    "range_102",
+    "range_103",
+    "range_104",
+    "range_105",
+    "range_106",
+    "range_107",
+    "range_108",
+    "range_109",
+    "range_110",
+    "range_111",
+    "range_112",
+    "range_113",
+    "range_114",
+    "range_115",
+    "range_116",
+    "range_117",
+    "range_118",
+    "range_119",
+    "range_120",
+    "range_121",
+    "range_122",
+    "range_123",
+    "range_124",
+    "range_125",
+    "range_126",
+    "range_127",
+    "range_128",
+    "range_129",
+    "range_130",
+    "range_131",
+    "range_132",
+    "range_133",
+    "range_134",
+    "range_135",
+    "range_136",
+    "range_137",
+    "range_138",
+    "range_139",
+    "range_140",
+    "range_141",
+    "range_142",
+    "range_143",
+    "range_144",
+    "range_145",
+    "range_146",
+    "range_147",
+    "range_148",
+    "range_149",
+    "range_150",
+    "range_151",
+    "range_152",
+    "range_153",
+    "range_154",
+    "range_155",
+    "range_156",
+    "range_157",
+    "range_158",
+    "range_159",
+    "range_160",
+    "range_161",
+    "range_162",
+    "range_163",
+    "range_164",
+    "range_165",
+    "range_166",
+    "range_167",
+    "range_168",
+    "range_169",
+    "range_170",
+    "range_171",
+    "range_172",
+    "range_173",
+    "range_174",
+    "range_175",
+    "range_176",
+    "range_177",
+    "range_178",
+    "range_179",
+    "range_180",
+    "range_181",
+    "range_182",
+    "range_183",
+    "range_184",
+    "range_185",
+    "range_186",
+    "range_187",
+    "range_188",
+    "range_189",
+    "range_190",
+    "range_191",
+    "range_192",
+    "range_193",
+    "range_194",
+    "range_195",
+    "range_196",
+    "range_197",
+    "range_198",
+    "range_199",
+    "range_200",
+    "range_201",
+    "range_202",
+    "range_203",
+    "range_204",
+    "range_205",
+    "range_206",
+    "range_207",
+    "range_208",
+    "range_209",
+    "range_210",
+    "range_211",
+    "range_212",
+    "range_213",
+    "range_214",
+    "range_215",
+    "range_216",
+    "range_217",
+    "range_218",
+    "range_219",
+    "range_220",
+    "range_221",
+    "range_222",
+    "range_223",
+    "range_224",
+    "range_225",
+    "range_226",
+    "range_227",
+    "range_228",
+    "range_229",
+    "range_230",
+    "range_231",
+    "range_232",
+    "range_233",
+    "range_234",
+    "range_235",
+    "range_236",
+    "range_237",
+    "range_238",
+    "range_239",
+    "range_240",
+    "range_241",
+    "range_242",
+    "range_243",
+    "range_244",
+    "range_245",
+    "range_246",
+    "range_247",
+    "range_248",
+    "range_249",
+    "range_250",
+    "range_251",
+    "range_252",
+    "range_253",
+    "range_254",
+    "range_255",
+    "range_256",
+    "range_257",
+    "range_258",
+    "range_259",
+    "range_260",
+    "range_261",
+    "range_262",
+    "range_263",
+    "range_264",
+    "range_265",
+    "range_266",
+    "range_267",
+    "range_268",
+    "range_269",
+    "range_270",
+    "range_271",
+    "range_272",
+    "range_273",
+    "range_274",
+    "range_275",
+    "range_276",
+    "range_277",
+    "range_278",
+    "range_279",
+    "range_280",
+    "range_281",
+    "range_282",
+    "range_283",
+    "range_284",
+    "range_285",
+    "range_286",
+    "range_287",
+    "range_288",
+    "range_289",
+    "range_290",
+    "range_291",
+    "range_292",
+    "range_293",
+    "range_294",
+    "range_295",
+    "range_296",
+    "range_297",
+    "range_298",
+    "range_299",
+    "range_300",
+    "range_301",
+    "range_302",
+    "range_303",
+    "range_304",
+    "range_305",
+    "range_306",
+    "range_307",
+    "range_308",
+    "range_309",
+    "range_310",
+    "range_311",
+    "range_312",
+    "range_313",
+    "range_314",
+    "range_315",
+    "range_316",
+    "range_317",
+    "range_318",
+    "range_319",
+    "range_320",
+    "range_321",
+    "range_322",
+    "range_323",
+    "range_324",
+    "range_325",
+    "range_326",
+    "range_327",
+    "range_328",
+    "range_329",
+    "range_330",
+    "range_331",
+    "range_332",
+    "range_333",
+    "range_334",
+    "range_335",
+    "range_336",
+    "range_337",
+    "range_338",
+    "range_339",
+    "range_340",
+    "range_341",
+    "range_342",
+    "range_343",
+    "range_344",
+    "range_345",
+    "range_346",
+    "range_347",
+    "range_348",
+    "range_349",
+    "range_350",
+    "range_351",
+    "range_352",
+    "range_353",
+    "range_354",
+    "range_355",
+    "range_356",
+    "range_357",
+    "range_358",
+    "range_359",
+    "range_360",
+    "range_361",
+    "range_362",
+    "range_363",
+    "range_364",
+    "range_365",
+    "range_366",
+    "range_367",
+    "range_368",
+    "range_369",
+    "range_370",
+    "range_371",
+    "range_372",
+    "range_373",
+    "range_374",
+    "range_375",
+    "range_376",
+    "range_377",
+    "range_378",
+    "range_379",
+    "range_380",
+    "range_381",
+    "range_382",
+    "range_383",
+    "range_384",
+    "range_385",
+    "range_386",
+    "range_387",
+    "range_388",
+    "range_389",
+    "range_390",
+    "range_391",
+    "range_392",
+    "range_393",
+    "range_394",
+    "range_395",
+    "range_396",
+    "range_397",
+    "range_398",
+    "range_399",
+    "range_400",
+    "range_401",
+    "range_402",
+    "range_403",
+    "range_404",
+    "range_405",
+    "range_406",
+    "range_407",
+    "range_408",
+    "range_409",
+    "range_410",
+    "range_411",
+    "range_412",
+    "range_413",
+    "range_414",
+    "range_415",
+    "range_416",
+    "range_417",
+    "range_418",
+    "range_419",
+    "range_420",
+    "range_421",
+    "range_422",
+    "range_423",
+    "range_424",
+    "range_425",
+    "range_426",
+    "range_427",
+    "range_428",
+    "range_429",
+    "range_430",
+    "range_431",
+    "range_432",
+    "range_433",
+    "range_434",
+    "range_435",
+    "range_436",
+    "range_437",
+    "range_438",
+    "range_439",
+    "range_440",
+    "range_441",
+    "range_442",
+    "range_443",
+    "range_444",
+    "range_445",
+    "range_446",
+    "range_447",
+    "range_448",
+    "range_449",
+    "range_450",
+    "range_451",
+    "range_452",
+    "range_453",
+    "range_454",
+    "range_455",
+    "range_456",
+    "range_457",
+    "range_458",
+    "range_459",
+    "range_460",
+    "range_461",
+    "range_462",
+    "range_463",
+    "range_464",
+    "range_465",
+    "range_466",
+    "range_467",
+    "range_468",
+    "range_469",
+    "range_470",
+    "range_471",
+    "range_472",
+    "range_473",
+    "range_474",
+    "range_475",
+    "range_476",
+    "range_477",
+    "range_478",
+    "range_479",
+    "range_480",
+    "range_481",
+    "range_482",
+    "range_483",
+    "range_484",
+    "range_485",
+    "range_486",
+    "range_487",
+    "range_488",
+    "range_489",
+    "range_490",
+    "range_491",
+    "range_492",
+    "range_493",
+    "range_494",
+    "range_495",
+    "range_496",
+    "range_497",
+    "range_498",
+    "range_499",
+    "range_500",
+    "range_501",
+    "range_502",
+    "range_503",
+    "range_504",
+    "range_505",
+    "range_506",
+    "range_507",
+    "range_508",
+    "range_509",
+    "range_510",
+    "range_511",
+    "range_512",
+    "range_513",
+    "range_514",
+    "range_515",
+    "range_516",
+    "range_517",
+    "range_518",
+    "range_519",
+    "range_520",
+    "range_521",
+    "range_522",
+    "range_523",
+    "range_524",
+    "range_525",
+    "range_526",
+    "range_527",
+    "range_528",
+    "range_529",
+    "range_530",
+    "range_531",
+    "range_532",
+    "range_533",
+    "range_534",
+    "range_535",
+    "range_536",
+    "range_537",
+    "range_538",
+    "range_539"
+  ],
+  "timestamp_col": null,
+  "injected_stats": {
+    "range_0": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.387194397449776,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_1": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4104336667062696,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_2": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.436337199211202,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_3": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.463113000392881,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_4": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.075703387261861,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_5": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.0842238926901326,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_6": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.093002920152095,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_7": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.1026359891904467,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_8": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.114701197148625,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_9": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.1257114601147302,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_10": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.1383603143703547,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_11": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.152037386895329,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_12": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.1674937200556696,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_13": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.1826679062853134,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_14": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.1989085054406696,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_15": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.208934752942012,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_16": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.2288702821739643,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_17": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.250302159786953,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_18": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.273548638821289,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_19": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.285484271050092,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_20": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.312943634987376,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_21": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3428931927684884,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_22": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.358914391994809,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_23": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3942405581476414,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_24": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4115489125253218,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_25": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.45116884469986,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_26": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.036248233319905,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_27": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.0434472131744665,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_28": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.058784823419181,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_29": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.0631695842757862,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_30": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.0819615077986917,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_31": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.088206040860648,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_32": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.1065564727796944,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_33": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.1161866807951104,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_34": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.1366312623036943,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_35": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.1461906838429643,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_36": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.157669041157998,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_37": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.180527713299958,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_38": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.193907651902373,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_39": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.47376037120829,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_40": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.421601550578836,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_41": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4603852772708934,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_42": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.432914831638053,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_43": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.420896558761356,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_44": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4071741747854203,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_45": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4484134936329247,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_46": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4359989380833498,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_47": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.424239718913778,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_48": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.410216443538459,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_49": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.45156746387446,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_50": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.439802455901793,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_51": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.425974555015302,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_52": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.469548945426532,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_53": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4551569795604897,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_54": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.443344595431967,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_55": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4302356123921647,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_56": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.420685966014646,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_57": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4604133820530234,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_58": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.449603257178947,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_59": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4372148895261154,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_60": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4255606436727364,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_61": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4670780825611534,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_62": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4567183494564877,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_63": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.446035685539,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_64": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.433282823562433,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_65": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.421886854171612,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_66": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4781511163700984,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_67": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.456223793028867,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_68": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.446084859370313,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_69": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.435744638442181,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_70": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4947470688811406,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_71": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.48538459777754,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_72": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4746627068512272,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_73": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4539945387833955,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_74": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4442161774629896,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_75": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.499435799121938,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_76": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.491010482311368,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_77": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.482067940235318,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_78": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4724091100695,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_79": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4633442497255875,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_80": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4538869833949453,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_81": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4914000797285816,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_82": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.484030194284045,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_83": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.475788655282605,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_84": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.466051526071182,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_85": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.457855913640659,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_86": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4492933177964504,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_87": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4808051157022044,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_88": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4724534606958746,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_89": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.454856171610459,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_90": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4472454452539294,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_91": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.440236523153904,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_92": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4338151598002287,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_93": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4249178552652784,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_94": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4560080456774678,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_95": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4482747578661392,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_96": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.441347932819604,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_97": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.426818256382222,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_98": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4211455535929187,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_99": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4152576708834266,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_100": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.409266872410058,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_101": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4017468905489654,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_102": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4213549351746737,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_103": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.41506819010329,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_104": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4103656387384063,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_105": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.39973469019483,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_106": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3939263153130783,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_107": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3890535974557423,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_108": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.384991974836077,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_109": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.37974352598733,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_110": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3765031695420533,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_111": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.371240739827816,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_112": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.364808535581289,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_113": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3721428203648056,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_114": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.368159997469833,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_115": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3644320583408853,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_116": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.361573927409052,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_117": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.358546700484155,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_118": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.352534527785163,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_119": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.350723047262999,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_120": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.34747638226205,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_121": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3440469217365094,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_122": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.343005328184925,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_123": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.338686139590078,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_124": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.337282388216817,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_125": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.335060441500449,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_126": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.332917504317067,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_127": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.330607206827958,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_128": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.328646764761704,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_129": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.328927772051637,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_130": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.327790951735248,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_131": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3272102093760703,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_132": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3254126286570744,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_133": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.325034980780334,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_134": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.325495781904941,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_135": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3246711182659,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_136": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3249177575175604,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_137": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.324703111654967,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_138": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.324621193415389,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_139": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.325178465849623,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_140": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3254589319293397,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_141": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.326609954840434,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_142": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3267634177272445,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_143": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.329064106947683,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_144": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.329136080748308,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_145": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3318417024677016,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_146": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3334805440967727,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_147": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.334005863672985,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_148": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.337063667780729,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_149": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3384409236972954,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_150": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.341330714232265,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_151": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3428441500728776,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_152": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.346493089205508,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_153": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.349025535589989,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_154": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3533375072544995,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_155": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3548705959385274,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_156": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3592166209286187,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_157": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3647826814717408,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_158": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.366901955611122,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_159": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.371238491541793,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_160": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3664132142121903,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_161": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3672491955811616,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_162": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3742939209993152,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_163": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3799657964761987,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_164": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.382072615629002,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_165": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.388801755910734,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_166": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3937192487770265,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_167": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4010375046784684,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_168": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4072321987206444,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_169": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4135216331536897,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_170": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.420331592565308,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_171": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.399807956222804,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_172": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.406466052536285,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_173": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.41446043491769,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_174": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4225758004230187,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_175": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.427991256717928,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_176": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.439836406711931,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_177": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.446616907123967,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_178": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.453851048950556,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_179": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4266068553951814,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_180": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.435066659453321,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_181": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4409988427189826,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_182": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.454225511553696,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_183": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4624286627797334,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_184": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.472407159808106,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_185": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.482095637324288,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_186": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.444616081716165,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_187": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.45534894466556,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_188": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.466341385842943,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_189": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4773020887390524,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_190": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.479709203244439,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_191": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.492366666795032,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_192": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4428895878792893,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_193": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.451209588050915,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_194": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.462484242916204,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_195": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.478400089740904,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_196": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.490804519653433,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_197": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.497452998161389,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_198": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.446817846297668,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_199": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4603619503969467,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_200": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4678804969782027,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_201": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4851839709276504,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_202": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.5026445484155726,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_203": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.44054748296687,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_204": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4600224256509824,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_205": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.475068418979014,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_206": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.483676383494718,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_207": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4026678991313197,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_208": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4168186092372097,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_209": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.435590312480465,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_210": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4468588590617277,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_211": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4703847551341123,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_212": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.409019620418188,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_213": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.430574963092443,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_214": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4418944454189515,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_215": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.456793577670686,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_216": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4090642023084,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_217": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4233549547192856,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_218": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.448305723666888,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_219": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.461034259795884,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_220": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.428023164271349,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_221": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3770683932295773,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_222": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.389692940711103,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_223": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.404828104971954,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_224": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3544084310523705,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_225": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3686579537383654,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_226": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.383778254984992,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_227": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.417079753874885,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_228": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3489522695534077,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_229": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.366414010524,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_230": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.382421054839326,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_231": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.41598136186521,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_232": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3442190289490674,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_233": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.361974394320759,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_234": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3582818031304376,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_235": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.335127243995062,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_236": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3226645207399383,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_237": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3110527181619984,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_238": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.400349349976041,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_239": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.486172597408303,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_240": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4687540459632342,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_241": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.449513483047399,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_242": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4120116233825684,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_243": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3954265117645264,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_244": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3806023597717285,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_245": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.361785569190832,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_246": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3458279395099915,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_247": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.330236790179808,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_248": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3138950181003004,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_249": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.2976383829112126,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_250": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3979892349230774,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_251": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.409704697132203,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_252": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4577670454978784,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_253": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4429956722258543,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_254": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.425275928973992,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_255": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.406848404407275,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_256": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.390942988395394,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_257": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3754255294796267,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_258": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.345558602809432,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_259": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3281403422350366,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_260": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.315020225047485,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_261": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.298375456332527,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_262": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.285019264220505,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_263": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.383934111594149,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_264": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3734087276442724,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_265": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.357114839552362,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_266": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3344072508796394,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_267": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.319736454485249,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_268": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3097068452818514,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_269": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.2968501687033083,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_270": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.287122244833172,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_271": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.2736794710141703,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_272": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.2642135024052674,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_273": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.421359856128999,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_274": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.390640957355612,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_275": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.376954848766337,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_276": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.362978177070545,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_277": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.350578598975974,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_278": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3364711689946693,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_279": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4305875110616726,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_280": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4177130150784687,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_281": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.407680582999081,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_282": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3849082732187954,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_283": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.374131150244334,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_284": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.364412696360136,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_285": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.352909407614196,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_286": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.342201931475052,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_287": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.333588228224109,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_288": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3246688294394064,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_289": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.308424384592175,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_290": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3008883810024874,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_291": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.2917615699748928,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_292": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.2840059041957352,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_293": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.2755879712084632,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_294": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.2688909482935267,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_295": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.2543821263291477,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_296": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.246242163179082,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_297": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.2418248891807693,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_298": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.236707785127219,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_299": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.229635565278546,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_300": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.423383314609984,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_301": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.400867061615223,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_302": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.391524670124177,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_303": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.381652243137387,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_304": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.372476706504736,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_305": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3562472629544318,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_306": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3490997624393506,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_307": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.340484783648968,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_308": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.333817262648965,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_309": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3189467287056167,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_310": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.310637683867589,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_311": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.305933978556664,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_312": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.2996111059178883,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_313": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.2883845829952247,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_314": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.282916989325245,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_315": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.276508634089128,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_316": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.2671792078003747,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_317": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.261840829847741,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_318": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.258291416166636,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_319": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.250446939466677,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_320": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.2463794207555177,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_321": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.2439547944050497,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_322": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.236203627584402,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_323": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.2326478052119105,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_324": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.225098180768751,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_325": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.222537052629198,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_326": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.220934720037122,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_327": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.216885893342516,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_328": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.213836379048793,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_329": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.209803619382255,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_330": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.2078926873181426,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_331": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.204685046670153,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_332": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.2032099509212,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_333": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.200159754750305,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_334": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.2001185560197936,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_335": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.42090125799208,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_336": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.410873770713905,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_337": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4071685838699155,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_338": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3992832612989377,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_339": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.393300576209654,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_340": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.389576728343493,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_341": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3817530441277928,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_342": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.375587491988349,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_343": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3758132028570893,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_344": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3686885786046297,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_345": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3653819465625454,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_346": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3616009855257127,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_347": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3612034440026743,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_348": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.357327516077412,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_349": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3546294808371027,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_350": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.352237265108214,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_351": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3516697263698334,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_352": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.348656289575442,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_353": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.348509581086863,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_354": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.237632780073516,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_355": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.2374115943892057,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_356": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.2358166789990777,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_357": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.235080845354114,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_358": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.2339652347544594,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_359": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.234443669317033,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_360": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.234850277898474,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_361": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.2354515743232537,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_362": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.2361700534796336,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_363": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4535190749171334,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_364": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.127797107694612,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_365": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.0078089070320906,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_366": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 1.9764729964730243,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_367": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 1.9257021021834395,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_368": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.026737139223405,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_369": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.026111981867083,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_370": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.239835524559502,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_371": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3283305478092524,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_372": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.326813719272105,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_373": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.326332073210992,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_374": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.322845990656964,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_375": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3244736766804976,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_376": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.322188146113262,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_377": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.323968636988328,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_378": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.321902091501712,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_379": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.325091078279893,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_380": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.325611691473233,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_381": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.478881793022075,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_382": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4788342666623837,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_383": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3749615001681588,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_384": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.373432796001535,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_385": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3716292762756197,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_386": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.370165398120648,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_387": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3692446780201357,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_388": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.369588520526318,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_389": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3697199773781707,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_390": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3684353923788697,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_391": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.371072638033806,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_392": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.372060580252368,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_393": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.264129996299213,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_394": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4054070115096597,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_395": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4008004498486244,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_396": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.400049576759665,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_397": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3992130231857907,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_398": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.396522519588405,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_399": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.292444911003754,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_400": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.2425054049491453,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_401": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.28800838947324,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_402": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.491033570766475,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_403": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.3898647189148496,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_404": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.388463203907687,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_405": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.38585649967247,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_406": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4285455465323404,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_407": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.425177650452178,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_408": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.425299866199869,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_409": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.422294116020265,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_410": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4667623424533054,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_411": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4668176579476917,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_412": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4645516467094217,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_413": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.420338954925669,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_414": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4655363178256917,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_415": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.463560028076365,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_416": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4616323089599934,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_417": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.460523009299932,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_418": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4760128664973604,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_419": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.471588878631756,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_420": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4687567496299567,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_421": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4659843206403926,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_422": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.424756541252183,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_423": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4886116814613195,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_424": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4738633155822694,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_425": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.384351313114243,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_426": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.236578385829874,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_427": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.071267940998155,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_428": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 1.7590521717069327,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_429": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 1.7426109337806666,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_430": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 1.7428335833547444,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_431": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 1.8758489525317712,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_432": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.434439501762396,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_433": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.480492732525101,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_434": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4833546376227877,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_435": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.459213640689822,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_436": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.447738487720468,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_437": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.436150412559487,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_438": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.48946228981107,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_439": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.478066010476046,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_440": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4761216640477817,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_441": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4677530074125205,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_442": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4603672432905928,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_443": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.5019993710524653,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_444": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.493547725678205,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_445": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4827281045920806,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_446": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4816551423077,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_447": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4735846877102268,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_448": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.464695143700072,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_449": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4562639021877786,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_450": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.446590445042085,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_451": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4882179117202003,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_452": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4875046348568097,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_453": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4787718486782664,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_454": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4718662476536224,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_455": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4619187808033587,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_456": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.456124064922028,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_457": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4505348515507483,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_458": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.491440160273235,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_459": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.477119927405139,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_460": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.476796054838623,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_461": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4686079382882444,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_462": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4658148598656235,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_463": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.459138698576428,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_464": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4533606958374867,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_465": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.447982988356096,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_466": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.442787773607712,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_467": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.469257321355161,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_468": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.464618296620691,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_469": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4623382091494737,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_470": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4581139278384865,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_471": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4550076818438606,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_472": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.449254705903183,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_473": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.442486746308444,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_474": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.438456754681717,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_475": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.435649278161207,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_476": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4323843836757577,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_477": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.429547932145272,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_478": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4258614659282816,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_479": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4207824945423075,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_480": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.41913417339058,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_481": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.417879438397443,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_482": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4409691452939493,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_483": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4355956768949008,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_484": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4348850774724573,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_485": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.432731869216658,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_486": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.43169093846869,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_487": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.430134232040172,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_488": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.427606973644032,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_489": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4263243031461728,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_490": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.425543456073544,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_491": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.425049862857558,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_492": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.423490965362382,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_493": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4244184851606323,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_494": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4228997015913287,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_495": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.422888567443642,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_496": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4231615662534507,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_497": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.422934772964301,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_498": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4230299663504025,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_499": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.424191358085441,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_500": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.42382515430056,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_501": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4257206344564546,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_502": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.42724344491558,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_503": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.428280115123607,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_504": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4298890280684,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_505": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4302177572210946,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_506": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.433503959174947,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_507": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.434780194755392,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_508": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4377306175192666,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_509": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.439440672393652,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_510": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.415972952840066,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_511": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.41840205669138,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_512": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4237405109378742,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_513": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4243478059742114,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_514": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.429451060292442,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_515": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.432352974412208,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_516": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.436189608571283,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_517": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.440473668572623,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_518": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4424611687633706,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_519": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.44784055232735,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_520": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.453943395611932,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_521": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.456901404855002,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_522": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.462321896550409,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_523": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.467722663876733,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_524": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.437381339071716,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_525": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4401274323448674,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_526": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.447398073671804,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_527": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.451763572691432,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_528": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4598762392983127,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_529": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4654535722717945,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_530": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.473151025770615,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_531": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.478235988615549,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_532": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4862287735924635,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_533": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4945465612397437,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_534": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4484388160703343,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_535": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.456482725143212,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_536": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.4619678187368206,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_537": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.471148359775297,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_538": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.476761212348761,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    },
+    "range_539": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 2.485828590392851,
+      "frozen_fraction_of_session": 0.35,
+      "frozen_row_start_idx": 634,
+      "frozen_row_end_idx": 1189
+    }
+  },
+  "seed": 0,
+  "created_utc": "2026-09-08T13:44:43.219373+00:00"
+}

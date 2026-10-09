@@ -65,16 +65,24 @@ def add_excluded_session(session: str, reason: str):
 # They must never be used for training or reported Phase 0-2 numbers; only the
 # held-out evaluation scripts read them, by explicit name.
 HELDOUT_PATH = os.path.join(LOG_DIR, 'heldout_sessions.json')
+SLIP_PATH = os.path.join(LOG_DIR, 'slip_sessions.json')  # Phase 3B slip-world sessions
 
 
 def is_heldout(session: str) -> bool:
     """True if `session`, or the baseline of a fault session
     ('{baseline}_fault_...'), is listed in sensor_logs/heldout_sessions.json."""
+    held = set()
     try:
         with open(HELDOUT_PATH) as f:
-            held = set(json.load(f).get('heldout_sessions', []))
+            held |= set(json.load(f).get('heldout_sessions', []))
     except FileNotFoundError:
-        return False
+        pass
+    # Phase 3B: slip-world sessions are also kept out of every Phase 2 script
+    try:
+        with open(SLIP_PATH) as f:
+            held |= set(json.load(f).get('slip_sessions', []))
+    except FileNotFoundError:
+        pass
     return session.split('_fault_')[0] in held
 
 

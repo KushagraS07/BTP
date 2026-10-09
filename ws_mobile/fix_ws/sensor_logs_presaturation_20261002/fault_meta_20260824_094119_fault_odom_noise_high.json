@@ -1,0 +1,26 @@
+{
+  "fault_session": "20260824_094119_fault_odom_noise_high",
+  "baseline_session": "20260824_094119",
+  "sensor": "odom",
+  "fault_type": "noise",
+  "mechanism": "noise",
+  "severity_label": "high",
+  "severity_value": 6.0,
+  "columns": [
+    "pos_x",
+    "pos_y"
+  ],
+  "timestamp_col": null,
+  "injected_stats": {
+    "pos_x": {
+      "baseline_std": 1.8946864992180041,
+      "injected_noise_std": 11.368118995308025
+    },
+    "pos_y": {
+      "baseline_std": 2.691266951505146,
+      "injected_noise_std": 16.147601709030877
+    }
+  },
+  "seed": 0,
+  "created_utc": "2026-08-24T04:35:38.822009+00:00"
+}

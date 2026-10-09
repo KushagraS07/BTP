@@ -1,0 +1,27 @@
+{
+  "slip_sessions": [
+    "20261009_140649",
+    "20261009_145330",
+    "20261009_150044"
+  ],
+  "info": {
+    "20261009_140649": {
+      "role": "gate",
+      "note": "B2 slip gate: corridor patch stop/start",
+      "health_check_passed": true,
+      "added": "2026-10-09T14:08:35"
+    },
+    "20261009_145330": {
+      "role": "dev",
+      "note": "route 1: corridor+north (west exit)",
+      "health_check_passed": true,
+      "added": "2026-10-09T14:57:40"
+    },
+    "20261009_150044": {
+      "role": "dev",
+      "note": "route 1 (replacement): corridor+north (west exit)",
+      "health_check_passed": true,
+      "added": "2026-10-09T15:03:24"
+    }
+  }
+}

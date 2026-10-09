@@ -1,0 +1,141 @@
+
+=======================================================
+  LiDAR COMPLEMENTARY FUSION (paper final stage)
+  Sessions: 20260712_141740, 20260712_144326, 20260824_094119, 20260824_095427, 20260824_095712, 20260824_095915, 20260824_100318
+  Output: [X_r2, Y_r2, theta_r2]
+=======================================================
+
+  --- Session 20260712_141740 ---
+  Loading: rnn_smoothed_output_20260712_141740.csv
+  Loading: scan_filtered_20260712_141740.csv
+  Loading: odom_filtered_20260712_141740.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20260712_141740.csv)
+  range_max       = 2.500 m  (from scan_filtered_20260712_141740.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 3772 timesteps
+
+  Saved: final_fused_output_v2_20260712_141740.csv (3772 rows)
+  Ground truth: ground_truth_filtered_20260712_141740.csv (real, cleaned, resampled)
+
+  ── Session 20260712_141740 — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 0.1499 m  (paper RNN std: 0.0527 m)
+     MAE  : 0.1258 m
+     Std  : 0.0814 m
+  Saved: final_fusion_trajectory_v2_20260712_141740.png
+
+  --- Session 20260712_144326 ---
+  Loading: rnn_smoothed_output_20260712_144326.csv
+  Loading: scan_filtered_20260712_144326.csv
+  Loading: odom_filtered_20260712_144326.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20260712_144326.csv)
+  range_max       = 2.500 m  (from scan_filtered_20260712_144326.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 1418 timesteps
+
+  Saved: final_fused_output_v2_20260712_144326.csv (1418 rows)
+  Ground truth: ground_truth_filtered_20260712_144326.csv (real, cleaned, resampled)
+
+  ── Session 20260712_144326 — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 0.2152 m  (paper RNN std: 0.0527 m)
+     MAE  : 0.1838 m
+     Std  : 0.1119 m
+  Saved: final_fusion_trajectory_v2_20260712_144326.png
+
+  --- Session 20260824_094119 ---
+  Loading: rnn_smoothed_output_20260824_094119.csv
+  Loading: scan_filtered_20260824_094119.csv
+  Loading: odom_filtered_20260824_094119.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20260824_094119.csv)
+  range_max       = 2.500 m  (from scan_filtered_20260824_094119.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 2464 timesteps
+
+  Saved: final_fused_output_v2_20260824_094119.csv (2464 rows)
+  Ground truth: ground_truth_filtered_20260824_094119.csv (real, cleaned, resampled)
+
+  ── Session 20260824_094119 — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 0.5326 m  (paper RNN std: 0.0527 m)
+     MAE  : 0.4577 m
+     Std  : 0.2724 m
+  Saved: final_fusion_trajectory_v2_20260824_094119.png
+
+  --- Session 20260824_095427 ---
+  Loading: rnn_smoothed_output_20260824_095427.csv
+  Loading: scan_filtered_20260824_095427.csv
+  Loading: odom_filtered_20260824_095427.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20260824_095427.csv)
+  range_max       = 2.500 m  (from scan_filtered_20260824_095427.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 2126 timesteps
+
+  Saved: final_fused_output_v2_20260824_095427.csv (2126 rows)
+  Ground truth: ground_truth_filtered_20260824_095427.csv (real, cleaned, resampled)
+
+  ── Session 20260824_095427 — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 1.2037 m  (paper RNN std: 0.0527 m)
+     MAE  : 1.0695 m
+     Std  : 0.5524 m
+  Saved: final_fusion_trajectory_v2_20260824_095427.png
+
+  --- Session 20260824_095712 ---
+  Loading: rnn_smoothed_output_20260824_095712.csv
+  Loading: scan_filtered_20260824_095712.csv
+  Loading: odom_filtered_20260824_095712.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20260824_095712.csv)
+  range_max       = 2.500 m  (from scan_filtered_20260824_095712.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 1576 timesteps
+
+  Saved: final_fused_output_v2_20260824_095712.csv (1576 rows)
+  Ground truth: ground_truth_filtered_20260824_095712.csv (real, cleaned, resampled)
+
+  ── Session 20260824_095712 — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 1.3427 m  (paper RNN std: 0.0527 m)
+     MAE  : 1.1071 m
+     Std  : 0.7596 m
+  Saved: final_fusion_trajectory_v2_20260824_095712.png
+
+  --- Session 20260824_095915 ---
+  Loading: rnn_smoothed_output_20260824_095915.csv
+  Loading: scan_filtered_20260824_095915.csv
+  Loading: odom_filtered_20260824_095915.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20260824_095915.csv)
+  range_max       = 2.500 m  (from scan_filtered_20260824_095915.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 1807 timesteps
+
+  Saved: final_fused_output_v2_20260824_095915.csv (1807 rows)
+  Ground truth: ground_truth_filtered_20260824_095915.csv (real, cleaned, resampled)
+
+  ── Session 20260824_095915 — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 0.6462 m  (paper RNN std: 0.0527 m)
+     MAE  : 0.5573 m
+     Std  : 0.3272 m
+  Saved: final_fusion_trajectory_v2_20260824_095915.png
+
+  --- Session 20260824_100318 ---
+  Loading: rnn_smoothed_output_20260824_100318.csv
+  Loading: scan_filtered_20260824_100318.csv
+  Loading: odom_filtered_20260824_100318.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20260824_100318.csv)
+  range_max       = 2.500 m  (from scan_filtered_20260824_100318.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 1981 timesteps
+
+  Saved: final_fused_output_v2_20260824_100318.csv (1981 rows)
+  Ground truth: ground_truth_filtered_20260824_100318.csv (real, cleaned, resampled)
+
+  ── Session 20260824_100318 — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 0.4849 m  (paper RNN std: 0.0527 m)
+     MAE  : 0.3906 m
+     Std  : 0.2873 m
+  Saved: final_fusion_trajectory_v2_20260824_100318.png
+
+  ── POOLED (all sessions with ground truth) — Final Fusion Accuracy ──
+     RMSE : 0.7264 m
+     MAE  : 0.5060 m
+     Std  : 0.5212 m
+     Saved: lidar_fusion_metrics.csv (per-session + pooled)
+
+✅ LiDAR fusion complete!
+   Next: python3 ~/ws_mobile/scripts/generate_paper_figures.py

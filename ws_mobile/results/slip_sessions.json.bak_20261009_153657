@@ -1,0 +1,62 @@
+{
+  "slip_sessions": [
+    "20261009_140649",
+    "20261009_145330",
+    "20261009_150044",
+    "20261009_150546",
+    "20261009_151240",
+    "20261009_151812",
+    "20261009_152418",
+    "20261009_152957"
+  ],
+  "info": {
+    "20261009_140649": {
+      "role": "gate",
+      "note": "B2 slip gate: corridor patch stop/start",
+      "health_check_passed": true,
+      "added": "2026-10-09T14:08:35"
+    },
+    "20261009_145330": {
+      "role": "dev",
+      "note": "route 1: corridor+north (west exit)",
+      "health_check_passed": true,
+      "added": "2026-10-09T14:57:40"
+    },
+    "20261009_150044": {
+      "role": "dev",
+      "note": "route 1 (replacement): corridor+north (west exit)",
+      "health_check_passed": true,
+      "added": "2026-10-09T15:03:24"
+    },
+    "20261009_150546": {
+      "role": "dev",
+      "note": "route 2: corridor+south (west exit)",
+      "health_check_passed": true,
+      "added": "2026-10-09T15:08:15"
+    },
+    "20261009_151240": {
+      "role": "dev",
+      "note": "route 3: north+south (west strip), 0.6 m/s",
+      "health_check_passed": true,
+      "added": "2026-10-09T15:15:10"
+    },
+    "20261009_151812": {
+      "role": "dev",
+      "note": "route 4: all three patches, 0.73 m/s",
+      "health_check_passed": true,
+      "added": "2026-10-09T15:20:26"
+    },
+    "20261009_152418": {
+      "role": "dev",
+      "note": "route 5: corridor+north, 0.6 m/s, turn on north",
+      "health_check_passed": true,
+      "added": "2026-10-09T15:26:53"
+    },
+    "20261009_152957": {
+      "role": "dev",
+      "note": "route 6: south (2 stop/starts + turn) then corridor, 0.6 m/s",
+      "health_check_passed": true,
+      "added": "2026-10-09T15:32:21"
+    }
+  }
+}

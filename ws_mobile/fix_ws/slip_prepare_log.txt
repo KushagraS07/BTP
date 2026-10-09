@@ -1,0 +1,100 @@
+  excluded (role dev, slip_accept REJECT): 20261009_145330
+gate: 1 sessions: 20261009_140649
+dev: 8 sessions: 20261009_150044 20261009_150546 20261009_151240 20261009_151812 20261009_152418 20261009_152957 20261009_153500 20261009_154001
+calib: 3 sessions: 20261009_154452 20261009_155140 20261009_155922
+
+[gate] 20261009_140649: EKF + features ...
+found 8 candidate baseline sessions, running health_check gate:
+  Commanded accumulated rotation: 19.4603 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=1.7% (raw columns present)
+  20260712_141740: PASS
+  Commanded accumulated rotation: 13.5249 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=7.5% (raw columns present)
+  20260712_144326: PASS
+  Commanded accumulated rotation: 15.2765 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=0.0% (NO raw columns)
+  20260714_014615: FAIL (IMU orientation failed to respond to commanded turning: IMU theta range=0.000000 rad, commanded accumulated rotation=15.276486 rad (need IMU range >= 0.5) — matches the dead-IMU signature previously found in session 20260714_014615)
+  Commanded accumulated rotation: 78.6733 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=98.6% (raw columns present)
+  WARNING: 98.6% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  20260824_094119: PASS
+  Commanded accumulated rotation: 33.3239 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=100.0% (raw columns present)
+  WARNING: 100.0% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  20260824_095427: PASS
+  Commanded accumulated rotation: 25.6286 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=99.5% (raw columns present)
+  WARNING: 99.5% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  20260824_095712: PASS
+  Commanded accumulated rotation: 67.1143 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=100.0% (raw columns present)
+  WARNING: 100.0% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  20260824_095915: PASS
+  Commanded accumulated rotation: 47.8286 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=100.0% (raw columns present)
+  WARNING: 100.0% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  20260824_100318: PASS
+-> 7/8 sessions passed and will be used as baselines
+
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261009_140649.csv (n=2704, baseline)
+[gate] 20261009_140649: rows 2704 (features 2704, built), invalid 0, slip 6.4%, slip on patch 89.0%, on-patch rate 13.82%, off-patch rate 1.19%
+
+[dev] 20261009_150044: EKF + features ...
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261009_150044.csv (n=3514, baseline)
+[dev] 20261009_150044: rows 3514 (features 3514, built), invalid 0, slip 14.51%, slip on patch 64.1%, on-patch rate 21.66%, off-patch rate 9.13%
+
+[dev] 20261009_150546: EKF + features ...
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261009_150546.csv (n=3950, baseline)
+[dev] 20261009_150546: rows 3950 (features 3950, built), invalid 0, slip 25.87%, slip on patch 85.0%, on-patch rate 47.15%, off-patch rate 7.26%
+
+[dev] 20261009_151240: EKF + features ...
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261009_151240.csv (n=4390, baseline)
+[dev] 20261009_151240: rows 4390 (features 4390, built), invalid 0, slip 10.89%, slip on patch 64.0%, on-patch rate 23.5%, off-patch rate 5.57%
+
+[dev] 20261009_151812: EKF + features ...
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261009_151812.csv (n=3814, baseline)
+[dev] 20261009_151812: rows 3814 (features 3814, built), invalid 0, slip 18.69%, slip on patch 68.0%, on-patch rate 37.16%, off-patch rate 9.09%
+
+[dev] 20261009_152418: EKF + features ...
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261009_152418.csv (n=3522, baseline)
+[dev] 20261009_152418: rows 3522 (features 3522, built), invalid 0, slip 10.08%, slip on patch 58.6%, on-patch rate 16.73%, off-patch rate 6.45%
+
+[dev] 20261009_152957: EKF + features ...
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261009_152957.csv (n=4222, baseline)
+[dev] 20261009_152957: rows 4222 (features 4222, built), invalid 0, slip 29.96%, slip on patch 67.1%, on-patch rate 51.08%, off-patch rate 16.25%
+
+[dev] 20261009_153500: EKF + features ...
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261009_153500.csv (n=3154, baseline)
+[dev] 20261009_153500: rows 3154 (features 3154, built), invalid 0, slip 12.11%, slip on patch 47.1%, on-patch rate 18.44%, off-patch rate 9.27%
+
+[dev] 20261009_154001: EKF + features ...
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261009_154001.csv (n=3672, baseline)
+[dev] 20261009_154001: rows 3672 (features 3672, built), invalid 0, slip 23.01%, slip on patch 86.5%, on-patch rate 41.77%, off-patch rate 5.93%
+
+[calib] 20261009_154452: EKF + features ...
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261009_154452.csv (n=3293, baseline)
+[calib] 20261009_154452: rows 3293 (features 3293, built), invalid 0, slip 13.0%, slip on patch 69.2%, on-patch rate 20.19%, off-patch rate 7.22%
+
+[calib] 20261009_155140: EKF + features ...
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261009_155140.csv (n=3386, baseline)
+[calib] 20261009_155140: rows 3386 (features 3386, built), invalid 0, slip 28.47%, slip on patch 73.9%, on-patch rate 47.31%, off-patch rate 13.4%
+
+[calib] 20261009_155922: EKF + features ...
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261009_155922.csv (n=3735, baseline)
+[calib] 20261009_155922: rows 3735 (features 3735, built), invalid 0, slip 17.38%, slip on patch 66.3%, on-patch rate 51.5%, off-patch rate 7.55%
+
+        session  role  rows  invalid  slip_pct  slip_on_patch_pct  offpatch_slip_rate_pct  onpatch_slip_rate_pct
+20261009_140649  gate  2704        0      6.40               89.0                    1.19                  13.82
+20261009_150044   dev  3514        0     14.51               64.1                    9.13                  21.66
+20261009_150546   dev  3950        0     25.87               85.0                    7.26                  47.15
+20261009_151240   dev  4390        0     10.89               64.0                    5.57                  23.50
+20261009_151812   dev  3814        0     18.69               68.0                    9.09                  37.16
+20261009_152418   dev  3522        0     10.08               58.6                    6.45                  16.73
+20261009_152957   dev  4222        0     29.96               67.1                   16.25                  51.08
+20261009_153500   dev  3154        0     12.11               47.1                    9.27                  18.44
+20261009_154001   dev  3672        0     23.01               86.5                    5.93                  41.77
+20261009_154452 calib  3293        0     13.00               69.2                    7.22                  20.19
+20261009_155140 calib  3386        0     28.47               73.9                   13.40                  47.31
+20261009_155922 calib  3735        0     17.38               66.3                    7.55                  51.50
+
+wrote /home/kushagra/ws_mobile/results/slip_prepare_summary_gate_dev_calib.csv

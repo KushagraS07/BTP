@@ -1,7 +1,8 @@
 import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription
+from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument
+from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 from launch_ros.actions import Node
@@ -26,10 +27,13 @@ def generate_launch_description():
     gazebo_rosPackageLaunch = PythonLaunchDescriptionSource(
     os.path.join(get_package_share_directory('ros_gz_sim'),'launch','gz_sim.launch.py'))
 
-    worldFileRelativePath = 'model/indoor_world.sdf'
-    pathWorldFile = os.path.join(get_package_share_directory(namePackage), worldFileRelativePath)
+    # world:=<file in model/> (default indoor_world.sdf; slip world: indoor_world_slip.sdf)
+    worldArg = DeclareLaunchArgument('world', default_value='indoor_world.sdf',
+                                     description='world SDF in mobile_robot/model/ or an absolute path')
+    pathWorldFile = PathJoinSubstitution([get_package_share_directory(namePackage), 'model',
+                                          LaunchConfiguration('world')])
 
-    gazeboLaunch=IncludeLaunchDescription(gazebo_rosPackageLaunch, launch_arguments={'gz_args':[f'-r -v -v4 {pathWorldFile}'], 'on_exit_shutdown':'true'}.items())
+    gazeboLaunch=IncludeLaunchDescription(gazebo_rosPackageLaunch, launch_arguments={'gz_args':['-r -v -v4 ', pathWorldFile], 'on_exit_shutdown':'true'}.items())
     
     spawnModelNodeGazebo = Node(
         package='ros_gz_sim',
@@ -66,6 +70,7 @@ def generate_launch_description():
     output='screen',
     )
     launchDescriptionObject = LaunchDescription()
+    launchDescriptionObject.add_action(worldArg)
     launchDescriptionObject.add_action(gazeboLaunch)
     launchDescriptionObject.add_action(spawnModelNodeGazebo)
     launchDescriptionObject.add_action(nodeRobotStatePublisher)

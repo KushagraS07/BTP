@@ -1,0 +1,322 @@
+nohup: ignoring input
+Good sessions (from session_registry): ['20260712_141740', '20260712_144326', '20260824_094119', '20260824_095427', '20260824_095712', '20260824_095915', '20260824_100318']
+[1/231] running: 20260712_141740
+[2/231] running: 20260712_141740_fault_imu_noise_low
+[3/231] running: 20260712_141740_fault_imu_noise_medium
+[4/231] running: 20260712_141740_fault_imu_noise_high
+[5/231] running: 20260712_141740_fault_imu_noise_extreme
+[6/231] running: 20260712_141740_fault_imu_bias_small
+[7/231] running: 20260712_141740_fault_imu_bias_medium
+[8/231] running: 20260712_141740_fault_imu_bias_large
+[9/231] running: 20260712_141740_fault_imu_drift_slow
+[10/231] running: 20260712_141740_fault_imu_drift_medium
+[11/231] running: 20260712_141740_fault_imu_drift_fast
+[12/231] running: 20260712_141740_fault_imu_dropout_short
+[13/231] running: 20260712_141740_fault_imu_dropout_medium
+[14/231] running: 20260712_141740_fault_imu_dropout_long
+[15/231] running: 20260712_141740_fault_imu_delay_small
+[16/231] running: 20260712_141740_fault_imu_delay_medium
+[17/231] running: 20260712_141740_fault_imu_delay_large
+[18/231] running: 20260712_141740_fault_odom_noise_low
+[19/231] running: 20260712_141740_fault_odom_noise_medium
+[20/231] running: 20260712_141740_fault_odom_noise_high
+[21/231] running: 20260712_141740_fault_odom_noise_extreme
+[22/231] running: 20260712_141740_fault_odom_bias_small
+[23/231] running: 20260712_141740_fault_odom_bias_medium
+[24/231] running: 20260712_141740_fault_odom_bias_large
+[25/231] running: 20260712_141740_fault_odom_drift_slow
+[26/231] running: 20260712_141740_fault_odom_drift_medium
+[27/231] running: 20260712_141740_fault_odom_drift_fast
+[28/231] running: 20260712_141740_fault_odom_dropout_short
+[29/231] running: 20260712_141740_fault_odom_dropout_medium
+[30/231] running: 20260712_141740_fault_odom_dropout_long
+[31/231] running: 20260712_141740_fault_odom_delay_small
+[32/231] running: 20260712_141740_fault_odom_delay_medium
+[33/231] running: 20260712_141740_fault_odom_delay_large
+[34/231] running: 20260712_144326
+[35/231] running: 20260712_144326_fault_imu_noise_low
+[36/231] running: 20260712_144326_fault_imu_noise_medium
+[37/231] running: 20260712_144326_fault_imu_noise_high
+[38/231] running: 20260712_144326_fault_imu_noise_extreme
+[39/231] running: 20260712_144326_fault_imu_bias_small
+[40/231] running: 20260712_144326_fault_imu_bias_medium
+[41/231] running: 20260712_144326_fault_imu_bias_large
+[42/231] running: 20260712_144326_fault_imu_drift_slow
+[43/231] running: 20260712_144326_fault_imu_drift_medium
+[44/231] running: 20260712_144326_fault_imu_drift_fast
+[45/231] running: 20260712_144326_fault_imu_dropout_short
+[46/231] running: 20260712_144326_fault_imu_dropout_medium
+[47/231] running: 20260712_144326_fault_imu_dropout_long
+[48/231] running: 20260712_144326_fault_imu_delay_small
+[49/231] running: 20260712_144326_fault_imu_delay_medium
+[50/231] running: 20260712_144326_fault_imu_delay_large
+[51/231] running: 20260712_144326_fault_odom_noise_low
+[52/231] running: 20260712_144326_fault_odom_noise_medium
+[53/231] running: 20260712_144326_fault_odom_noise_high
+[54/231] running: 20260712_144326_fault_odom_noise_extreme
+[55/231] running: 20260712_144326_fault_odom_bias_small
+[56/231] running: 20260712_144326_fault_odom_bias_medium
+[57/231] running: 20260712_144326_fault_odom_bias_large
+[58/231] running: 20260712_144326_fault_odom_drift_slow
+[59/231] running: 20260712_144326_fault_odom_drift_medium
+[60/231] running: 20260712_144326_fault_odom_drift_fast
+[61/231] running: 20260712_144326_fault_odom_dropout_short
+[62/231] running: 20260712_144326_fault_odom_dropout_medium
+[63/231] running: 20260712_144326_fault_odom_dropout_long
+[64/231] running: 20260712_144326_fault_odom_delay_small
+[65/231] running: 20260712_144326_fault_odom_delay_medium
+[66/231] running: 20260712_144326_fault_odom_delay_large
+[67/231] running: 20260824_094119
+[68/231] running: 20260824_094119_fault_imu_noise_low
+[69/231] running: 20260824_094119_fault_imu_noise_medium
+[70/231] running: 20260824_094119_fault_imu_noise_high
+[71/231] running: 20260824_094119_fault_imu_noise_extreme
+[72/231] running: 20260824_094119_fault_imu_bias_small
+[73/231] running: 20260824_094119_fault_imu_bias_medium
+[74/231] running: 20260824_094119_fault_imu_bias_large
+[75/231] running: 20260824_094119_fault_imu_drift_slow
+[76/231] running: 20260824_094119_fault_imu_drift_medium
+[77/231] running: 20260824_094119_fault_imu_drift_fast
+[78/231] running: 20260824_094119_fault_imu_dropout_short
+[79/231] running: 20260824_094119_fault_imu_dropout_medium
+[80/231] running: 20260824_094119_fault_imu_dropout_long
+[81/231] running: 20260824_094119_fault_imu_delay_small
+[82/231] running: 20260824_094119_fault_imu_delay_medium
+[83/231] running: 20260824_094119_fault_imu_delay_large
+[84/231] running: 20260824_094119_fault_odom_noise_low
+[85/231] running: 20260824_094119_fault_odom_noise_medium
+[86/231] running: 20260824_094119_fault_odom_noise_high
+[87/231] running: 20260824_094119_fault_odom_noise_extreme
+[88/231] running: 20260824_094119_fault_odom_bias_small
+[89/231] running: 20260824_094119_fault_odom_bias_medium
+[90/231] running: 20260824_094119_fault_odom_bias_large
+[91/231] running: 20260824_094119_fault_odom_drift_slow
+[92/231] running: 20260824_094119_fault_odom_drift_medium
+[93/231] running: 20260824_094119_fault_odom_drift_fast
+[94/231] running: 20260824_094119_fault_odom_dropout_short
+[95/231] running: 20260824_094119_fault_odom_dropout_medium
+[96/231] running: 20260824_094119_fault_odom_dropout_long
+[97/231] running: 20260824_094119_fault_odom_delay_small
+[98/231] running: 20260824_094119_fault_odom_delay_medium
+[99/231] running: 20260824_094119_fault_odom_delay_large
+[100/231] running: 20260824_095427
+[101/231] running: 20260824_095427_fault_imu_noise_low
+[102/231] running: 20260824_095427_fault_imu_noise_medium
+[103/231] running: 20260824_095427_fault_imu_noise_high
+[104/231] running: 20260824_095427_fault_imu_noise_extreme
+[105/231] running: 20260824_095427_fault_imu_bias_small
+[106/231] running: 20260824_095427_fault_imu_bias_medium
+[107/231] running: 20260824_095427_fault_imu_bias_large
+[108/231] running: 20260824_095427_fault_imu_drift_slow
+[109/231] running: 20260824_095427_fault_imu_drift_medium
+[110/231] running: 20260824_095427_fault_imu_drift_fast
+[111/231] running: 20260824_095427_fault_imu_dropout_short
+[112/231] running: 20260824_095427_fault_imu_dropout_medium
+[113/231] running: 20260824_095427_fault_imu_dropout_long
+[114/231] running: 20260824_095427_fault_imu_delay_small
+[115/231] running: 20260824_095427_fault_imu_delay_medium
+[116/231] running: 20260824_095427_fault_imu_delay_large
+[117/231] running: 20260824_095427_fault_odom_noise_low
+[118/231] running: 20260824_095427_fault_odom_noise_medium
+[119/231] running: 20260824_095427_fault_odom_noise_high
+[120/231] running: 20260824_095427_fault_odom_noise_extreme
+[121/231] running: 20260824_095427_fault_odom_bias_small
+[122/231] running: 20260824_095427_fault_odom_bias_medium
+[123/231] running: 20260824_095427_fault_odom_bias_large
+[124/231] running: 20260824_095427_fault_odom_drift_slow
+[125/231] running: 20260824_095427_fault_odom_drift_medium
+[126/231] running: 20260824_095427_fault_odom_drift_fast
+[127/231] running: 20260824_095427_fault_odom_dropout_short
+[128/231] running: 20260824_095427_fault_odom_dropout_medium
+[129/231] running: 20260824_095427_fault_odom_dropout_long
+[130/231] running: 20260824_095427_fault_odom_delay_small
+[131/231] running: 20260824_095427_fault_odom_delay_medium
+[132/231] running: 20260824_095427_fault_odom_delay_large
+[133/231] running: 20260824_095712
+[134/231] running: 20260824_095712_fault_imu_noise_low
+[135/231] running: 20260824_095712_fault_imu_noise_medium
+[136/231] running: 20260824_095712_fault_imu_noise_high
+[137/231] running: 20260824_095712_fault_imu_noise_extreme
+[138/231] running: 20260824_095712_fault_imu_bias_small
+[139/231] running: 20260824_095712_fault_imu_bias_medium
+[140/231] running: 20260824_095712_fault_imu_bias_large
+[141/231] running: 20260824_095712_fault_imu_drift_slow
+[142/231] running: 20260824_095712_fault_imu_drift_medium
+[143/231] running: 20260824_095712_fault_imu_drift_fast
+[144/231] running: 20260824_095712_fault_imu_dropout_short
+[145/231] running: 20260824_095712_fault_imu_dropout_medium
+[146/231] running: 20260824_095712_fault_imu_dropout_long
+[147/231] running: 20260824_095712_fault_imu_delay_small
+[148/231] running: 20260824_095712_fault_imu_delay_medium
+[149/231] running: 20260824_095712_fault_imu_delay_large
+[150/231] running: 20260824_095712_fault_odom_noise_low
+[151/231] running: 20260824_095712_fault_odom_noise_medium
+[152/231] running: 20260824_095712_fault_odom_noise_high
+[153/231] running: 20260824_095712_fault_odom_noise_extreme
+[154/231] running: 20260824_095712_fault_odom_bias_small
+[155/231] running: 20260824_095712_fault_odom_bias_medium
+[156/231] running: 20260824_095712_fault_odom_bias_large
+[157/231] running: 20260824_095712_fault_odom_drift_slow
+[158/231] running: 20260824_095712_fault_odom_drift_medium
+[159/231] running: 20260824_095712_fault_odom_drift_fast
+[160/231] running: 20260824_095712_fault_odom_dropout_short
+[161/231] running: 20260824_095712_fault_odom_dropout_medium
+[162/231] running: 20260824_095712_fault_odom_dropout_long
+[163/231] running: 20260824_095712_fault_odom_delay_small
+[164/231] running: 20260824_095712_fault_odom_delay_medium
+[165/231] running: 20260824_095712_fault_odom_delay_large
+[166/231] running: 20260824_095915
+[167/231] running: 20260824_095915_fault_imu_noise_low
+[168/231] running: 20260824_095915_fault_imu_noise_medium
+[169/231] running: 20260824_095915_fault_imu_noise_high
+[170/231] running: 20260824_095915_fault_imu_noise_extreme
+[171/231] running: 20260824_095915_fault_imu_bias_small
+[172/231] running: 20260824_095915_fault_imu_bias_medium
+[173/231] running: 20260824_095915_fault_imu_bias_large
+[174/231] running: 20260824_095915_fault_imu_drift_slow
+[175/231] running: 20260824_095915_fault_imu_drift_medium
+[176/231] running: 20260824_095915_fault_imu_drift_fast
+[177/231] running: 20260824_095915_fault_imu_dropout_short
+[178/231] running: 20260824_095915_fault_imu_dropout_medium
+[179/231] running: 20260824_095915_fault_imu_dropout_long
+[180/231] running: 20260824_095915_fault_imu_delay_small
+[181/231] running: 20260824_095915_fault_imu_delay_medium
+[182/231] running: 20260824_095915_fault_imu_delay_large
+[183/231] running: 20260824_095915_fault_odom_noise_low
+[184/231] running: 20260824_095915_fault_odom_noise_medium
+[185/231] running: 20260824_095915_fault_odom_noise_high
+[186/231] running: 20260824_095915_fault_odom_noise_extreme
+[187/231] running: 20260824_095915_fault_odom_bias_small
+[188/231] running: 20260824_095915_fault_odom_bias_medium
+[189/231] running: 20260824_095915_fault_odom_bias_large
+[190/231] running: 20260824_095915_fault_odom_drift_slow
+[191/231] running: 20260824_095915_fault_odom_drift_medium
+[192/231] running: 20260824_095915_fault_odom_drift_fast
+[193/231] running: 20260824_095915_fault_odom_dropout_short
+[194/231] running: 20260824_095915_fault_odom_dropout_medium
+[195/231] running: 20260824_095915_fault_odom_dropout_long
+[196/231] running: 20260824_095915_fault_odom_delay_small
+[197/231] running: 20260824_095915_fault_odom_delay_medium
+[198/231] running: 20260824_095915_fault_odom_delay_large
+[199/231] running: 20260824_100318
+[200/231] running: 20260824_100318_fault_imu_noise_low
+[201/231] running: 20260824_100318_fault_imu_noise_medium
+[202/231] running: 20260824_100318_fault_imu_noise_high
+[203/231] running: 20260824_100318_fault_imu_noise_extreme
+[204/231] running: 20260824_100318_fault_imu_bias_small
+[205/231] running: 20260824_100318_fault_imu_bias_medium
+[206/231] running: 20260824_100318_fault_imu_bias_large
+[207/231] running: 20260824_100318_fault_imu_drift_slow
+[208/231] running: 20260824_100318_fault_imu_drift_medium
+[209/231] running: 20260824_100318_fault_imu_drift_fast
+[210/231] running: 20260824_100318_fault_imu_dropout_short
+[211/231] running: 20260824_100318_fault_imu_dropout_medium
+[212/231] running: 20260824_100318_fault_imu_dropout_long
+[213/231] running: 20260824_100318_fault_imu_delay_small
+[214/231] running: 20260824_100318_fault_imu_delay_medium
+[215/231] running: 20260824_100318_fault_imu_delay_large
+[216/231] running: 20260824_100318_fault_odom_noise_low
+[217/231] running: 20260824_100318_fault_odom_noise_medium
+[218/231] running: 20260824_100318_fault_odom_noise_high
+[219/231] running: 20260824_100318_fault_odom_noise_extreme
+[220/231] running: 20260824_100318_fault_odom_bias_small
+[221/231] running: 20260824_100318_fault_odom_bias_medium
+[222/231] running: 20260824_100318_fault_odom_bias_large
+[223/231] running: 20260824_100318_fault_odom_drift_slow
+[224/231] running: 20260824_100318_fault_odom_drift_medium
+[225/231] running: 20260824_100318_fault_odom_drift_fast
+[226/231] running: 20260824_100318_fault_odom_dropout_short
+[227/231] running: 20260824_100318_fault_odom_dropout_medium
+[228/231] running: 20260824_100318_fault_odom_dropout_long
+[229/231] running: 20260824_100318_fault_odom_delay_small
+[230/231] running: 20260824_100318_fault_odom_delay_medium
+[231/231] running: 20260824_100318_fault_odom_delay_large
+======================================================================
+PHASE 0 FAULT VALIDATION REPORT
+======================================================================
+
+--- Noise degradation (gate: worst severity >= 1.05x baseline) ---
+[PASS] 20260712_141740 / imu: low=2.8890, medium=4.5964, high=4.3988, extreme=3.7059, ratio=1.468x  [NOT strictly increasing (informational only, doesn't gate)]
+[PASS] 20260712_141740 / odom: low=464.5230, medium=1394.5979, high=2789.5047, extreme=5578.3155, ratio=2209.792x  [strictly increasing]
+[PASS] 20260712_144326 / imu: low=2.1706, medium=5.7482, high=3.8307, extreme=3.7014, ratio=7.005x  [NOT strictly increasing (informational only, doesn't gate)]
+[PASS] 20260712_144326 / odom: low=285.1286, medium=860.1539, high=1722.9067, extreme=3448.4379, ratio=6526.447x  [strictly increasing]
+[PASS] 20260824_094119 / imu: low=4.5338, medium=7.1566, high=5.1055, extreme=8.4671, ratio=13.092x  [NOT strictly increasing (informational only, doesn't gate)]
+[PASS] 20260824_094119 / odom: low=241.1116, medium=726.2399, high=1454.4765, extreme=2913.1512, ratio=4504.514x  [strictly increasing]
+[PASS] 20260824_095427 / imu: low=4.5954, medium=9.3513, high=8.5293, extreme=6.4604, ratio=2.716x  [NOT strictly increasing (informational only, doesn't gate)]
+[PASS] 20260824_095427 / odom: low=313.4889, medium=944.3357, high=1888.3981, extreme=3768.4799, ratio=1584.043x  [strictly increasing]
+[PASS] 20260824_095712 / imu: low=2.3616, medium=4.2017, high=3.4946, extreme=3.6752, ratio=1.679x  [NOT strictly increasing (informational only, doesn't gate)]
+[PASS] 20260824_095712 / odom: low=161.4069, medium=485.3635, high=971.4000, extreme=1943.8698, ratio=887.956x  [strictly increasing]
+[PASS] 20260824_095915 / imu: low=8.1230, medium=11.0359, high=12.9406, extreme=11.4855, ratio=9.743x  [NOT strictly increasing (informational only, doesn't gate)]
+[PASS] 20260824_095915 / odom: low=236.8404, medium=716.8170, high=1437.2563, extreme=2880.0904, ratio=2443.185x  [strictly increasing]
+[PASS] 20260824_100318 / imu: low=1.7086, medium=4.3302, high=5.2846, extreme=3.4311, ratio=3.635x  [NOT strictly increasing (informational only, doesn't gate)]
+[PASS] 20260824_100318 / odom: low=180.1478, medium=542.5784, high=1085.3252, extreme=2167.1444, ratio=2295.735x  [strictly increasing]
+
+--- Bias degradation (gate: worst severity >= 1.05x baseline) ---
+[PASS] 20260712_141740 / imu: small=8.1365, medium=4.6531, large=8.6685, ratio=3.434x  [NOT strictly increasing (informational only, doesn't gate)]
+[PASS] 20260712_141740 / odom: small=5.2013, medium=7.5653, large=11.3811, ratio=4.508x  [strictly increasing]
+[PASS] 20260712_144326 / imu: small=5.6946, medium=4.4674, large=7.2372, ratio=13.697x  [NOT strictly increasing (informational only, doesn't gate)]
+[PASS] 20260712_144326 / odom: small=1.4937, medium=3.9877, large=8.1810, ratio=15.483x  [strictly increasing]
+[PASS] 20260824_094119 / imu: small=11.6991, medium=7.2704, large=12.6577, ratio=19.572x  [NOT strictly increasing (informational only, doesn't gate)]
+[PASS] 20260824_094119 / odom: small=2.3326, medium=5.0852, large=8.7589, ratio=13.544x  [strictly increasing]
+[PASS] 20260824_095427 / imu: small=11.0386, medium=12.5234, large=16.8041, ratio=7.063x  [strictly increasing]
+[PASS] 20260824_095427 / odom: small=2.7811, medium=6.2170, large=11.6802, ratio=4.910x  [strictly increasing]
+[PASS] 20260824_095712 / imu: small=6.5450, medium=6.1476, large=8.3274, ratio=3.804x  [NOT strictly increasing (informational only, doesn't gate)]
+[PASS] 20260824_095712 / odom: small=2.0720, medium=3.6774, large=7.0645, ratio=3.227x  [strictly increasing]
+[PASS] 20260824_095915 / imu: small=17.3615, medium=6.5494, large=12.2629, ratio=10.403x  [NOT strictly increasing (informational only, doesn't gate)]
+[PASS] 20260824_095915 / odom: small=0.8958, medium=2.4985, large=7.3343, ratio=6.222x  [strictly increasing]
+[PASS] 20260824_100318 / imu: small=5.5308, medium=7.0984, large=7.8932, ratio=8.362x  [strictly increasing]
+[PASS] 20260824_100318 / odom: small=2.6434, medium=4.3880, large=7.1269, ratio=7.550x  [strictly increasing]
+
+--- Drift degradation (gate: worst severity >= 1.05x baseline) ---
+[PASS] 20260712_141740 / imu: slow=4.5325, medium=6.6569, fast=8.6055, ratio=3.409x  [strictly increasing]
+[PASS] 20260712_141740 / odom: slow=2.7373, medium=3.2014, fast=3.9404, ratio=1.561x  [strictly increasing]
+[PASS] 20260712_144326 / imu: slow=3.8600, medium=8.3489, fast=5.7724, ratio=10.925x  [NOT strictly increasing (informational only, doesn't gate)]
+[PASS] 20260712_144326 / odom: slow=0.4668, medium=0.4826, fast=0.7742, ratio=1.465x  [strictly increasing]
+[PASS] 20260824_094119 / imu: slow=3.3541, medium=10.6258, fast=14.9303, ratio=23.086x  [strictly increasing]
+[PASS] 20260824_094119 / odom: slow=0.6118, medium=0.6703, fast=0.9777, ratio=1.512x  [strictly increasing]
+[PASS] 20260824_095427 / imu: slow=6.1172, medium=12.2775, fast=13.3652, ratio=5.618x  [strictly increasing]
+[FAIL] 20260824_095427 / odom: slow=2.1784, medium=1.8020, fast=1.3653, ratio=0.574x  [NOT strictly increasing (informational only, doesn't gate)]
+       reason: worst severity (fast=1.3653m) only 0.574x baseline (2.3790m) -- below the 1.05x threshold for 'measurably degrades'
+[PASS] 20260824_095712 / imu: slow=4.0444, medium=7.4300, fast=6.8759, ratio=3.141x  [NOT strictly increasing (informational only, doesn't gate)]
+[FAIL] 20260824_095712 / odom: slow=2.1279, medium=2.0265, fast=1.9272, ratio=0.880x  [NOT strictly increasing (informational only, doesn't gate)]
+       reason: worst severity (fast=1.9272m) only 0.880x baseline (2.1892m) -- below the 1.05x threshold for 'measurably degrades'
+[PASS] 20260824_095915 / imu: slow=5.8782, medium=16.5972, fast=12.4293, ratio=10.544x  [NOT strictly increasing (informational only, doesn't gate)]
+[PASS] 20260824_095915 / odom: slow=1.2178, medium=1.2876, fast=1.3719, ratio=1.164x  [strictly increasing]
+[PASS] 20260824_100318 / imu: slow=2.7309, medium=7.0573, fast=13.0615, ratio=13.837x  [strictly increasing]
+[PASS] 20260824_100318 / odom: slow=0.9850, medium=1.1620, fast=1.5695, ratio=1.663x  [strictly increasing]
+
+--- Dropout degradation (gate: worst severity >= 1.05x baseline) ---
+[PASS] 20260712_141740 / imu: short=1.1995, medium=3.6053, long=10.3538, ratio=4.102x  [strictly increasing]
+[PASS] 20260712_141740 / odom: short=2.3352, medium=3.0309, long=3.8295, ratio=1.517x  [strictly increasing]
+[PASS] 20260712_144326 / imu: short=0.4210, medium=0.3452, long=1.9050, ratio=3.605x  [NOT strictly increasing (informational only, doesn't gate)]
+[PASS] 20260712_144326 / odom: short=0.4802, medium=0.8653, long=0.9675, ratio=1.831x  [strictly increasing]
+[PASS] 20260824_094119 / imu: short=0.6469, medium=0.7022, long=5.7429, ratio=8.880x  [strictly increasing]
+[PASS] 20260824_094119 / odom: short=0.7432, medium=1.3266, long=1.0160, ratio=1.571x  [NOT strictly increasing (informational only, doesn't gate)]
+[PASS] 20260824_095427 / imu: short=2.2524, medium=6.4997, long=14.8808, ratio=6.255x  [strictly increasing]
+[PASS] 20260824_095427 / odom: short=2.1245, medium=2.1016, long=2.8401, ratio=1.194x  [NOT strictly increasing (informational only, doesn't gate)]
+[PASS] 20260824_095712 / imu: short=2.1984, medium=2.3177, long=7.8490, ratio=3.585x  [strictly increasing]
+[FAIL] 20260824_095712 / odom: short=1.9093, medium=3.0138, long=2.2124, ratio=1.011x  [NOT strictly increasing (informational only, doesn't gate)]
+       reason: worst severity (long=2.2124m) only 1.011x baseline (2.1892m) -- below the 1.05x threshold for 'measurably degrades'
+[PASS] 20260824_095915 / imu: short=1.9021, medium=3.4693, long=3.9000, ratio=3.308x  [strictly increasing]
+[PASS] 20260824_095915 / odom: short=1.1499, medium=1.4720, long=1.7262, ratio=1.464x  [strictly increasing]
+[PASS] 20260824_100318 / imu: short=0.9440, medium=2.2392, long=7.3823, ratio=7.820x  [strictly increasing]
+[PASS] 20260824_100318 / odom: short=1.2719, medium=1.7390, long=1.6684, ratio=1.767x  [NOT strictly increasing (informational only, doesn't gate)]
+
+--- Delay sensitivity (does RMSE change AT ALL vs baseline?) ---
+[PASS] 20260712_141740 / imu: baseline=2.5244, small=2.4210, medium=2.0167, large=2.4044
+[PASS] 20260712_141740 / odom: baseline=2.5244, small=2.3957, medium=1.9157, large=1.7181
+[PASS] 20260712_144326 / imu: baseline=0.5284, small=0.6333, medium=1.0834, large=2.0133
+[PASS] 20260712_144326 / odom: baseline=0.5284, small=0.6172, medium=0.8664, large=1.1186
+[PASS] 20260824_094119 / imu: baseline=0.6467, small=0.8618, medium=2.5596, large=2.2261
+[PASS] 20260824_094119 / odom: baseline=0.6467, small=0.7081, medium=0.9770, large=0.7658
+[PASS] 20260824_095427 / imu: baseline=2.3790, small=2.2435, medium=1.5987, large=5.1782
+[PASS] 20260824_095427 / odom: baseline=2.3790, small=2.2467, medium=1.9169, large=1.8252
+[PASS] 20260824_095712 / imu: baseline=2.1892, small=2.1844, medium=2.2165, large=3.7119
+[PASS] 20260824_095712 / odom: baseline=2.1892, small=2.2142, medium=2.1721, large=2.1151
+[PASS] 20260824_095915 / imu: baseline=1.1788, small=1.0622, medium=1.0914, large=2.7954
+[PASS] 20260824_095915 / odom: baseline=1.1788, small=1.2411, medium=1.3884, large=2.1929
+[PASS] 20260824_100318 / imu: baseline=0.9440, small=1.0038, medium=1.3556, large=2.4973
+[PASS] 20260824_100318 / odom: baseline=0.9440, small=0.9614, medium=1.1009, large=1.0212
+
+67/70 checks passed.
+======================================================================

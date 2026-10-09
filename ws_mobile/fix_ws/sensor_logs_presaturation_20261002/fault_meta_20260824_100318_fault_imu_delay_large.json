@@ -1,0 +1,19 @@
+{
+  "fault_session": "20260824_100318_fault_imu_delay_large",
+  "baseline_session": "20260824_100318",
+  "sensor": "imu",
+  "fault_type": "delay",
+  "mechanism": "delay_raw_redesign: RAW time_sec/time_nsec shift, followed by a full re-run of preprocess_data.py -- genuinely desyncs this sensor from others via independent resample_to_grid() interpolation, unlike the original post-resampling timestamp-column shift which cancels algebraically in ekf_fusion.py's dt computation (confirmed ~1e-14 real-data diff, zero measurable effect)",
+  "severity_label": "large",
+  "severity_value": 2.0,
+  "columns": null,
+  "timestamp_col": "time_sec/time_nsec (raw, pre-preprocessing)",
+  "injected_stats": {
+    "imu_raw": {
+      "shift_seconds": 2.0,
+      "mechanism": "raw time_sec/time_nsec shift (survives make_timestamp() recomputation), NOT a post-resampling timestamp-column shift"
+    }
+  },
+  "seed": 0,
+  "created_utc": "2026-09-08T13:05:15.715752+00:00"
+}

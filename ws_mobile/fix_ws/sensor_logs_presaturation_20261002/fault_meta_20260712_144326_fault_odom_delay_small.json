@@ -1,0 +1,19 @@
+{
+  "fault_session": "20260712_144326_fault_odom_delay_small",
+  "baseline_session": "20260712_144326",
+  "sensor": "odom",
+  "fault_type": "delay",
+  "mechanism": "delay_raw_redesign: RAW time_sec/time_nsec shift, followed by a full re-run of preprocess_data.py -- genuinely desyncs this sensor from others via independent resample_to_grid() interpolation, unlike the original post-resampling timestamp-column shift which cancels algebraically in ekf_fusion.py's dt computation (confirmed ~1e-14 real-data diff, zero measurable effect)",
+  "severity_label": "small",
+  "severity_value": 0.1,
+  "columns": null,
+  "timestamp_col": "time_sec/time_nsec (raw, pre-preprocessing)",
+  "injected_stats": {
+    "odom_raw": {
+      "shift_seconds": 0.1,
+      "mechanism": "raw time_sec/time_nsec shift (survives make_timestamp() recomputation), NOT a post-resampling timestamp-column shift"
+    }
+  },
+  "seed": 0,
+  "created_utc": "2026-09-08T13:03:47.148852+00:00"
+}

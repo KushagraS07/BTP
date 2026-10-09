@@ -1,0 +1,407 @@
+nohup: ignoring input
+found 8 candidate baseline sessions, running health_check gate:
+  Commanded accumulated rotation: 19.4603 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=1.7% (raw columns present)
+  20260712_141740: PASS
+  Commanded accumulated rotation: 13.5249 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=7.5% (raw columns present)
+  20260712_144326: PASS
+  Commanded accumulated rotation: 15.2765 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=0.0% (NO raw columns)
+  20260714_014615: FAIL (IMU orientation failed to respond to commanded turning: IMU theta range=0.000000 rad, commanded accumulated rotation=15.276486 rad (need IMU range >= 0.5) — matches the dead-IMU signature previously found in session 20260714_014615)
+  Commanded accumulated rotation: 78.6733 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=98.6% (raw columns present)
+  WARNING: 98.6% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  20260824_094119: PASS
+  Commanded accumulated rotation: 33.3239 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=100.0% (raw columns present)
+  WARNING: 100.0% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  20260824_095427: PASS
+  Commanded accumulated rotation: 25.6286 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=99.5% (raw columns present)
+  WARNING: 99.5% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  20260824_095712: PASS
+  Commanded accumulated rotation: 67.1143 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=100.0% (raw columns present)
+  WARNING: 100.0% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  20260824_095915: PASS
+  Commanded accumulated rotation: 47.8286 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=100.0% (raw columns present)
+  WARNING: 100.0% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  20260824_100318: PASS
+-> 7/8 sessions passed and will be used as baselines
+
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740.csv (n=3782, baseline)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326.csv (n=1428, baseline)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119.csv (n=2474, baseline)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427.csv (n=2136, baseline)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712.csv (n=1586, baseline)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915.csv (n=1817, baseline)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318.csv (n=1991, baseline)
+
+found 364 fault manifests
+
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_imu_bias_large.csv (n=3782, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_imu_bias_medium.csv (n=3782, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_imu_bias_small.csv (n=3782, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_imu_delay_large.csv (n=3782, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_imu_delay_medium.csv (n=3782, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_imu_delay_small.csv (n=3782, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_imu_drift_fast.csv (n=3782, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_imu_drift_medium.csv (n=3782, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_imu_drift_slow.csv (n=3782, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_imu_dropout_long.csv (n=3782, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_imu_dropout_medium.csv (n=3782, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_imu_dropout_short.csv (n=3782, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_imu_noise_extreme.csv (n=3782, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_imu_noise_high.csv (n=3782, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_imu_noise_low.csv (n=3782, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_imu_noise_medium.csv (n=3782, sensor=imu, fault_type=noise)
+SKIPPED fault_meta_20260712_141740_fault_lidar_corruption_mild.json: Missing ekf_fused_output for session: 20260712_141740_fault_lidar_corruption_mild
+SKIPPED fault_meta_20260712_141740_fault_lidar_corruption_moderate.json: Missing ekf_fused_output for session: 20260712_141740_fault_lidar_corruption_moderate
+SKIPPED fault_meta_20260712_141740_fault_lidar_corruption_severe.json: Missing ekf_fused_output for session: 20260712_141740_fault_lidar_corruption_severe
+SKIPPED fault_meta_20260712_141740_fault_lidar_delay_large.json: Missing ekf_fused_output for session: 20260712_141740_fault_lidar_delay_large
+SKIPPED fault_meta_20260712_141740_fault_lidar_delay_medium.json: Missing ekf_fused_output for session: 20260712_141740_fault_lidar_delay_medium
+SKIPPED fault_meta_20260712_141740_fault_lidar_delay_small.json: Missing ekf_fused_output for session: 20260712_141740_fault_lidar_delay_small
+SKIPPED fault_meta_20260712_141740_fault_lidar_dropout_long.json: Missing ekf_fused_output for session: 20260712_141740_fault_lidar_dropout_long
+SKIPPED fault_meta_20260712_141740_fault_lidar_dropout_medium.json: Missing ekf_fused_output for session: 20260712_141740_fault_lidar_dropout_medium
+SKIPPED fault_meta_20260712_141740_fault_lidar_dropout_short.json: Missing ekf_fused_output for session: 20260712_141740_fault_lidar_dropout_short
+SKIPPED fault_meta_20260712_141740_fault_lidar_noise_extreme.json: Missing ekf_fused_output for session: 20260712_141740_fault_lidar_noise_extreme
+SKIPPED fault_meta_20260712_141740_fault_lidar_noise_high.json: Missing ekf_fused_output for session: 20260712_141740_fault_lidar_noise_high
+SKIPPED fault_meta_20260712_141740_fault_lidar_noise_low.json: Missing ekf_fused_output for session: 20260712_141740_fault_lidar_noise_low
+SKIPPED fault_meta_20260712_141740_fault_lidar_noise_medium.json: Missing ekf_fused_output for session: 20260712_141740_fault_lidar_noise_medium
+SKIPPED fault_meta_20260712_141740_fault_lidar_return_loss_extreme.json: Missing ekf_fused_output for session: 20260712_141740_fault_lidar_return_loss_extreme
+SKIPPED fault_meta_20260712_141740_fault_lidar_return_loss_high.json: Missing ekf_fused_output for session: 20260712_141740_fault_lidar_return_loss_high
+SKIPPED fault_meta_20260712_141740_fault_lidar_return_loss_low.json: Missing ekf_fused_output for session: 20260712_141740_fault_lidar_return_loss_low
+SKIPPED fault_meta_20260712_141740_fault_lidar_return_loss_medium.json: Missing ekf_fused_output for session: 20260712_141740_fault_lidar_return_loss_medium
+SKIPPED fault_meta_20260712_141740_fault_lidar_scale_error_mild.json: Missing ekf_fused_output for session: 20260712_141740_fault_lidar_scale_error_mild
+SKIPPED fault_meta_20260712_141740_fault_lidar_scale_error_moderate.json: Missing ekf_fused_output for session: 20260712_141740_fault_lidar_scale_error_moderate
+SKIPPED fault_meta_20260712_141740_fault_lidar_scale_error_severe.json: Missing ekf_fused_output for session: 20260712_141740_fault_lidar_scale_error_severe
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_odom_bias_large.csv (n=3782, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_odom_bias_medium.csv (n=3782, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_odom_bias_small.csv (n=3782, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_odom_delay_large.csv (n=3782, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_odom_delay_medium.csv (n=3782, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_odom_delay_small.csv (n=3782, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_odom_drift_fast.csv (n=3782, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_odom_drift_medium.csv (n=3782, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_odom_drift_slow.csv (n=3782, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_odom_dropout_long.csv (n=3782, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_odom_dropout_medium.csv (n=3782, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_odom_dropout_short.csv (n=3782, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_odom_noise_extreme.csv (n=3782, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_odom_noise_high.csv (n=3782, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_odom_noise_low.csv (n=3782, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_141740_fault_odom_noise_medium.csv (n=3782, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_imu_bias_large.csv (n=1428, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_imu_bias_medium.csv (n=1428, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_imu_bias_small.csv (n=1428, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_imu_delay_large.csv (n=1428, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_imu_delay_medium.csv (n=1428, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_imu_delay_small.csv (n=1428, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_imu_drift_fast.csv (n=1428, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_imu_drift_medium.csv (n=1428, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_imu_drift_slow.csv (n=1428, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_imu_dropout_long.csv (n=1428, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_imu_dropout_medium.csv (n=1428, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_imu_dropout_short.csv (n=1428, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_imu_noise_extreme.csv (n=1428, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_imu_noise_high.csv (n=1428, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_imu_noise_low.csv (n=1428, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_imu_noise_medium.csv (n=1428, sensor=imu, fault_type=noise)
+SKIPPED fault_meta_20260712_144326_fault_lidar_corruption_mild.json: Missing ekf_fused_output for session: 20260712_144326_fault_lidar_corruption_mild
+SKIPPED fault_meta_20260712_144326_fault_lidar_corruption_moderate.json: Missing ekf_fused_output for session: 20260712_144326_fault_lidar_corruption_moderate
+SKIPPED fault_meta_20260712_144326_fault_lidar_corruption_severe.json: Missing ekf_fused_output for session: 20260712_144326_fault_lidar_corruption_severe
+SKIPPED fault_meta_20260712_144326_fault_lidar_delay_large.json: Missing ekf_fused_output for session: 20260712_144326_fault_lidar_delay_large
+SKIPPED fault_meta_20260712_144326_fault_lidar_delay_medium.json: Missing ekf_fused_output for session: 20260712_144326_fault_lidar_delay_medium
+SKIPPED fault_meta_20260712_144326_fault_lidar_delay_small.json: Missing ekf_fused_output for session: 20260712_144326_fault_lidar_delay_small
+SKIPPED fault_meta_20260712_144326_fault_lidar_dropout_long.json: Missing ekf_fused_output for session: 20260712_144326_fault_lidar_dropout_long
+SKIPPED fault_meta_20260712_144326_fault_lidar_dropout_medium.json: Missing ekf_fused_output for session: 20260712_144326_fault_lidar_dropout_medium
+SKIPPED fault_meta_20260712_144326_fault_lidar_dropout_short.json: Missing ekf_fused_output for session: 20260712_144326_fault_lidar_dropout_short
+SKIPPED fault_meta_20260712_144326_fault_lidar_noise_extreme.json: Missing ekf_fused_output for session: 20260712_144326_fault_lidar_noise_extreme
+SKIPPED fault_meta_20260712_144326_fault_lidar_noise_high.json: Missing ekf_fused_output for session: 20260712_144326_fault_lidar_noise_high
+SKIPPED fault_meta_20260712_144326_fault_lidar_noise_low.json: Missing ekf_fused_output for session: 20260712_144326_fault_lidar_noise_low
+SKIPPED fault_meta_20260712_144326_fault_lidar_noise_medium.json: Missing ekf_fused_output for session: 20260712_144326_fault_lidar_noise_medium
+SKIPPED fault_meta_20260712_144326_fault_lidar_return_loss_extreme.json: Missing ekf_fused_output for session: 20260712_144326_fault_lidar_return_loss_extreme
+SKIPPED fault_meta_20260712_144326_fault_lidar_return_loss_high.json: Missing ekf_fused_output for session: 20260712_144326_fault_lidar_return_loss_high
+SKIPPED fault_meta_20260712_144326_fault_lidar_return_loss_low.json: Missing ekf_fused_output for session: 20260712_144326_fault_lidar_return_loss_low
+SKIPPED fault_meta_20260712_144326_fault_lidar_return_loss_medium.json: Missing ekf_fused_output for session: 20260712_144326_fault_lidar_return_loss_medium
+SKIPPED fault_meta_20260712_144326_fault_lidar_scale_error_mild.json: Missing ekf_fused_output for session: 20260712_144326_fault_lidar_scale_error_mild
+SKIPPED fault_meta_20260712_144326_fault_lidar_scale_error_moderate.json: Missing ekf_fused_output for session: 20260712_144326_fault_lidar_scale_error_moderate
+SKIPPED fault_meta_20260712_144326_fault_lidar_scale_error_severe.json: Missing ekf_fused_output for session: 20260712_144326_fault_lidar_scale_error_severe
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_odom_bias_large.csv (n=1428, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_odom_bias_medium.csv (n=1428, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_odom_bias_small.csv (n=1428, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_odom_delay_large.csv (n=1428, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_odom_delay_medium.csv (n=1428, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_odom_delay_small.csv (n=1428, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_odom_drift_fast.csv (n=1428, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_odom_drift_medium.csv (n=1428, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_odom_drift_slow.csv (n=1428, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_odom_dropout_long.csv (n=1428, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_odom_dropout_medium.csv (n=1428, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_odom_dropout_short.csv (n=1428, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_odom_noise_extreme.csv (n=1428, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_odom_noise_high.csv (n=1428, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_odom_noise_low.csv (n=1428, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260712_144326_fault_odom_noise_medium.csv (n=1428, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_imu_bias_large.csv (n=2474, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_imu_bias_medium.csv (n=2474, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_imu_bias_small.csv (n=2474, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_imu_delay_large.csv (n=2474, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_imu_delay_medium.csv (n=2474, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_imu_delay_small.csv (n=2474, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_imu_drift_fast.csv (n=2474, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_imu_drift_medium.csv (n=2474, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_imu_drift_slow.csv (n=2474, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_imu_dropout_long.csv (n=2474, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_imu_dropout_medium.csv (n=2474, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_imu_dropout_short.csv (n=2474, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_imu_noise_extreme.csv (n=2474, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_imu_noise_high.csv (n=2474, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_imu_noise_low.csv (n=2474, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_imu_noise_medium.csv (n=2474, sensor=imu, fault_type=noise)
+SKIPPED fault_meta_20260824_094119_fault_lidar_corruption_mild.json: Missing ekf_fused_output for session: 20260824_094119_fault_lidar_corruption_mild
+SKIPPED fault_meta_20260824_094119_fault_lidar_corruption_moderate.json: Missing ekf_fused_output for session: 20260824_094119_fault_lidar_corruption_moderate
+SKIPPED fault_meta_20260824_094119_fault_lidar_corruption_severe.json: Missing ekf_fused_output for session: 20260824_094119_fault_lidar_corruption_severe
+SKIPPED fault_meta_20260824_094119_fault_lidar_delay_large.json: Missing ekf_fused_output for session: 20260824_094119_fault_lidar_delay_large
+SKIPPED fault_meta_20260824_094119_fault_lidar_delay_medium.json: Missing ekf_fused_output for session: 20260824_094119_fault_lidar_delay_medium
+SKIPPED fault_meta_20260824_094119_fault_lidar_delay_small.json: Missing ekf_fused_output for session: 20260824_094119_fault_lidar_delay_small
+SKIPPED fault_meta_20260824_094119_fault_lidar_dropout_long.json: Missing ekf_fused_output for session: 20260824_094119_fault_lidar_dropout_long
+SKIPPED fault_meta_20260824_094119_fault_lidar_dropout_medium.json: Missing ekf_fused_output for session: 20260824_094119_fault_lidar_dropout_medium
+SKIPPED fault_meta_20260824_094119_fault_lidar_dropout_short.json: Missing ekf_fused_output for session: 20260824_094119_fault_lidar_dropout_short
+SKIPPED fault_meta_20260824_094119_fault_lidar_noise_extreme.json: Missing ekf_fused_output for session: 20260824_094119_fault_lidar_noise_extreme
+SKIPPED fault_meta_20260824_094119_fault_lidar_noise_high.json: Missing ekf_fused_output for session: 20260824_094119_fault_lidar_noise_high
+SKIPPED fault_meta_20260824_094119_fault_lidar_noise_low.json: Missing ekf_fused_output for session: 20260824_094119_fault_lidar_noise_low
+SKIPPED fault_meta_20260824_094119_fault_lidar_noise_medium.json: Missing ekf_fused_output for session: 20260824_094119_fault_lidar_noise_medium
+SKIPPED fault_meta_20260824_094119_fault_lidar_return_loss_extreme.json: Missing ekf_fused_output for session: 20260824_094119_fault_lidar_return_loss_extreme
+SKIPPED fault_meta_20260824_094119_fault_lidar_return_loss_high.json: Missing ekf_fused_output for session: 20260824_094119_fault_lidar_return_loss_high
+SKIPPED fault_meta_20260824_094119_fault_lidar_return_loss_low.json: Missing ekf_fused_output for session: 20260824_094119_fault_lidar_return_loss_low
+SKIPPED fault_meta_20260824_094119_fault_lidar_return_loss_medium.json: Missing ekf_fused_output for session: 20260824_094119_fault_lidar_return_loss_medium
+SKIPPED fault_meta_20260824_094119_fault_lidar_scale_error_mild.json: Missing ekf_fused_output for session: 20260824_094119_fault_lidar_scale_error_mild
+SKIPPED fault_meta_20260824_094119_fault_lidar_scale_error_moderate.json: Missing ekf_fused_output for session: 20260824_094119_fault_lidar_scale_error_moderate
+SKIPPED fault_meta_20260824_094119_fault_lidar_scale_error_severe.json: Missing ekf_fused_output for session: 20260824_094119_fault_lidar_scale_error_severe
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_odom_bias_large.csv (n=2474, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_odom_bias_medium.csv (n=2474, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_odom_bias_small.csv (n=2474, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_odom_delay_large.csv (n=2474, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_odom_delay_medium.csv (n=2474, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_odom_delay_small.csv (n=2474, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_odom_drift_fast.csv (n=2474, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_odom_drift_medium.csv (n=2474, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_odom_drift_slow.csv (n=2474, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_odom_dropout_long.csv (n=2474, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_odom_dropout_medium.csv (n=2474, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_odom_dropout_short.csv (n=2474, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_odom_noise_extreme.csv (n=2474, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_odom_noise_high.csv (n=2474, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_odom_noise_low.csv (n=2474, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_094119_fault_odom_noise_medium.csv (n=2474, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_imu_bias_large.csv (n=2136, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_imu_bias_medium.csv (n=2136, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_imu_bias_small.csv (n=2136, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_imu_delay_large.csv (n=2136, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_imu_delay_medium.csv (n=2136, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_imu_delay_small.csv (n=2136, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_imu_drift_fast.csv (n=2136, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_imu_drift_medium.csv (n=2136, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_imu_drift_slow.csv (n=2136, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_imu_dropout_long.csv (n=2136, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_imu_dropout_medium.csv (n=2136, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_imu_dropout_short.csv (n=2136, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_imu_noise_extreme.csv (n=2136, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_imu_noise_high.csv (n=2136, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_imu_noise_low.csv (n=2136, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_imu_noise_medium.csv (n=2136, sensor=imu, fault_type=noise)
+SKIPPED fault_meta_20260824_095427_fault_lidar_corruption_mild.json: Missing ekf_fused_output for session: 20260824_095427_fault_lidar_corruption_mild
+SKIPPED fault_meta_20260824_095427_fault_lidar_corruption_moderate.json: Missing ekf_fused_output for session: 20260824_095427_fault_lidar_corruption_moderate
+SKIPPED fault_meta_20260824_095427_fault_lidar_corruption_severe.json: Missing ekf_fused_output for session: 20260824_095427_fault_lidar_corruption_severe
+SKIPPED fault_meta_20260824_095427_fault_lidar_delay_large.json: Missing ekf_fused_output for session: 20260824_095427_fault_lidar_delay_large
+SKIPPED fault_meta_20260824_095427_fault_lidar_delay_medium.json: Missing ekf_fused_output for session: 20260824_095427_fault_lidar_delay_medium
+SKIPPED fault_meta_20260824_095427_fault_lidar_delay_small.json: Missing ekf_fused_output for session: 20260824_095427_fault_lidar_delay_small
+SKIPPED fault_meta_20260824_095427_fault_lidar_dropout_long.json: Missing ekf_fused_output for session: 20260824_095427_fault_lidar_dropout_long
+SKIPPED fault_meta_20260824_095427_fault_lidar_dropout_medium.json: Missing ekf_fused_output for session: 20260824_095427_fault_lidar_dropout_medium
+SKIPPED fault_meta_20260824_095427_fault_lidar_dropout_short.json: Missing ekf_fused_output for session: 20260824_095427_fault_lidar_dropout_short
+SKIPPED fault_meta_20260824_095427_fault_lidar_noise_extreme.json: Missing ekf_fused_output for session: 20260824_095427_fault_lidar_noise_extreme
+SKIPPED fault_meta_20260824_095427_fault_lidar_noise_high.json: Missing ekf_fused_output for session: 20260824_095427_fault_lidar_noise_high
+SKIPPED fault_meta_20260824_095427_fault_lidar_noise_low.json: Missing ekf_fused_output for session: 20260824_095427_fault_lidar_noise_low
+SKIPPED fault_meta_20260824_095427_fault_lidar_noise_medium.json: Missing ekf_fused_output for session: 20260824_095427_fault_lidar_noise_medium
+SKIPPED fault_meta_20260824_095427_fault_lidar_return_loss_extreme.json: Missing ekf_fused_output for session: 20260824_095427_fault_lidar_return_loss_extreme
+SKIPPED fault_meta_20260824_095427_fault_lidar_return_loss_high.json: Missing ekf_fused_output for session: 20260824_095427_fault_lidar_return_loss_high
+SKIPPED fault_meta_20260824_095427_fault_lidar_return_loss_low.json: Missing ekf_fused_output for session: 20260824_095427_fault_lidar_return_loss_low
+SKIPPED fault_meta_20260824_095427_fault_lidar_return_loss_medium.json: Missing ekf_fused_output for session: 20260824_095427_fault_lidar_return_loss_medium
+SKIPPED fault_meta_20260824_095427_fault_lidar_scale_error_mild.json: Missing ekf_fused_output for session: 20260824_095427_fault_lidar_scale_error_mild
+SKIPPED fault_meta_20260824_095427_fault_lidar_scale_error_moderate.json: Missing ekf_fused_output for session: 20260824_095427_fault_lidar_scale_error_moderate
+SKIPPED fault_meta_20260824_095427_fault_lidar_scale_error_severe.json: Missing ekf_fused_output for session: 20260824_095427_fault_lidar_scale_error_severe
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_odom_bias_large.csv (n=2136, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_odom_bias_medium.csv (n=2136, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_odom_bias_small.csv (n=2136, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_odom_delay_large.csv (n=2136, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_odom_delay_medium.csv (n=2136, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_odom_delay_small.csv (n=2136, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_odom_drift_fast.csv (n=2136, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_odom_drift_medium.csv (n=2136, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_odom_drift_slow.csv (n=2136, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_odom_dropout_long.csv (n=2136, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_odom_dropout_medium.csv (n=2136, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_odom_dropout_short.csv (n=2136, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_odom_noise_extreme.csv (n=2136, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_odom_noise_high.csv (n=2136, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_odom_noise_low.csv (n=2136, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095427_fault_odom_noise_medium.csv (n=2136, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_imu_bias_large.csv (n=1586, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_imu_bias_medium.csv (n=1586, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_imu_bias_small.csv (n=1586, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_imu_delay_large.csv (n=1586, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_imu_delay_medium.csv (n=1586, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_imu_delay_small.csv (n=1586, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_imu_drift_fast.csv (n=1586, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_imu_drift_medium.csv (n=1586, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_imu_drift_slow.csv (n=1586, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_imu_dropout_long.csv (n=1586, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_imu_dropout_medium.csv (n=1586, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_imu_dropout_short.csv (n=1586, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_imu_noise_extreme.csv (n=1586, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_imu_noise_high.csv (n=1586, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_imu_noise_low.csv (n=1586, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_imu_noise_medium.csv (n=1586, sensor=imu, fault_type=noise)
+SKIPPED fault_meta_20260824_095712_fault_lidar_corruption_mild.json: Missing ekf_fused_output for session: 20260824_095712_fault_lidar_corruption_mild
+SKIPPED fault_meta_20260824_095712_fault_lidar_corruption_moderate.json: Missing ekf_fused_output for session: 20260824_095712_fault_lidar_corruption_moderate
+SKIPPED fault_meta_20260824_095712_fault_lidar_corruption_severe.json: Missing ekf_fused_output for session: 20260824_095712_fault_lidar_corruption_severe
+SKIPPED fault_meta_20260824_095712_fault_lidar_delay_large.json: Missing ekf_fused_output for session: 20260824_095712_fault_lidar_delay_large
+SKIPPED fault_meta_20260824_095712_fault_lidar_delay_medium.json: Missing ekf_fused_output for session: 20260824_095712_fault_lidar_delay_medium
+SKIPPED fault_meta_20260824_095712_fault_lidar_delay_small.json: Missing ekf_fused_output for session: 20260824_095712_fault_lidar_delay_small
+SKIPPED fault_meta_20260824_095712_fault_lidar_dropout_long.json: Missing ekf_fused_output for session: 20260824_095712_fault_lidar_dropout_long
+SKIPPED fault_meta_20260824_095712_fault_lidar_dropout_medium.json: Missing ekf_fused_output for session: 20260824_095712_fault_lidar_dropout_medium
+SKIPPED fault_meta_20260824_095712_fault_lidar_dropout_short.json: Missing ekf_fused_output for session: 20260824_095712_fault_lidar_dropout_short
+SKIPPED fault_meta_20260824_095712_fault_lidar_noise_extreme.json: Missing ekf_fused_output for session: 20260824_095712_fault_lidar_noise_extreme
+SKIPPED fault_meta_20260824_095712_fault_lidar_noise_high.json: Missing ekf_fused_output for session: 20260824_095712_fault_lidar_noise_high
+SKIPPED fault_meta_20260824_095712_fault_lidar_noise_low.json: Missing ekf_fused_output for session: 20260824_095712_fault_lidar_noise_low
+SKIPPED fault_meta_20260824_095712_fault_lidar_noise_medium.json: Missing ekf_fused_output for session: 20260824_095712_fault_lidar_noise_medium
+SKIPPED fault_meta_20260824_095712_fault_lidar_return_loss_extreme.json: Missing ekf_fused_output for session: 20260824_095712_fault_lidar_return_loss_extreme
+SKIPPED fault_meta_20260824_095712_fault_lidar_return_loss_high.json: Missing ekf_fused_output for session: 20260824_095712_fault_lidar_return_loss_high
+SKIPPED fault_meta_20260824_095712_fault_lidar_return_loss_low.json: Missing ekf_fused_output for session: 20260824_095712_fault_lidar_return_loss_low
+SKIPPED fault_meta_20260824_095712_fault_lidar_return_loss_medium.json: Missing ekf_fused_output for session: 20260824_095712_fault_lidar_return_loss_medium
+SKIPPED fault_meta_20260824_095712_fault_lidar_scale_error_mild.json: Missing ekf_fused_output for session: 20260824_095712_fault_lidar_scale_error_mild
+SKIPPED fault_meta_20260824_095712_fault_lidar_scale_error_moderate.json: Missing ekf_fused_output for session: 20260824_095712_fault_lidar_scale_error_moderate
+SKIPPED fault_meta_20260824_095712_fault_lidar_scale_error_severe.json: Missing ekf_fused_output for session: 20260824_095712_fault_lidar_scale_error_severe
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_odom_bias_large.csv (n=1586, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_odom_bias_medium.csv (n=1586, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_odom_bias_small.csv (n=1586, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_odom_delay_large.csv (n=1585, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_odom_delay_medium.csv (n=1586, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_odom_delay_small.csv (n=1586, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_odom_drift_fast.csv (n=1586, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_odom_drift_medium.csv (n=1586, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_odom_drift_slow.csv (n=1586, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_odom_dropout_long.csv (n=1586, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_odom_dropout_medium.csv (n=1586, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_odom_dropout_short.csv (n=1586, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_odom_noise_extreme.csv (n=1586, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_odom_noise_high.csv (n=1586, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_odom_noise_low.csv (n=1586, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095712_fault_odom_noise_medium.csv (n=1586, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_imu_bias_large.csv (n=1817, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_imu_bias_medium.csv (n=1817, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_imu_bias_small.csv (n=1817, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_imu_delay_large.csv (n=1817, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_imu_delay_medium.csv (n=1817, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_imu_delay_small.csv (n=1817, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_imu_drift_fast.csv (n=1817, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_imu_drift_medium.csv (n=1817, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_imu_drift_slow.csv (n=1817, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_imu_dropout_long.csv (n=1817, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_imu_dropout_medium.csv (n=1817, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_imu_dropout_short.csv (n=1817, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_imu_noise_extreme.csv (n=1817, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_imu_noise_high.csv (n=1817, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_imu_noise_low.csv (n=1817, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_imu_noise_medium.csv (n=1817, sensor=imu, fault_type=noise)
+SKIPPED fault_meta_20260824_095915_fault_lidar_corruption_mild.json: Missing ekf_fused_output for session: 20260824_095915_fault_lidar_corruption_mild
+SKIPPED fault_meta_20260824_095915_fault_lidar_corruption_moderate.json: Missing ekf_fused_output for session: 20260824_095915_fault_lidar_corruption_moderate
+SKIPPED fault_meta_20260824_095915_fault_lidar_corruption_severe.json: Missing ekf_fused_output for session: 20260824_095915_fault_lidar_corruption_severe
+SKIPPED fault_meta_20260824_095915_fault_lidar_delay_large.json: Missing ekf_fused_output for session: 20260824_095915_fault_lidar_delay_large
+SKIPPED fault_meta_20260824_095915_fault_lidar_delay_medium.json: Missing ekf_fused_output for session: 20260824_095915_fault_lidar_delay_medium
+SKIPPED fault_meta_20260824_095915_fault_lidar_delay_small.json: Missing ekf_fused_output for session: 20260824_095915_fault_lidar_delay_small
+SKIPPED fault_meta_20260824_095915_fault_lidar_dropout_long.json: Missing ekf_fused_output for session: 20260824_095915_fault_lidar_dropout_long
+SKIPPED fault_meta_20260824_095915_fault_lidar_dropout_medium.json: Missing ekf_fused_output for session: 20260824_095915_fault_lidar_dropout_medium
+SKIPPED fault_meta_20260824_095915_fault_lidar_dropout_short.json: Missing ekf_fused_output for session: 20260824_095915_fault_lidar_dropout_short
+SKIPPED fault_meta_20260824_095915_fault_lidar_noise_extreme.json: Missing ekf_fused_output for session: 20260824_095915_fault_lidar_noise_extreme
+SKIPPED fault_meta_20260824_095915_fault_lidar_noise_high.json: Missing ekf_fused_output for session: 20260824_095915_fault_lidar_noise_high
+SKIPPED fault_meta_20260824_095915_fault_lidar_noise_low.json: Missing ekf_fused_output for session: 20260824_095915_fault_lidar_noise_low
+SKIPPED fault_meta_20260824_095915_fault_lidar_noise_medium.json: Missing ekf_fused_output for session: 20260824_095915_fault_lidar_noise_medium
+SKIPPED fault_meta_20260824_095915_fault_lidar_return_loss_extreme.json: Missing ekf_fused_output for session: 20260824_095915_fault_lidar_return_loss_extreme
+SKIPPED fault_meta_20260824_095915_fault_lidar_return_loss_high.json: Missing ekf_fused_output for session: 20260824_095915_fault_lidar_return_loss_high
+SKIPPED fault_meta_20260824_095915_fault_lidar_return_loss_low.json: Missing ekf_fused_output for session: 20260824_095915_fault_lidar_return_loss_low
+SKIPPED fault_meta_20260824_095915_fault_lidar_return_loss_medium.json: Missing ekf_fused_output for session: 20260824_095915_fault_lidar_return_loss_medium
+SKIPPED fault_meta_20260824_095915_fault_lidar_scale_error_mild.json: Missing ekf_fused_output for session: 20260824_095915_fault_lidar_scale_error_mild
+SKIPPED fault_meta_20260824_095915_fault_lidar_scale_error_moderate.json: Missing ekf_fused_output for session: 20260824_095915_fault_lidar_scale_error_moderate
+SKIPPED fault_meta_20260824_095915_fault_lidar_scale_error_severe.json: Missing ekf_fused_output for session: 20260824_095915_fault_lidar_scale_error_severe
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_odom_bias_large.csv (n=1817, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_odom_bias_medium.csv (n=1817, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_odom_bias_small.csv (n=1817, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_odom_delay_large.csv (n=1817, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_odom_delay_medium.csv (n=1817, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_odom_delay_small.csv (n=1817, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_odom_drift_fast.csv (n=1817, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_odom_drift_medium.csv (n=1817, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_odom_drift_slow.csv (n=1817, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_odom_dropout_long.csv (n=1817, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_odom_dropout_medium.csv (n=1817, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_odom_dropout_short.csv (n=1817, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_odom_noise_extreme.csv (n=1817, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_odom_noise_high.csv (n=1817, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_odom_noise_low.csv (n=1817, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_095915_fault_odom_noise_medium.csv (n=1817, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_imu_bias_large.csv (n=1991, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_imu_bias_medium.csv (n=1991, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_imu_bias_small.csv (n=1991, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_imu_delay_large.csv (n=1954, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_imu_delay_medium.csv (n=1991, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_imu_delay_small.csv (n=1991, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_imu_drift_fast.csv (n=1991, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_imu_drift_medium.csv (n=1991, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_imu_drift_slow.csv (n=1991, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_imu_dropout_long.csv (n=1991, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_imu_dropout_medium.csv (n=1991, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_imu_dropout_short.csv (n=1991, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_imu_noise_extreme.csv (n=1991, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_imu_noise_high.csv (n=1991, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_imu_noise_low.csv (n=1991, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_imu_noise_medium.csv (n=1991, sensor=imu, fault_type=noise)
+SKIPPED fault_meta_20260824_100318_fault_lidar_corruption_mild.json: Missing ekf_fused_output for session: 20260824_100318_fault_lidar_corruption_mild
+SKIPPED fault_meta_20260824_100318_fault_lidar_corruption_moderate.json: Missing ekf_fused_output for session: 20260824_100318_fault_lidar_corruption_moderate
+SKIPPED fault_meta_20260824_100318_fault_lidar_corruption_severe.json: Missing ekf_fused_output for session: 20260824_100318_fault_lidar_corruption_severe
+SKIPPED fault_meta_20260824_100318_fault_lidar_delay_large.json: Missing ekf_fused_output for session: 20260824_100318_fault_lidar_delay_large
+SKIPPED fault_meta_20260824_100318_fault_lidar_delay_medium.json: Missing ekf_fused_output for session: 20260824_100318_fault_lidar_delay_medium
+SKIPPED fault_meta_20260824_100318_fault_lidar_delay_small.json: Missing ekf_fused_output for session: 20260824_100318_fault_lidar_delay_small
+SKIPPED fault_meta_20260824_100318_fault_lidar_dropout_long.json: Missing ekf_fused_output for session: 20260824_100318_fault_lidar_dropout_long
+SKIPPED fault_meta_20260824_100318_fault_lidar_dropout_medium.json: Missing ekf_fused_output for session: 20260824_100318_fault_lidar_dropout_medium
+SKIPPED fault_meta_20260824_100318_fault_lidar_dropout_short.json: Missing ekf_fused_output for session: 20260824_100318_fault_lidar_dropout_short
+SKIPPED fault_meta_20260824_100318_fault_lidar_noise_extreme.json: Missing ekf_fused_output for session: 20260824_100318_fault_lidar_noise_extreme
+SKIPPED fault_meta_20260824_100318_fault_lidar_noise_high.json: Missing ekf_fused_output for session: 20260824_100318_fault_lidar_noise_high
+SKIPPED fault_meta_20260824_100318_fault_lidar_noise_low.json: Missing ekf_fused_output for session: 20260824_100318_fault_lidar_noise_low
+SKIPPED fault_meta_20260824_100318_fault_lidar_noise_medium.json: Missing ekf_fused_output for session: 20260824_100318_fault_lidar_noise_medium
+SKIPPED fault_meta_20260824_100318_fault_lidar_return_loss_extreme.json: Missing ekf_fused_output for session: 20260824_100318_fault_lidar_return_loss_extreme
+SKIPPED fault_meta_20260824_100318_fault_lidar_return_loss_high.json: Missing ekf_fused_output for session: 20260824_100318_fault_lidar_return_loss_high
+SKIPPED fault_meta_20260824_100318_fault_lidar_return_loss_low.json: Missing ekf_fused_output for session: 20260824_100318_fault_lidar_return_loss_low
+SKIPPED fault_meta_20260824_100318_fault_lidar_return_loss_medium.json: Missing ekf_fused_output for session: 20260824_100318_fault_lidar_return_loss_medium
+SKIPPED fault_meta_20260824_100318_fault_lidar_scale_error_mild.json: Missing ekf_fused_output for session: 20260824_100318_fault_lidar_scale_error_mild
+SKIPPED fault_meta_20260824_100318_fault_lidar_scale_error_moderate.json: Missing ekf_fused_output for session: 20260824_100318_fault_lidar_scale_error_moderate
+SKIPPED fault_meta_20260824_100318_fault_lidar_scale_error_severe.json: Missing ekf_fused_output for session: 20260824_100318_fault_lidar_scale_error_severe
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_odom_bias_large.csv (n=1991, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_odom_bias_medium.csv (n=1991, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_odom_bias_small.csv (n=1991, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_odom_delay_large.csv (n=1954, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_odom_delay_medium.csv (n=1991, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_odom_delay_small.csv (n=1991, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_odom_drift_fast.csv (n=1991, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_odom_drift_medium.csv (n=1991, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_odom_drift_slow.csv (n=1991, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_odom_dropout_long.csv (n=1991, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_odom_dropout_medium.csv (n=1991, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_odom_dropout_short.csv (n=1991, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_odom_noise_extreme.csv (n=1991, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_odom_noise_high.csv (n=1991, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_odom_noise_low.csv (n=1991, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20260824_100318_fault_odom_noise_medium.csv (n=1991, sensor=odom, fault_type=noise)

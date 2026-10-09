@@ -1,0 +1,695 @@
+RNN model: rnn_model_denoising.pth  modified 2026-10-02 22:12 (pre-registered: 2026-10-02 22:12)
+Residual stats = mean of 7 training sessions: mean=[0.177  0.1856 0.0009], std=[0.7205 0.5118 0.0404]
+
+=== Step 1: frozen-RNN inference on held-out baselines (descriptive) ===
+  Loaded ekf_fused_output_20261003_132243.csv — 3247 rows
+  Loaded ground truth: ground_truth_filtered_20261003_132243.csv (3247 rows) — canonical, cleaned
+  Timestamp alignment: 3247/3247 EKF rows overlap with GT
+  20261003_132243: EKF 0.4152 m -> RNN (smoothed) 0.7875 m  (3237 rows)
+  Loaded ekf_fused_output_20261003_132822.csv — 2367 rows
+  Loaded ground truth: ground_truth_filtered_20261003_132822.csv (2367 rows) — canonical, cleaned
+  Timestamp alignment: 2367/2367 EKF rows overlap with GT
+  20261003_132822: EKF 0.4749 m -> RNN (smoothed) 0.7631 m  (2357 rows)
+  Loaded ekf_fused_output_20261003_133250.csv — 2691 rows
+  Loaded ground truth: ground_truth_filtered_20261003_133250.csv (2691 rows) — canonical, cleaned
+  Timestamp alignment: 2691/2691 EKF rows overlap with GT
+  20261003_133250: EKF 1.2865 m -> RNN (smoothed) 1.2301 m  (2681 rows)
+
+=== Step 2: A.2 on the 9 held-out corruption sessions ===
+
+  --- Session 20261003_132243_fault_lidar_corruption_mild ---
+  Loading: rnn_smoothed_output_20261003_132243_fault_lidar_corruption_mild.csv
+  Loading: scan_filtered_20261003_132243_fault_lidar_corruption_mild.csv
+  Loading: odom_filtered_20261003_132243_fault_lidar_corruption_mild.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_132243_fault_lidar_corruption_mild.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_132243_fault_lidar_corruption_mild.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 3237 timesteps
+
+  Saved: final_fused_output_v2_20261003_132243_fault_lidar_corruption_mild.csv (3237 rows)
+  Ground truth: ground_truth_filtered_20261003_132243_fault_lidar_corruption_mild.csv (real, cleaned, resampled)
+
+  ── Session 20261003_132243_fault_lidar_corruption_mild — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 0.7890 m  (paper RNN std: 0.0527 m)
+     MAE  : 0.7030 m
+     Std  : 0.3582 m
+  Saved: final_fusion_trajectory_v2_20261003_132243_fault_lidar_corruption_mild.png
+
+  --- Session 20261003_132243_fault_lidar_corruption_mild ---
+  Loading: rnn_smoothed_output_20261003_132243_fault_lidar_corruption_mild.csv
+  Loading: scan_filtered_20261003_132243_fault_lidar_corruption_mild.csv
+  Loading: odom_filtered_20261003_132243_fault_lidar_corruption_mild.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_132243_fault_lidar_corruption_mild.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_132243_fault_lidar_corruption_mild.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 3237 timesteps
+
+  Saved: final_fused_output_v2_20261003_132243_fault_lidar_corruption_mild.csv (3237 rows)
+  Ground truth: ground_truth_filtered_20261003_132243_fault_lidar_corruption_mild.csv (real, cleaned, resampled)
+
+  ── Session 20261003_132243_fault_lidar_corruption_mild — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 0.7888 m  (paper RNN std: 0.0527 m)
+     MAE  : 0.7029 m
+     Std  : 0.3580 m
+  Saved: final_fusion_trajectory_v2_20261003_132243_fault_lidar_corruption_mild.png
+
+  --- Session 20261003_132243_fault_lidar_corruption_mild ---
+  Loading: rnn_smoothed_output_20261003_132243_fault_lidar_corruption_mild.csv
+  Loading: scan_filtered_20261003_132243_fault_lidar_corruption_mild.csv
+  Loading: odom_filtered_20261003_132243_fault_lidar_corruption_mild.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_132243_fault_lidar_corruption_mild.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_132243_fault_lidar_corruption_mild.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 3237 timesteps
+
+  Saved: final_fused_output_v2_20261003_132243_fault_lidar_corruption_mild.csv (3237 rows)
+  Ground truth: ground_truth_filtered_20261003_132243_fault_lidar_corruption_mild.csv (real, cleaned, resampled)
+
+  ── Session 20261003_132243_fault_lidar_corruption_mild — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 0.8139 m  (paper RNN std: 0.0527 m)
+     MAE  : 0.7199 m
+     Std  : 0.3797 m
+  Saved: final_fusion_trajectory_v2_20261003_132243_fault_lidar_corruption_mild.png
+
+  --- Session 20261003_132243_fault_lidar_corruption_mild ---
+  Loading: rnn_smoothed_output_20261003_132243_fault_lidar_corruption_mild.csv
+  Loading: scan_filtered_20261003_132243_fault_lidar_corruption_mild.csv
+  Loading: odom_filtered_20261003_132243_fault_lidar_corruption_mild.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_132243_fault_lidar_corruption_mild.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_132243_fault_lidar_corruption_mild.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 3237 timesteps
+
+  Saved: final_fused_output_v2_20261003_132243_fault_lidar_corruption_mild.csv (3237 rows)
+  Ground truth: ground_truth_filtered_20261003_132243_fault_lidar_corruption_mild.csv (real, cleaned, resampled)
+
+  ── Session 20261003_132243_fault_lidar_corruption_mild — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 0.8102 m  (paper RNN std: 0.0527 m)
+     MAE  : 0.7175 m
+     Std  : 0.3762 m
+  Saved: final_fusion_trajectory_v2_20261003_132243_fault_lidar_corruption_mild.png
+
+  --- Session 20261003_132243_fault_lidar_corruption_moderate ---
+  Loading: rnn_smoothed_output_20261003_132243_fault_lidar_corruption_moderate.csv
+  Loading: scan_filtered_20261003_132243_fault_lidar_corruption_moderate.csv
+  Loading: odom_filtered_20261003_132243_fault_lidar_corruption_moderate.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_132243_fault_lidar_corruption_moderate.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_132243_fault_lidar_corruption_moderate.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 3237 timesteps
+
+  Saved: final_fused_output_v2_20261003_132243_fault_lidar_corruption_moderate.csv (3237 rows)
+  Ground truth: ground_truth_filtered_20261003_132243_fault_lidar_corruption_moderate.csv (real, cleaned, resampled)
+
+  ── Session 20261003_132243_fault_lidar_corruption_moderate — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 0.7891 m  (paper RNN std: 0.0527 m)
+     MAE  : 0.7031 m
+     Std  : 0.3583 m
+  Saved: final_fusion_trajectory_v2_20261003_132243_fault_lidar_corruption_moderate.png
+
+  --- Session 20261003_132243_fault_lidar_corruption_moderate ---
+  Loading: rnn_smoothed_output_20261003_132243_fault_lidar_corruption_moderate.csv
+  Loading: scan_filtered_20261003_132243_fault_lidar_corruption_moderate.csv
+  Loading: odom_filtered_20261003_132243_fault_lidar_corruption_moderate.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_132243_fault_lidar_corruption_moderate.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_132243_fault_lidar_corruption_moderate.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 3237 timesteps
+
+  Saved: final_fused_output_v2_20261003_132243_fault_lidar_corruption_moderate.csv (3237 rows)
+  Ground truth: ground_truth_filtered_20261003_132243_fault_lidar_corruption_moderate.csv (real, cleaned, resampled)
+
+  ── Session 20261003_132243_fault_lidar_corruption_moderate — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 0.7887 m  (paper RNN std: 0.0527 m)
+     MAE  : 0.7028 m
+     Std  : 0.3580 m
+  Saved: final_fusion_trajectory_v2_20261003_132243_fault_lidar_corruption_moderate.png
+
+  --- Session 20261003_132243_fault_lidar_corruption_moderate ---
+  Loading: rnn_smoothed_output_20261003_132243_fault_lidar_corruption_moderate.csv
+  Loading: scan_filtered_20261003_132243_fault_lidar_corruption_moderate.csv
+  Loading: odom_filtered_20261003_132243_fault_lidar_corruption_moderate.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_132243_fault_lidar_corruption_moderate.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_132243_fault_lidar_corruption_moderate.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 3237 timesteps
+
+  Saved: final_fused_output_v2_20261003_132243_fault_lidar_corruption_moderate.csv (3237 rows)
+  Ground truth: ground_truth_filtered_20261003_132243_fault_lidar_corruption_moderate.csv (real, cleaned, resampled)
+
+  ── Session 20261003_132243_fault_lidar_corruption_moderate — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 0.8166 m  (paper RNN std: 0.0527 m)
+     MAE  : 0.7220 m
+     Std  : 0.3816 m
+  Saved: final_fusion_trajectory_v2_20261003_132243_fault_lidar_corruption_moderate.png
+
+  --- Session 20261003_132243_fault_lidar_corruption_moderate ---
+  Loading: rnn_smoothed_output_20261003_132243_fault_lidar_corruption_moderate.csv
+  Loading: scan_filtered_20261003_132243_fault_lidar_corruption_moderate.csv
+  Loading: odom_filtered_20261003_132243_fault_lidar_corruption_moderate.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_132243_fault_lidar_corruption_moderate.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_132243_fault_lidar_corruption_moderate.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 3237 timesteps
+
+  Saved: final_fused_output_v2_20261003_132243_fault_lidar_corruption_moderate.csv (3237 rows)
+  Ground truth: ground_truth_filtered_20261003_132243_fault_lidar_corruption_moderate.csv (real, cleaned, resampled)
+
+  ── Session 20261003_132243_fault_lidar_corruption_moderate — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 0.8082 m  (paper RNN std: 0.0527 m)
+     MAE  : 0.7161 m
+     Std  : 0.3748 m
+  Saved: final_fusion_trajectory_v2_20261003_132243_fault_lidar_corruption_moderate.png
+
+  --- Session 20261003_132243_fault_lidar_corruption_severe ---
+  Loading: rnn_smoothed_output_20261003_132243_fault_lidar_corruption_severe.csv
+  Loading: scan_filtered_20261003_132243_fault_lidar_corruption_severe.csv
+  Loading: odom_filtered_20261003_132243_fault_lidar_corruption_severe.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_132243_fault_lidar_corruption_severe.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_132243_fault_lidar_corruption_severe.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 3237 timesteps
+
+  Saved: final_fused_output_v2_20261003_132243_fault_lidar_corruption_severe.csv (3237 rows)
+  Ground truth: ground_truth_filtered_20261003_132243_fault_lidar_corruption_severe.csv (real, cleaned, resampled)
+
+  ── Session 20261003_132243_fault_lidar_corruption_severe — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 0.7893 m  (paper RNN std: 0.0527 m)
+     MAE  : 0.7032 m
+     Std  : 0.3586 m
+  Saved: final_fusion_trajectory_v2_20261003_132243_fault_lidar_corruption_severe.png
+
+  --- Session 20261003_132243_fault_lidar_corruption_severe ---
+  Loading: rnn_smoothed_output_20261003_132243_fault_lidar_corruption_severe.csv
+  Loading: scan_filtered_20261003_132243_fault_lidar_corruption_severe.csv
+  Loading: odom_filtered_20261003_132243_fault_lidar_corruption_severe.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_132243_fault_lidar_corruption_severe.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_132243_fault_lidar_corruption_severe.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 3237 timesteps
+
+  Saved: final_fused_output_v2_20261003_132243_fault_lidar_corruption_severe.csv (3237 rows)
+  Ground truth: ground_truth_filtered_20261003_132243_fault_lidar_corruption_severe.csv (real, cleaned, resampled)
+
+  ── Session 20261003_132243_fault_lidar_corruption_severe — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 0.7885 m  (paper RNN std: 0.0527 m)
+     MAE  : 0.7027 m
+     Std  : 0.3578 m
+  Saved: final_fusion_trajectory_v2_20261003_132243_fault_lidar_corruption_severe.png
+
+  --- Session 20261003_132243_fault_lidar_corruption_severe ---
+  Loading: rnn_smoothed_output_20261003_132243_fault_lidar_corruption_severe.csv
+  Loading: scan_filtered_20261003_132243_fault_lidar_corruption_severe.csv
+  Loading: odom_filtered_20261003_132243_fault_lidar_corruption_severe.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_132243_fault_lidar_corruption_severe.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_132243_fault_lidar_corruption_severe.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 3237 timesteps
+
+  Saved: final_fused_output_v2_20261003_132243_fault_lidar_corruption_severe.csv (3237 rows)
+  Ground truth: ground_truth_filtered_20261003_132243_fault_lidar_corruption_severe.csv (real, cleaned, resampled)
+
+  ── Session 20261003_132243_fault_lidar_corruption_severe — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 0.8207 m  (paper RNN std: 0.0527 m)
+     MAE  : 0.7245 m
+     Std  : 0.3856 m
+  Saved: final_fusion_trajectory_v2_20261003_132243_fault_lidar_corruption_severe.png
+
+  --- Session 20261003_132243_fault_lidar_corruption_severe ---
+  Loading: rnn_smoothed_output_20261003_132243_fault_lidar_corruption_severe.csv
+  Loading: scan_filtered_20261003_132243_fault_lidar_corruption_severe.csv
+  Loading: odom_filtered_20261003_132243_fault_lidar_corruption_severe.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_132243_fault_lidar_corruption_severe.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_132243_fault_lidar_corruption_severe.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 3237 timesteps
+
+  Saved: final_fused_output_v2_20261003_132243_fault_lidar_corruption_severe.csv (3237 rows)
+  Ground truth: ground_truth_filtered_20261003_132243_fault_lidar_corruption_severe.csv (real, cleaned, resampled)
+
+  ── Session 20261003_132243_fault_lidar_corruption_severe — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 0.8047 m  (paper RNN std: 0.0527 m)
+     MAE  : 0.7138 m
+     Std  : 0.3716 m
+  Saved: final_fusion_trajectory_v2_20261003_132243_fault_lidar_corruption_severe.png
+
+  --- Session 20261003_132822_fault_lidar_corruption_mild ---
+  Loading: rnn_smoothed_output_20261003_132822_fault_lidar_corruption_mild.csv
+  Loading: scan_filtered_20261003_132822_fault_lidar_corruption_mild.csv
+  Loading: odom_filtered_20261003_132822_fault_lidar_corruption_mild.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_132822_fault_lidar_corruption_mild.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_132822_fault_lidar_corruption_mild.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 2357 timesteps
+
+  Saved: final_fused_output_v2_20261003_132822_fault_lidar_corruption_mild.csv (2357 rows)
+  Ground truth: ground_truth_filtered_20261003_132822_fault_lidar_corruption_mild.csv (real, cleaned, resampled)
+
+  ── Session 20261003_132822_fault_lidar_corruption_mild — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 0.7647 m  (paper RNN std: 0.0527 m)
+     MAE  : 0.6566 m
+     Std  : 0.3921 m
+  Saved: final_fusion_trajectory_v2_20261003_132822_fault_lidar_corruption_mild.png
+
+  --- Session 20261003_132822_fault_lidar_corruption_mild ---
+  Loading: rnn_smoothed_output_20261003_132822_fault_lidar_corruption_mild.csv
+  Loading: scan_filtered_20261003_132822_fault_lidar_corruption_mild.csv
+  Loading: odom_filtered_20261003_132822_fault_lidar_corruption_mild.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_132822_fault_lidar_corruption_mild.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_132822_fault_lidar_corruption_mild.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 2357 timesteps
+
+  Saved: final_fused_output_v2_20261003_132822_fault_lidar_corruption_mild.csv (2357 rows)
+  Ground truth: ground_truth_filtered_20261003_132822_fault_lidar_corruption_mild.csv (real, cleaned, resampled)
+
+  ── Session 20261003_132822_fault_lidar_corruption_mild — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 0.7646 m  (paper RNN std: 0.0527 m)
+     MAE  : 0.6564 m
+     Std  : 0.3920 m
+  Saved: final_fusion_trajectory_v2_20261003_132822_fault_lidar_corruption_mild.png
+
+  --- Session 20261003_132822_fault_lidar_corruption_mild ---
+  Loading: rnn_smoothed_output_20261003_132822_fault_lidar_corruption_mild.csv
+  Loading: scan_filtered_20261003_132822_fault_lidar_corruption_mild.csv
+  Loading: odom_filtered_20261003_132822_fault_lidar_corruption_mild.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_132822_fault_lidar_corruption_mild.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_132822_fault_lidar_corruption_mild.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 2357 timesteps
+
+  Saved: final_fused_output_v2_20261003_132822_fault_lidar_corruption_mild.csv (2357 rows)
+  Ground truth: ground_truth_filtered_20261003_132822_fault_lidar_corruption_mild.csv (real, cleaned, resampled)
+
+  ── Session 20261003_132822_fault_lidar_corruption_mild — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 0.7900 m  (paper RNN std: 0.0527 m)
+     MAE  : 0.6757 m
+     Std  : 0.4093 m
+  Saved: final_fusion_trajectory_v2_20261003_132822_fault_lidar_corruption_mild.png
+
+  --- Session 20261003_132822_fault_lidar_corruption_mild ---
+  Loading: rnn_smoothed_output_20261003_132822_fault_lidar_corruption_mild.csv
+  Loading: scan_filtered_20261003_132822_fault_lidar_corruption_mild.csv
+  Loading: odom_filtered_20261003_132822_fault_lidar_corruption_mild.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_132822_fault_lidar_corruption_mild.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_132822_fault_lidar_corruption_mild.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 2357 timesteps
+
+  Saved: final_fused_output_v2_20261003_132822_fault_lidar_corruption_mild.csv (2357 rows)
+  Ground truth: ground_truth_filtered_20261003_132822_fault_lidar_corruption_mild.csv (real, cleaned, resampled)
+
+  ── Session 20261003_132822_fault_lidar_corruption_mild — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 0.7866 m  (paper RNN std: 0.0527 m)
+     MAE  : 0.6726 m
+     Std  : 0.4078 m
+  Saved: final_fusion_trajectory_v2_20261003_132822_fault_lidar_corruption_mild.png
+
+  --- Session 20261003_132822_fault_lidar_corruption_moderate ---
+  Loading: rnn_smoothed_output_20261003_132822_fault_lidar_corruption_moderate.csv
+  Loading: scan_filtered_20261003_132822_fault_lidar_corruption_moderate.csv
+  Loading: odom_filtered_20261003_132822_fault_lidar_corruption_moderate.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_132822_fault_lidar_corruption_moderate.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_132822_fault_lidar_corruption_moderate.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 2357 timesteps
+
+  Saved: final_fused_output_v2_20261003_132822_fault_lidar_corruption_moderate.csv (2357 rows)
+  Ground truth: ground_truth_filtered_20261003_132822_fault_lidar_corruption_moderate.csv (real, cleaned, resampled)
+
+  ── Session 20261003_132822_fault_lidar_corruption_moderate — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 0.7648 m  (paper RNN std: 0.0527 m)
+     MAE  : 0.6566 m
+     Std  : 0.3922 m
+  Saved: final_fusion_trajectory_v2_20261003_132822_fault_lidar_corruption_moderate.png
+
+  --- Session 20261003_132822_fault_lidar_corruption_moderate ---
+  Loading: rnn_smoothed_output_20261003_132822_fault_lidar_corruption_moderate.csv
+  Loading: scan_filtered_20261003_132822_fault_lidar_corruption_moderate.csv
+  Loading: odom_filtered_20261003_132822_fault_lidar_corruption_moderate.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_132822_fault_lidar_corruption_moderate.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_132822_fault_lidar_corruption_moderate.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 2357 timesteps
+
+  Saved: final_fused_output_v2_20261003_132822_fault_lidar_corruption_moderate.csv (2357 rows)
+  Ground truth: ground_truth_filtered_20261003_132822_fault_lidar_corruption_moderate.csv (real, cleaned, resampled)
+
+  ── Session 20261003_132822_fault_lidar_corruption_moderate — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 0.7644 m  (paper RNN std: 0.0527 m)
+     MAE  : 0.6563 m
+     Std  : 0.3919 m
+  Saved: final_fusion_trajectory_v2_20261003_132822_fault_lidar_corruption_moderate.png
+
+  --- Session 20261003_132822_fault_lidar_corruption_moderate ---
+  Loading: rnn_smoothed_output_20261003_132822_fault_lidar_corruption_moderate.csv
+  Loading: scan_filtered_20261003_132822_fault_lidar_corruption_moderate.csv
+  Loading: odom_filtered_20261003_132822_fault_lidar_corruption_moderate.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_132822_fault_lidar_corruption_moderate.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_132822_fault_lidar_corruption_moderate.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 2357 timesteps
+
+  Saved: final_fused_output_v2_20261003_132822_fault_lidar_corruption_moderate.csv (2357 rows)
+  Ground truth: ground_truth_filtered_20261003_132822_fault_lidar_corruption_moderate.csv (real, cleaned, resampled)
+
+  ── Session 20261003_132822_fault_lidar_corruption_moderate — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 0.7919 m  (paper RNN std: 0.0527 m)
+     MAE  : 0.6772 m
+     Std  : 0.4107 m
+  Saved: final_fusion_trajectory_v2_20261003_132822_fault_lidar_corruption_moderate.png
+
+  --- Session 20261003_132822_fault_lidar_corruption_moderate ---
+  Loading: rnn_smoothed_output_20261003_132822_fault_lidar_corruption_moderate.csv
+  Loading: scan_filtered_20261003_132822_fault_lidar_corruption_moderate.csv
+  Loading: odom_filtered_20261003_132822_fault_lidar_corruption_moderate.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_132822_fault_lidar_corruption_moderate.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_132822_fault_lidar_corruption_moderate.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 2357 timesteps
+
+  Saved: final_fused_output_v2_20261003_132822_fault_lidar_corruption_moderate.csv (2357 rows)
+  Ground truth: ground_truth_filtered_20261003_132822_fault_lidar_corruption_moderate.csv (real, cleaned, resampled)
+
+  ── Session 20261003_132822_fault_lidar_corruption_moderate — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 0.7842 m  (paper RNN std: 0.0527 m)
+     MAE  : 0.6710 m
+     Std  : 0.4059 m
+  Saved: final_fusion_trajectory_v2_20261003_132822_fault_lidar_corruption_moderate.png
+
+  --- Session 20261003_132822_fault_lidar_corruption_severe ---
+  Loading: rnn_smoothed_output_20261003_132822_fault_lidar_corruption_severe.csv
+  Loading: scan_filtered_20261003_132822_fault_lidar_corruption_severe.csv
+  Loading: odom_filtered_20261003_132822_fault_lidar_corruption_severe.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_132822_fault_lidar_corruption_severe.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_132822_fault_lidar_corruption_severe.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 2357 timesteps
+
+  Saved: final_fused_output_v2_20261003_132822_fault_lidar_corruption_severe.csv (2357 rows)
+  Ground truth: ground_truth_filtered_20261003_132822_fault_lidar_corruption_severe.csv (real, cleaned, resampled)
+
+  ── Session 20261003_132822_fault_lidar_corruption_severe — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 0.7650 m  (paper RNN std: 0.0527 m)
+     MAE  : 0.6569 m
+     Std  : 0.3922 m
+  Saved: final_fusion_trajectory_v2_20261003_132822_fault_lidar_corruption_severe.png
+
+  --- Session 20261003_132822_fault_lidar_corruption_severe ---
+  Loading: rnn_smoothed_output_20261003_132822_fault_lidar_corruption_severe.csv
+  Loading: scan_filtered_20261003_132822_fault_lidar_corruption_severe.csv
+  Loading: odom_filtered_20261003_132822_fault_lidar_corruption_severe.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_132822_fault_lidar_corruption_severe.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_132822_fault_lidar_corruption_severe.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 2357 timesteps
+
+  Saved: final_fused_output_v2_20261003_132822_fault_lidar_corruption_severe.csv (2357 rows)
+  Ground truth: ground_truth_filtered_20261003_132822_fault_lidar_corruption_severe.csv (real, cleaned, resampled)
+
+  ── Session 20261003_132822_fault_lidar_corruption_severe — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 0.7642 m  (paper RNN std: 0.0527 m)
+     MAE  : 0.6561 m
+     Std  : 0.3917 m
+  Saved: final_fusion_trajectory_v2_20261003_132822_fault_lidar_corruption_severe.png
+
+  --- Session 20261003_132822_fault_lidar_corruption_severe ---
+  Loading: rnn_smoothed_output_20261003_132822_fault_lidar_corruption_severe.csv
+  Loading: scan_filtered_20261003_132822_fault_lidar_corruption_severe.csv
+  Loading: odom_filtered_20261003_132822_fault_lidar_corruption_severe.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_132822_fault_lidar_corruption_severe.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_132822_fault_lidar_corruption_severe.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 2357 timesteps
+
+  Saved: final_fused_output_v2_20261003_132822_fault_lidar_corruption_severe.csv (2357 rows)
+  Ground truth: ground_truth_filtered_20261003_132822_fault_lidar_corruption_severe.csv (real, cleaned, resampled)
+
+  ── Session 20261003_132822_fault_lidar_corruption_severe — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 0.7959 m  (paper RNN std: 0.0527 m)
+     MAE  : 0.6814 m
+     Std  : 0.4113 m
+  Saved: final_fusion_trajectory_v2_20261003_132822_fault_lidar_corruption_severe.png
+
+  --- Session 20261003_132822_fault_lidar_corruption_severe ---
+  Loading: rnn_smoothed_output_20261003_132822_fault_lidar_corruption_severe.csv
+  Loading: scan_filtered_20261003_132822_fault_lidar_corruption_severe.csv
+  Loading: odom_filtered_20261003_132822_fault_lidar_corruption_severe.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_132822_fault_lidar_corruption_severe.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_132822_fault_lidar_corruption_severe.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 2357 timesteps
+
+  Saved: final_fused_output_v2_20261003_132822_fault_lidar_corruption_severe.csv (2357 rows)
+  Ground truth: ground_truth_filtered_20261003_132822_fault_lidar_corruption_severe.csv (real, cleaned, resampled)
+
+  ── Session 20261003_132822_fault_lidar_corruption_severe — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 0.7801 m  (paper RNN std: 0.0527 m)
+     MAE  : 0.6681 m
+     Std  : 0.4028 m
+  Saved: final_fusion_trajectory_v2_20261003_132822_fault_lidar_corruption_severe.png
+
+  --- Session 20261003_133250_fault_lidar_corruption_mild ---
+  Loading: rnn_smoothed_output_20261003_133250_fault_lidar_corruption_mild.csv
+  Loading: scan_filtered_20261003_133250_fault_lidar_corruption_mild.csv
+  Loading: odom_filtered_20261003_133250_fault_lidar_corruption_mild.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_133250_fault_lidar_corruption_mild.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_133250_fault_lidar_corruption_mild.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 2681 timesteps
+
+  Saved: final_fused_output_v2_20261003_133250_fault_lidar_corruption_mild.csv (2681 rows)
+  Ground truth: ground_truth_filtered_20261003_133250_fault_lidar_corruption_mild.csv (real, cleaned, resampled)
+
+  ── Session 20261003_133250_fault_lidar_corruption_mild — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 1.2311 m  (paper RNN std: 0.0527 m)
+     MAE  : 1.1694 m
+     Std  : 0.3849 m
+  Saved: final_fusion_trajectory_v2_20261003_133250_fault_lidar_corruption_mild.png
+
+  --- Session 20261003_133250_fault_lidar_corruption_mild ---
+  Loading: rnn_smoothed_output_20261003_133250_fault_lidar_corruption_mild.csv
+  Loading: scan_filtered_20261003_133250_fault_lidar_corruption_mild.csv
+  Loading: odom_filtered_20261003_133250_fault_lidar_corruption_mild.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_133250_fault_lidar_corruption_mild.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_133250_fault_lidar_corruption_mild.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 2681 timesteps
+
+  Saved: final_fused_output_v2_20261003_133250_fault_lidar_corruption_mild.csv (2681 rows)
+  Ground truth: ground_truth_filtered_20261003_133250_fault_lidar_corruption_mild.csv (real, cleaned, resampled)
+
+  ── Session 20261003_133250_fault_lidar_corruption_mild — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 1.2310 m  (paper RNN std: 0.0527 m)
+     MAE  : 1.1693 m
+     Std  : 0.3850 m
+  Saved: final_fusion_trajectory_v2_20261003_133250_fault_lidar_corruption_mild.png
+
+  --- Session 20261003_133250_fault_lidar_corruption_mild ---
+  Loading: rnn_smoothed_output_20261003_133250_fault_lidar_corruption_mild.csv
+  Loading: scan_filtered_20261003_133250_fault_lidar_corruption_mild.csv
+  Loading: odom_filtered_20261003_133250_fault_lidar_corruption_mild.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_133250_fault_lidar_corruption_mild.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_133250_fault_lidar_corruption_mild.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 2681 timesteps
+
+  Saved: final_fused_output_v2_20261003_133250_fault_lidar_corruption_mild.csv (2681 rows)
+  Ground truth: ground_truth_filtered_20261003_133250_fault_lidar_corruption_mild.csv (real, cleaned, resampled)
+
+  ── Session 20261003_133250_fault_lidar_corruption_mild — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 1.2508 m  (paper RNN std: 0.0527 m)
+     MAE  : 1.1915 m
+     Std  : 0.3804 m
+  Saved: final_fusion_trajectory_v2_20261003_133250_fault_lidar_corruption_mild.png
+
+  --- Session 20261003_133250_fault_lidar_corruption_mild ---
+  Loading: rnn_smoothed_output_20261003_133250_fault_lidar_corruption_mild.csv
+  Loading: scan_filtered_20261003_133250_fault_lidar_corruption_mild.csv
+  Loading: odom_filtered_20261003_133250_fault_lidar_corruption_mild.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_133250_fault_lidar_corruption_mild.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_133250_fault_lidar_corruption_mild.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 2681 timesteps
+
+  Saved: final_fused_output_v2_20261003_133250_fault_lidar_corruption_mild.csv (2681 rows)
+  Ground truth: ground_truth_filtered_20261003_133250_fault_lidar_corruption_mild.csv (real, cleaned, resampled)
+
+  ── Session 20261003_133250_fault_lidar_corruption_mild — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 1.2482 m  (paper RNN std: 0.0527 m)
+     MAE  : 1.1888 m
+     Std  : 0.3807 m
+  Saved: final_fusion_trajectory_v2_20261003_133250_fault_lidar_corruption_mild.png
+
+  --- Session 20261003_133250_fault_lidar_corruption_moderate ---
+  Loading: rnn_smoothed_output_20261003_133250_fault_lidar_corruption_moderate.csv
+  Loading: scan_filtered_20261003_133250_fault_lidar_corruption_moderate.csv
+  Loading: odom_filtered_20261003_133250_fault_lidar_corruption_moderate.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_133250_fault_lidar_corruption_moderate.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_133250_fault_lidar_corruption_moderate.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 2681 timesteps
+
+  Saved: final_fused_output_v2_20261003_133250_fault_lidar_corruption_moderate.csv (2681 rows)
+  Ground truth: ground_truth_filtered_20261003_133250_fault_lidar_corruption_moderate.csv (real, cleaned, resampled)
+
+  ── Session 20261003_133250_fault_lidar_corruption_moderate — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 1.2313 m  (paper RNN std: 0.0527 m)
+     MAE  : 1.1695 m
+     Std  : 0.3849 m
+  Saved: final_fusion_trajectory_v2_20261003_133250_fault_lidar_corruption_moderate.png
+
+  --- Session 20261003_133250_fault_lidar_corruption_moderate ---
+  Loading: rnn_smoothed_output_20261003_133250_fault_lidar_corruption_moderate.csv
+  Loading: scan_filtered_20261003_133250_fault_lidar_corruption_moderate.csv
+  Loading: odom_filtered_20261003_133250_fault_lidar_corruption_moderate.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_133250_fault_lidar_corruption_moderate.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_133250_fault_lidar_corruption_moderate.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 2681 timesteps
+
+  Saved: final_fused_output_v2_20261003_133250_fault_lidar_corruption_moderate.csv (2681 rows)
+  Ground truth: ground_truth_filtered_20261003_133250_fault_lidar_corruption_moderate.csv (real, cleaned, resampled)
+
+  ── Session 20261003_133250_fault_lidar_corruption_moderate — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 1.2309 m  (paper RNN std: 0.0527 m)
+     MAE  : 1.1692 m
+     Std  : 0.3851 m
+  Saved: final_fusion_trajectory_v2_20261003_133250_fault_lidar_corruption_moderate.png
+
+  --- Session 20261003_133250_fault_lidar_corruption_moderate ---
+  Loading: rnn_smoothed_output_20261003_133250_fault_lidar_corruption_moderate.csv
+  Loading: scan_filtered_20261003_133250_fault_lidar_corruption_moderate.csv
+  Loading: odom_filtered_20261003_133250_fault_lidar_corruption_moderate.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_133250_fault_lidar_corruption_moderate.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_133250_fault_lidar_corruption_moderate.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 2681 timesteps
+
+  Saved: final_fused_output_v2_20261003_133250_fault_lidar_corruption_moderate.csv (2681 rows)
+  Ground truth: ground_truth_filtered_20261003_133250_fault_lidar_corruption_moderate.csv (real, cleaned, resampled)
+
+  ── Session 20261003_133250_fault_lidar_corruption_moderate — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 1.2527 m  (paper RNN std: 0.0527 m)
+     MAE  : 1.1935 m
+     Std  : 0.3808 m
+  Saved: final_fusion_trajectory_v2_20261003_133250_fault_lidar_corruption_moderate.png
+
+  --- Session 20261003_133250_fault_lidar_corruption_moderate ---
+  Loading: rnn_smoothed_output_20261003_133250_fault_lidar_corruption_moderate.csv
+  Loading: scan_filtered_20261003_133250_fault_lidar_corruption_moderate.csv
+  Loading: odom_filtered_20261003_133250_fault_lidar_corruption_moderate.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_133250_fault_lidar_corruption_moderate.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_133250_fault_lidar_corruption_moderate.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 2681 timesteps
+
+  Saved: final_fused_output_v2_20261003_133250_fault_lidar_corruption_moderate.csv (2681 rows)
+  Ground truth: ground_truth_filtered_20261003_133250_fault_lidar_corruption_moderate.csv (real, cleaned, resampled)
+
+  ── Session 20261003_133250_fault_lidar_corruption_moderate — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 1.2462 m  (paper RNN std: 0.0527 m)
+     MAE  : 1.1866 m
+     Std  : 0.3806 m
+  Saved: final_fusion_trajectory_v2_20261003_133250_fault_lidar_corruption_moderate.png
+
+  --- Session 20261003_133250_fault_lidar_corruption_severe ---
+  Loading: rnn_smoothed_output_20261003_133250_fault_lidar_corruption_severe.csv
+  Loading: scan_filtered_20261003_133250_fault_lidar_corruption_severe.csv
+  Loading: odom_filtered_20261003_133250_fault_lidar_corruption_severe.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_133250_fault_lidar_corruption_severe.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_133250_fault_lidar_corruption_severe.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 2681 timesteps
+
+  Saved: final_fused_output_v2_20261003_133250_fault_lidar_corruption_severe.csv (2681 rows)
+  Ground truth: ground_truth_filtered_20261003_133250_fault_lidar_corruption_severe.csv (real, cleaned, resampled)
+
+  ── Session 20261003_133250_fault_lidar_corruption_severe — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 1.2315 m  (paper RNN std: 0.0527 m)
+     MAE  : 1.1698 m
+     Std  : 0.3850 m
+  Saved: final_fusion_trajectory_v2_20261003_133250_fault_lidar_corruption_severe.png
+
+  --- Session 20261003_133250_fault_lidar_corruption_severe ---
+  Loading: rnn_smoothed_output_20261003_133250_fault_lidar_corruption_severe.csv
+  Loading: scan_filtered_20261003_133250_fault_lidar_corruption_severe.csv
+  Loading: odom_filtered_20261003_133250_fault_lidar_corruption_severe.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_133250_fault_lidar_corruption_severe.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_133250_fault_lidar_corruption_severe.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 2681 timesteps
+
+  Saved: final_fused_output_v2_20261003_133250_fault_lidar_corruption_severe.csv (2681 rows)
+  Ground truth: ground_truth_filtered_20261003_133250_fault_lidar_corruption_severe.csv (real, cleaned, resampled)
+
+  ── Session 20261003_133250_fault_lidar_corruption_severe — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 1.2308 m  (paper RNN std: 0.0527 m)
+     MAE  : 1.1689 m
+     Std  : 0.3854 m
+  Saved: final_fusion_trajectory_v2_20261003_133250_fault_lidar_corruption_severe.png
+
+  --- Session 20261003_133250_fault_lidar_corruption_severe ---
+  Loading: rnn_smoothed_output_20261003_133250_fault_lidar_corruption_severe.csv
+  Loading: scan_filtered_20261003_133250_fault_lidar_corruption_severe.csv
+  Loading: odom_filtered_20261003_133250_fault_lidar_corruption_severe.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_133250_fault_lidar_corruption_severe.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_133250_fault_lidar_corruption_severe.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 2681 timesteps
+
+  Saved: final_fused_output_v2_20261003_133250_fault_lidar_corruption_severe.csv (2681 rows)
+  Ground truth: ground_truth_filtered_20261003_133250_fault_lidar_corruption_severe.csv (real, cleaned, resampled)
+
+  ── Session 20261003_133250_fault_lidar_corruption_severe — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 1.2573 m  (paper RNN std: 0.0527 m)
+     MAE  : 1.1979 m
+     Std  : 0.3820 m
+  Saved: final_fusion_trajectory_v2_20261003_133250_fault_lidar_corruption_severe.png
+
+  --- Session 20261003_133250_fault_lidar_corruption_severe ---
+  Loading: rnn_smoothed_output_20261003_133250_fault_lidar_corruption_severe.csv
+  Loading: scan_filtered_20261003_133250_fault_lidar_corruption_severe.csv
+  Loading: odom_filtered_20261003_133250_fault_lidar_corruption_severe.csv
+  angle_increment = 0.008743 rad  (from scan_filtered_20261003_133250_fault_lidar_corruption_severe.csv)
+  range_max       = 2.500 m  (from scan_filtered_20261003_133250_fault_lidar_corruption_severe.csv)
+  Syncing 540 LiDAR beams to RNN timestamps...
+  Processing 2681 timesteps
+
+  Saved: final_fused_output_v2_20261003_133250_fault_lidar_corruption_severe.csv (2681 rows)
+  Ground truth: ground_truth_filtered_20261003_133250_fault_lidar_corruption_severe.csv (real, cleaned, resampled)
+
+  ── Session 20261003_133250_fault_lidar_corruption_severe — Final Fusion Accuracy vs Ground Truth ──
+     RMSE : 1.2437 m  (paper RNN std: 0.0527 m)
+     MAE  : 1.1833 m
+     Std  : 0.3831 m
+  Saved: final_fusion_trajectory_v2_20261003_133250_fault_lidar_corruption_severe.png
+
+
+========== STAGE 2 REPORT ==========
+RNN on held-out baselines (descriptive):
+  20261003_132243: EKF 0.4152 m  RNN 0.7875 m
+  20261003_132822: EKF 0.4749 m  RNN 0.7631 m
+  20261003_133250: EKF 1.2865 m  RNN 1.2301 m
+
+session                                          base@0.70 proxy@0.70    imp%  imp%@0.98
+  20261003_132243_fault_lidar_corruption_mild       0.8139     0.8102   +0.45      +0.02
+  20261003_132243_fault_lidar_corruption_moderate    0.8166     0.8082   +1.03      +0.05
+  20261003_132243_fault_lidar_corruption_severe     0.8207     0.8047   +1.95      +0.10
+  20261003_132822_fault_lidar_corruption_mild       0.7900     0.7866   +0.43      +0.02
+  20261003_132822_fault_lidar_corruption_moderate    0.7919     0.7842   +0.98      +0.06
+  20261003_132822_fault_lidar_corruption_severe     0.7959     0.7801   +1.99      +0.11
+  20261003_133250_fault_lidar_corruption_mild       1.2508     1.2482   +0.20      +0.01
+  20261003_133250_fault_lidar_corruption_moderate    1.2527     1.2462   +0.53      +0.03
+  20261003_133250_fault_lidar_corruption_severe     1.2573     1.2437   +1.08      +0.06
+
+By severity (mean improvement at 0.70):
+  mild      +0.36%
+  moderate  +0.84%
+  severe    +1.67%
+
+Mean improvement at ALPHA=0.70 over 9 sessions: +0.96%  (original 7 sessions: +2.21%)
+Mean improvement at ALPHA=0.98 (deployed): +0.05%
+D5 verdict (pre-registered >= 5.0%): STOP
+
+Saved: fix_ws/heldout_stage2_a2.csv, fix_ws/heldout_stage2_rnn.csv

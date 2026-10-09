@@ -1,0 +1,277 @@
+nohup: ignoring input
+  Commanded accumulated rotation: 19.4603 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=1.7% (raw columns present)
+  Commanded accumulated rotation: 13.5249 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=7.5% (raw columns present)
+  Commanded accumulated rotation: 15.2765 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=0.0% (NO raw columns)
+excluding baseline 20260714_014615 and its fault tree (health_check FAIL): ['IMU orientation failed to respond to commanded turning: IMU theta range=0.000000 rad, commanded accumulated rotation=15.276486 rad (need IMU range >= 0.5) — matches the dead-IMU signature previously found in session 20260714_014615']
+  Commanded accumulated rotation: 78.6733 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=98.6% (raw columns present)
+  WARNING: 98.6% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  Commanded accumulated rotation: 33.3239 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=100.0% (raw columns present)
+  WARNING: 100.0% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  Commanded accumulated rotation: 25.6286 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=99.5% (raw columns present)
+  WARNING: 99.5% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  Commanded accumulated rotation: 67.1143 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=100.0% (raw columns present)
+  WARNING: 100.0% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  Commanded accumulated rotation: 47.8286 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=100.0% (raw columns present)
+  WARNING: 100.0% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+evaluating 231 sessions
+
+20260712_141740: fixed=0.3325m heuristic=0.3325m lstm=0.3332m  no no
+20260712_141740_fault_imu_bias_large: fixed=9.0831m heuristic=9.0808m lstm=9.0850m  no no
+20260712_141740_fault_imu_bias_medium: fixed=5.8334m heuristic=5.8332m lstm=5.8343m  no no
+20260712_141740_fault_imu_bias_small: fixed=6.8090m heuristic=6.8087m lstm=6.8112m  no no
+20260712_141740_fault_imu_delay_large: fixed=2.5749m heuristic=2.5749m lstm=2.5854m  no no
+20260712_141740_fault_imu_delay_medium: fixed=0.7334m heuristic=0.7334m lstm=0.7364m  no no
+20260712_141740_fault_imu_delay_small: fixed=0.3675m heuristic=0.3675m lstm=0.3675m  BEATS_FIXED BEATS_HEUR
+20260712_141740_fault_imu_drift_fast: fixed=8.4448m heuristic=8.4448m lstm=8.4468m  no no
+20260712_141740_fault_imu_drift_medium: fixed=6.6248m heuristic=6.6248m lstm=6.6275m  no no
+20260712_141740_fault_imu_drift_slow: fixed=3.3800m heuristic=3.3800m lstm=3.3815m  no no
+20260712_141740_fault_imu_dropout_long: fixed=10.5570m heuristic=10.4124m lstm=10.5192m  BEATS_FIXED no
+20260712_141740_fault_imu_dropout_medium: fixed=3.6474m heuristic=4.0093m lstm=3.6988m  no BEATS_HEUR
+20260712_141740_fault_imu_dropout_short: fixed=0.8196m heuristic=0.8483m lstm=0.8266m  no BEATS_HEUR
+20260712_141740_fault_imu_noise_extreme: fixed=4.1832m heuristic=9.4264m lstm=3.9909m  BEATS_FIXED BEATS_HEUR
+20260712_141740_fault_imu_noise_high: fixed=4.0584m heuristic=12.5450m lstm=5.6808m  no BEATS_HEUR
+20260712_141740_fault_imu_noise_low: fixed=2.0797m heuristic=3.9230m lstm=2.1469m  no BEATS_HEUR
+20260712_141740_fault_imu_noise_medium: fixed=4.4382m heuristic=4.0816m lstm=4.6884m  no no
+20260712_141740_fault_odom_bias_large: fixed=8.1785m heuristic=8.1785m lstm=5.6272m  BEATS_FIXED BEATS_HEUR
+20260712_141740_fault_odom_bias_medium: fixed=5.0104m heuristic=5.0104m lstm=4.1543m  BEATS_FIXED BEATS_HEUR
+20260712_141740_fault_odom_bias_small: fixed=3.2574m heuristic=3.2574m lstm=2.9164m  BEATS_FIXED BEATS_HEUR
+20260712_141740_fault_odom_delay_large: fixed=1.0763m heuristic=1.0763m lstm=0.9818m  BEATS_FIXED BEATS_HEUR
+20260712_141740_fault_odom_delay_medium: fixed=0.7150m heuristic=0.7150m lstm=0.6535m  BEATS_FIXED BEATS_HEUR
+20260712_141740_fault_odom_delay_small: fixed=0.3623m heuristic=0.3623m lstm=0.3459m  BEATS_FIXED BEATS_HEUR
+20260712_141740_fault_odom_drift_fast: fixed=1.9978m heuristic=1.9978m lstm=1.7949m  BEATS_FIXED BEATS_HEUR
+20260712_141740_fault_odom_drift_medium: fixed=1.1005m heuristic=1.1005m lstm=1.0140m  BEATS_FIXED BEATS_HEUR
+20260712_141740_fault_odom_drift_slow: fixed=0.5098m heuristic=0.5098m lstm=0.4858m  BEATS_FIXED BEATS_HEUR
+20260712_141740_fault_odom_dropout_long: fixed=2.3304m heuristic=1.3754m lstm=1.9159m  BEATS_FIXED no
+20260712_141740_fault_odom_dropout_medium: fixed=0.9540m heuristic=0.6410m lstm=0.8596m  BEATS_FIXED no
+20260712_141740_fault_odom_dropout_short: fixed=0.3357m heuristic=0.3389m lstm=0.3349m  BEATS_FIXED BEATS_HEUR
+20260712_141740_fault_odom_noise_extreme: fixed=4939.6263m heuristic=88.8090m lstm=1373.6300m  BEATS_FIXED no
+20260712_141740_fault_odom_noise_high: fixed=2468.7154m heuristic=72.5296m lstm=1007.9944m  BEATS_FIXED no
+20260712_141740_fault_odom_noise_low: fixed=410.6487m heuristic=46.6140m lstm=299.0312m  BEATS_FIXED no
+20260712_141740_fault_odom_noise_medium: fixed=1233.7710m heuristic=61.0401m lstm=640.4179m  BEATS_FIXED no
+20260712_144326: fixed=0.5284m heuristic=0.5284m lstm=0.5227m  BEATS_FIXED BEATS_HEUR
+20260712_144326_fault_imu_bias_large: fixed=7.2372m heuristic=7.2402m lstm=7.2418m  no no
+20260712_144326_fault_imu_bias_medium: fixed=4.4674m heuristic=4.4670m lstm=4.4716m  no no
+20260712_144326_fault_imu_bias_small: fixed=5.6946m heuristic=5.6936m lstm=5.6949m  no no
+20260712_144326_fault_imu_delay_large: fixed=2.0133m heuristic=2.0133m lstm=2.0411m  no no
+20260712_144326_fault_imu_delay_medium: fixed=1.0834m heuristic=1.0834m lstm=1.0696m  BEATS_FIXED BEATS_HEUR
+20260712_144326_fault_imu_delay_small: fixed=0.6333m heuristic=0.6333m lstm=0.6254m  BEATS_FIXED BEATS_HEUR
+20260712_144326_fault_imu_drift_fast: fixed=5.7724m heuristic=5.7724m lstm=5.7147m  BEATS_FIXED BEATS_HEUR
+20260712_144326_fault_imu_drift_medium: fixed=8.3489m heuristic=8.3489m lstm=8.3109m  BEATS_FIXED BEATS_HEUR
+20260712_144326_fault_imu_drift_slow: fixed=3.8600m heuristic=3.8600m lstm=3.8591m  BEATS_FIXED BEATS_HEUR
+20260712_144326_fault_imu_dropout_long: fixed=1.9050m heuristic=2.2259m lstm=1.9739m  no BEATS_HEUR
+20260712_144326_fault_imu_dropout_medium: fixed=0.3452m heuristic=0.3452m lstm=0.3407m  BEATS_FIXED BEATS_HEUR
+20260712_144326_fault_imu_dropout_short: fixed=0.4210m heuristic=0.4210m lstm=0.4153m  BEATS_FIXED BEATS_HEUR
+20260712_144326_fault_imu_noise_extreme: fixed=3.7014m heuristic=5.9176m lstm=4.1884m  no BEATS_HEUR
+20260712_144326_fault_imu_noise_high: fixed=3.8307m heuristic=2.8145m lstm=2.5795m  BEATS_FIXED BEATS_HEUR
+20260712_144326_fault_imu_noise_low: fixed=2.1706m heuristic=1.5596m lstm=2.7084m  no no
+20260712_144326_fault_imu_noise_medium: fixed=5.7482m heuristic=3.9504m lstm=4.6958m  BEATS_FIXED no
+20260712_144326_fault_odom_bias_large: fixed=8.1810m heuristic=8.1810m lstm=2.2712m  BEATS_FIXED BEATS_HEUR
+20260712_144326_fault_odom_bias_medium: fixed=3.9877m heuristic=3.9877m lstm=2.1236m  BEATS_FIXED BEATS_HEUR
+20260712_144326_fault_odom_bias_small: fixed=1.4937m heuristic=1.4937m lstm=1.1891m  BEATS_FIXED BEATS_HEUR
+20260712_144326_fault_odom_delay_large: fixed=1.1186m heuristic=1.1186m lstm=1.0460m  BEATS_FIXED BEATS_HEUR
+20260712_144326_fault_odom_delay_medium: fixed=0.8664m heuristic=0.8664m lstm=0.8251m  BEATS_FIXED BEATS_HEUR
+20260712_144326_fault_odom_delay_small: fixed=0.6172m heuristic=0.6172m lstm=0.5942m  BEATS_FIXED BEATS_HEUR
+20260712_144326_fault_odom_drift_fast: fixed=0.7742m heuristic=0.7742m lstm=0.6449m  BEATS_FIXED BEATS_HEUR
+20260712_144326_fault_odom_drift_medium: fixed=0.4826m heuristic=0.4826m lstm=0.4575m  BEATS_FIXED BEATS_HEUR
+20260712_144326_fault_odom_drift_slow: fixed=0.4668m heuristic=0.4668m lstm=0.4666m  BEATS_FIXED BEATS_HEUR
+20260712_144326_fault_odom_dropout_long: fixed=0.9675m heuristic=0.8993m lstm=0.8728m  BEATS_FIXED BEATS_HEUR
+20260712_144326_fault_odom_dropout_medium: fixed=0.8653m heuristic=0.8653m lstm=0.8070m  BEATS_FIXED BEATS_HEUR
+20260712_144326_fault_odom_dropout_short: fixed=0.4802m heuristic=0.5532m lstm=0.4707m  BEATS_FIXED BEATS_HEUR
+20260712_144326_fault_odom_noise_extreme: fixed=3448.4379m heuristic=80.7325m lstm=1062.3615m  BEATS_FIXED no
+20260712_144326_fault_odom_noise_high: fixed=1722.9067m heuristic=61.4582m lstm=744.2486m  BEATS_FIXED no
+20260712_144326_fault_odom_noise_low: fixed=285.1286m heuristic=32.0719m lstm=215.8266m  BEATS_FIXED no
+20260712_144326_fault_odom_noise_medium: fixed=860.1539m heuristic=44.5706m lstm=468.7818m  BEATS_FIXED no
+20260824_094119: fixed=0.6467m heuristic=0.6466m lstm=0.6439m  BEATS_FIXED BEATS_HEUR
+20260824_094119_fault_imu_bias_large: fixed=12.6577m heuristic=12.6563m lstm=12.6474m  BEATS_FIXED BEATS_HEUR
+20260824_094119_fault_imu_bias_medium: fixed=7.2704m heuristic=7.2702m lstm=7.2608m  BEATS_FIXED BEATS_HEUR
+20260824_094119_fault_imu_bias_small: fixed=11.6991m heuristic=11.6973m lstm=11.6981m  BEATS_FIXED no
+20260824_094119_fault_imu_delay_large: fixed=2.2261m heuristic=2.3586m lstm=2.2431m  no BEATS_HEUR
+20260824_094119_fault_imu_delay_medium: fixed=2.5596m heuristic=2.7077m lstm=2.6168m  no BEATS_HEUR
+20260824_094119_fault_imu_delay_small: fixed=0.8618m heuristic=0.8695m lstm=0.8626m  no BEATS_HEUR
+20260824_094119_fault_imu_drift_fast: fixed=14.9303m heuristic=14.9302m lstm=14.9091m  BEATS_FIXED BEATS_HEUR
+20260824_094119_fault_imu_drift_medium: fixed=10.6257m heuristic=10.6259m lstm=10.6008m  BEATS_FIXED BEATS_HEUR
+20260824_094119_fault_imu_drift_slow: fixed=3.3541m heuristic=3.3540m lstm=3.3542m  no no
+20260824_094119_fault_imu_dropout_long: fixed=5.7429m heuristic=5.7512m lstm=5.7355m  BEATS_FIXED BEATS_HEUR
+20260824_094119_fault_imu_dropout_medium: fixed=0.7022m heuristic=0.9685m lstm=0.6859m  BEATS_FIXED BEATS_HEUR
+20260824_094119_fault_imu_dropout_short: fixed=0.6469m heuristic=0.6468m lstm=0.6433m  BEATS_FIXED BEATS_HEUR
+20260824_094119_fault_imu_noise_extreme: fixed=8.4672m heuristic=13.3418m lstm=7.6817m  BEATS_FIXED BEATS_HEUR
+20260824_094119_fault_imu_noise_high: fixed=5.1055m heuristic=4.4554m lstm=3.8292m  BEATS_FIXED BEATS_HEUR
+20260824_094119_fault_imu_noise_low: fixed=4.5338m heuristic=2.9098m lstm=2.9454m  BEATS_FIXED no
+20260824_094119_fault_imu_noise_medium: fixed=7.1566m heuristic=13.3942m lstm=9.1921m  no BEATS_HEUR
+20260824_094119_fault_odom_bias_large: fixed=8.7589m heuristic=8.7628m lstm=8.2162m  BEATS_FIXED BEATS_HEUR
+20260824_094119_fault_odom_bias_medium: fixed=5.0852m heuristic=5.0870m lstm=4.1215m  BEATS_FIXED BEATS_HEUR
+20260824_094119_fault_odom_bias_small: fixed=2.3326m heuristic=2.3330m lstm=1.8748m  BEATS_FIXED BEATS_HEUR
+20260824_094119_fault_odom_delay_large: fixed=0.7658m heuristic=0.7659m lstm=0.6406m  BEATS_FIXED BEATS_HEUR
+20260824_094119_fault_odom_delay_medium: fixed=0.9770m heuristic=0.9768m lstm=0.9693m  BEATS_FIXED BEATS_HEUR
+20260824_094119_fault_odom_delay_small: fixed=0.7080m heuristic=0.7077m lstm=0.7009m  BEATS_FIXED BEATS_HEUR
+20260824_094119_fault_odom_drift_fast: fixed=0.9777m heuristic=0.9776m lstm=0.8635m  BEATS_FIXED BEATS_HEUR
+20260824_094119_fault_odom_drift_medium: fixed=0.6703m heuristic=0.6701m lstm=0.6348m  BEATS_FIXED BEATS_HEUR
+20260824_094119_fault_odom_drift_slow: fixed=0.6118m heuristic=0.6116m lstm=0.6086m  BEATS_FIXED BEATS_HEUR
+20260824_094119_fault_odom_dropout_long: fixed=1.0160m heuristic=0.6624m lstm=0.9121m  BEATS_FIXED no
+20260824_094119_fault_odom_dropout_medium: fixed=1.3266m heuristic=0.7940m lstm=1.2720m  BEATS_FIXED no
+20260824_094119_fault_odom_dropout_short: fixed=0.7432m heuristic=0.7434m lstm=0.7300m  BEATS_FIXED BEATS_HEUR
+20260824_094119_fault_odom_noise_extreme: fixed=2913.1527m heuristic=147.4058m lstm=1146.7430m  BEATS_FIXED no
+20260824_094119_fault_odom_noise_high: fixed=1454.4772m heuristic=109.3114m lstm=678.5787m  BEATS_FIXED no
+20260824_094119_fault_odom_noise_low: fixed=241.1117m heuristic=36.8897m lstm=182.2380m  BEATS_FIXED no
+20260824_094119_fault_odom_noise_medium: fixed=726.2402m heuristic=74.3216m lstm=420.6671m  BEATS_FIXED no
+20260824_095427: fixed=2.3411m heuristic=2.3411m lstm=2.3488m  no no
+20260824_095427_fault_imu_bias_large: fixed=16.8051m heuristic=16.8067m lstm=16.7842m  BEATS_FIXED BEATS_HEUR
+20260824_095427_fault_imu_bias_medium: fixed=12.1171m heuristic=12.1166m lstm=12.1042m  BEATS_FIXED BEATS_HEUR
+20260824_095427_fault_imu_bias_small: fixed=11.2357m heuristic=11.2364m lstm=11.2215m  BEATS_FIXED BEATS_HEUR
+20260824_095427_fault_imu_delay_large: fixed=4.2825m heuristic=4.2858m lstm=4.3177m  no no
+20260824_095427_fault_imu_delay_medium: fixed=1.2201m heuristic=1.1770m lstm=1.2059m  BEATS_FIXED no
+20260824_095427_fault_imu_delay_small: fixed=2.1790m heuristic=2.1826m lstm=2.1690m  BEATS_FIXED BEATS_HEUR
+20260824_095427_fault_imu_drift_fast: fixed=13.3608m heuristic=13.3628m lstm=13.3827m  no no
+20260824_095427_fault_imu_drift_medium: fixed=12.3179m heuristic=12.3215m lstm=12.3033m  BEATS_FIXED BEATS_HEUR
+20260824_095427_fault_imu_drift_slow: fixed=6.1425m heuristic=6.1458m lstm=6.1718m  no no
+20260824_095427_fault_imu_dropout_long: fixed=14.8490m heuristic=15.3170m lstm=14.8557m  no BEATS_HEUR
+20260824_095427_fault_imu_dropout_medium: fixed=6.4595m heuristic=7.2441m lstm=6.4382m  BEATS_FIXED BEATS_HEUR
+20260824_095427_fault_imu_dropout_short: fixed=2.2087m heuristic=2.1731m lstm=2.1883m  BEATS_FIXED no
+20260824_095427_fault_imu_noise_extreme: fixed=7.1255m heuristic=8.3105m lstm=7.1454m  no BEATS_HEUR
+20260824_095427_fault_imu_noise_high: fixed=8.8129m heuristic=4.6385m lstm=6.9113m  BEATS_FIXED no
+20260824_095427_fault_imu_noise_low: fixed=3.8831m heuristic=5.4431m lstm=5.4335m  no BEATS_HEUR
+20260824_095427_fault_imu_noise_medium: fixed=10.6873m heuristic=5.5548m lstm=10.6638m  BEATS_FIXED no
+20260824_095427_fault_odom_bias_large: fixed=11.4273m heuristic=11.4739m lstm=10.5913m  BEATS_FIXED BEATS_HEUR
+20260824_095427_fault_odom_bias_medium: fixed=6.1431m heuristic=6.1562m lstm=5.5700m  BEATS_FIXED BEATS_HEUR
+20260824_095427_fault_odom_bias_small: fixed=2.8604m heuristic=2.8524m lstm=2.4392m  BEATS_FIXED BEATS_HEUR
+20260824_095427_fault_odom_delay_large: fixed=1.7911m heuristic=1.7930m lstm=1.8759m  no no
+20260824_095427_fault_odom_delay_medium: fixed=1.8498m heuristic=1.8479m lstm=1.9232m  no no
+20260824_095427_fault_odom_delay_small: fixed=2.1782m heuristic=2.1772m lstm=2.2186m  no no
+20260824_095427_fault_odom_drift_fast: fixed=1.3586m heuristic=1.3557m lstm=1.3877m  no no
+20260824_095427_fault_odom_drift_medium: fixed=1.7682m heuristic=1.7673m lstm=1.8117m  no no
+20260824_095427_fault_odom_drift_slow: fixed=2.1404m heuristic=2.1402m lstm=2.1618m  no no
+20260824_095427_fault_odom_dropout_long: fixed=2.8064m heuristic=3.0239m lstm=2.7664m  BEATS_FIXED BEATS_HEUR
+20260824_095427_fault_odom_dropout_medium: fixed=2.0562m heuristic=2.3546m lstm=2.0205m  BEATS_FIXED BEATS_HEUR
+20260824_095427_fault_odom_dropout_short: fixed=2.0868m heuristic=2.0210m lstm=2.0902m  no no
+20260824_095427_fault_odom_noise_extreme: fixed=3677.9424m heuristic=73.2218m lstm=1134.1651m  BEATS_FIXED no
+20260824_095427_fault_odom_noise_high: fixed=1843.7491m heuristic=58.6602m lstm=758.4713m  BEATS_FIXED no
+20260824_095427_fault_odom_noise_low: fixed=306.2247m heuristic=36.6593m lstm=222.3138m  BEATS_FIXED no
+20260824_095427_fault_odom_noise_medium: fixed=922.2066m heuristic=47.5121m lstm=440.0959m  BEATS_FIXED no
+20260824_095712: fixed=2.1706m heuristic=2.1666m lstm=2.1903m  no no
+20260824_095712_fault_imu_bias_large: fixed=8.3264m heuristic=8.3161m lstm=8.3496m  no no
+20260824_095712_fault_imu_bias_medium: fixed=6.1543m heuristic=6.1521m lstm=6.1397m  BEATS_FIXED BEATS_HEUR
+20260824_095712_fault_imu_bias_small: fixed=6.5362m heuristic=6.5334m lstm=6.5799m  no no
+20260824_095712_fault_imu_delay_large: fixed=3.7047m heuristic=3.6997m lstm=3.6993m  BEATS_FIXED BEATS_HEUR
+20260824_095712_fault_imu_delay_medium: fixed=2.1996m heuristic=2.1961m lstm=2.2018m  no no
+20260824_095712_fault_imu_delay_small: fixed=2.1661m heuristic=2.1593m lstm=2.1784m  no no
+20260824_095712_fault_imu_drift_fast: fixed=6.9072m heuristic=6.9120m lstm=6.9179m  no no
+20260824_095712_fault_imu_drift_medium: fixed=7.4485m heuristic=7.4498m lstm=7.4291m  BEATS_FIXED BEATS_HEUR
+20260824_095712_fault_imu_drift_slow: fixed=4.0345m heuristic=4.0332m lstm=4.0525m  no no
+20260824_095712_fault_imu_dropout_long: fixed=7.8913m heuristic=8.3472m lstm=7.9154m  no BEATS_HEUR
+20260824_095712_fault_imu_dropout_medium: fixed=2.2995m heuristic=2.2951m lstm=2.3219m  no no
+20260824_095712_fault_imu_dropout_short: fixed=2.1799m heuristic=2.1758m lstm=2.2002m  no no
+20260824_095712_fault_imu_noise_extreme: fixed=3.6857m heuristic=5.0118m lstm=3.6545m  BEATS_FIXED BEATS_HEUR
+20260824_095712_fault_imu_noise_high: fixed=3.4888m heuristic=4.9197m lstm=3.6609m  no BEATS_HEUR
+20260824_095712_fault_imu_noise_low: fixed=2.3476m heuristic=2.7679m lstm=3.6076m  no no
+20260824_095712_fault_imu_noise_medium: fixed=4.1952m heuristic=6.1558m lstm=5.1754m  no BEATS_HEUR
+20260824_095712_fault_odom_bias_large: fixed=7.1573m heuristic=7.1656m lstm=5.0956m  BEATS_FIXED BEATS_HEUR
+20260824_095712_fault_odom_bias_medium: fixed=3.6267m heuristic=3.6211m lstm=3.4052m  BEATS_FIXED BEATS_HEUR
+20260824_095712_fault_odom_bias_small: fixed=1.9931m heuristic=1.9853m lstm=1.9611m  BEATS_FIXED BEATS_HEUR
+20260824_095712_fault_odom_delay_large: fixed=2.1187m heuristic=2.1163m lstm=2.1466m  no no
+20260824_095712_fault_odom_delay_medium: fixed=2.1642m heuristic=2.1610m lstm=2.1760m  no no
+20260824_095712_fault_odom_delay_small: fixed=2.1992m heuristic=2.1918m lstm=2.2101m  no no
+20260824_095712_fault_odom_drift_fast: fixed=1.9124m heuristic=1.9073m lstm=1.9331m  no no
+20260824_095712_fault_odom_drift_medium: fixed=2.0133m heuristic=2.0089m lstm=2.0416m  no no
+20260824_095712_fault_odom_drift_slow: fixed=2.1118m heuristic=2.1077m lstm=2.1362m  no no
+20260824_095712_fault_odom_dropout_long: fixed=2.1962m heuristic=2.6334m lstm=2.2423m  no BEATS_HEUR
+20260824_095712_fault_odom_dropout_medium: fixed=2.9950m heuristic=2.4949m lstm=2.9725m  BEATS_FIXED no
+20260824_095712_fault_odom_dropout_short: fixed=1.8919m heuristic=2.0460m lstm=1.9223m  no BEATS_HEUR
+20260824_095712_fault_odom_noise_extreme: fixed=1994.6469m heuristic=95.9375m lstm=683.8547m  BEATS_FIXED no
+20260824_095712_fault_odom_noise_high: fixed=996.7541m heuristic=73.0203m lstm=425.9611m  BEATS_FIXED no
+20260824_095712_fault_odom_noise_low: fixed=165.6252m heuristic=30.4749m lstm=128.9597m  BEATS_FIXED no
+20260824_095712_fault_odom_noise_medium: fixed=498.0318m heuristic=51.4608m lstm=269.4374m  BEATS_FIXED no
+20260824_095915: fixed=1.1788m heuristic=1.1737m lstm=1.1749m  BEATS_FIXED no
+20260824_095915_fault_imu_bias_large: fixed=12.2629m heuristic=12.2670m lstm=12.2712m  no no
+20260824_095915_fault_imu_bias_medium: fixed=6.5494m heuristic=6.5529m lstm=6.5575m  no no
+20260824_095915_fault_imu_bias_small: fixed=17.3615m heuristic=17.3600m lstm=17.3597m  BEATS_FIXED BEATS_HEUR
+20260824_095915_fault_imu_delay_large: fixed=2.7954m heuristic=2.6268m lstm=2.7822m  BEATS_FIXED no
+20260824_095915_fault_imu_delay_medium: fixed=1.0914m heuristic=1.2858m lstm=1.1203m  no BEATS_HEUR
+20260824_095915_fault_imu_delay_small: fixed=1.0622m heuristic=1.0133m lstm=1.0734m  no no
+20260824_095915_fault_imu_drift_fast: fixed=12.4293m heuristic=12.4303m lstm=12.3462m  BEATS_FIXED BEATS_HEUR
+20260824_095915_fault_imu_drift_medium: fixed=16.5972m heuristic=16.5986m lstm=16.4926m  BEATS_FIXED BEATS_HEUR
+20260824_095915_fault_imu_drift_slow: fixed=5.8782m heuristic=5.8823m lstm=5.8317m  BEATS_FIXED BEATS_HEUR
+20260824_095915_fault_imu_dropout_long: fixed=3.9000m heuristic=3.8994m lstm=3.9745m  no no
+20260824_095915_fault_imu_dropout_medium: fixed=3.4693m heuristic=3.4122m lstm=3.4696m  no no
+20260824_095915_fault_imu_dropout_short: fixed=1.9021m heuristic=1.9019m lstm=1.9240m  no no
+20260824_095915_fault_imu_noise_extreme: fixed=11.4855m heuristic=14.8720m lstm=13.4420m  no BEATS_HEUR
+20260824_095915_fault_imu_noise_high: fixed=12.9406m heuristic=7.8174m lstm=12.3348m  BEATS_FIXED no
+20260824_095915_fault_imu_noise_low: fixed=8.1230m heuristic=5.4843m lstm=6.7305m  BEATS_FIXED no
+20260824_095915_fault_imu_noise_medium: fixed=11.0359m heuristic=11.9060m lstm=13.5266m  no no
+20260824_095915_fault_odom_bias_large: fixed=7.3343m heuristic=7.2246m lstm=6.5632m  BEATS_FIXED BEATS_HEUR
+20260824_095915_fault_odom_bias_medium: fixed=2.4985m heuristic=2.4581m lstm=2.2473m  BEATS_FIXED BEATS_HEUR
+20260824_095915_fault_odom_bias_small: fixed=0.8958m heuristic=0.9181m lstm=0.9159m  no BEATS_HEUR
+20260824_095915_fault_odom_delay_large: fixed=2.1929m heuristic=2.1815m lstm=1.9890m  BEATS_FIXED BEATS_HEUR
+20260824_095915_fault_odom_delay_medium: fixed=1.3884m heuristic=1.3355m lstm=1.3357m  BEATS_FIXED no
+20260824_095915_fault_odom_delay_small: fixed=1.2411m heuristic=1.2092m lstm=1.2457m  no no
+20260824_095915_fault_odom_drift_fast: fixed=1.3719m heuristic=1.3845m lstm=1.3525m  BEATS_FIXED BEATS_HEUR
+20260824_095915_fault_odom_drift_medium: fixed=1.2876m heuristic=1.2914m lstm=1.2737m  BEATS_FIXED BEATS_HEUR
+20260824_095915_fault_odom_drift_slow: fixed=1.2178m heuristic=1.2156m lstm=1.2114m  BEATS_FIXED BEATS_HEUR
+20260824_095915_fault_odom_dropout_long: fixed=1.7262m heuristic=1.6792m lstm=1.6448m  BEATS_FIXED BEATS_HEUR
+20260824_095915_fault_odom_dropout_medium: fixed=1.4720m heuristic=1.4698m lstm=1.4270m  BEATS_FIXED BEATS_HEUR
+20260824_095915_fault_odom_dropout_short: fixed=1.1499m heuristic=1.1452m lstm=1.1222m  BEATS_FIXED BEATS_HEUR
+20260824_095915_fault_odom_noise_extreme: fixed=2880.0902m heuristic=89.7668m lstm=1078.7463m  BEATS_FIXED no
+20260824_095915_fault_odom_noise_high: fixed=1437.2563m heuristic=70.6992m lstm=697.0883m  BEATS_FIXED no
+20260824_095915_fault_odom_noise_low: fixed=236.8404m heuristic=40.9594m lstm=179.4046m  BEATS_FIXED no
+20260824_095915_fault_odom_noise_medium: fixed=716.8170m heuristic=55.6347m lstm=440.6428m  BEATS_FIXED no
+20260824_100318: fixed=0.9440m heuristic=0.9486m lstm=0.9480m  no BEATS_HEUR
+20260824_100318_fault_imu_bias_large: fixed=7.8120m heuristic=7.8053m lstm=7.8133m  no no
+20260824_100318_fault_imu_bias_medium: fixed=7.1564m heuristic=7.1567m lstm=7.1662m  no no
+20260824_100318_fault_imu_bias_small: fixed=5.5042m heuristic=5.5040m lstm=5.5011m  BEATS_FIXED BEATS_HEUR
+20260824_100318_fault_imu_delay_large: fixed=2.5257m heuristic=2.5532m lstm=2.5266m  no BEATS_HEUR
+20260824_100318_fault_imu_delay_medium: fixed=1.3379m heuristic=1.4476m lstm=1.3361m  BEATS_FIXED BEATS_HEUR
+20260824_100318_fault_imu_delay_small: fixed=1.0037m heuristic=1.0246m lstm=1.0010m  BEATS_FIXED BEATS_HEUR
+20260824_100318_fault_imu_drift_fast: fixed=13.0035m heuristic=13.0106m lstm=12.9928m  BEATS_FIXED BEATS_HEUR
+20260824_100318_fault_imu_drift_medium: fixed=7.0210m heuristic=7.0339m lstm=7.0115m  BEATS_FIXED BEATS_HEUR
+20260824_100318_fault_imu_drift_slow: fixed=2.7178m heuristic=2.7285m lstm=2.7124m  BEATS_FIXED BEATS_HEUR
+20260824_100318_fault_imu_dropout_long: fixed=7.3823m heuristic=7.0822m lstm=7.3777m  BEATS_FIXED no
+20260824_100318_fault_imu_dropout_medium: fixed=2.2392m heuristic=3.1003m lstm=2.2665m  no BEATS_HEUR
+20260824_100318_fault_imu_dropout_short: fixed=0.9441m heuristic=0.9486m lstm=0.9481m  no BEATS_HEUR
+20260824_100318_fault_imu_noise_extreme: fixed=4.0753m heuristic=5.5320m lstm=5.0741m  no BEATS_HEUR
+20260824_100318_fault_imu_noise_high: fixed=4.9054m heuristic=6.1469m lstm=5.1773m  no BEATS_HEUR
+20260824_100318_fault_imu_noise_low: fixed=1.7062m heuristic=2.5013m lstm=1.7464m  no BEATS_HEUR
+20260824_100318_fault_imu_noise_medium: fixed=4.1874m heuristic=10.2642m lstm=5.0882m  no BEATS_HEUR
+20260824_100318_fault_odom_bias_large: fixed=7.1269m heuristic=7.2497m lstm=6.5907m  BEATS_FIXED BEATS_HEUR
+20260824_100318_fault_odom_bias_medium: fixed=4.3880m heuristic=4.4393m lstm=4.0216m  BEATS_FIXED BEATS_HEUR
+20260824_100318_fault_odom_bias_small: fixed=2.6434m heuristic=2.6521m lstm=2.4788m  BEATS_FIXED BEATS_HEUR
+20260824_100318_fault_odom_delay_large: fixed=1.0212m heuristic=1.0241m lstm=0.9688m  BEATS_FIXED BEATS_HEUR
+20260824_100318_fault_odom_delay_medium: fixed=1.1009m heuristic=1.1018m lstm=1.0571m  BEATS_FIXED BEATS_HEUR
+20260824_100318_fault_odom_delay_small: fixed=0.9614m heuristic=0.9726m lstm=0.9611m  BEATS_FIXED BEATS_HEUR
+20260824_100318_fault_odom_drift_fast: fixed=1.5695m heuristic=1.5715m lstm=1.5048m  BEATS_FIXED BEATS_HEUR
+20260824_100318_fault_odom_drift_medium: fixed=1.1620m heuristic=1.1633m lstm=1.1422m  BEATS_FIXED BEATS_HEUR
+20260824_100318_fault_odom_drift_slow: fixed=0.9850m heuristic=0.9879m lstm=0.9858m  no BEATS_HEUR
+20260824_100318_fault_odom_dropout_long: fixed=1.6684m heuristic=1.2322m lstm=1.5818m  BEATS_FIXED no
+20260824_100318_fault_odom_dropout_medium: fixed=1.7390m heuristic=1.3359m lstm=1.6213m  BEATS_FIXED no
+20260824_100318_fault_odom_dropout_short: fixed=1.2719m heuristic=1.2801m lstm=1.2314m  BEATS_FIXED BEATS_HEUR
+20260824_100318_fault_odom_noise_extreme: fixed=2167.1421m heuristic=48.8649m lstm=752.7068m  BEATS_FIXED no
+20260824_100318_fault_odom_noise_high: fixed=1085.3238m heuristic=36.5268m lstm=418.4529m  BEATS_FIXED no
+20260824_100318_fault_odom_noise_low: fixed=180.1475m heuristic=22.0940m lstm=125.0742m  BEATS_FIXED no
+20260824_100318_fault_odom_noise_medium: fixed=542.5776m heuristic=29.8128m lstm=275.7320m  BEATS_FIXED no
+
+=== overall ===
+LSTM beats Fixed:     148/231
+LSTM beats Heuristic: 129/231
+
+=== by fault type (sensor/fault_type) ===
+  imu/bias: beats_fixed 9/21, beats_heuristic 8/21
+  imu/delay: beats_fixed 9/21, beats_heuristic 12/21
+  imu/drift: beats_fixed 13/21, beats_heuristic 13/21
+  imu/dropout: beats_fixed 9/21, beats_heuristic 13/21
+  imu/noise: beats_fixed 11/28, beats_heuristic 18/28
+  odom/bias: beats_fixed 20/21, beats_heuristic 21/21
+  odom/delay: beats_fixed 14/21, beats_heuristic 13/21
+  odom/drift: beats_fixed 14/21, beats_heuristic 15/21
+  odom/dropout: beats_fixed 18/21, beats_heuristic 13/21
+  odom/noise: beats_fixed 28/28, beats_heuristic 0/28
+
+=== baseline sessions (no fault, n=7) ===
+  mean RMSE: fixed=1.1632 heuristic=1.1625 lstm=1.1660
+
+wrote /home/kushagra/ws_mobile/sensor_logs/lstm_adaptive_ekf_results.csv

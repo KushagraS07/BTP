@@ -1,0 +1,155 @@
+nohup: ignoring input
+  Commanded accumulated rotation: 19.4603 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=1.7% (raw columns present)
+  Commanded accumulated rotation: 13.5249 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=7.5% (raw columns present)
+  Commanded accumulated rotation: 15.2765 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=0.0% (NO raw columns)
+excluding baseline 20260714_014615 and its fault tree (health_check FAIL): ['IMU orientation failed to respond to commanded turning: IMU theta range=0.000000 rad, commanded accumulated rotation=15.276486 rad (need IMU range >= 0.5) — matches the dead-IMU signature previously found in session 20260714_014615']
+  Commanded accumulated rotation: 78.6733 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=98.6% (raw columns present)
+  WARNING: 98.6% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  Commanded accumulated rotation: 33.3239 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=100.0% (raw columns present)
+  WARNING: 100.0% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  Commanded accumulated rotation: 25.6286 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=99.5% (raw columns present)
+  WARNING: 99.5% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  Commanded accumulated rotation: 67.1143 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=100.0% (raw columns present)
+  WARNING: 100.0% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  Commanded accumulated rotation: 47.8286 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=100.0% (raw columns present)
+  WARNING: 100.0% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+recording r_imu on 119 sessions
+[1/119] 20260712_141740
+[2/119] 20260712_141740_fault_imu_bias_large
+[3/119] 20260712_141740_fault_imu_bias_medium
+[4/119] 20260712_141740_fault_imu_bias_small
+[5/119] 20260712_141740_fault_imu_delay_large
+[6/119] 20260712_141740_fault_imu_delay_medium
+[7/119] 20260712_141740_fault_imu_delay_small
+[8/119] 20260712_141740_fault_imu_drift_fast
+[9/119] 20260712_141740_fault_imu_drift_medium
+[10/119] 20260712_141740_fault_imu_drift_slow
+[11/119] 20260712_141740_fault_imu_dropout_long
+[12/119] 20260712_141740_fault_imu_dropout_medium
+[13/119] 20260712_141740_fault_imu_dropout_short
+[14/119] 20260712_141740_fault_imu_noise_extreme
+[15/119] 20260712_141740_fault_imu_noise_high
+[16/119] 20260712_141740_fault_imu_noise_low
+[17/119] 20260712_141740_fault_imu_noise_medium
+[18/119] 20260712_144326
+[19/119] 20260712_144326_fault_imu_bias_large
+[20/119] 20260712_144326_fault_imu_bias_medium
+[21/119] 20260712_144326_fault_imu_bias_small
+[22/119] 20260712_144326_fault_imu_delay_large
+[23/119] 20260712_144326_fault_imu_delay_medium
+[24/119] 20260712_144326_fault_imu_delay_small
+[25/119] 20260712_144326_fault_imu_drift_fast
+[26/119] 20260712_144326_fault_imu_drift_medium
+[27/119] 20260712_144326_fault_imu_drift_slow
+[28/119] 20260712_144326_fault_imu_dropout_long
+[29/119] 20260712_144326_fault_imu_dropout_medium
+[30/119] 20260712_144326_fault_imu_dropout_short
+[31/119] 20260712_144326_fault_imu_noise_extreme
+[32/119] 20260712_144326_fault_imu_noise_high
+[33/119] 20260712_144326_fault_imu_noise_low
+[34/119] 20260712_144326_fault_imu_noise_medium
+[35/119] 20260824_094119
+[36/119] 20260824_094119_fault_imu_bias_large
+[37/119] 20260824_094119_fault_imu_bias_medium
+[38/119] 20260824_094119_fault_imu_bias_small
+[39/119] 20260824_094119_fault_imu_delay_large
+[40/119] 20260824_094119_fault_imu_delay_medium
+[41/119] 20260824_094119_fault_imu_delay_small
+[42/119] 20260824_094119_fault_imu_drift_fast
+[43/119] 20260824_094119_fault_imu_drift_medium
+[44/119] 20260824_094119_fault_imu_drift_slow
+[45/119] 20260824_094119_fault_imu_dropout_long
+[46/119] 20260824_094119_fault_imu_dropout_medium
+[47/119] 20260824_094119_fault_imu_dropout_short
+[48/119] 20260824_094119_fault_imu_noise_extreme
+[49/119] 20260824_094119_fault_imu_noise_high
+[50/119] 20260824_094119_fault_imu_noise_low
+[51/119] 20260824_094119_fault_imu_noise_medium
+[52/119] 20260824_095427
+[53/119] 20260824_095427_fault_imu_bias_large
+[54/119] 20260824_095427_fault_imu_bias_medium
+[55/119] 20260824_095427_fault_imu_bias_small
+[56/119] 20260824_095427_fault_imu_delay_large
+[57/119] 20260824_095427_fault_imu_delay_medium
+[58/119] 20260824_095427_fault_imu_delay_small
+[59/119] 20260824_095427_fault_imu_drift_fast
+[60/119] 20260824_095427_fault_imu_drift_medium
+[61/119] 20260824_095427_fault_imu_drift_slow
+[62/119] 20260824_095427_fault_imu_dropout_long
+[63/119] 20260824_095427_fault_imu_dropout_medium
+[64/119] 20260824_095427_fault_imu_dropout_short
+[65/119] 20260824_095427_fault_imu_noise_extreme
+[66/119] 20260824_095427_fault_imu_noise_high
+[67/119] 20260824_095427_fault_imu_noise_low
+[68/119] 20260824_095427_fault_imu_noise_medium
+[69/119] 20260824_095712
+[70/119] 20260824_095712_fault_imu_bias_large
+[71/119] 20260824_095712_fault_imu_bias_medium
+[72/119] 20260824_095712_fault_imu_bias_small
+[73/119] 20260824_095712_fault_imu_delay_large
+[74/119] 20260824_095712_fault_imu_delay_medium
+[75/119] 20260824_095712_fault_imu_delay_small
+[76/119] 20260824_095712_fault_imu_drift_fast
+[77/119] 20260824_095712_fault_imu_drift_medium
+[78/119] 20260824_095712_fault_imu_drift_slow
+[79/119] 20260824_095712_fault_imu_dropout_long
+[80/119] 20260824_095712_fault_imu_dropout_medium
+[81/119] 20260824_095712_fault_imu_dropout_short
+[82/119] 20260824_095712_fault_imu_noise_extreme
+[83/119] 20260824_095712_fault_imu_noise_high
+[84/119] 20260824_095712_fault_imu_noise_low
+[85/119] 20260824_095712_fault_imu_noise_medium
+[86/119] 20260824_095915
+[87/119] 20260824_095915_fault_imu_bias_large
+[88/119] 20260824_095915_fault_imu_bias_medium
+[89/119] 20260824_095915_fault_imu_bias_small
+[90/119] 20260824_095915_fault_imu_delay_large
+[91/119] 20260824_095915_fault_imu_delay_medium
+[92/119] 20260824_095915_fault_imu_delay_small
+[93/119] 20260824_095915_fault_imu_drift_fast
+[94/119] 20260824_095915_fault_imu_drift_medium
+[95/119] 20260824_095915_fault_imu_drift_slow
+[96/119] 20260824_095915_fault_imu_dropout_long
+[97/119] 20260824_095915_fault_imu_dropout_medium
+[98/119] 20260824_095915_fault_imu_dropout_short
+[99/119] 20260824_095915_fault_imu_noise_extreme
+[100/119] 20260824_095915_fault_imu_noise_high
+[101/119] 20260824_095915_fault_imu_noise_low
+[102/119] 20260824_095915_fault_imu_noise_medium
+[103/119] 20260824_100318
+[104/119] 20260824_100318_fault_imu_bias_large
+[105/119] 20260824_100318_fault_imu_bias_medium
+[106/119] 20260824_100318_fault_imu_bias_small
+[107/119] 20260824_100318_fault_imu_delay_large
+[108/119] 20260824_100318_fault_imu_delay_medium
+[109/119] 20260824_100318_fault_imu_delay_small
+[110/119] 20260824_100318_fault_imu_drift_fast
+[111/119] 20260824_100318_fault_imu_drift_medium
+[112/119] 20260824_100318_fault_imu_drift_slow
+[113/119] 20260824_100318_fault_imu_dropout_long
+[114/119] 20260824_100318_fault_imu_dropout_medium
+[115/119] 20260824_100318_fault_imu_dropout_short
+[116/119] 20260824_100318_fault_imu_noise_extreme
+[117/119] 20260824_100318_fault_imu_noise_high
+[118/119] 20260824_100318_fault_imu_noise_low
+[119/119] 20260824_100318_fault_imu_noise_medium
+
+=== LSTM r_imu as an IMU-fault detector (rows) ===
+group      faulty_rows detect@0.5  false@0.5    AUC pred|faulty pred|clean
+ALL_IMU         160463      46.1%       3.0%  0.801       0.558      0.862
+bias             45642       5.7%       nan%    nan       0.819        nan
+delay                0       nan%       0.8%    nan         nan      0.898
+drift            45609      25.6%       0.0%  0.825       0.690      0.869
+dropout           8356      19.0%       5.8%  0.572       0.723      0.818
+noise            60856      95.6%       nan%    nan       0.241        nan
+baselines            0       nan%       4.9%    nan         nan      0.823
+
+Saved: /home/kushagra/ws_mobile/fix_ws/imu_detection_rows.csv

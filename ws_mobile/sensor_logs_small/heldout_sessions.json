@@ -1,0 +1,13 @@
+{
+  "heldout_sessions": [
+    "20261003_132243",
+    "20261003_132822",
+    "20261003_133250",
+    "20261005_175524",
+    "20261005_175856",
+    "20261005_180136",
+    "20261005_180357",
+    "20261005_181003"
+  ],
+  "note": "Held-out test set (2026-10-03). Unsaturated, never used for training. Do NOT add to good_sessions. See FINDINGS_2026-10-03.md section 7."
+}

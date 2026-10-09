@@ -1,0 +1,753 @@
+#!/usr/bin/env python3
+"""
+fault_injection.py — Phase 0 of the LSTM terrain/reliability framework.
+
+Injects controllable faults (noise, bias, drift, dropout, delay, plus
+LiDAR-specific return_loss/corruption/scale_error) into a REAL recorded
+session's IMU, odometry, or LiDAR scan file, per the failure-mode tables
+in the framework doc (Sections 11-13). Produces a new synthetic "session"
+that ekf_fusion.py can run against COMPLETELY UNMODIFIED — no code changes
+needed downstream, just point SESSION at the new fault-session name.
+
+HOW THIS WORKS (why ekf_fusion.py needs zero changes):
+ekf_fusion.py's load_latest() resolves files as f'{prefix}_filtered_{SESSION}.csv'.
+So for a fault named e.g. '20260712_144326_fault_imu_noise_high', this script
+creates ALL of that session's required files under the new name — copying the
+baseline session's odom/scan/ground_truth unchanged, and writing ONLY the
+faulted IMU file. ekf_fusion.py then just needs SESSION repointed to the new
+name; every file it looks for exists, in the schema it already expects.
+
+SEVERITY DESIGN: rather than hardcoded absolute units (which would need
+per-sensor-model tuning), severity is a MULTIPLIER of each column's own
+observed standard deviation within that baseline session. This is more
+robust across differently-scaled columns (angular_vel vs linear_acc) and
+is standard practice in fault-injection literature. Mapped to the paper
+doc's own qualitative levels (low/medium/high/extreme, small/medium/large,
+short/medium/long) via the *_SEVERITY dicts below.
+
+VALIDATION GATE (Phase 0, from the pipeline doc): for each fault type,
+confirm it measurably degrades EKF RMSE, in the expected direction, using
+ekf_fusion.py UNMODIFIED. This script only injects faults and prepares the
+fault-session directory — it does NOT run ekf_fusion.py itself (deliberately
+kept separate: one script does one job). See the printed instructions at
+the end of main() for the exact next command.
+"""
+
+import os
+import shutil
+import numpy as np
+import pandas as pd
+
+LOG_DIR = os.path.expanduser('~/ws_mobile/sensor_logs')
+SCRIPTS_DIR = os.path.expanduser('~/ws_mobile/scripts')
+
+# ── CONFIG — confirmed columns ──────────────────────────────────────────
+IMU_RAW_NOISE_COLS = ['angular_vel_x', 'angular_vel_y', 'angular_vel_z',
+                       'linear_acc_x', 'linear_acc_y', 'linear_acc_z']
+IMU_TIMESTAMP_COL = 'timestamp'
+
+IMU_ORIENTATION_TARGET = True
+IMU_YAW_TEMP_COL = '_imu_yaw_temp'
+IMU_NOISE_COLS = [IMU_YAW_TEMP_COL]
+
+ODOM_RAW_NOISE_COLS = ['linear_x', 'angular_z']
+ODOM_NOISE_COLS = ['pos_x', 'pos_y']
+ODOM_TIMESTAMP_COL = 'timestamp'
+
+# ── Severity mappings (multiplier of the column's own std, or seconds/fraction) ──
+NOISE_SEVERITY = {'low': 1.0, 'medium': 3.0, 'high': 6.0, 'extreme': 12.0}
+BIAS_SEVERITY = {'small': 1.0, 'medium': 3.0, 'large': 6.0}
+DRIFT_SEVERITY = {'slow': 1.0, 'medium': 3.0, 'fast': 6.0}
+DROPOUT_SEVERITY = {'short': 0.05, 'medium': 0.15, 'long': 0.35}
+DELAY_SEVERITY = {'small': 0.1, 'medium': 0.5, 'large': 2.0}
+
+# ── LiDAR fault config (Section 13) ─────────────────────────────────────
+LIDAR_TIMESTAMP_COL = 'timestamp'
+
+def get_lidar_range_cols(df: pd.DataFrame) -> list:
+    """Beam columns are per-session (count fixed at 540 by preprocess_data.py's
+    N_BEAMS, but discovered dynamically here rather than hardcoded, matching
+    lidar_fusion.py's own range_cols filter exactly."""
+    return sorted(
+        [c for c in df.columns if c.startswith('range_') and c.split('_', 1)[1].isdigit()],
+        key=lambda c: int(c.split('_')[1]))
+
+LIDAR_RETURN_LOSS_SEVERITY = {'low': 0.05, 'medium': 0.15, 'high': 0.35, 'extreme': 0.60}
+LIDAR_CORRUPTION_SEVERITY = {'mild': 0.05, 'moderate': 0.15, 'severe': 0.35}
+LIDAR_MATCHING_SEVERITY = {'mild': 0.05, 'moderate': 0.15, 'severe': 0.30}
+
+
+def inspect_columns(session: str):
+    for prefix in ['imu', 'odom']:
+        path = os.path.join(LOG_DIR, f'{prefix}_filtered_{session}.csv')
+        if not os.path.exists(path):
+            print(f"  {prefix}_filtered_{session}.csv NOT FOUND at {path}")
+            continue
+        df = pd.read_csv(path, nrows=1)
+        print(f"\n  {prefix}_filtered_{session}.csv columns:")
+        for c in df.columns:
+            print(f"    {c}")
+    scan_path = os.path.join(LOG_DIR, f'scan_filtered_{session}.csv')
+    if not os.path.exists(scan_path):
+        print(f"  scan_filtered_{session}.csv NOT FOUND at {scan_path}")
+    else:
+        df = pd.read_csv(scan_path, nrows=1)
+        range_cols = get_lidar_range_cols(df)
+        other_cols = [c for c in df.columns if c not in range_cols]
+        print(f"\n  scan_filtered_{session}.csv: {len(range_cols)} range_* beam columns "
+              f"({range_cols[0]}..{range_cols[-1]}), plus: {other_cols}")
+
+
+def inject_noise(df: pd.DataFrame, cols: list, severity_mult: float,
+                  rng: np.random.Generator) -> pd.DataFrame:
+    out = df.copy()
+    stats = {}
+    for c in cols:
+        col_std = out[c].std()
+        if col_std == 0 or np.isnan(col_std):
+            continue
+        injected_std = col_std * severity_mult
+        out[c] = out[c] + rng.normal(0, injected_std, len(out))
+        stats[c] = {'baseline_std': float(col_std), 'injected_noise_std': float(injected_std)}
+    return out, stats
+
+
+def inject_position_bias(df: pd.DataFrame, cols: list, severity_mult: float,
+                          start_frac: float = 0.0):
+    out = df.copy()
+    n = len(out)
+    start_idx = int(n * start_frac)
+    stats = {}
+    for c in cols:
+        step_diffs = np.diff(out[c].values)
+        diff_std = np.std(step_diffs)
+        if diff_std == 0 or np.isnan(diff_std):
+            continue
+        per_step_increment = diff_std * severity_mult
+        ramp_len = n - start_idx
+        if ramp_len <= 0:
+            continue
+        accumulated = np.arange(ramp_len) * per_step_increment
+        out.loc[out.index[start_idx:], c] = out.loc[out.index[start_idx:], c].values + accumulated
+        stats[c] = {
+            'baseline_step_diff_std': float(diff_std),
+            'per_step_increment': float(per_step_increment),
+            'final_accumulated_offset': float(accumulated[-1]),
+        }
+    return out, stats
+
+
+def inject_bias(df: pd.DataFrame, cols: list, severity_mult: float,
+                 start_frac: float = 0.0):
+    out = df.copy()
+    n = len(out)
+    start_idx = int(n * start_frac)
+    stats = {}
+    for c in cols:
+        col_std = out[c].std()
+        if col_std == 0 or np.isnan(col_std):
+            continue
+        offset = col_std * severity_mult
+        out.loc[out.index[start_idx:], c] = out.loc[out.index[start_idx:], c] + offset
+        stats[c] = {'baseline_std': float(col_std), 'injected_offset': float(offset)}
+    return out, stats
+
+
+def inject_drift(df: pd.DataFrame, cols: list, final_mult: float,
+                  start_frac: float = 0.0):
+    out = df.copy()
+    n = len(out)
+    start_idx = int(n * start_frac)
+    ramp_len = n - start_idx
+    stats = {}
+    if ramp_len <= 0:
+        return out, stats
+    ramp = np.linspace(0, 1, ramp_len)
+    for c in cols:
+        col_std = out[c].std()
+        if col_std == 0 or np.isnan(col_std):
+            continue
+        final_offset = col_std * final_mult
+        offset = ramp * final_offset
+        out.loc[out.index[start_idx:], c] = out.loc[out.index[start_idx:], c].values + offset
+        stats[c] = {'baseline_std': float(col_std), 'final_injected_offset': float(final_offset)}
+    return out, stats
+
+
+def quat_to_yaw(oz, ow) -> np.ndarray:
+    oz = np.asarray(oz, dtype=float)
+    ow = np.asarray(ow, dtype=float)
+    return np.arctan2(2.0 * ow * oz, 1.0 - 2.0 * oz * oz)
+
+
+def yaw_to_quat(yaw):
+    yaw = np.asarray(yaw, dtype=float)
+    return np.sin(yaw / 2.0), np.cos(yaw / 2.0)
+
+def inject_lidar_return_loss(df: pd.DataFrame, range_cols: list, frac: float,
+                             range_max: float, rng: np.random.Generator):
+    out = df.copy()
+    arr = out[range_cols].values.astype(float)
+    mask = rng.random(arr.shape) < frac
+    arr[mask] = range_max
+    out[range_cols] = arr
+
+    stats = {
+        'fraction_beams_lost_per_frame': float(frac),
+        'no_return_sentinel': float(range_max),
+        'total_beams_affected': int(mask.sum())
+    }
+
+    return out, stats
+
+
+def inject_lidar_scan_corruption(df: pd.DataFrame, range_cols: list, frac: float,
+                                 rng: np.random.Generator,
+                                 range_min: float = 0.10,
+                                 range_max_valid: float = None):
+    """Fully randomizes ALL beams for `frac` of frames (rows), simulating
+    corrupted scans.
+
+    range_max_valid: if None (default), derived from this session's own
+    'range_max' column -- CONFIRMED on real data (scan_filtered_
+    20260712_141740.csv) that range_max=2.5000..., matching this
+    function's old hardcoded default exactly for THIS session, but that
+    was a coincidence, not a guarantee -- deriving it per-session matches
+    this file's own stated design philosophy (severity/bounds scaled from
+    each session's own real values, not hardcoded absolutes) and avoids a
+    silent wrong bound if a future session uses a differently-configured
+    LiDAR. range_min is still a hardcoded default (0.10m) since no real
+    beam in the sample data approaches it -- low risk, but pass explicitly
+    if a session's real minimum sensor range is known to differ."""
+    out = df.copy()
+    n = len(out)
+    if range_max_valid is None:
+        range_max_valid = float(df['range_max'].iloc[0])
+
+    n_corrupt = max(1, int(n * frac))
+
+    corrupt_idx = rng.choice(n, size=n_corrupt, replace=False)
+
+    arr = out[range_cols].values.astype(float)
+
+    arr[corrupt_idx, :] = rng.uniform(
+        range_min,
+        range_max_valid,
+        size=(n_corrupt, len(range_cols))
+    )
+
+    out[range_cols] = arr
+
+    stats = {
+        'fraction_frames_corrupted': float(frac),
+        'n_frames_corrupted': int(n_corrupt),
+        'range_max_valid_used': float(range_max_valid),
+    }
+
+    return out, stats
+
+
+def inject_lidar_scale_error(df: pd.DataFrame, range_cols: list,
+                             scale_frac: float, range_max: float = None):
+    """Applies a systematic fractional scale error to all valid ranges.
+
+    CONFIRMED BUG FIXED: beams sitting at range_max are the no-return
+    SENTINEL value (see inject_lidar_return_loss()), not a real
+    measurement -- CONFIRMED on real data that real beam values get
+    within ~0.0004m of range_max=2.5000..., so scaling every "finite"
+    value indiscriminately would corrupt genuine no-return sentinels
+    (turning them into fake in-range-looking values) and could push
+    real near-max readings above range_max. Sentinel beams (within
+    floating-point tolerance of range_max) are now excluded from scaling
+    and left untouched.
+
+    range_max: if None (default), derived from this session's own
+    'range_max' column rather than requiring the caller to know it."""
+    out = df.copy()
+
+    if range_max is None:
+        range_max = float(df['range_max'].iloc[0])
+
+    arr = out[range_cols].values.astype(float)
+
+    is_sentinel = np.isclose(arr, range_max, atol=1e-6)
+    valid = np.isfinite(arr) & ~is_sentinel
+
+    arr[valid] = arr[valid] * (1.0 + scale_frac)
+
+    out[range_cols] = arr
+
+    stats = {
+        'scale_fraction_applied': float(scale_frac),
+        'range_max_used': float(range_max),
+        'n_sentinel_beams_excluded': int(is_sentinel.sum()),
+    }
+
+    return out, stats
+
+def inject_measurement_hold(df: pd.DataFrame, cols: list, frac: float,
+                             start_frac: float = 0.4):
+    out = df.copy()
+    n = len(out)
+    start_idx = int(n * start_frac)
+    block_len = int(n * frac)
+    end_idx = min(start_idx + block_len, n)
+    stats = {}
+    if start_idx >= end_idx:
+        return out, stats
+    freeze_row = out.iloc[start_idx - 1] if start_idx > 0 else out.iloc[0]
+    for c in cols:
+        frozen_value = freeze_row[c]
+        out.loc[out.index[start_idx:end_idx], c] = frozen_value
+        stats[c] = {
+            'mechanism': 'measurement_hold (frozen value, not row removal/NaN)',
+            'frozen_value': float(frozen_value),
+            'frozen_fraction_of_session': float(frac),
+            'frozen_row_start_idx': int(start_idx),
+            'frozen_row_end_idx': int(end_idx),
+        }
+    return out, stats
+
+
+def inject_delay(df: pd.DataFrame, timestamp_col: str, seconds: float) -> pd.DataFrame:
+    out = df.copy()
+    out[timestamp_col] = out[timestamp_col] + seconds
+    return out
+
+
+def inject_delay_raw(df: pd.DataFrame, seconds: float) -> pd.DataFrame:
+    """
+    Delay injection for RAW (pre-preprocessing) files -- the redesigned
+    delay mechanism, distinct from inject_delay() above which only shifts
+    an already-resampled file's standalone 'timestamp' column (confirmed
+    in Phase 0 to have ZERO measurable effect: on already-resampled data
+    a uniform timestamp shift cancels algebraically in ekf_fusion.py's
+    dt = timestamps[i]-timestamps[i-1] subtraction).
+
+    CRITICAL DIFFERENCE from inject_delay(): raw files carry the delay's
+    real source of truth in 'time_sec'/'time_nsec' (int64 columns), NOT
+    the standalone 'timestamp' column. CONFIRMED via real inspection of
+    preprocess_data.py's make_timestamp(df): it UNCONDITIONALLY
+    recomputes timestamp = time_sec + time_nsec*1e-9 whenever both source
+    columns are present, and every process_<sensor>() function calls
+    make_timestamp() immediately after loading raw data. Shifting only
+    'timestamp' on a raw file would therefore be silently erased the
+    moment preprocess_data.py re-runs on it -- this function shifts
+    time_sec/time_nsec instead, so the delay survives make_timestamp()'s
+    recomputation and genuinely desyncs this sensor from the others once
+    resample_to_grid() interpolates each sensor independently onto the
+    shared timeline. This is architecturally different from the old
+    mechanism: here, the shifted sensor's value at shared grid-time T is
+    genuinely interpolated from what it reported at T-seconds, not just a
+    relabeled timestamp on already-synced data.
+
+    Returns (faulted_df, stats) with the real applied shift in seconds,
+    for the manifest.
+    """
+    out = df.copy()
+    if "time_sec" not in out.columns or "time_nsec" not in out.columns:
+        raise ValueError(
+            "inject_delay_raw requires raw time_sec/time_nsec columns -- "
+            "got columns: " + ", ".join(out.columns))
+    combined = out["time_sec"].astype(float) + out["time_nsec"].astype(float) * 1e-9
+    shifted = combined + seconds
+    new_sec = np.floor(shifted).astype(np.int64)
+    # round(), not truncate, to avoid systematic sub-nanosecond drift from
+    # repeated float conversion; clip guards the rare boundary case where
+    # rounding pushes nsec to exactly 1e9 (would make the split invalid).
+    new_nsec = np.round((shifted - new_sec) * 1e9).astype(np.int64)
+    overflow = new_nsec >= 1_000_000_000
+    new_sec[overflow] += 1
+    new_nsec[overflow] -= 1_000_000_000
+    out["time_sec"] = new_sec
+    out["time_nsec"] = new_nsec
+    if "timestamp" in out.columns:
+        # Updated for consistency even though make_timestamp() will
+        # recompute it from time_sec/time_nsec anyway during
+        # preprocess_data.py's next run -- avoids a confusing
+        # intermediate state if this raw file is inspected before that.
+        out["timestamp"] = new_sec.astype(float) + new_nsec.astype(float) * 1e-9
+    stats = {"shift_seconds": float(seconds),
+             "mechanism": "raw time_sec/time_nsec shift (survives make_timestamp() "
+                          "recomputation), NOT a post-resampling timestamp-column shift"}
+    return out, stats
+
+
+FAULT_TYPES_ALL = ['noise', 'bias', 'drift', 'dropout', 'delay']
+
+
+def generate_all_faults(baseline_sessions: list = None, sensors: list = None,
+                         seed: int = 0) -> list:
+    from session_registry import get_good_sessions
+    if baseline_sessions is None:
+        baseline_sessions = get_good_sessions()
+    if sensors is None:
+        sensors = ['imu', 'odom', 'lidar']
+
+    plan = []
+    for baseline in baseline_sessions:
+     for sensor in sensors:
+        fault_types = LIDAR_FAULT_TYPES if sensor == 'lidar' else FAULT_TYPES_ALL
+
+        for fault_type in fault_types:
+            sev_map = (
+                LIDAR_SEVERITY_MAPS[fault_type]
+                if sensor == 'lidar'
+                else DELAY_SEVERITY if fault_type == 'delay'
+                else FAULT_SEVERITY_MAPS[fault_type]
+            )
+
+            for severity in sev_map:
+                plan.append((baseline, sensor, fault_type, severity))
+
+    print(f"  Fault matrix: {len(plan)} sessions to create "
+          f"({len(baseline_sessions)} baseline(s) x {len(sensors)} sensor(s), "
+          f"fault-type count varies by sensor)")
+
+    created = []
+    for baseline, sensor, fault_type, severity in plan:
+        try:
+            s = make_fault_session(baseline, sensor, fault_type, severity, seed=seed)
+            created.append(s)
+        except Exception as e:
+            print(f"  SKIPPED {baseline}/{sensor}/{fault_type}/{severity}: {e}")
+
+    print(f"\n  Done: {len(created)}/{len(plan)} fault sessions created.")
+    return created
+
+
+FAULT_FNS = {
+    'noise': lambda df, cols, sev, sev_map, rng: inject_noise(df, cols, sev_map[sev], rng),
+    'bias': lambda df, cols, sev, sev_map, rng: inject_bias(df, cols, sev_map[sev]),
+    'drift': lambda df, cols, sev, sev_map, rng: inject_drift(df, cols, sev_map[sev]),
+    'dropout': lambda df, cols, sev, sev_map, rng: inject_measurement_hold(df, cols, sev_map[sev]),
+}
+FAULT_SEVERITY_MAPS = {
+    'noise': NOISE_SEVERITY, 'bias': BIAS_SEVERITY,
+    'drift': DRIFT_SEVERITY, 'dropout': DROPOUT_SEVERITY,
+}
+LIDAR_FAULT_TYPES = ['noise', 'return_loss', 'corruption', 'scale_error', 'dropout', 'delay']
+LIDAR_SEVERITY_MAPS = {
+    'noise': NOISE_SEVERITY,
+    'return_loss': LIDAR_RETURN_LOSS_SEVERITY,
+    'corruption': LIDAR_CORRUPTION_SEVERITY,
+    'scale_error': LIDAR_MATCHING_SEVERITY,
+    'dropout': DROPOUT_SEVERITY,
+    'delay': DELAY_SEVERITY,
+}
+
+# Maps sensor name -> its RAW file's actual prefix. CONFIRMED via real ls
+# output that LiDAR's raw file uses 'scan_' (matching its filtered-stage
+# name), NOT 'lidar_' -- do not assume symmetry with sensor names.
+RAW_SENSOR_PREFIX = {'imu': 'imu', 'odom': 'odom', 'lidar': 'scan'}
+# Every raw file preprocess_data.py's main() consumes, beyond the 3 above
+# -- copied unchanged for whichever sensor ISN'T the delay target.
+RAW_OTHER_PREFIXES = ['ground_truth', 'cmd_vel']
+
+
+def make_delay_fault_session_raw(baseline_session: str, sensor: str,
+                                  severity: str, seed: int = 0) -> str:
+    """
+    Redesigned delay fault injection, operating on RAW pre-preprocessing
+    files rather than already-filtered ones. CONFIRMED necessary because
+    the original mechanism (inject_delay(), shifting an already-resampled
+    file's standalone 'timestamp' column) has ZERO measurable effect on
+    real EKF RMSE: on already-synced data, a uniform timestamp shift
+    cancels algebraically in ekf_fusion.py's dt = timestamps[i]-
+    timestamps[i-1] subtraction (confirmed via real-data diff, ~1e-14).
+
+    This function instead: (1) copies every OTHER sensor's RAW file
+    unchanged under the new fault-session name, (2) applies
+    inject_delay_raw() -- which shifts time_sec/time_nsec, confirmed via
+    real inspection of preprocess_data.py's make_timestamp() to be the
+    only shift that survives its unconditional recomputation of
+    'timestamp' -- to the target sensor's RAW file, (3) re-runs
+    preprocess_data.py on this new raw fault session as a subprocess,
+    so resample_to_grid() genuinely interpolates the shifted sensor from
+    stale data at each shared grid timestamp, producing a REAL
+    desynchronization between sensors, not just relabeled timestamps on
+    already-synced data.
+
+    CONFIRMED SAFE for session isolation: preprocess_data.py is fully
+    SESSION-scoped via sys.argv[1] (raw files are '{prefix}_{SESSION}.csv',
+    load_latest() resolves by exact session match), and process_cmd_vel()
+    -- once flagged as a possible exception bypassing this -- was
+    confirmed via real source inspection to already use the same
+    SESSION-aware load_latest() as every other sensor. Running this for
+    one new fault session does not touch any other session's files.
+
+    Returns the new fault_session name.
+    """
+    if sensor not in RAW_SENSOR_PREFIX:
+        raise ValueError(f"sensor must be one of {list(RAW_SENSOR_PREFIX)}")
+    if severity not in DELAY_SEVERITY:
+        raise ValueError(f"severity must be one of {list(DELAY_SEVERITY)}")
+
+    fault_session = f"{baseline_session}_fault_{sensor}_delay_{severity}"
+    target_prefix = RAW_SENSOR_PREFIX[sensor]
+
+    # Copy every OTHER sensor's raw file unchanged under the new name.
+    other_prefixes = [p for p in RAW_SENSOR_PREFIX.values() if p != target_prefix]
+    other_prefixes += RAW_OTHER_PREFIXES
+    for prefix in other_prefixes:
+        src = os.path.join(LOG_DIR, f'{prefix}_{baseline_session}.csv')
+        if os.path.exists(src):
+            dst = os.path.join(LOG_DIR, f'{prefix}_{fault_session}.csv')
+            shutil.copy2(src, dst)
+        else:
+            print(f"  NOTE: no raw {prefix}_{baseline_session}.csv found -- "
+                  f"skipping copy (may be expected, e.g. no cmd_vel logged "
+                  f"for this session)")
+
+    # Apply the raw-level delay to the target sensor.
+    src_path = os.path.join(LOG_DIR, f'{target_prefix}_{baseline_session}.csv')
+    if not os.path.exists(src_path):
+        raise FileNotFoundError(f"Raw baseline file not found: {src_path}")
+    df = pd.read_csv(src_path)
+    severity_value = DELAY_SEVERITY[severity]
+    faulted, injected_stats = inject_delay_raw(df, severity_value)
+    dst_path = os.path.join(LOG_DIR, f'{target_prefix}_{fault_session}.csv')
+    faulted.to_csv(dst_path, index=False)
+
+    # Re-run preprocessing on the new raw fault session to regenerate
+    # genuinely-desynced filtered outputs.
+    import subprocess
+    import sys as _sys
+    preprocess_script = os.path.join(SCRIPTS_DIR, 'preprocess_data.py')
+    proc = subprocess.run(
+        [_sys.executable, preprocess_script, fault_session],
+        cwd=SCRIPTS_DIR, capture_output=True, text=True, timeout=300)
+    if proc.returncode != 0:
+        raise RuntimeError(
+            f"preprocess_data.py failed for {fault_session} "
+            f"(exit code {proc.returncode}). stderr tail:\n{proc.stderr[-1500:]}")
+
+    # rnn_smoothed_output copy -- same reasoning as the main
+    # make_fault_session() path (rnn_fusion_v2.py never reads LiDAR/scan
+    # data, confirmed, so unaffected by a delay fault regardless of which
+    # sensor is targeted).
+    rnn_src = os.path.join(LOG_DIR, f'rnn_smoothed_output_{baseline_session}.csv')
+    if os.path.exists(rnn_src):
+        shutil.copy2(rnn_src, os.path.join(LOG_DIR, f'rnn_smoothed_output_{fault_session}.csv'))
+    else:
+        print(f"  NOTE: no rnn_smoothed_output_{baseline_session}.csv found -- "
+              f"skipped copying it")
+
+    import json
+    from datetime import datetime, timezone
+    manifest = {
+        'fault_session': fault_session,
+        'baseline_session': baseline_session,
+        'sensor': sensor,
+        'fault_type': 'delay',
+        'mechanism': ('delay_raw_redesign: RAW time_sec/time_nsec shift, followed by a full '
+                      're-run of preprocess_data.py -- genuinely desyncs this sensor from '
+                      'others via independent resample_to_grid() interpolation, unlike the '
+                      'original post-resampling timestamp-column shift which cancels '
+                      'algebraically in ekf_fusion.py\'s dt computation (confirmed ~1e-14 '
+                      'real-data diff, zero measurable effect)'),
+        'severity_label': severity,
+        'severity_value': severity_value,
+        'columns': None,
+        'timestamp_col': 'time_sec/time_nsec (raw, pre-preprocessing)',
+        'injected_stats': {f'{target_prefix}_raw': injected_stats},
+        'seed': seed,
+        'created_utc': datetime.now(timezone.utc).isoformat(),
+    }
+    manifest_path = os.path.join(LOG_DIR, f'fault_meta_{fault_session}.json')
+    with open(manifest_path, 'w') as f:
+        json.dump(manifest, f, indent=2)
+
+    print(f"  Created RAW-REDESIGNED delay fault session: {fault_session}")
+    print(f"    Faulted raw file: {os.path.basename(dst_path)}")
+    print(f"    Re-ran preprocess_data.py {fault_session} -- regenerated filtered outputs")
+    print(f"    Manifest: {os.path.basename(manifest_path)}")
+    return fault_session
+
+
+def make_fault_session(baseline_session: str, sensor: str, fault_type: str,
+                        severity: str, cols: list = None,
+                        timestamp_col: str = None, seed: int = 0) -> str:
+    if sensor not in ('imu', 'odom', 'lidar'):
+        raise ValueError("sensor must be 'imu', 'odom', or 'lidar'")
+
+    # REDESIGN: delay now routes to the raw-file-based mechanism (see
+    # make_delay_fault_session_raw()'s docstring for why -- the original
+    # post-resampling timestamp-column shift below has CONFIRMED zero
+    # measurable effect, since it cancels algebraically in ekf_fusion.py's
+    # dt computation). Routing here means every existing caller (e.g.
+    # generate_all_faults()) gets the fix automatically, no call-site
+    # changes needed. The old delay branch further below is now DEAD CODE
+    # for normal use, kept only for direct reference/comparison, not
+    # reachable through this function anymore.
+    if fault_type == 'delay':
+        return make_delay_fault_session_raw(baseline_session, sensor, severity, seed=seed)
+
+    if sensor == 'odom' and fault_type != 'delay' and not ODOM_NOISE_COLS and cols is None:
+        raise ValueError(
+            "ODOM_NOISE_COLS is empty. Run `python3 fault_injection.py "
+            "--inspect <session>` first, then fill in ODOM_NOISE_COLS at "
+            "the top of this file with your real odom column names before "
+            "injecting an odom fault. (delay doesn't need this — it only "
+            "needs a timestamp column — so this check is skipped for it.)")
+
+    default_cols = IMU_NOISE_COLS if sensor == 'imu' else (None if sensor == 'lidar' else ODOM_NOISE_COLS)
+    default_ts = IMU_TIMESTAMP_COL if sensor == 'imu' else ODOM_TIMESTAMP_COL
+    cols = cols or default_cols
+    timestamp_col = timestamp_col or default_ts
+
+    fault_session = f"{baseline_session}_fault_{sensor}_{fault_type}_{severity}"
+
+    for prefix in ['odom', 'imu', 'scan', 'ground_truth', 'cmd_vel']:
+        if prefix == sensor or (sensor == 'lidar' and prefix == 'scan'):
+            continue
+        src = os.path.join(LOG_DIR, f'{prefix}_filtered_{baseline_session}.csv')
+        if not os.path.exists(src):
+            src = os.path.join(LOG_DIR, f'ground_truth_filtered_{baseline_session}.csv')
+        if os.path.exists(src):
+            dst = src.replace(baseline_session, fault_session)
+            shutil.copy2(src, dst)
+
+    # rnn_smoothed_output_{session}.csv: doesn't follow the '{prefix}_
+    # filtered_{session}.csv' naming pattern the loop above assumes, so it
+    # needs its own copy step. CONFIRMED via grep on rnn_fusion_v2.py's
+    # real source that it never reads scan_filtered/LiDAR data at all
+    # (consumes only ekf output + ground truth) -- so this file is
+    # identical regardless of fault type or sensor, safe to copy unchanged
+    # for every fault session, not just LiDAR ones. Without this,
+    # lidar_fusion_v2.py's run_lidar_fusion_single() can't run on ANY
+    # fault session (its missing-file check fails immediately looking for
+    # rnn_smoothed_output_{fault_session}.csv, which never existed before
+    # this fix -- this gap was silent because LiDAR fusion validation was
+    # never previously run against fault sessions).
+    rnn_src = os.path.join(LOG_DIR, f'rnn_smoothed_output_{baseline_session}.csv')
+    if os.path.exists(rnn_src):
+        rnn_dst = os.path.join(LOG_DIR, f'rnn_smoothed_output_{fault_session}.csv')
+        shutil.copy2(rnn_src, rnn_dst)
+    else:
+        print(f"  NOTE: no rnn_smoothed_output_{baseline_session}.csv found -- "
+              f"skipped copying it (lidar_fusion_v2.py won't be runnable on "
+              f"{fault_session} until this baseline's RNN fusion stage has "
+              f"been run at least once)")
+
+    src_path = os.path.join(LOG_DIR, f'{sensor}_filtered_{baseline_session}.csv')
+
+    if sensor == 'lidar':
+        src_path = os.path.join(
+            LOG_DIR,
+            f'scan_filtered_{baseline_session}.csv'
+    )
+
+    if not os.path.exists(src_path):
+        raise FileNotFoundError(f"Baseline file not found: {src_path}")
+
+    df = pd.read_csv(src_path)
+    rng = np.random.default_rng(seed)
+    if fault_type == 'delay':
+        # UNREACHABLE in normal use -- make_fault_session() routes 'delay'
+        # to make_delay_fault_session_raw() at the top of this function,
+        # before this line. Kept only for direct reference/comparison
+        # against the redesigned mechanism; this old post-resampling
+        # timestamp-column shift has CONFIRMED zero measurable effect on
+        # real EKF RMSE (cancels algebraically in dt computation).
+        severity_value = DELAY_SEVERITY[severity]
+        faulted = inject_delay(df, timestamp_col, severity_value)
+        injected_stats = {timestamp_col: {'shift_seconds': float(severity_value)}}
+        mechanism = 'delay (timestamp shift — no abstract multiplier involved) [SUPERSEDED, unreachable]'
+
+    elif sensor == 'lidar':
+        range_cols = cols or get_lidar_range_cols(df)
+        cols = range_cols  # record the ACTUAL resolved beam columns in the
+                            # manifest below, not the None placeholder --
+                            # matches IMU/odom's existing behavior of
+                            # recording real columns used, for reproducibility
+        range_max = float(df['range_max'].iloc[0])
+        severity_value = LIDAR_SEVERITY_MAPS[fault_type][severity]
+
+        if fault_type == 'noise':
+            faulted, injected_stats = inject_noise(df, range_cols, severity_value, rng)
+        elif fault_type == 'return_loss':
+            faulted, injected_stats = inject_lidar_return_loss(
+                df, range_cols, severity_value, range_max, rng
+        )
+        elif fault_type == 'corruption':
+            faulted, injected_stats = inject_lidar_scan_corruption(
+                df, range_cols, severity_value, rng, range_max_valid=range_max
+        )
+        elif fault_type == 'scale_error':
+            faulted, injected_stats = inject_lidar_scale_error(
+                df, range_cols, severity_value, range_max=range_max
+        )
+        elif fault_type == 'dropout':
+            faulted, injected_stats = inject_measurement_hold(
+                df, range_cols, severity_value
+        )
+        else:
+            raise ValueError(f"Unknown LiDAR fault_type: {fault_type}")
+
+        mechanism = fault_type
+
+    else:
+        severity_value = FAULT_SEVERITY_MAPS[fault_type][severity]
+        if sensor == 'imu' and IMU_ORIENTATION_TARGET:
+            df = df.copy()
+            df[IMU_YAW_TEMP_COL] = quat_to_yaw(df['orient_z'], df['orient_w'])
+            faulted, injected_stats = FAULT_FNS[fault_type](
+                df, cols, severity, FAULT_SEVERITY_MAPS[fault_type], rng)
+            faulted['orient_z'], faulted['orient_w'] = yaw_to_quat(faulted[IMU_YAW_TEMP_COL])
+            faulted = faulted.drop(columns=[IMU_YAW_TEMP_COL])
+            mechanism_suffix = ' (applied to derived yaw, re-encoded to orient_z/orient_w)'
+        elif sensor == 'odom' and fault_type == 'bias':
+            faulted, injected_stats = inject_position_bias(df, cols, severity_value)
+            mechanism_suffix = ' (accumulating per-step offset, not flat -- flat cancels under differencing, confirmed on real data)'
+        else:
+            faulted, injected_stats = FAULT_FNS[fault_type](
+                df, cols, severity, FAULT_SEVERITY_MAPS[fault_type], rng)
+            mechanism_suffix = ''
+        mechanism = ('measurement_hold (frozen value, NOT row removal/NaN)'
+                     if fault_type == 'dropout' else fault_type) + mechanism_suffix
+
+    dst_path = os.path.join(LOG_DIR, f'scan_filtered_{fault_session}.csv') if sensor == 'lidar' \
+        else os.path.join(LOG_DIR, f'{sensor}_filtered_{fault_session}.csv')
+    faulted.to_csv(dst_path, index=False)
+
+    import json
+    from datetime import datetime, timezone
+    manifest = {
+        'fault_session': fault_session,
+        'baseline_session': baseline_session,
+        'sensor': sensor,
+        'fault_type': fault_type,
+        'mechanism': mechanism,
+        'severity_label': severity,
+        'severity_value': severity_value,
+        'columns': cols,
+        'timestamp_col': timestamp_col if fault_type == 'delay' else None,
+        'injected_stats': injected_stats,
+        'seed': seed,
+        'created_utc': datetime.now(timezone.utc).isoformat(),
+    }
+    manifest_path = os.path.join(LOG_DIR, f'fault_meta_{fault_session}.json')
+    with open(manifest_path, 'w') as f:
+        json.dump(manifest, f, indent=2)
+
+    print(f"  Created fault session: {fault_session}")
+    print(f"    Faulted file: {os.path.basename(dst_path)}")
+    print(f"    Other files copied unchanged from {baseline_session}")
+    print(f"    Manifest: {os.path.basename(manifest_path)}")
+    return fault_session
+
+
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) >= 3 and sys.argv[1] == '--inspect':
+        inspect_columns(sys.argv[2])
+        sys.exit(0)
+
+    print(__doc__)
+    print("\nUsage:")
+    print("  python3 fault_injection.py --inspect <session>")
+    print("      Prints imu/odom column names for a real session (do this first).")
+    print("\n  Or import and call make_fault_session() directly, e.g.:")
+    print("      from fault_injection import make_fault_session")
+    print("      make_fault_session('20260712_144326', 'imu', 'noise', 'high')")

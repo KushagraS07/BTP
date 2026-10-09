@@ -1,0 +1,322 @@
+#!/usr/bin/env python3
+"""
+heldout_stage1.py -- Stage 1 of the pre-registered held-out evaluation
+(fix_ws/PREREG_heldout.md, confirmed 2026-10-03). Settings below are COPIED from the
+pre-registration and must not be changed after results are seen.
+
+Held-out sessions are addressed ONLY by explicit name here; nothing is added to
+good_sessions, and is_heldout() keeps them out of every other script.
+
+Steps (each skippable on a re-run via --from N, if an earlier step already completed):
+  1  generate held-out fault sessions (generate_all_faults on the 3 sessions; same
+     matrix, seed 0) + D3 extra: imu_biasmid_{small,medium,large}, onset 40%
+  2  EKF (unmodified ekf_fusion.py) on every held-out IMU/odom fault session
+  3  reliability labels (generate_reliability_labels functions; biasmid labels =
+     the matching bias labels with r_imu = 1 before onset)
+  4  LSTM features (build_training_dataset.build_session_features)
+  5  H0 + H1 (from ekf_metrics)
+  6  H2 + D1 + D3 with each of the 7 frozen LOBO models (unmodified
+     lstm_adaptive_ekf.evaluate_session), then the pre-registered verdicts
+
+Writes only: held-out fault-session files in sensor_logs (all guarded by is_heldout)
+and results in fix_ws/heldout_stage1_*.csv.
+"""
+import argparse
+import glob
+import json
+import os
+import subprocess
+import sys
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+import torch
+
+WS = os.path.expanduser('~/ws_mobile')
+S = os.path.join(WS, 'scripts')
+LOG = os.path.join(WS, 'sensor_logs')
+FIX = os.path.join(WS, 'fix_ws')
+sys.path.insert(0, S)
+
+# ---- PRE-REGISTERED SETTINGS (PREREG_heldout.md) -- do not change ----------------
+HELDOUT = json.load(open(os.path.join(FIX, 'heldout_sessions.json')))['heldout_sessions']
+TRAIN_MODELS = ['20260712_141740', '20260712_144326', '20260824_094119', '20260824_095427',
+                '20260824_095712', '20260824_095915', '20260824_100318']
+GATE_ON, GATE_OFF, GATE_N = 0.5, 0.7, 25          # D1 hysteresis
+BIASMID_START = 0.4                                # D3 onset
+H1_RATIO, H1_MIN_PASS, H1_DELAY_MIN = 1.05, 22, 5  # H1
+DETECT_WINDOW = 100                                # D3: first 2 s at 50 Hz
+# -----------------------------------------------------------------------------------
+
+MONO = {'noise': ['low', 'medium', 'high', 'extreme'], 'bias': ['small', 'medium', 'large'],
+        'drift': ['slow', 'medium', 'fast'], 'dropout': ['short', 'medium', 'long']}
+BIASMID_SEVS = ['small', 'medium', 'large']
+
+
+def log(m):
+    print(m, flush=True)
+
+
+def fs(b, sensor, ft, sev):
+    return f'{b}_fault_{sensor}_{ft}_{sev}'
+
+
+def imu_odom_fault_sessions():
+    out = []
+    for b in HELDOUT:
+        for sensor in ('imu', 'odom'):
+            for ft, sevs in MONO.items():
+                out += [fs(b, sensor, ft, v) for v in sevs]
+            out += [fs(b, sensor, 'delay', v) for v in ('small', 'medium', 'large')]
+        out += [fs(b, 'imu', 'biasmid', v) for v in BIASMID_SEVS]
+    return out
+
+
+def rmse_metric(s):
+    m = pd.read_csv(os.path.join(LOG, f'ekf_metrics_{s}.csv'))
+    return float(m.loc[m.metric == 'RMSE', 'value_m'].iloc[0])
+
+
+# ---------------------------------------------------------------- step 1
+def step1_faults():
+    import fault_injection as FI
+    created = FI.generate_all_faults(baseline_sessions=list(HELDOUT))
+    if len(created) != 52 * len(HELDOUT):
+        sys.exit(f'ABORT: generate_all_faults created {len(created)}, expected {52 * len(HELDOUT)}')
+    FI.FAULT_FNS['biasmid'] = lambda df, cols, sev, sev_map, rng: FI.inject_bias(
+        df, cols, sev_map[sev], start_frac=BIASMID_START)
+    FI.FAULT_SEVERITY_MAPS['biasmid'] = FI.BIAS_SEVERITY
+    for b in HELDOUT:
+        for v in BIASMID_SEVS:
+            FI.make_fault_session(b, 'imu', 'biasmid', v)
+    log('step1 OK: 156 standard + 9 biasmid held-out fault sessions')
+
+
+# ---------------------------------------------------------------- step 2
+def step2_ekf():
+    todo = imu_odom_fault_sessions()
+    for i, s in enumerate(todo, 1):
+        p = subprocess.run([sys.executable, os.path.join(S, 'ekf_fusion.py'), s],
+                           cwd=S, capture_output=True, text=True, timeout=300)
+        if p.returncode != 0 or not os.path.exists(os.path.join(LOG, f'ekf_metrics_{s}.csv')):
+            sys.exit(f'ABORT step2 {s}: exit {p.returncode}\n{p.stderr[-800:]}')
+        if i % 15 == 0:
+            log(f'  ekf {i}/{len(todo)}')
+    log(f'step2 OK: EKF on {len(todo)} held-out fault sessions')
+
+
+# ---------------------------------------------------------------- step 3
+def step3_labels():
+    import generate_reliability_labels as G
+    if isinstance(G.BASELINE_SESSIONS, list):
+        G.BASELINE_SESSIONS.extend(b for b in HELDOUT if b not in G.BASELINE_SESSIONS)
+    for b in HELDOUT:
+        G.process_baseline_session(b)
+    for s in imu_odom_fault_sessions():
+        if '_biasmid_' in s:
+            continue
+        G.process_fault_session(Path(LOG) / f'fault_meta_{s}.json')
+    # D3 labels: same as the matching start-at-0 bias labels, but r_imu = 1 before onset
+    for b in HELDOUT:
+        for v in BIASMID_SEVS:
+            src = pd.read_csv(os.path.join(LOG, f'reliability_labels_{fs(b, "imu", "bias", v)}.csv'))
+            onset = int(len(src) * BIASMID_START)
+            src.loc[src.index[:onset], 'r_imu'] = 1.0
+            src.to_csv(os.path.join(LOG, f'reliability_labels_{fs(b, "imu", "biasmid", v)}.csv'), index=False)
+    missing = [s for s in HELDOUT + imu_odom_fault_sessions()
+               if not os.path.exists(os.path.join(LOG, f'reliability_labels_{s}.csv'))]
+    if missing:
+        sys.exit(f'ABORT step3: {len(missing)} label files missing, e.g. {missing[:3]}')
+    log('step3 OK: labels for all held-out sessions')
+
+
+# ---------------------------------------------------------------- step 4
+def step4_features():
+    import build_training_dataset as BT
+    todo = HELDOUT + imu_odom_fault_sessions()
+    for i, s in enumerate(todo, 1):
+        BT.build_session_features(s)
+        if i % 20 == 0:
+            log(f'  features {i}/{len(todo)}')
+    log(f'step4 OK: features for {len(todo)} sessions')
+
+
+# ---------------------------------------------------------------- step 5
+def step5_h0_h1():
+    rows, deg_pass, deg_total, delay_pass = [], 0, 0, 0
+    log('\n=== H0: clean held-out EKF RMSE ===')
+    for b in HELDOUT:
+        log(f'  {b}: {rmse_metric(b):.4f} m')
+    log('\n=== H1: Phase 0 on held-out (worst severity >= 1.05x baseline) ===')
+    for b in HELDOUT:
+        base = rmse_metric(b)
+        for sensor in ('imu', 'odom'):
+            for ft, sevs in MONO.items():
+                vals = [rmse_metric(fs(b, sensor, ft, v)) for v in sevs]
+                ratio = vals[-1] / base
+                ok = ratio >= H1_RATIO
+                deg_pass += ok
+                deg_total += 1
+                rows.append(dict(baseline=b, sensor=sensor, fault=ft, ratio=ratio, passed=ok))
+                log(f'  [{"PASS" if ok else "FAIL"}] {b}/{sensor}/{ft}: ' +
+                    ', '.join(f'{v}={x:.3f}' for v, x in zip(sevs, vals)) + f'  ratio={ratio:.3f}')
+            d = [rmse_metric(fs(b, sensor, 'delay', v)) for v in ('small', 'medium', 'large')]
+            ok = d[-1] > base
+            delay_pass += ok
+            rows.append(dict(baseline=b, sensor=sensor, fault='delay', ratio=d[-1] / base, passed=ok))
+            log(f'  [{"UP" if ok else "NOT UP"}] {b}/{sensor}/delay: base={base:.3f} '
+                f'small={d[0]:.3f} medium={d[1]:.3f} large={d[2]:.3f}')
+    pd.DataFrame(rows).to_csv(os.path.join(FIX, 'heldout_stage1_h1.csv'), index=False)
+    h1 = deg_pass >= H1_MIN_PASS and delay_pass >= H1_DELAY_MIN
+    log(f'\nH1 verdict: degradation {deg_pass}/{deg_total} (need >= {H1_MIN_PASS}), '
+        f'delay up {delay_pass}/6 (need >= {H1_DELAY_MIN}) -> {"PASS" if h1 else "FAIL"}')
+    return h1
+
+
+# ---------------------------------------------------------------- step 6
+class Linear:
+    def __init__(self, model):
+        self.model, self.r, self.n = model, [], 0
+
+    def __call__(self, x):
+        out = self.model(x)
+        self.r.append(float(out[0, 0]))
+        self.n += 1
+        return out
+
+    def eval(self):
+        return self
+
+
+class Hysteresis:
+    """D1: gate r_imu' = 0 when r_imu < GATE_ON; release (r_imu' = 1) only after
+    r_imu > GATE_OFF for GATE_N consecutive steps; starts released. r_odom unchanged."""
+
+    def __init__(self, model):
+        self.model, self.gated, self.cnt, self.n = model, False, 0, 0
+
+    def __call__(self, x):
+        out = self.model(x).clone()
+        r = float(out[0, 0])
+        if not self.gated:
+            if r < GATE_ON:
+                self.gated, self.cnt = True, 0
+        else:
+            self.cnt = self.cnt + 1 if r > GATE_OFF else 0
+            if self.cnt >= GATE_N:
+                self.gated, self.cnt = False, 0
+        out[0, 0] = 0.0 if self.gated else 1.0
+        self.n += 1
+        return out
+
+    def eval(self):
+        return self
+
+
+def step6_models():
+    import lstm_adaptive_ekf as L
+    from build_training_dataset import parse_fault_info
+    sessions = HELDOUT + imu_odom_fault_sessions()
+    rows, det = [], []
+    for mi, mb in enumerate(TRAIN_MODELS, 1):
+        model, mean, std, feats, win = L.load_model(mb)
+        log(f'\n--- model {mi}/7 (LOBO fold {mb}) ---')
+        for s in sessions:
+            b = s.split('_fault_')[0]
+            n_lab = len(pd.read_csv(os.path.join(LOG, f'reliability_labels_{s}.csv')))
+            lin, hyst = Linear(model), Hysteresis(model)
+            with torch.no_grad():
+                fixed, heur, r_lin = L.evaluate_session(s, b, lin, mean, std, feats, win)
+                _, _, r_hys = L.evaluate_session(s, b, hyst, mean, std, feats, win)
+            if lin.n != n_lab or hyst.n != n_lab:
+                sys.exit(f'ABORT {s}: model called {lin.n}/{hyst.n}x, labels {n_lab}')
+            sensor, ft, sev = (None, None, None) if s == b else parse_fault_info(s, b)
+            rows.append(dict(model=mb, session=s, baseline=b, sensor=sensor, fault_type=ft,
+                             severity=sev, fixed=fixed, heuristic=heur, lstm_linear=r_lin, lstm_d1=r_hys))
+            if ft == 'biasmid':
+                onset = int(n_lab * BIASMID_START)
+                w = np.array(lin.r[onset:onset + DETECT_WINDOW])
+                det.append(dict(model=mb, session=s, detect_2s=float((w < GATE_ON).mean()),
+                                detect_after=float((np.array(lin.r[onset:]) < GATE_ON).mean()),
+                                false_before=float((np.array(lin.r[:onset]) < GATE_ON).mean())))
+        log(f'  done {len(sessions)} sessions')
+    df = pd.DataFrame(rows)
+    df.to_csv(os.path.join(FIX, 'heldout_stage1_models.csv'), index=False)
+    pd.DataFrame(det).to_csv(os.path.join(FIX, 'heldout_stage1_d3_detect.csv'), index=False)
+    return df, pd.DataFrame(det)
+
+
+def report(df, det):
+    def wins(g, col):
+        return (g[col] < g['fixed']).groupby(g['model']).sum()
+
+    std_imu = df[(df.sensor == 'imu') & (df.fault_type != 'biasmid')]
+    odom = df[df.sensor == 'odom']
+    base = df[df.sensor.isna()]
+    n_imu, n_odom = std_imu.session.nunique(), odom.session.nunique()
+
+    log('\n=== H2 / D1: wins vs fixed (mean +/- std over the 7 models) ===')
+    log(f'{"":10s} {"heuristic":>12s} {"lstm_linear":>16s} {"lstm_D1":>16s}')
+    for name, g, n in (('IMU', std_imu, n_imu), ('odom', odom, n_odom)):
+        h = wins(g, 'heuristic').iloc[0]
+        lw, dw = wins(g, 'lstm_linear'), wins(g, 'lstm_d1')
+        log(f'{name:10s} {h:>7d}/{n:<4d} {lw.mean():>9.1f}+/-{lw.std():<4.1f}/{n} '
+            f'{dw.mean():>7.1f}+/-{dw.std():<4.1f}/{n}')
+    for name, g in (('IMU', std_imu), ('odom', odom)):
+        log(f'\n  {name} by fault type (7-model mean wins vs fixed):')
+        for ft, gg in g.groupby('fault_type'):
+            n = gg.session.nunique()
+            log(f'    {ft:8s} heuristic {wins(gg, "heuristic").iloc[0]}/{n}  '
+                f'linear {wins(gg, "lstm_linear").mean():.1f}/{n}  D1 {wins(gg, "lstm_d1").mean():.1f}/{n}')
+    m = std_imu.groupby('model')[['fixed', 'lstm_linear', 'lstm_d1']].mean().mean()
+    mb = base.groupby('model')[['fixed', 'lstm_linear', 'lstm_d1']].mean().mean()
+    log(f'\n  IMU-fault mean RMSE: fixed={m.fixed:.3f} linear={m.lstm_linear:.3f} D1={m.lstm_d1:.3f}')
+    log(f'  held-out baselines mean RMSE: fixed={mb.fixed:.4f} linear={mb.lstm_linear:.4f} D1={mb.lstm_d1:.4f}')
+
+    h_odom = wins(odom, 'heuristic').iloc[0]
+    l_odom = wins(odom, 'lstm_linear').mean()
+    h2 = (l_odom > n_odom / 2) and (l_odom > h_odom)
+    log(f'\nH2 verdict: LSTM odom wins {l_odom:.1f}/{n_odom} (need > {n_odom / 2:.0f} and > heuristic {h_odom}) '
+        f'-> {"PASS" if h2 else "FAIL"}')
+
+    d1_imu = wins(std_imu, 'lstm_d1').mean()
+    checks = {
+        f'IMU wins > 50% ({d1_imu:.1f}/{n_imu})': d1_imu > n_imu / 2,
+        f'IMU mean RMSE < fixed ({m.lstm_d1:.3f} vs {m.fixed:.3f})': m.lstm_d1 < m.fixed,
+        f'baselines <= 1% worse ({mb.lstm_d1:.4f} vs {mb.fixed:.4f})': mb.lstm_d1 <= 1.01 * mb.fixed,
+        f'odom wins >= linear - 2 ({wins(odom, "lstm_d1").mean():.1f} vs {l_odom:.1f})':
+            wins(odom, 'lstm_d1').mean() >= l_odom - 2,
+    }
+    log('\nD1 verdict (pre-registered):')
+    for k, v in checks.items():
+        log(f'  [{"PASS" if v else "FAIL"}] {k}')
+    log(f'  OVERALL: {"PASS" if all(checks.values()) else "FAIL"}')
+
+    bm = df[df.fault_type == 'biasmid']
+    log('\n=== D3: mid-session IMU bias (reported, no pass/fail) ===')
+    log(f'  wins vs fixed (7-model mean, n={bm.session.nunique()}): '
+        f'linear {wins(bm, "lstm_linear").mean():.1f}, D1 {wins(bm, "lstm_d1").mean():.1f}')
+    mm = bm.groupby('model')[['fixed', 'lstm_linear', 'lstm_d1']].mean().mean()
+    log(f'  mean RMSE: fixed={mm.fixed:.3f} linear={mm.lstm_linear:.3f} D1={mm.lstm_d1:.3f}')
+    if len(det):
+        log(f'  r_imu < {GATE_ON}: first 2 s after onset {det.detect_2s.mean():.1%}, '
+            f'whole post-onset {det.detect_after.mean():.1%}, pre-onset (false) {det.false_before.mean():.1%}')
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--from', dest='start', type=int, default=1)
+    a = ap.parse_args()
+    log(f'held-out: {HELDOUT}')
+    steps = {1: step1_faults, 2: step2_ekf, 3: step3_labels, 4: step4_features}
+    for k in range(a.start, 5):
+        steps[k]()
+    step5_h0_h1()
+    df, det = step6_models()
+    report(df, det)
+    log('\nSaved: fix_ws/heldout_stage1_h1.csv, heldout_stage1_models.csv, heldout_stage1_d3_detect.csv')
+
+
+if __name__ == '__main__':
+    main()

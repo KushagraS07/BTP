@@ -1,0 +1,152 @@
+nohup: ignoring input
+  excluded (role dev, slip_accept REJECT): 20261009_145330
+dev sessions (8): 20261009_150044 20261009_150546 20261009_151240 20261009_151812 20261009_152418 20261009_152957 20261009_153500 20261009_154001
+
+  [20261009_150044] epoch  1/15 fit_loss 0.8423 val_loss 0.5058
+  [20261009_150044] epoch  2/15 fit_loss 0.4171 val_loss 0.2613
+  [20261009_150044] epoch  3/15 fit_loss 0.3259 val_loss 0.2602
+  [20261009_150044] epoch  4/15 fit_loss 0.3024 val_loss 0.1898
+  [20261009_150044] epoch  5/15 fit_loss 0.2378 val_loss 0.1713
+  [20261009_150044] epoch  6/15 fit_loss 0.2117 val_loss 0.1644
+  [20261009_150044] epoch  7/15 fit_loss 0.3779 val_loss 0.4324
+  [20261009_150044] epoch  8/15 fit_loss 0.2939 val_loss 0.1995
+  [20261009_150044] epoch  9/15 fit_loss 0.1920 val_loss 0.1513
+  [20261009_150044] epoch 10/15 fit_loss 0.2081 val_loss 0.1544
+  [20261009_150044] epoch 11/15 fit_loss 0.1546 val_loss 0.1444
+  [20261009_150044] epoch 12/15 fit_loss 0.1399 val_loss 0.1289
+  [20261009_150044] epoch 13/15 fit_loss 0.1310 val_loss 0.1153
+  [20261009_150044] epoch 14/15 fit_loss 0.1217 val_loss 0.1438
+  [20261009_150044] epoch 15/15 fit_loss 0.1133 val_loss 0.1130
+[20261009_150044] best epoch 15 (val 20261009_150546), held-out AUC 0.9804, Brier 0.0405, mean P on/off patch 0.264/0.129
+
+  [20261009_150546] epoch  1/15 fit_loss 0.8423 val_loss 0.4858
+  [20261009_150546] epoch  2/15 fit_loss 0.4171 val_loss 0.2670
+  [20261009_150546] epoch  3/15 fit_loss 0.3259 val_loss 0.3066
+  [20261009_150546] epoch  4/15 fit_loss 0.3024 val_loss 0.1666
+  [20261009_150546] epoch  5/15 fit_loss 0.2378 val_loss 0.1568
+  [20261009_150546] epoch  6/15 fit_loss 0.2117 val_loss 0.2393
+  [20261009_150546] epoch  7/15 fit_loss 0.3779 val_loss 0.1719
+  [20261009_150546] epoch  8/15 fit_loss 0.2939 val_loss 0.2176
+  [20261009_150546] epoch  9/15 fit_loss 0.1920 val_loss 0.1639
+  [20261009_150546] epoch 10/15 fit_loss 0.2081 val_loss 0.1739
+  [20261009_150546] epoch 11/15 fit_loss 0.1546 val_loss 0.1534
+  [20261009_150546] epoch 12/15 fit_loss 0.1399 val_loss 0.1303
+  [20261009_150546] epoch 13/15 fit_loss 0.1310 val_loss 0.1289
+  [20261009_150546] epoch 14/15 fit_loss 0.1217 val_loss 0.1587
+  [20261009_150546] epoch 15/15 fit_loss 0.1133 val_loss 0.1357
+[20261009_150546] best epoch 13 (val 20261009_150044), held-out AUC 0.9843, Brier 0.0324, mean P on/off patch 0.502/0.109
+
+  [20261009_151240] epoch  1/15 fit_loss 0.7889 val_loss 0.4765
+  [20261009_151240] epoch  2/15 fit_loss 0.3934 val_loss 0.2530
+  [20261009_151240] epoch  3/15 fit_loss 0.2896 val_loss 0.2072
+  [20261009_151240] epoch  4/15 fit_loss 0.2162 val_loss 0.1641
+  [20261009_151240] epoch  5/15 fit_loss 0.1781 val_loss 0.1446
+  [20261009_151240] epoch  6/15 fit_loss 0.1706 val_loss 0.1579
+  [20261009_151240] epoch  7/15 fit_loss 0.2329 val_loss 0.1356
+  [20261009_151240] epoch  8/15 fit_loss 0.1716 val_loss 0.1272
+  [20261009_151240] epoch  9/15 fit_loss 0.1615 val_loss 0.1226
+  [20261009_151240] epoch 10/15 fit_loss 0.1277 val_loss 0.1420
+  [20261009_151240] epoch 11/15 fit_loss 0.1548 val_loss 0.4637
+  [20261009_151240] epoch 12/15 fit_loss 0.1928 val_loss 0.1063
+  [20261009_151240] epoch 13/15 fit_loss 0.1160 val_loss 0.0973
+  [20261009_151240] epoch 14/15 fit_loss 0.1025 val_loss 0.0880
+  [20261009_151240] epoch 15/15 fit_loss 0.0967 val_loss 0.0961
+[20261009_151240] best epoch 14 (val 20261009_150044), held-out AUC 0.9837, Brier 0.0288, mean P on/off patch 0.222/0.074
+
+  [20261009_151812] epoch  1/15 fit_loss 0.7735 val_loss 0.4404
+  [20261009_151812] epoch  2/15 fit_loss 0.3766 val_loss 0.2288
+  [20261009_151812] epoch  3/15 fit_loss 0.3115 val_loss 0.2110
+  [20261009_151812] epoch  4/15 fit_loss 0.2164 val_loss 0.1615
+  [20261009_151812] epoch  5/15 fit_loss 0.1804 val_loss 0.1255
+  [20261009_151812] epoch  6/15 fit_loss 0.1492 val_loss 0.1175
+  [20261009_151812] epoch  7/15 fit_loss 0.1470 val_loss 0.1191
+  [20261009_151812] epoch  8/15 fit_loss 0.1272 val_loss 0.1020
+  [20261009_151812] epoch  9/15 fit_loss 0.1092 val_loss 0.0944
+  [20261009_151812] epoch 10/15 fit_loss 0.1647 val_loss 0.2639
+  [20261009_151812] epoch 11/15 fit_loss 0.1268 val_loss 0.0796
+  [20261009_151812] epoch 12/15 fit_loss 0.0991 val_loss 0.0884
+  [20261009_151812] epoch 13/15 fit_loss 0.0986 val_loss 0.0757
+  [20261009_151812] epoch 14/15 fit_loss 0.0861 val_loss 0.0783
+  [20261009_151812] epoch 15/15 fit_loss 0.0848 val_loss 0.0778
+[20261009_151812] best epoch 13 (val 20261009_150044), held-out AUC 0.8112, Brier 0.074, mean P on/off patch 0.234/0.129
+
+  [20261009_152418] epoch  1/15 fit_loss 0.7982 val_loss 0.4860
+  [20261009_152418] epoch  2/15 fit_loss 0.4211 val_loss 0.2988
+  [20261009_152418] epoch  3/15 fit_loss 0.3185 val_loss 0.1924
+  [20261009_152418] epoch  4/15 fit_loss 0.2563 val_loss 0.1643
+  [20261009_152418] epoch  5/15 fit_loss 0.2197 val_loss 0.1385
+  [20261009_152418] epoch  6/15 fit_loss 0.1730 val_loss 0.1327
+  [20261009_152418] epoch  7/15 fit_loss 0.1773 val_loss 0.1336
+  [20261009_152418] epoch  8/15 fit_loss 0.1323 val_loss 0.1108
+  [20261009_152418] epoch  9/15 fit_loss 0.1563 val_loss 0.1016
+  [20261009_152418] epoch 10/15 fit_loss 0.1436 val_loss 0.1064
+  [20261009_152418] epoch 11/15 fit_loss 0.1184 val_loss 0.1494
+  [20261009_152418] epoch 12/15 fit_loss 0.1025 val_loss 0.0920
+  [20261009_152418] epoch 13/15 fit_loss 0.0933 val_loss 0.0936
+  [20261009_152418] epoch 14/15 fit_loss 0.0892 val_loss 0.0993
+  [20261009_152418] epoch 15/15 fit_loss 0.1712 val_loss 0.0968
+[20261009_152418] best epoch 12 (val 20261009_150044), held-out AUC 0.9982, Brier 0.0132, mean P on/off patch 0.193/0.073
+
+  [20261009_152957] epoch  1/15 fit_loss 0.8413 val_loss 0.4864
+  [20261009_152957] epoch  2/15 fit_loss 0.4349 val_loss 0.2364
+  [20261009_152957] epoch  3/15 fit_loss 0.2735 val_loss 0.2003
+  [20261009_152957] epoch  4/15 fit_loss 0.2090 val_loss 0.2029
+  [20261009_152957] epoch  5/15 fit_loss 0.2013 val_loss 0.1464
+  [20261009_152957] epoch  6/15 fit_loss 0.1402 val_loss 0.1336
+  [20261009_152957] epoch  7/15 fit_loss 0.1213 val_loss 0.1352
+  [20261009_152957] epoch  8/15 fit_loss 0.1115 val_loss 0.1262
+  [20261009_152957] epoch  9/15 fit_loss 0.1043 val_loss 0.1205
+  [20261009_152957] epoch 10/15 fit_loss 0.1350 val_loss 0.2200
+  [20261009_152957] epoch 11/15 fit_loss 0.1790 val_loss 0.1568
+  [20261009_152957] epoch 12/15 fit_loss 0.1141 val_loss 0.1421
+  [20261009_152957] epoch 13/15 fit_loss 0.1140 val_loss 0.1416
+  [20261009_152957] epoch 14/15 fit_loss 0.0974 val_loss 0.1302
+  [20261009_152957] epoch 15/15 fit_loss 0.6336 val_loss 0.3622
+[20261009_152957] best epoch 9 (val 20261009_150044), held-out AUC 0.9955, Brier 0.0242, mean P on/off patch 0.527/0.188
+
+  [20261009_153500] epoch  1/15 fit_loss 0.7964 val_loss 0.4697
+  [20261009_153500] epoch  2/15 fit_loss 0.3887 val_loss 0.2381
+  [20261009_153500] epoch  3/15 fit_loss 0.2600 val_loss 0.1850
+  [20261009_153500] epoch  4/15 fit_loss 0.2077 val_loss 0.1922
+  [20261009_153500] epoch  5/15 fit_loss 0.1981 val_loss 0.1557
+  [20261009_153500] epoch  6/15 fit_loss 0.1573 val_loss 0.2430
+  [20261009_153500] epoch  7/15 fit_loss 0.1475 val_loss 0.1213
+  [20261009_153500] epoch  8/15 fit_loss 0.1392 val_loss 0.1148
+  [20261009_153500] epoch  9/15 fit_loss 0.1253 val_loss 0.1157
+  [20261009_153500] epoch 10/15 fit_loss 0.1120 val_loss 0.1025
+  [20261009_153500] epoch 11/15 fit_loss 0.1076 val_loss 0.1081
+  [20261009_153500] epoch 12/15 fit_loss 0.1003 val_loss 0.0847
+  [20261009_153500] epoch 13/15 fit_loss 0.1017 val_loss 0.0898
+  [20261009_153500] epoch 14/15 fit_loss 0.1611 val_loss 0.0963
+  [20261009_153500] epoch 15/15 fit_loss 0.0993 val_loss 0.0909
+[20261009_153500] best epoch 12 (val 20261009_150044), held-out AUC 0.997, Brier 0.0177, mean P on/off patch 0.214/0.105
+
+  [20261009_154001] epoch  1/15 fit_loss 0.8207 val_loss 0.4884
+  [20261009_154001] epoch  2/15 fit_loss 0.4317 val_loss 0.2548
+  [20261009_154001] epoch  3/15 fit_loss 0.2583 val_loss 0.2106
+  [20261009_154001] epoch  4/15 fit_loss 0.2117 val_loss 0.1490
+  [20261009_154001] epoch  5/15 fit_loss 0.1636 val_loss 0.1691
+  [20261009_154001] epoch  6/15 fit_loss 0.1489 val_loss 0.1411
+  [20261009_154001] epoch  7/15 fit_loss 0.1313 val_loss 0.1117
+  [20261009_154001] epoch  8/15 fit_loss 0.1291 val_loss 0.1349
+  [20261009_154001] epoch  9/15 fit_loss 0.1094 val_loss 0.0994
+  [20261009_154001] epoch 10/15 fit_loss 0.0962 val_loss 0.1450
+  [20261009_154001] epoch 11/15 fit_loss 0.1659 val_loss 0.1200
+  [20261009_154001] epoch 12/15 fit_loss 0.1119 val_loss 0.2113
+  [20261009_154001] epoch 13/15 fit_loss 0.1267 val_loss 0.1519
+  [20261009_154001] epoch 14/15 fit_loss 0.1035 val_loss 0.1369
+  [20261009_154001] epoch 15/15 fit_loss 0.0952 val_loss 0.1290
+[20261009_154001] best epoch 9 (val 20261009_150044), held-out AUC 0.9683, Brier 0.0591, mean P on/off patch 0.461/0.107
+
+       held_out             val  best_epoch  best_val_loss  pos_weight  test_slip_share    auc  brier  mean_p_on_patch  mean_p_off_patch  false_alarm_off_patch_p05
+20261009_150044 20261009_150546          15         0.1130       4.577           0.1451 0.9804 0.0405            0.264             0.129                     0.0401
+20261009_150546 20261009_150044          13         0.1289       4.577           0.2587 0.9843 0.0324            0.502             0.109                     0.0333
+20261009_151240 20261009_150044          14         0.0880       3.817           0.1089 0.9837 0.0288            0.222             0.074                     0.0195
+20261009_151812 20261009_150044          13         0.0757       4.211           0.1869 0.8112 0.0740            0.234             0.129                     0.0149
+20261009_152418 20261009_150044          12         0.0920       3.876           0.1008 0.9982 0.0132            0.193             0.073                     0.0089
+20261009_152957 20261009_150044           9         0.1205       4.858           0.2996 0.9955 0.0242            0.527             0.188                     0.0303
+20261009_153500 20261009_150044          12         0.0847       3.979           0.1211 0.9970 0.0177            0.214             0.105                     0.0152
+20261009_154001 20261009_150044           9         0.0994       4.408           0.2301 0.9683 0.0591            0.461             0.107                     0.0476
+
+DEVELOPMENT LOBO (not a test result): mean AUC 0.9648, min 0.8112; mean Brier 0.0362
+wrote /home/kushagra/ws_mobile/results/slip_train_lobo.csv and 8 sensor_logs/slip_model_*.pt

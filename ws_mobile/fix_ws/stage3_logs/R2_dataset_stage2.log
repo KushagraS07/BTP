@@ -1,0 +1,263 @@
+  Commanded accumulated rotation: 19.4603 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=1.7% (raw columns present)
+  Commanded accumulated rotation: 13.5249 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=7.5% (raw columns present)
+  Commanded accumulated rotation: 15.2765 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=0.0% (NO raw columns)
+excluding baseline 20260714_014615 and its fault tree (health_check FAIL): ['IMU orientation failed to respond to commanded turning: IMU theta range=0.000000 rad, commanded accumulated rotation=15.276486 rad (need IMU range >= 0.5) — matches the dead-IMU signature previously found in session 20260714_014615']
+  Commanded accumulated rotation: 78.6733 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=98.6% (raw columns present)
+  WARNING: 98.6% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  Commanded accumulated rotation: 33.3239 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=100.0% (raw columns present)
+  WARNING: 100.0% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  Commanded accumulated rotation: 25.6286 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=99.5% (raw columns present)
+  WARNING: 99.5% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  Commanded accumulated rotation: 67.1143 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=100.0% (raw columns present)
+  WARNING: 100.0% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  Commanded accumulated rotation: 47.8286 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=100.0% (raw columns present)
+  WARNING: 100.0% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+
+7 good baselines, building 7 LOBO folds
+
+[1/231] windowed 20260712_141740 -> 3733 windows
+[2/231] windowed 20260712_141740_fault_imu_bias_large -> 3733 windows
+[3/231] windowed 20260712_141740_fault_imu_bias_medium -> 3733 windows
+[4/231] windowed 20260712_141740_fault_imu_bias_small -> 3733 windows
+[5/231] windowed 20260712_141740_fault_imu_delay_large -> 3733 windows
+[6/231] windowed 20260712_141740_fault_imu_delay_medium -> 3733 windows
+[7/231] windowed 20260712_141740_fault_imu_delay_small -> 3733 windows
+[8/231] windowed 20260712_141740_fault_imu_drift_fast -> 3733 windows
+[9/231] windowed 20260712_141740_fault_imu_drift_medium -> 3733 windows
+[10/231] windowed 20260712_141740_fault_imu_drift_slow -> 3733 windows
+[11/231] windowed 20260712_141740_fault_imu_dropout_long -> 3733 windows
+[12/231] windowed 20260712_141740_fault_imu_dropout_medium -> 3733 windows
+[13/231] windowed 20260712_141740_fault_imu_dropout_short -> 3733 windows
+[14/231] windowed 20260712_141740_fault_imu_noise_extreme -> 3733 windows
+[15/231] windowed 20260712_141740_fault_imu_noise_high -> 3733 windows
+[16/231] windowed 20260712_141740_fault_imu_noise_low -> 3733 windows
+[17/231] windowed 20260712_141740_fault_imu_noise_medium -> 3733 windows
+[18/231] windowed 20260712_141740_fault_odom_bias_large -> 3733 windows
+[19/231] windowed 20260712_141740_fault_odom_bias_medium -> 3733 windows
+[20/231] windowed 20260712_141740_fault_odom_bias_small -> 3733 windows
+[21/231] windowed 20260712_141740_fault_odom_delay_large -> 3733 windows
+[22/231] windowed 20260712_141740_fault_odom_delay_medium -> 3733 windows
+[23/231] windowed 20260712_141740_fault_odom_delay_small -> 3733 windows
+[24/231] windowed 20260712_141740_fault_odom_drift_fast -> 3733 windows
+[25/231] windowed 20260712_141740_fault_odom_drift_medium -> 3733 windows
+[26/231] windowed 20260712_141740_fault_odom_drift_slow -> 3733 windows
+[27/231] windowed 20260712_141740_fault_odom_dropout_long -> 3733 windows
+[28/231] windowed 20260712_141740_fault_odom_dropout_medium -> 3733 windows
+[29/231] windowed 20260712_141740_fault_odom_dropout_short -> 3733 windows
+[30/231] windowed 20260712_141740_fault_odom_noise_extreme -> 3733 windows
+[31/231] windowed 20260712_141740_fault_odom_noise_high -> 3733 windows
+[32/231] windowed 20260712_141740_fault_odom_noise_low -> 3733 windows
+[33/231] windowed 20260712_141740_fault_odom_noise_medium -> 3733 windows
+[34/231] windowed 20260712_144326 -> 1379 windows
+[35/231] windowed 20260712_144326_fault_imu_bias_large -> 1379 windows
+[36/231] windowed 20260712_144326_fault_imu_bias_medium -> 1379 windows
+[37/231] windowed 20260712_144326_fault_imu_bias_small -> 1379 windows
+[38/231] windowed 20260712_144326_fault_imu_delay_large -> 1379 windows
+[39/231] windowed 20260712_144326_fault_imu_delay_medium -> 1379 windows
+[40/231] windowed 20260712_144326_fault_imu_delay_small -> 1379 windows
+[41/231] windowed 20260712_144326_fault_imu_drift_fast -> 1379 windows
+[42/231] windowed 20260712_144326_fault_imu_drift_medium -> 1379 windows
+[43/231] windowed 20260712_144326_fault_imu_drift_slow -> 1379 windows
+[44/231] windowed 20260712_144326_fault_imu_dropout_long -> 1379 windows
+[45/231] windowed 20260712_144326_fault_imu_dropout_medium -> 1379 windows
+[46/231] windowed 20260712_144326_fault_imu_dropout_short -> 1379 windows
+[47/231] windowed 20260712_144326_fault_imu_noise_extreme -> 1379 windows
+[48/231] windowed 20260712_144326_fault_imu_noise_high -> 1379 windows
+[49/231] windowed 20260712_144326_fault_imu_noise_low -> 1379 windows
+[50/231] windowed 20260712_144326_fault_imu_noise_medium -> 1379 windows
+[51/231] windowed 20260712_144326_fault_odom_bias_large -> 1379 windows
+[52/231] windowed 20260712_144326_fault_odom_bias_medium -> 1379 windows
+[53/231] windowed 20260712_144326_fault_odom_bias_small -> 1379 windows
+[54/231] windowed 20260712_144326_fault_odom_delay_large -> 1379 windows
+[55/231] windowed 20260712_144326_fault_odom_delay_medium -> 1379 windows
+[56/231] windowed 20260712_144326_fault_odom_delay_small -> 1379 windows
+[57/231] windowed 20260712_144326_fault_odom_drift_fast -> 1379 windows
+[58/231] windowed 20260712_144326_fault_odom_drift_medium -> 1379 windows
+[59/231] windowed 20260712_144326_fault_odom_drift_slow -> 1379 windows
+[60/231] windowed 20260712_144326_fault_odom_dropout_long -> 1379 windows
+[61/231] windowed 20260712_144326_fault_odom_dropout_medium -> 1379 windows
+[62/231] windowed 20260712_144326_fault_odom_dropout_short -> 1379 windows
+[63/231] windowed 20260712_144326_fault_odom_noise_extreme -> 1379 windows
+[64/231] windowed 20260712_144326_fault_odom_noise_high -> 1379 windows
+[65/231] windowed 20260712_144326_fault_odom_noise_low -> 1379 windows
+[66/231] windowed 20260712_144326_fault_odom_noise_medium -> 1379 windows
+[67/231] windowed 20260824_094119 -> 2425 windows
+[68/231] windowed 20260824_094119_fault_imu_bias_large -> 2425 windows
+[69/231] windowed 20260824_094119_fault_imu_bias_medium -> 2425 windows
+[70/231] windowed 20260824_094119_fault_imu_bias_small -> 2425 windows
+[71/231] windowed 20260824_094119_fault_imu_delay_large -> 2425 windows
+[72/231] windowed 20260824_094119_fault_imu_delay_medium -> 2425 windows
+[73/231] windowed 20260824_094119_fault_imu_delay_small -> 2425 windows
+[74/231] windowed 20260824_094119_fault_imu_drift_fast -> 2425 windows
+[75/231] windowed 20260824_094119_fault_imu_drift_medium -> 2425 windows
+[76/231] windowed 20260824_094119_fault_imu_drift_slow -> 2425 windows
+[77/231] windowed 20260824_094119_fault_imu_dropout_long -> 2425 windows
+[78/231] windowed 20260824_094119_fault_imu_dropout_medium -> 2425 windows
+[79/231] windowed 20260824_094119_fault_imu_dropout_short -> 2425 windows
+[80/231] windowed 20260824_094119_fault_imu_noise_extreme -> 2425 windows
+[81/231] windowed 20260824_094119_fault_imu_noise_high -> 2425 windows
+[82/231] windowed 20260824_094119_fault_imu_noise_low -> 2425 windows
+[83/231] windowed 20260824_094119_fault_imu_noise_medium -> 2425 windows
+[84/231] windowed 20260824_094119_fault_odom_bias_large -> 2425 windows
+[85/231] windowed 20260824_094119_fault_odom_bias_medium -> 2425 windows
+[86/231] windowed 20260824_094119_fault_odom_bias_small -> 2425 windows
+[87/231] windowed 20260824_094119_fault_odom_delay_large -> 2425 windows
+[88/231] windowed 20260824_094119_fault_odom_delay_medium -> 2425 windows
+[89/231] windowed 20260824_094119_fault_odom_delay_small -> 2425 windows
+[90/231] windowed 20260824_094119_fault_odom_drift_fast -> 2425 windows
+[91/231] windowed 20260824_094119_fault_odom_drift_medium -> 2425 windows
+[92/231] windowed 20260824_094119_fault_odom_drift_slow -> 2425 windows
+[93/231] windowed 20260824_094119_fault_odom_dropout_long -> 2425 windows
+[94/231] windowed 20260824_094119_fault_odom_dropout_medium -> 2425 windows
+[95/231] windowed 20260824_094119_fault_odom_dropout_short -> 2425 windows
+[96/231] windowed 20260824_094119_fault_odom_noise_extreme -> 2425 windows
+[97/231] windowed 20260824_094119_fault_odom_noise_high -> 2425 windows
+[98/231] windowed 20260824_094119_fault_odom_noise_low -> 2425 windows
+[99/231] windowed 20260824_094119_fault_odom_noise_medium -> 2425 windows
+[100/231] windowed 20260824_095427 -> 2087 windows
+[101/231] windowed 20260824_095427_fault_imu_bias_large -> 2087 windows
+[102/231] windowed 20260824_095427_fault_imu_bias_medium -> 2087 windows
+[103/231] windowed 20260824_095427_fault_imu_bias_small -> 2087 windows
+[104/231] windowed 20260824_095427_fault_imu_delay_large -> 2087 windows
+[105/231] windowed 20260824_095427_fault_imu_delay_medium -> 2087 windows
+[106/231] windowed 20260824_095427_fault_imu_delay_small -> 2087 windows
+[107/231] windowed 20260824_095427_fault_imu_drift_fast -> 2087 windows
+[108/231] windowed 20260824_095427_fault_imu_drift_medium -> 2087 windows
+[109/231] windowed 20260824_095427_fault_imu_drift_slow -> 2087 windows
+[110/231] windowed 20260824_095427_fault_imu_dropout_long -> 2087 windows
+[111/231] windowed 20260824_095427_fault_imu_dropout_medium -> 2087 windows
+[112/231] windowed 20260824_095427_fault_imu_dropout_short -> 2087 windows
+[113/231] windowed 20260824_095427_fault_imu_noise_extreme -> 2087 windows
+[114/231] windowed 20260824_095427_fault_imu_noise_high -> 2087 windows
+[115/231] windowed 20260824_095427_fault_imu_noise_low -> 2087 windows
+[116/231] windowed 20260824_095427_fault_imu_noise_medium -> 2087 windows
+[117/231] windowed 20260824_095427_fault_odom_bias_large -> 2087 windows
+[118/231] windowed 20260824_095427_fault_odom_bias_medium -> 2087 windows
+[119/231] windowed 20260824_095427_fault_odom_bias_small -> 2087 windows
+[120/231] windowed 20260824_095427_fault_odom_delay_large -> 2087 windows
+[121/231] windowed 20260824_095427_fault_odom_delay_medium -> 2087 windows
+[122/231] windowed 20260824_095427_fault_odom_delay_small -> 2087 windows
+[123/231] windowed 20260824_095427_fault_odom_drift_fast -> 2087 windows
+[124/231] windowed 20260824_095427_fault_odom_drift_medium -> 2087 windows
+[125/231] windowed 20260824_095427_fault_odom_drift_slow -> 2087 windows
+[126/231] windowed 20260824_095427_fault_odom_dropout_long -> 2087 windows
+[127/231] windowed 20260824_095427_fault_odom_dropout_medium -> 2087 windows
+[128/231] windowed 20260824_095427_fault_odom_dropout_short -> 2087 windows
+[129/231] windowed 20260824_095427_fault_odom_noise_extreme -> 2087 windows
+[130/231] windowed 20260824_095427_fault_odom_noise_high -> 2087 windows
+[131/231] windowed 20260824_095427_fault_odom_noise_low -> 2087 windows
+[132/231] windowed 20260824_095427_fault_odom_noise_medium -> 2087 windows
+[133/231] windowed 20260824_095712 -> 1537 windows
+[134/231] windowed 20260824_095712_fault_imu_bias_large -> 1537 windows
+[135/231] windowed 20260824_095712_fault_imu_bias_medium -> 1537 windows
+[136/231] windowed 20260824_095712_fault_imu_bias_small -> 1537 windows
+[137/231] windowed 20260824_095712_fault_imu_delay_large -> 1537 windows
+[138/231] windowed 20260824_095712_fault_imu_delay_medium -> 1537 windows
+[139/231] windowed 20260824_095712_fault_imu_delay_small -> 1537 windows
+[140/231] windowed 20260824_095712_fault_imu_drift_fast -> 1537 windows
+[141/231] windowed 20260824_095712_fault_imu_drift_medium -> 1537 windows
+[142/231] windowed 20260824_095712_fault_imu_drift_slow -> 1537 windows
+[143/231] windowed 20260824_095712_fault_imu_dropout_long -> 1537 windows
+[144/231] windowed 20260824_095712_fault_imu_dropout_medium -> 1537 windows
+[145/231] windowed 20260824_095712_fault_imu_dropout_short -> 1537 windows
+[146/231] windowed 20260824_095712_fault_imu_noise_extreme -> 1537 windows
+[147/231] windowed 20260824_095712_fault_imu_noise_high -> 1537 windows
+[148/231] windowed 20260824_095712_fault_imu_noise_low -> 1537 windows
+[149/231] windowed 20260824_095712_fault_imu_noise_medium -> 1537 windows
+[150/231] windowed 20260824_095712_fault_odom_bias_large -> 1537 windows
+[151/231] windowed 20260824_095712_fault_odom_bias_medium -> 1537 windows
+[152/231] windowed 20260824_095712_fault_odom_bias_small -> 1537 windows
+[153/231] windowed 20260824_095712_fault_odom_delay_large -> 1536 windows
+[154/231] windowed 20260824_095712_fault_odom_delay_medium -> 1537 windows
+[155/231] windowed 20260824_095712_fault_odom_delay_small -> 1537 windows
+[156/231] windowed 20260824_095712_fault_odom_drift_fast -> 1537 windows
+[157/231] windowed 20260824_095712_fault_odom_drift_medium -> 1537 windows
+[158/231] windowed 20260824_095712_fault_odom_drift_slow -> 1537 windows
+[159/231] windowed 20260824_095712_fault_odom_dropout_long -> 1537 windows
+[160/231] windowed 20260824_095712_fault_odom_dropout_medium -> 1537 windows
+[161/231] windowed 20260824_095712_fault_odom_dropout_short -> 1537 windows
+[162/231] windowed 20260824_095712_fault_odom_noise_extreme -> 1537 windows
+[163/231] windowed 20260824_095712_fault_odom_noise_high -> 1537 windows
+[164/231] windowed 20260824_095712_fault_odom_noise_low -> 1537 windows
+[165/231] windowed 20260824_095712_fault_odom_noise_medium -> 1537 windows
+[166/231] windowed 20260824_095915 -> 1768 windows
+[167/231] windowed 20260824_095915_fault_imu_bias_large -> 1768 windows
+[168/231] windowed 20260824_095915_fault_imu_bias_medium -> 1768 windows
+[169/231] windowed 20260824_095915_fault_imu_bias_small -> 1768 windows
+[170/231] windowed 20260824_095915_fault_imu_delay_large -> 1768 windows
+[171/231] windowed 20260824_095915_fault_imu_delay_medium -> 1768 windows
+[172/231] windowed 20260824_095915_fault_imu_delay_small -> 1768 windows
+[173/231] windowed 20260824_095915_fault_imu_drift_fast -> 1768 windows
+[174/231] windowed 20260824_095915_fault_imu_drift_medium -> 1768 windows
+[175/231] windowed 20260824_095915_fault_imu_drift_slow -> 1768 windows
+[176/231] windowed 20260824_095915_fault_imu_dropout_long -> 1768 windows
+[177/231] windowed 20260824_095915_fault_imu_dropout_medium -> 1768 windows
+[178/231] windowed 20260824_095915_fault_imu_dropout_short -> 1768 windows
+[179/231] windowed 20260824_095915_fault_imu_noise_extreme -> 1768 windows
+[180/231] windowed 20260824_095915_fault_imu_noise_high -> 1768 windows
+[181/231] windowed 20260824_095915_fault_imu_noise_low -> 1768 windows
+[182/231] windowed 20260824_095915_fault_imu_noise_medium -> 1768 windows
+[183/231] windowed 20260824_095915_fault_odom_bias_large -> 1768 windows
+[184/231] windowed 20260824_095915_fault_odom_bias_medium -> 1768 windows
+[185/231] windowed 20260824_095915_fault_odom_bias_small -> 1768 windows
+[186/231] windowed 20260824_095915_fault_odom_delay_large -> 1768 windows
+[187/231] windowed 20260824_095915_fault_odom_delay_medium -> 1768 windows
+[188/231] windowed 20260824_095915_fault_odom_delay_small -> 1768 windows
+[189/231] windowed 20260824_095915_fault_odom_drift_fast -> 1768 windows
+[190/231] windowed 20260824_095915_fault_odom_drift_medium -> 1768 windows
+[191/231] windowed 20260824_095915_fault_odom_drift_slow -> 1768 windows
+[192/231] windowed 20260824_095915_fault_odom_dropout_long -> 1768 windows
+[193/231] windowed 20260824_095915_fault_odom_dropout_medium -> 1768 windows
+[194/231] windowed 20260824_095915_fault_odom_dropout_short -> 1768 windows
+[195/231] windowed 20260824_095915_fault_odom_noise_extreme -> 1768 windows
+[196/231] windowed 20260824_095915_fault_odom_noise_high -> 1768 windows
+[197/231] windowed 20260824_095915_fault_odom_noise_low -> 1768 windows
+[198/231] windowed 20260824_095915_fault_odom_noise_medium -> 1768 windows
+[199/231] windowed 20260824_100318 -> 1942 windows
+[200/231] windowed 20260824_100318_fault_imu_bias_large -> 1942 windows
+[201/231] windowed 20260824_100318_fault_imu_bias_medium -> 1942 windows
+[202/231] windowed 20260824_100318_fault_imu_bias_small -> 1942 windows
+[203/231] windowed 20260824_100318_fault_imu_delay_large -> 1905 windows
+[204/231] windowed 20260824_100318_fault_imu_delay_medium -> 1942 windows
+[205/231] windowed 20260824_100318_fault_imu_delay_small -> 1942 windows
+[206/231] windowed 20260824_100318_fault_imu_drift_fast -> 1942 windows
+[207/231] windowed 20260824_100318_fault_imu_drift_medium -> 1942 windows
+[208/231] windowed 20260824_100318_fault_imu_drift_slow -> 1942 windows
+[209/231] windowed 20260824_100318_fault_imu_dropout_long -> 1942 windows
+[210/231] windowed 20260824_100318_fault_imu_dropout_medium -> 1942 windows
+[211/231] windowed 20260824_100318_fault_imu_dropout_short -> 1942 windows
+[212/231] windowed 20260824_100318_fault_imu_noise_extreme -> 1942 windows
+[213/231] windowed 20260824_100318_fault_imu_noise_high -> 1942 windows
+[214/231] windowed 20260824_100318_fault_imu_noise_low -> 1942 windows
+[215/231] windowed 20260824_100318_fault_imu_noise_medium -> 1942 windows
+[216/231] windowed 20260824_100318_fault_odom_bias_large -> 1942 windows
+[217/231] windowed 20260824_100318_fault_odom_bias_medium -> 1942 windows
+[218/231] windowed 20260824_100318_fault_odom_bias_small -> 1942 windows
+[219/231] windowed 20260824_100318_fault_odom_delay_large -> 1905 windows
+[220/231] windowed 20260824_100318_fault_odom_delay_medium -> 1942 windows
+[221/231] windowed 20260824_100318_fault_odom_delay_small -> 1942 windows
+[222/231] windowed 20260824_100318_fault_odom_drift_fast -> 1942 windows
+[223/231] windowed 20260824_100318_fault_odom_drift_medium -> 1942 windows
+[224/231] windowed 20260824_100318_fault_odom_drift_slow -> 1942 windows
+[225/231] windowed 20260824_100318_fault_odom_dropout_long -> 1942 windows
+[226/231] windowed 20260824_100318_fault_odom_dropout_medium -> 1942 windows
+[227/231] windowed 20260824_100318_fault_odom_dropout_short -> 1942 windows
+[228/231] windowed 20260824_100318_fault_odom_noise_extreme -> 1942 windows
+[229/231] windowed 20260824_100318_fault_odom_noise_high -> 1942 windows
+[230/231] windowed 20260824_100318_fault_odom_noise_low -> 1942 windows
+[231/231] windowed 20260824_100318_fault_odom_noise_medium -> 1942 windows
+wrote fold_20260712_141740.npz: train=(367479, 50, 13), test=(123189, 50, 13)
+wrote fold_20260712_144326.npz: train=(445161, 50, 13), test=(45507, 50, 13)
+wrote fold_20260824_094119.npz: train=(410643, 50, 13), test=(80025, 50, 13)
+wrote fold_20260824_095427.npz: train=(421797, 50, 13), test=(68871, 50, 13)
+wrote fold_20260824_095712.npz: train=(439948, 50, 13), test=(50720, 50, 13)
+wrote fold_20260824_095915.npz: train=(432324, 50, 13), test=(58344, 50, 13)
+wrote fold_20260824_100318.npz: train=(426656, 50, 13), test=(64012, 50, 13)

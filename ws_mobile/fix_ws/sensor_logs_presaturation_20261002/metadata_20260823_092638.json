@@ -1,0 +1,76 @@
+{
+  "session_id": "20260823_092638",
+  "started_at": "2026-08-23T09:26:38.728323",
+  "log_dir": "/home/kushagra/ws_mobile/sensor_logs",
+  "ground_truth_source": null,
+  "paper_table1_targets": {
+    "lidar": {
+      "angle_span_deg": 270.0,
+      "resolution_deg": 0.5,
+      "range_min_m": 0.1,
+      "range_max_m": 2.5
+    },
+    "imu": {
+      "output_hz": 50.0
+    },
+    "odometry": {
+      "output_hz": 100.0
+    }
+  },
+  "lidar_geometry_detected": null,
+  "files": {
+    "imu": "imu_20260823_092638.csv",
+    "odom": "odom_20260823_092638.csv",
+    "scan": "scan_20260823_092638.csv",
+    "ground_truth": "ground_truth_20260823_092638.csv",
+    "cmd_vel": "cmd_vel_20260823_092638.csv",
+    "frequency_log": "frequency_log_20260823_092638.csv"
+  },
+  "session_duration_sec": 5.002,
+  "message_counts": {
+    "imu": 0,
+    "odom": 0,
+    "scan": 0,
+    "cmd_vel": 0,
+    "gt": 0
+  },
+  "average_rates_hz": {
+    "imu": 0.0,
+    "odom": 0.0,
+    "scan": 0.0,
+    "cmd_vel": 0.0,
+    "gt": 0.0
+  },
+  "sample_statistics": {
+    "imu_angular_vel_z": {
+      "count": 0
+    },
+    "imu_linear_acc_x": {
+      "count": 0
+    },
+    "odom_linear_x": {
+      "count": 0
+    },
+    "odom_pos_x": {
+      "count": 0
+    },
+    "odom_pos_y": {
+      "count": 0
+    },
+    "cmd_vel_linear_x": {
+      "count": 0
+    },
+    "cmd_vel_angular_z": {
+      "count": 0
+    },
+    "lidar_mean_range": {
+      "count": 0
+    },
+    "gt_pos_x": {
+      "count": 0
+    },
+    "gt_pos_y": {
+      "count": 0
+    }
+  }
+}

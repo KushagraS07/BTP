@@ -1,0 +1,4 @@
+Noise Level,EKF Only (m),RNN Only (m),EKF-RNN Fusion (m)
+Low,0.6121,1.395,1.3952
+Medium,0.8512,1.76,1.7588
+High,3.0049,2.4827,2.4818

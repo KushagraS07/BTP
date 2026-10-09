@@ -1,0 +1,8 @@
+Rebuilding fold files from the restored labels + features ...
+  START R1_dataset_stage1
+  OK    R1_dataset_stage1
+  START R2_dataset_stage2
+  OK    R2_dataset_stage2
+Fold files rebuilt: 7; sha256 mismatches: 0 (all identical)
+Restored 685 files + generate_reliability_labels.py; mismatches: 0 (all identical)
+NOTE: 7 other sensor_logs files changed or appeared during the run (not in the backup set), e.g. ['fold_20260712_141740.npz', 'fold_20260712_144326.npz', 'fold_20260824_094119.npz', 'fold_20260824_095427.npz', 'fold_20260824_095712.npz', 'fold_20260824_095915.npz', 'fold_20260824_100318.npz']

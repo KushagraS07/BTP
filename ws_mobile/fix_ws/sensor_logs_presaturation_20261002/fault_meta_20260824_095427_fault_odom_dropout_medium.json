@@ -1,0 +1,32 @@
+{
+  "fault_session": "20260824_095427_fault_odom_dropout_medium",
+  "baseline_session": "20260824_095427",
+  "sensor": "odom",
+  "fault_type": "dropout",
+  "mechanism": "measurement_hold (frozen value, NOT row removal/NaN)",
+  "severity_label": "medium",
+  "severity_value": 0.15,
+  "columns": [
+    "pos_x",
+    "pos_y"
+  ],
+  "timestamp_col": null,
+  "injected_stats": {
+    "pos_x": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": -424.7832118888595,
+      "frozen_fraction_of_session": 0.15,
+      "frozen_row_start_idx": 854,
+      "frozen_row_end_idx": 1174
+    },
+    "pos_y": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": 45.05914982002095,
+      "frozen_fraction_of_session": 0.15,
+      "frozen_row_start_idx": 854,
+      "frozen_row_end_idx": 1174
+    }
+  },
+  "seed": 0,
+  "created_utc": "2026-08-24T04:35:44.619089+00:00"
+}

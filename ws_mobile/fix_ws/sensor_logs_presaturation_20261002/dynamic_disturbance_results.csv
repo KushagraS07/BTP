@@ -1,0 +1,4 @@
+Disturbance,EKF Only (m),RNN Only (m),EKF-RNN Fusion (m)
+Acceleration changes,0.673,1.2034,1.203
+Rotational drift,0.6095,1.208,1.2085
+Sensor dropout,0.648,1.3168,1.3169

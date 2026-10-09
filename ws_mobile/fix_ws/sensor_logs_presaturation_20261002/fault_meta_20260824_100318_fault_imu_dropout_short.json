@@ -1,0 +1,24 @@
+{
+  "fault_session": "20260824_100318_fault_imu_dropout_short",
+  "baseline_session": "20260824_100318",
+  "sensor": "imu",
+  "fault_type": "dropout",
+  "mechanism": "measurement_hold (frozen value, NOT row removal/NaN) (applied to derived yaw, re-encoded to orient_z/orient_w)",
+  "severity_label": "short",
+  "severity_value": 0.05,
+  "columns": [
+    "_imu_yaw_temp"
+  ],
+  "timestamp_col": null,
+  "injected_stats": {
+    "_imu_yaw_temp": {
+      "mechanism": "measurement_hold (frozen value, not row removal/NaN)",
+      "frozen_value": -1.3515443024027882,
+      "frozen_fraction_of_session": 0.05,
+      "frozen_row_start_idx": 796,
+      "frozen_row_end_idx": 895
+    }
+  },
+  "seed": 0,
+  "created_utc": "2026-08-24T04:35:51.832154+00:00"
+}

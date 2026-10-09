@@ -1,0 +1,239 @@
+#!/usr/bin/env python3
+"""
+rnn_lobo_test.py -- runs the frozen pre-registration fix_ws/PREREG_rnn.md
+(confirmed 2026-10-03 15:38 IST). Settings are copied from it; do not change them.
+
+Order:
+  A. Secondary check FIRST (frozen production RNN, untouched files): V0-V3 on the 3
+     held-out sessions.
+  B. Primary: 7-fold LOBO. For each fold, rnn_fusion_v2.train_denoising_rnn() runs
+     UNCHANGED with only its session list set to the other 6 sessions (seed reset to
+     42 before each fold). The fold's model and statistics are copied to
+     fix_ws/rnn_lobo/<test>/. Then V0-V3 are evaluated on the whole test session.
+  C. Every production file train_denoising_rnn() can write is backed up before B and
+     restored afterwards (also on error), then verified byte-for-byte (sha256).
+
+Variants:
+  V0 EKF only
+  V1 RNN, residual stats = mean of the TRAINING sessions' per-session stats (mean, std);
+     no sample of the test session is used
+  V2 as V1 with residual mean = 0
+  V3 RNN, the test session's own stats from its own ground truth (train-split blocks,
+     the training-side procedure): diagnostic only, not deployable
+
+Usage:  cd ~/ws_mobile/scripts && python3 ../fix_ws/rnn_lobo_test.py 2>&1 | tee ../fix_ws/rnn_lobo_test.log
+"""
+import hashlib
+import json
+import os
+import shutil
+import sys
+
+import numpy as np
+import pandas as pd
+import torch
+
+WS = os.path.expanduser('~/ws_mobile')
+S = os.path.join(WS, 'scripts')
+LOG = os.path.join(WS, 'sensor_logs')
+FIX = os.path.join(WS, 'fix_ws')
+OUT = os.path.join(FIX, 'rnn_lobo')
+sys.path.insert(0, S)
+os.chdir(S)
+
+# ---- PRE-REGISTERED SETTINGS (PREREG_rnn.md) -- do not change ---------------------
+TRAIN = ['20260712_141740', '20260712_144326', '20260824_094119', '20260824_095427',
+         '20260824_095712', '20260824_095915', '20260824_100318']
+HELDOUT = json.load(open(os.path.join(FIX, 'heldout_sessions.json')))['heldout_sessions']
+SEED = 42
+MIN_FOLD_WINS = 5          # of 7
+MIN_MEAN_IMPROVE = 5.0     # % vs V0
+HR_V3_IMPROVE = 10.0       # % vs V1
+N_BLOCKS = 20              # rnn_fusion_v2 split: block b is 'train' unless b%7 in (3, 6)
+# -----------------------------------------------------------------------------------
+
+import rnn_fusion_v2 as R  # noqa: E402
+
+PROD_FIXED = ['rnn_model_denoising.pth', 'rnn_norm_stats.npy',
+              'rnn_residual_stats_per_session.npy', 'rnn_metrics.csv',
+              'rnn_training_curve.csv', 'rnn_denoising_loss_curve.png']
+PROD_PER_SESSION = ['rnn_output_{}.csv', 'rnn_smoothed_output_{}.csv',
+                    'rnn_trajectory_comparison_{}.png']
+
+
+def log(m=''):
+    print(m, flush=True)
+
+
+def sha(p):
+    h = hashlib.sha256()
+    with open(p, 'rb') as f:
+        for chunk in iter(lambda: f.read(1 << 20), b''):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def prod_files():
+    files = list(PROD_FIXED)
+    for s in TRAIN:
+        files += [t.format(s) for t in PROD_PER_SESSION]
+    return files
+
+
+def load_session(s):
+    """EKF [x,y,theta] + aligned GT, exactly as rnn_fusion_v2 / Stage 2."""
+    df = R.load_ekf_output(s)
+    ekf = df[['ekf_x', 'ekf_y', 'ekf_theta']].values.astype(np.float32)
+    t = df['timestamp'].values.astype(float)
+    gt, mask = R.load_ground_truth_aligned(t, s)
+    return ekf[mask], gt
+
+
+def own_stats(ekf, gt):
+    """The session's own residual stats from its train-split blocks (V3)."""
+    edges = np.linspace(0, len(ekf), N_BLOCKS + 1).astype(int)
+    e, g = [], []
+    for b in range(N_BLOCKS):
+        lo, hi = edges[b], edges[b + 1]
+        if hi > lo and b % 7 not in (3, 6):
+            e.append(ekf[lo:hi]); g.append(gt[lo:hi])
+    r = R.compute_residual(np.concatenate(g), np.concatenate(e))
+    return r.mean(axis=0), r.std(axis=0) + 1e-6
+
+
+def evaluate(model, mean, std, train_stats, s):
+    """V0-V3 RMSE on the whole session s. train_stats: dict session->{mean,std} of the
+    sessions the model was trained on (must not contain s)."""
+    assert s not in train_stats, f'leak: {s} in training stats'
+    ekf, gt = load_session(s)
+    m1 = np.mean([v['mean'] for v in train_stats.values()], axis=0)
+    s1 = np.mean([v['std'] for v in train_stats.values()], axis=0)
+    m3, s3 = own_stats(ekf, gt)
+    out = {}
+    for name, rm, rs in (('V1', m1, s1), ('V2', np.zeros(3), s1), ('V3', m3, s3)):
+        pred, w = R.run_rnn_inference(model, mean, std, rm, rs, ekf)
+        n = len(pred)
+        out[name] = R.compute_rmse(R.smooth_trajectory(pred), gt[w:w + n])[0]
+    out['V0'] = R.compute_rmse(ekf[w:w + n], gt[w:w + n])[0]
+    return out
+
+
+def load_model(path):
+    m = R.DenoisingRNN(input_size=3, output_size=3)
+    m.load_state_dict(torch.load(path, map_location='cpu'))
+    m.eval()
+    return m
+
+
+def main():
+    os.makedirs(OUT, exist_ok=True)
+    V = ['V0', 'V1', 'V2', 'V3']
+
+    # ---------------- A. secondary: frozen production RNN on held-out ----------------
+    log('=== A. Secondary: frozen production RNN on the 3 held-out sessions ===')
+    model = load_model(os.path.join(LOG, 'rnn_model_denoising.pth'))
+    mean, std = np.load(os.path.join(LOG, 'rnn_norm_stats.npy'))
+    res = np.load(os.path.join(LOG, 'rnn_residual_stats_per_session.npy'), allow_pickle=True).item()
+    if sorted(res) != sorted(TRAIN):
+        sys.exit(f'ABORT: production residual stats keys {sorted(res)} != training sessions')
+    sec = []
+    for s in HELDOUT:
+        r = evaluate(model, mean, std, res, s)
+        sec.append(dict(session=s, **r))
+        log(f'  {s}: ' + '  '.join(f'{v}={r[v]:.4f}' for v in V))
+
+    # ---------------- B. primary: 7-fold LOBO ----------------------------------------
+    files = prod_files()
+    missing = [f for f in files if not os.path.exists(os.path.join(LOG, f))]
+    if missing:
+        sys.exit(f'ABORT: production files missing (nothing changed): {missing}')
+    bak = os.path.join(OUT, '_prod_backup')
+    os.makedirs(bak, exist_ok=True)
+    hashes = {}
+    for f in files:
+        shutil.copy2(os.path.join(LOG, f), os.path.join(bak, f))
+        hashes[f] = sha(os.path.join(LOG, f))
+    log(f'\nBacked up {len(files)} production files to fix_ws/rnn_lobo/_prod_backup/')
+
+    prim = []
+    try:
+        for k, test in enumerate(TRAIN, 1):
+            log(f'\n=== B. LOBO fold {k}/7: test = {test} ===')
+            R.SESSIONS = [s for s in TRAIN if s != test]
+            torch.manual_seed(SEED)
+            np.random.seed(SEED)
+            R.train_denoising_rnn()
+            fdir = os.path.join(OUT, test)
+            os.makedirs(fdir, exist_ok=True)
+            for f in ('rnn_model_denoising.pth', 'rnn_norm_stats.npy',
+                      'rnn_residual_stats_per_session.npy', 'rnn_training_curve.csv'):
+                shutil.copy2(os.path.join(LOG, f), os.path.join(fdir, f))
+            fm = load_model(os.path.join(fdir, 'rnn_model_denoising.pth'))
+            fmean, fstd = np.load(os.path.join(fdir, 'rnn_norm_stats.npy'))
+            fres = np.load(os.path.join(fdir, 'rnn_residual_stats_per_session.npy'),
+                           allow_pickle=True).item()
+            if test in fres or len(fres) != 6:
+                sys.exit(f'ABORT: fold {test} stats keys {sorted(fres)} (leak or wrong count)')
+            r = evaluate(fm, fmean, fstd, fres, test)
+            prim.append(dict(test=test, **r))
+            log(f'  RESULT {test}: ' + '  '.join(f'{v}={r[v]:.4f}' for v in V))
+    finally:
+        for f in files:
+            shutil.copy2(os.path.join(bak, f), os.path.join(LOG, f))
+        bad = [f for f in files if sha(os.path.join(LOG, f)) != hashes[f]]
+        log(f'\nRestored {len(files)} production files; sha256 mismatches: {len(bad)}'
+            + (f' -> {bad}' if bad else ' (all identical)'))
+        if bad:
+            sys.exit('ABORT: production files not restored exactly -- see list above.')
+
+    # ---------------- report ---------------------------------------------------------
+    P = pd.DataFrame(prim)
+    Q = pd.DataFrame(sec)
+    P.to_csv(os.path.join(FIX, 'rnn_lobo_primary.csv'), index=False)
+    Q.to_csv(os.path.join(FIX, 'rnn_lobo_secondary.csv'), index=False)
+
+    log('\n\n========== RNN PRE-REGISTRATION REPORT ==========')
+    log('Primary: 7-fold LOBO (RMSE, m)')
+    log(f'  {"test session":<18}' + ''.join(f'{v:>9}' for v in V))
+    for _, r in P.iterrows():
+        log(f'  {r.test:<18}' + ''.join(f'{r[v]:>9.4f}' for v in V))
+    means = {v: P[v].mean() for v in V}
+    log(f'  {"MEAN":<18}' + ''.join(f'{means[v]:>9.4f}' for v in V))
+
+    passed = {}
+    for v in ('V1', 'V2'):
+        wins = int((P[v] < P['V0']).sum())
+        imp = 100 * (means['V0'] - means[v]) / means['V0']
+        passed[v] = wins >= MIN_FOLD_WINS and imp >= MIN_MEAN_IMPROVE
+        log(f'\n  {v}: beats V0 in {wins}/7 folds (need >= {MIN_FOLD_WINS}); mean '
+            f'{imp:+.2f}% vs V0 (need >= +{MIN_MEAN_IMPROVE}%) -> '
+            f'{"PASS" if passed[v] else "FAIL"}')
+    v3w = int((P['V3'] < P['V0']).sum())
+    log(f'  V3 (diagnostic, not deployable): beats V0 in {v3w}/7; mean '
+        f'{100 * (means["V0"] - means["V3"]) / means["V0"]:+.2f}% vs V0')
+
+    adopted = 'V2' if passed['V2'] else ('V1' if passed['V1'] else None)
+    log('\nDecision: ' + (f'adopt {adopted}' if adopted else
+                          'NEITHER passes -> RNN reported as not generalising (negative result); '
+                          'pipeline claim rests on the adaptive EKF'))
+
+    hr_v3 = 100 * (means['V1'] - means['V3']) / means['V1']
+    hr = hr_v3 >= HR_V3_IMPROVE and means['V2'] < means['V1']
+    log(f'\nH-R: V3 vs V1 mean {hr_v3:+.2f}% (need >= +{HR_V3_IMPROVE}%); '
+        f'V2 mean {means["V2"]:.4f} < V1 mean {means["V1"]:.4f}: '
+        f'{means["V2"] < means["V1"]} -> {"SUPPORTED" if hr else "NOT SUPPORTED"}')
+
+    log('\nSecondary: frozen production RNN on held-out sessions (RMSE, m)')
+    for _, r in Q.iterrows():
+        log(f'  {r.session:<18}' + ''.join(f'{r[v]:>9.4f}' for v in V))
+    qm = {v: Q[v].mean() for v in V}
+    log(f'  {"MEAN":<18}' + ''.join(f'{qm[v]:>9.4f}' for v in V))
+    if adopted:
+        ok = qm[adopted] <= qm['V0']
+        log(f'  Adopted {adopted} held-out mean {qm[adopted]:.4f} vs V0 {qm["V0"]:.4f} -> '
+            f'{"CONFIRMED" if ok else "FAILED TO CONFIRM"}')
+    log('\nSaved: fix_ws/rnn_lobo_primary.csv, fix_ws/rnn_lobo_secondary.csv, fix_ws/rnn_lobo/<fold>/')
+
+
+if __name__ == '__main__':
+    main()

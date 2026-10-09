@@ -1,0 +1,15 @@
+nohup: ignoring input
+[2026-10-03 02:13:28] pipeline start (from step 8); python=/usr/bin/python3
+[2026-10-03 02:13:28] disk free: 13.1 GB
+[2026-10-03 02:13:28] disk free: 13.1 GB
+[2026-10-03 02:13:28] START 08_dataset_stage1
+[2026-10-03 02:17:13] OK    08_dataset_stage1
+[2026-10-03 02:17:13] START 09_dataset_stage2
+[2026-10-03 02:18:32] OK    09_dataset_stage2
+[2026-10-03 02:18:32] START 10_lstm_train
+[2026-10-03 05:27:09] OK    10_lstm_train
+[2026-10-03 05:27:09] START 11_compare_phase1
+[2026-10-03 05:29:26] OK    11_compare_phase1
+[2026-10-03 05:29:26] START 12_lstm_adaptive_ekf
+[2026-10-03 05:40:10] OK    12_lstm_adaptive_ekf
+[2026-10-03 05:40:10] ALL STEPS DONE

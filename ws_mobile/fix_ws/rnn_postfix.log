@@ -1,0 +1,140 @@
+nohup: ignoring input
+
+=======================================================
+  RNN FUSION V2 — EKF → Ground Truth correction
+  Sessions: 20260712_141740, 20260712_144326, 20260824_094119, 20260824_095427, 20260824_095712, 20260824_095915, 20260824_100318
+=======================================================
+
+  --- Loading session 20260712_141740 ---
+  Loaded ekf_fused_output_20260712_141740.csv — 3782 rows
+  Loaded ground truth: ground_truth_filtered_20260712_141740.csv (3782 rows) — canonical, cleaned
+  Timestamp alignment: 3782/3782 EKF rows overlap with GT
+  Session 20260712_141740: 3782 aligned rows
+
+  --- Loading session 20260712_144326 ---
+  Loaded ekf_fused_output_20260712_144326.csv — 1428 rows
+  Loaded ground truth: ground_truth_filtered_20260712_144326.csv (1428 rows) — canonical, cleaned
+  Timestamp alignment: 1428/1428 EKF rows overlap with GT
+  Session 20260712_144326: 1428 aligned rows
+
+  --- Loading session 20260824_094119 ---
+  Loaded ekf_fused_output_20260824_094119.csv — 2474 rows
+  Loaded ground truth: ground_truth_filtered_20260824_094119.csv (2474 rows) — canonical, cleaned
+  Timestamp alignment: 2474/2474 EKF rows overlap with GT
+  Session 20260824_094119: 2474 aligned rows
+
+  --- Loading session 20260824_095427 ---
+  Loaded ekf_fused_output_20260824_095427.csv — 2136 rows
+  Loaded ground truth: ground_truth_filtered_20260824_095427.csv (2136 rows) — canonical, cleaned
+  Timestamp alignment: 2136/2136 EKF rows overlap with GT
+  Session 20260824_095427: 2136 aligned rows
+
+  --- Loading session 20260824_095712 ---
+  Loaded ekf_fused_output_20260824_095712.csv — 1586 rows
+  Loaded ground truth: ground_truth_filtered_20260824_095712.csv (1586 rows) — canonical, cleaned
+  Timestamp alignment: 1586/1586 EKF rows overlap with GT
+  Session 20260824_095712: 1586 aligned rows
+
+  --- Loading session 20260824_095915 ---
+  Loaded ekf_fused_output_20260824_095915.csv — 1817 rows
+  Loaded ground truth: ground_truth_filtered_20260824_095915.csv (1817 rows) — canonical, cleaned
+  Timestamp alignment: 1817/1817 EKF rows overlap with GT
+  Session 20260824_095915: 1817 aligned rows
+
+  --- Loading session 20260824_100318 ---
+  Loaded ekf_fused_output_20260824_100318.csv — 1991 rows
+  Loaded ground truth: ground_truth_filtered_20260824_100318.csv (1991 rows) — canonical, cleaned
+  Timestamp alignment: 1991/1991 EKF rows overlap with GT
+  Session 20260824_100318: 1991 aligned rows
+
+  Normalization stats fit on TRAIN split ONLY across 7 sessions (11415 rows) — val/test never influence these values
+  Session 20260712_141740 residual stats (TRAIN split only) — mean=[-1.297681   -1.5516647  -0.03520718], std=[0.84523714 1.2238939  0.72479093]
+  Session 20260712_144326 residual stats (TRAIN split only) — mean=[ 0.0954226   0.3649655  -0.00066695], std=[0.22369348 0.28227457 0.01094595]
+  Session 20260824_094119 residual stats (TRAIN split only) — mean=[ 2.5016877e-01 -1.7715353e-01 -1.1713931e-04], std=[0.25706595 0.5574709  0.05796127]
+  Session 20260824_095427 residual stats (TRAIN split only) — mean=[ 1.8325343  -0.16963506 -0.00886768], std=[1.4103022  0.38020617 0.20071463]
+  Session 20260824_095712 residual stats (TRAIN split only) — mean=[-0.5098807   1.1575446  -0.00924277], std=[1.4511092  1.162113   0.04439545]
+  Session 20260824_095915 residual stats (TRAIN split only) — mean=[-0.6913319   0.18440792  0.01039491], std=[0.7011268  0.67706525 0.06090465]
+  Session 20260824_100318 residual stats (TRAIN split only) — mean=[ 0.40311527 -0.17499946  0.01162714], std=[0.8026523  0.35951415 0.06706373]
+  Split method: 20 interleaved chronological blocks per session (train/val/test all sample early+middle+late behavior, not just contiguous slices)
+  Session 20260712_141740: 2687 train / 537 val / 358 test sequences (from 20 interleaved blocks)
+  Session 20260712_144326: 922 train / 184 val / 122 test sequences (from 20 interleaved blocks)
+  Session 20260824_094119: 1708 train / 340 val / 226 test sequences (from 20 interleaved blocks)
+  Session 20260824_095427: 1452 train / 290 val / 194 test sequences (from 20 interleaved blocks)
+  Session 20260824_095712: 1038 train / 208 val / 140 test sequences (from 20 interleaved blocks)
+  Session 20260824_095915: 1214 train / 243 val / 160 test sequences (from 20 interleaved blocks)
+  Session 20260824_100318: 1344 train / 269 val / 178 test sequences (from 20 interleaved blocks)
+
+  Combined: Train 10365  |  Val 2071  |  Test 1378  (pooled across 7 sessions, test held out entirely until final reporting)
+
+  Training: epochs=80, batch=32, lr=0.001
+   Epoch    Train Loss      Val Loss
+  -----------------------------------
+      10      0.682834      0.888804
+      20      0.524364      0.933358
+  Early stopping at epoch 25 — no smoothed-val-loss improvement in 10 epochs (best was epoch 15)
+
+  Best smoothed (5-epoch avg) val loss: 0.835676 at epoch 15 (restoring these weights for inference, not the final epoch's)
+  Held-out TEST loss (never used for checkpoint selection): 1.089922
+  Saved: rnn_training_curve.csv (per-epoch train/val loss)
+  Saved: rnn_model_denoising.pth (best-smoothed-val-loss checkpoint, epoch 15, trained on 7 sessions)
+
+  ── Session 20260712_141740 — RNN Accuracy vs Ground Truth ──
+     RMSE (raw, unsmoothed) : 0.4950 m
+     RMSE (S-G smoothed)    : 0.4918 m  <- used downstream
+     MAE  : 0.3891 m
+     Std  : 0.3009 m
+     Saved: rnn_output_20260712_141740.csv (raw) + rnn_smoothed_output_20260712_141740.csv (S-G smoothed, 3772 rows)
+
+  ── Session 20260712_144326 — RNN Accuracy vs Ground Truth ──
+     RMSE (raw, unsmoothed) : 0.2830 m
+     RMSE (S-G smoothed)    : 0.2825 m  <- used downstream
+     MAE  : 0.2339 m
+     Std  : 0.1585 m
+     Saved: rnn_output_20260712_144326.csv (raw) + rnn_smoothed_output_20260712_144326.csv (S-G smoothed, 1418 rows)
+
+  ── Session 20260824_094119 — RNN Accuracy vs Ground Truth ──
+     RMSE (raw, unsmoothed) : 0.4432 m
+     RMSE (S-G smoothed)    : 0.4414 m  <- used downstream
+     MAE  : 0.3838 m
+     Std  : 0.2180 m
+     Saved: rnn_output_20260824_094119.csv (raw) + rnn_smoothed_output_20260824_094119.csv (S-G smoothed, 2464 rows)
+
+  ── Session 20260824_095427 — RNN Accuracy vs Ground Truth ──
+     RMSE (raw, unsmoothed) : 0.9844 m
+     RMSE (S-G smoothed)    : 0.9829 m  <- used downstream
+     MAE  : 0.8483 m
+     Std  : 0.4964 m
+     Saved: rnn_output_20260824_095427.csv (raw) + rnn_smoothed_output_20260824_095427.csv (S-G smoothed, 2126 rows)
+
+  ── Session 20260824_095712 — RNN Accuracy vs Ground Truth ──
+     RMSE (raw, unsmoothed) : 1.1771 m
+     RMSE (S-G smoothed)    : 1.1738 m  <- used downstream
+     MAE  : 0.9352 m
+     Std  : 0.7093 m
+     Saved: rnn_output_20260824_095712.csv (raw) + rnn_smoothed_output_20260824_095712.csv (S-G smoothed, 1576 rows)
+
+  ── Session 20260824_095915 — RNN Accuracy vs Ground Truth ──
+     RMSE (raw, unsmoothed) : 0.5528 m
+     RMSE (S-G smoothed)    : 0.5465 m  <- used downstream
+     MAE  : 0.4650 m
+     Std  : 0.2871 m
+     Saved: rnn_output_20260824_095915.csv (raw) + rnn_smoothed_output_20260824_095915.csv (S-G smoothed, 1807 rows)
+
+  ── Session 20260824_100318 — RNN Accuracy vs Ground Truth ──
+     RMSE (raw, unsmoothed) : 0.5928 m
+     RMSE (S-G smoothed)    : 0.5907 m  <- used downstream
+     MAE  : 0.4821 m
+     Std  : 0.3414 m
+     Saved: rnn_output_20260824_100318.csv (raw) + rnn_smoothed_output_20260824_100318.csv (S-G smoothed, 1981 rows)
+
+  ── POOLED (all 7 sessions) — RNN Accuracy ──
+     RMSE : 0.6780 m  (paper EKF-RNN: 0.042/0.067/0.102 m)
+     MAE  : 0.5162 m
+     Std  : 0.4396 m  (paper RNN std: 0.0527 m)
+  Saved: rnn_metrics.csv (per-session + pooled)
+  Saved: rnn_denoising_loss_curve.png
+  Saved: rnn_trajectory_comparison_<session>.png for each session
+
+✅ RNN fusion v2 complete!
+   Next: lidar_fusion_v2.py (will need updating to read per-session
+   rnn_smoothed_output_<session>.csv files, same as this script)

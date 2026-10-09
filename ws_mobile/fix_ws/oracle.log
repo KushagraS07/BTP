@@ -1,0 +1,280 @@
+nohup: ignoring input
+  Commanded accumulated rotation: 19.4603 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=1.7% (raw columns present)
+  Commanded accumulated rotation: 13.5249 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=7.5% (raw columns present)
+  Commanded accumulated rotation: 15.2765 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=0.0% (NO raw columns)
+excluding baseline 20260714_014615 and its fault tree (health_check FAIL): ['IMU orientation failed to respond to commanded turning: IMU theta range=0.000000 rad, commanded accumulated rotation=15.276486 rad (need IMU range >= 0.5) — matches the dead-IMU signature previously found in session 20260714_014615']
+  Commanded accumulated rotation: 78.6733 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=98.6% (raw columns present)
+  WARNING: 98.6% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  Commanded accumulated rotation: 33.3239 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=100.0% (raw columns present)
+  WARNING: 100.0% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  Commanded accumulated rotation: 25.6286 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=99.5% (raw columns present)
+  WARNING: 99.5% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  Commanded accumulated rotation: 67.1143 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=100.0% (raw columns present)
+  WARNING: 100.0% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  Commanded accumulated rotation: 47.8286 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=100.0% (raw columns present)
+  WARNING: 100.0% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+evaluating 231 sessions (LSTM + oracle)
+[1/231] 20260712_141740: fixed=0.3325 lstm=0.3340 oracle=0.3325
+[2/231] 20260712_141740_fault_imu_bias_large: fixed=9.0831 lstm=9.0859 oracle=9.0809
+[3/231] 20260712_141740_fault_imu_bias_medium: fixed=5.8334 lstm=5.8345 oracle=5.8329
+[4/231] 20260712_141740_fault_imu_bias_small: fixed=6.8090 lstm=6.8122 oracle=6.8084
+[5/231] 20260712_141740_fault_imu_delay_large: fixed=2.5749 lstm=2.5792 oracle=2.5749
+[6/231] 20260712_141740_fault_imu_delay_medium: fixed=0.7334 lstm=0.7360 oracle=0.7333
+[7/231] 20260712_141740_fault_imu_delay_small: fixed=0.3675 lstm=0.3682 oracle=0.3675
+[8/231] 20260712_141740_fault_imu_drift_fast: fixed=8.4448 lstm=8.4482 oracle=8.4464
+[9/231] 20260712_141740_fault_imu_drift_medium: fixed=6.6248 lstm=6.6281 oracle=6.6284
+[10/231] 20260712_141740_fault_imu_drift_slow: fixed=3.3800 lstm=3.3823 oracle=3.3800
+[11/231] 20260712_141740_fault_imu_dropout_long: fixed=10.5570 lstm=10.5470 oracle=8.1251
+[12/231] 20260712_141740_fault_imu_dropout_medium: fixed=3.6474 lstm=3.6523 oracle=1.6520
+[13/231] 20260712_141740_fault_imu_dropout_short: fixed=0.8196 lstm=0.8200 oracle=0.3512
+[14/231] 20260712_141740_fault_imu_noise_extreme: fixed=4.1832 lstm=4.0025 oracle=6.6804
+[15/231] 20260712_141740_fault_imu_noise_high: fixed=4.0584 lstm=5.9362 oracle=4.5030
+[16/231] 20260712_141740_fault_imu_noise_low: fixed=2.0797 lstm=2.4993 oracle=1.9069
+[17/231] 20260712_141740_fault_imu_noise_medium: fixed=4.4382 lstm=4.3103 oracle=4.9057
+[18/231] 20260712_141740_fault_odom_bias_large: fixed=8.1785 lstm=7.2499 oracle=0.7559
+[19/231] 20260712_141740_fault_odom_bias_medium: fixed=5.0104 lstm=4.4735 oracle=0.6199
+[20/231] 20260712_141740_fault_odom_bias_small: fixed=3.2574 lstm=2.9453 oracle=0.5251
+[21/231] 20260712_141740_fault_odom_delay_large: fixed=1.0763 lstm=1.0217 oracle=1.0767
+[22/231] 20260712_141740_fault_odom_delay_medium: fixed=0.7150 lstm=0.6829 oracle=0.7152
+[23/231] 20260712_141740_fault_odom_delay_small: fixed=0.3623 lstm=0.3579 oracle=0.3623
+[24/231] 20260712_141740_fault_odom_drift_fast: fixed=1.9978 lstm=1.8100 oracle=1.4430
+[25/231] 20260712_141740_fault_odom_drift_medium: fixed=1.1005 lstm=1.0139 oracle=0.9153
+[26/231] 20260712_141740_fault_odom_drift_slow: fixed=0.5098 lstm=0.4873 oracle=0.4901
+[27/231] 20260712_141740_fault_odom_dropout_long: fixed=2.3304 lstm=1.9880 oracle=4.4180
+[28/231] 20260712_141740_fault_odom_dropout_medium: fixed=0.9540 lstm=0.8594 oracle=2.2165
+[29/231] 20260712_141740_fault_odom_dropout_short: fixed=0.3357 lstm=0.3360 oracle=0.9295
+[30/231] 20260712_141740_fault_odom_noise_extreme: fixed=4939.6263 lstm=1627.8011 oracle=1638.0433
+[31/231] 20260712_141740_fault_odom_noise_high: fixed=2468.7154 lstm=914.1028 oracle=1067.2909
+[32/231] 20260712_141740_fault_odom_noise_low: fixed=410.6487 lstm=289.2512 oracle=305.8394
+[33/231] 20260712_141740_fault_odom_noise_medium: fixed=1233.7710 lstm=606.9964 oracle=679.9632
+[34/231] 20260712_144326: fixed=0.5284 lstm=0.5239 oracle=0.5284
+[35/231] 20260712_144326_fault_imu_bias_large: fixed=7.2372 lstm=7.2420 oracle=7.2508
+[36/231] 20260712_144326_fault_imu_bias_medium: fixed=4.4674 lstm=4.4746 oracle=4.4651
+[37/231] 20260712_144326_fault_imu_bias_small: fixed=5.6946 lstm=5.6949 oracle=5.6957
+[38/231] 20260712_144326_fault_imu_delay_large: fixed=2.0133 lstm=2.0081 oracle=2.0133
+[39/231] 20260712_144326_fault_imu_delay_medium: fixed=1.0834 lstm=1.0806 oracle=1.0834
+[40/231] 20260712_144326_fault_imu_delay_small: fixed=0.6333 lstm=0.6294 oracle=0.6333
+[41/231] 20260712_144326_fault_imu_drift_fast: fixed=5.7724 lstm=5.7580 oracle=5.7760
+[42/231] 20260712_144326_fault_imu_drift_medium: fixed=8.3489 lstm=8.3352 oracle=8.3472
+[43/231] 20260712_144326_fault_imu_drift_slow: fixed=3.8600 lstm=3.8593 oracle=3.8587
+[44/231] 20260712_144326_fault_imu_dropout_long: fixed=1.9050 lstm=1.9066 oracle=0.4398
+[45/231] 20260712_144326_fault_imu_dropout_medium: fixed=0.3452 lstm=0.3415 oracle=0.3343
+[46/231] 20260712_144326_fault_imu_dropout_short: fixed=0.4210 lstm=0.4161 oracle=0.4295
+[47/231] 20260712_144326_fault_imu_noise_extreme: fixed=3.7014 lstm=4.7354 oracle=5.1847
+[48/231] 20260712_144326_fault_imu_noise_high: fixed=3.8307 lstm=4.4245 oracle=3.2179
+[49/231] 20260712_144326_fault_imu_noise_low: fixed=2.1706 lstm=2.7482 oracle=2.4168
+[50/231] 20260712_144326_fault_imu_noise_medium: fixed=5.7482 lstm=4.5481 oracle=4.5646
+[51/231] 20260712_144326_fault_odom_bias_large: fixed=8.1810 lstm=3.7296 oracle=0.3582
+[52/231] 20260712_144326_fault_odom_bias_medium: fixed=3.9877 lstm=2.6937 oracle=0.4044
+[53/231] 20260712_144326_fault_odom_bias_small: fixed=1.4937 lstm=1.3201 oracle=0.4662
+[54/231] 20260712_144326_fault_odom_delay_large: fixed=1.1186 lstm=1.0785 oracle=1.1189
+[55/231] 20260712_144326_fault_odom_delay_medium: fixed=0.8664 lstm=0.8475 oracle=0.8665
+[56/231] 20260712_144326_fault_odom_delay_small: fixed=0.6172 lstm=0.6029 oracle=0.6172
+[57/231] 20260712_144326_fault_odom_drift_fast: fixed=0.7742 lstm=0.7005 oracle=0.5923
+[58/231] 20260712_144326_fault_odom_drift_medium: fixed=0.4826 lstm=0.4708 oracle=0.4642
+[59/231] 20260712_144326_fault_odom_drift_slow: fixed=0.4668 lstm=0.4677 oracle=0.4707
+[60/231] 20260712_144326_fault_odom_dropout_long: fixed=0.9675 lstm=0.9099 oracle=1.9569
+[61/231] 20260712_144326_fault_odom_dropout_medium: fixed=0.8653 lstm=0.8204 oracle=0.5307
+[62/231] 20260712_144326_fault_odom_dropout_short: fixed=0.4802 lstm=0.4718 oracle=1.4917
+[63/231] 20260712_144326_fault_odom_noise_extreme: fixed=3448.4379 lstm=1061.7405 oracle=1063.7594
+[64/231] 20260712_144326_fault_odom_noise_high: fixed=1722.9067 lstm=709.5021 oracle=714.4624
+[65/231] 20260712_144326_fault_odom_noise_low: fixed=285.1286 lstm=211.6380 oracle=210.8094
+[66/231] 20260712_144326_fault_odom_noise_medium: fixed=860.1539 lstm=474.0785 oracle=463.8547
+[67/231] 20260824_094119: fixed=0.6467 lstm=0.6417 oracle=0.6468
+[68/231] 20260824_094119_fault_imu_bias_large: fixed=12.6577 lstm=12.6482 oracle=12.6731
+[69/231] 20260824_094119_fault_imu_bias_medium: fixed=7.2704 lstm=7.2601 oracle=7.2717
+[70/231] 20260824_094119_fault_imu_bias_small: fixed=11.6991 lstm=11.7003 oracle=11.6951
+[71/231] 20260824_094119_fault_imu_delay_large: fixed=2.2261 lstm=2.2284 oracle=2.2261
+[72/231] 20260824_094119_fault_imu_delay_medium: fixed=2.5596 lstm=2.5790 oracle=2.5594
+[73/231] 20260824_094119_fault_imu_delay_small: fixed=0.8618 lstm=0.8600 oracle=0.8618
+[74/231] 20260824_094119_fault_imu_drift_fast: fixed=14.9303 lstm=14.9415 oracle=14.9328
+[75/231] 20260824_094119_fault_imu_drift_medium: fixed=10.6257 lstm=10.6265 oracle=10.6260
+[76/231] 20260824_094119_fault_imu_drift_slow: fixed=3.3541 lstm=3.3584 oracle=3.3551
+[77/231] 20260824_094119_fault_imu_dropout_long: fixed=5.7429 lstm=5.7549 oracle=1.1473
+[78/231] 20260824_094119_fault_imu_dropout_medium: fixed=0.7022 lstm=0.6980 oracle=0.5642
+[79/231] 20260824_094119_fault_imu_dropout_short: fixed=0.6469 lstm=0.6419 oracle=0.6987
+[80/231] 20260824_094119_fault_imu_noise_extreme: fixed=8.4672 lstm=8.8431 oracle=10.4036
+[81/231] 20260824_094119_fault_imu_noise_high: fixed=5.1055 lstm=2.5588 oracle=5.5498
+[82/231] 20260824_094119_fault_imu_noise_low: fixed=4.5338 lstm=2.6967 oracle=3.1015
+[83/231] 20260824_094119_fault_imu_noise_medium: fixed=7.1566 lstm=8.6463 oracle=7.6125
+[84/231] 20260824_094119_fault_odom_bias_large: fixed=8.7589 lstm=8.0769 oracle=1.1794
+[85/231] 20260824_094119_fault_odom_bias_medium: fixed=5.0852 lstm=4.7132 oracle=0.8590
+[86/231] 20260824_094119_fault_odom_bias_small: fixed=2.3326 lstm=2.1350 oracle=0.6517
+[87/231] 20260824_094119_fault_odom_delay_large: fixed=0.7658 lstm=0.7218 oracle=0.7660
+[88/231] 20260824_094119_fault_odom_delay_medium: fixed=0.9770 lstm=0.9833 oracle=0.9772
+[89/231] 20260824_094119_fault_odom_delay_small: fixed=0.7080 lstm=0.6997 oracle=0.7082
+[90/231] 20260824_094119_fault_odom_drift_fast: fixed=0.9777 lstm=0.9116 oracle=0.6806
+[91/231] 20260824_094119_fault_odom_drift_medium: fixed=0.6703 lstm=0.6490 oracle=0.5984
+[92/231] 20260824_094119_fault_odom_drift_slow: fixed=0.6118 lstm=0.6076 oracle=0.6030
+[93/231] 20260824_094119_fault_odom_dropout_long: fixed=1.0160 lstm=0.9359 oracle=0.9340
+[94/231] 20260824_094119_fault_odom_dropout_medium: fixed=1.3266 lstm=1.2431 oracle=2.2294
+[95/231] 20260824_094119_fault_odom_dropout_short: fixed=0.7432 lstm=0.7201 oracle=0.6479
+[96/231] 20260824_094119_fault_odom_noise_extreme: fixed=2913.1527 lstm=1142.8849 oracle=1165.1127
+[97/231] 20260824_094119_fault_odom_noise_high: fixed=1454.4772 lstm=670.2494 oracle=704.6547
+[98/231] 20260824_094119_fault_odom_noise_low: fixed=241.1117 lstm=171.0121 oracle=184.5930
+[99/231] 20260824_094119_fault_odom_noise_medium: fixed=726.2402 lstm=402.3951 oracle=427.9437
+[100/231] 20260824_095427: fixed=2.3411 lstm=2.3593 oracle=2.3411
+[101/231] 20260824_095427_fault_imu_bias_large: fixed=16.8051 lstm=16.8072 oracle=16.8164
+[102/231] 20260824_095427_fault_imu_bias_medium: fixed=12.1171 lstm=12.1295 oracle=12.1359
+[103/231] 20260824_095427_fault_imu_bias_small: fixed=11.2357 lstm=11.2264 oracle=11.2349
+[104/231] 20260824_095427_fault_imu_delay_large: fixed=4.2825 lstm=4.3006 oracle=4.2825
+[105/231] 20260824_095427_fault_imu_delay_medium: fixed=1.2201 lstm=1.2315 oracle=1.2200
+[106/231] 20260824_095427_fault_imu_delay_small: fixed=2.1790 lstm=2.1932 oracle=2.1789
+[107/231] 20260824_095427_fault_imu_drift_fast: fixed=13.3608 lstm=13.3754 oracle=13.3718
+[108/231] 20260824_095427_fault_imu_drift_medium: fixed=12.3179 lstm=12.3305 oracle=12.3205
+[109/231] 20260824_095427_fault_imu_drift_slow: fixed=6.1425 lstm=6.1537 oracle=6.1434
+[110/231] 20260824_095427_fault_imu_dropout_long: fixed=14.8490 lstm=14.8419 oracle=6.8856
+[111/231] 20260824_095427_fault_imu_dropout_medium: fixed=6.4595 lstm=6.4658 oracle=3.2466
+[112/231] 20260824_095427_fault_imu_dropout_short: fixed=2.2087 lstm=2.2183 oracle=2.3531
+[113/231] 20260824_095427_fault_imu_noise_extreme: fixed=7.1255 lstm=7.8866 oracle=14.4725
+[114/231] 20260824_095427_fault_imu_noise_high: fixed=8.8129 lstm=11.6660 oracle=9.4859
+[115/231] 20260824_095427_fault_imu_noise_low: fixed=3.8831 lstm=4.6471 oracle=3.7354
+[116/231] 20260824_095427_fault_imu_noise_medium: fixed=10.6873 lstm=12.7662 oracle=8.6735
+[117/231] 20260824_095427_fault_odom_bias_large: fixed=11.4273 lstm=10.0362 oracle=2.4465
+[118/231] 20260824_095427_fault_odom_bias_medium: fixed=6.1431 lstm=5.4235 oracle=2.3152
+[119/231] 20260824_095427_fault_odom_bias_small: fixed=2.8604 lstm=2.5483 oracle=2.2308
+[120/231] 20260824_095427_fault_odom_delay_large: fixed=1.7911 lstm=1.7663 oracle=1.7909
+[121/231] 20260824_095427_fault_odom_delay_medium: fixed=1.8498 lstm=1.8653 oracle=1.8496
+[122/231] 20260824_095427_fault_odom_delay_small: fixed=2.1782 lstm=2.1945 oracle=2.1780
+[123/231] 20260824_095427_fault_odom_drift_fast: fixed=1.3586 lstm=1.4445 oracle=1.6799
+[124/231] 20260824_095427_fault_odom_drift_medium: fixed=1.7682 lstm=1.8387 oracle=1.9277
+[125/231] 20260824_095427_fault_odom_drift_slow: fixed=2.1404 lstm=2.1778 oracle=2.1740
+[126/231] 20260824_095427_fault_odom_dropout_long: fixed=2.8064 lstm=2.7214 oracle=1.7650
+[127/231] 20260824_095427_fault_odom_dropout_medium: fixed=2.0562 lstm=2.0971 oracle=1.3303
+[128/231] 20260824_095427_fault_odom_dropout_short: fixed=2.0868 lstm=2.1156 oracle=2.3486
+[129/231] 20260824_095427_fault_odom_noise_extreme: fixed=3677.9424 lstm=1206.5158 oracle=1217.9100
+[130/231] 20260824_095427_fault_odom_noise_high: fixed=1843.7491 lstm=736.2333 oracle=795.4730
+[131/231] 20260824_095427_fault_odom_noise_low: fixed=306.2247 lstm=220.8455 oracle=228.2944
+[132/231] 20260824_095427_fault_odom_noise_medium: fixed=922.2066 lstm=439.5523 oracle=508.1584
+[133/231] 20260824_095712: fixed=2.1706 lstm=2.1828 oracle=2.1706
+[134/231] 20260824_095712_fault_imu_bias_large: fixed=8.3264 lstm=8.3383 oracle=8.3033
+[135/231] 20260824_095712_fault_imu_bias_medium: fixed=6.1543 lstm=6.1587 oracle=6.1478
+[136/231] 20260824_095712_fault_imu_bias_small: fixed=6.5362 lstm=6.5471 oracle=6.5375
+[137/231] 20260824_095712_fault_imu_delay_large: fixed=3.7047 lstm=3.7053 oracle=3.7047
+[138/231] 20260824_095712_fault_imu_delay_medium: fixed=2.1996 lstm=2.2074 oracle=2.1996
+[139/231] 20260824_095712_fault_imu_delay_small: fixed=2.1661 lstm=2.1917 oracle=2.1661
+[140/231] 20260824_095712_fault_imu_drift_fast: fixed=6.9072 lstm=6.9167 oracle=6.8911
+[141/231] 20260824_095712_fault_imu_drift_medium: fixed=7.4485 lstm=7.4647 oracle=7.4416
+[142/231] 20260824_095712_fault_imu_drift_slow: fixed=4.0345 lstm=4.0580 oracle=4.0345
+[143/231] 20260824_095712_fault_imu_dropout_long: fixed=7.8913 lstm=7.8969 oracle=4.8319
+[144/231] 20260824_095712_fault_imu_dropout_medium: fixed=2.2995 lstm=2.3146 oracle=2.3091
+[145/231] 20260824_095712_fault_imu_dropout_short: fixed=2.1799 lstm=2.1926 oracle=2.1748
+[146/231] 20260824_095712_fault_imu_noise_extreme: fixed=3.6857 lstm=3.7184 oracle=3.6309
+[147/231] 20260824_095712_fault_imu_noise_high: fixed=3.4888 lstm=3.9064 oracle=5.7141
+[148/231] 20260824_095712_fault_imu_noise_low: fixed=2.3476 lstm=2.7396 oracle=3.0231
+[149/231] 20260824_095712_fault_imu_noise_medium: fixed=4.1952 lstm=4.9483 oracle=4.7824
+[150/231] 20260824_095712_fault_odom_bias_large: fixed=7.1573 lstm=5.1175 oracle=2.2258
+[151/231] 20260824_095712_fault_odom_bias_medium: fixed=3.6267 lstm=2.9715 oracle=2.1405
+[152/231] 20260824_095712_fault_odom_bias_small: fixed=1.9931 lstm=1.9281 oracle=2.1108
+[153/231] 20260824_095712_fault_odom_delay_large: fixed=2.1187 lstm=2.1041 oracle=2.1187
+[154/231] 20260824_095712_fault_odom_delay_medium: fixed=2.1642 lstm=2.1530 oracle=2.1642
+[155/231] 20260824_095712_fault_odom_delay_small: fixed=2.1992 lstm=2.2067 oracle=2.1992
+[156/231] 20260824_095712_fault_odom_drift_fast: fixed=1.9124 lstm=1.9397 oracle=1.9829
+[157/231] 20260824_095712_fault_odom_drift_medium: fixed=2.0133 lstm=2.0353 oracle=2.0494
+[158/231] 20260824_095712_fault_odom_drift_slow: fixed=2.1118 lstm=2.1282 oracle=2.1217
+[159/231] 20260824_095712_fault_odom_dropout_long: fixed=2.1962 lstm=2.2649 oracle=4.0809
+[160/231] 20260824_095712_fault_odom_dropout_medium: fixed=2.9950 lstm=2.9374 oracle=3.9695
+[161/231] 20260824_095712_fault_odom_dropout_short: fixed=1.8919 lstm=1.9159 oracle=1.7196
+[162/231] 20260824_095712_fault_odom_noise_extreme: fixed=1994.6469 lstm=629.0691 oracle=624.4076
+[163/231] 20260824_095712_fault_odom_noise_high: fixed=996.7541 lstm=421.8295 oracle=416.3619
+[164/231] 20260824_095712_fault_odom_noise_low: fixed=165.6252 lstm=124.6452 oracle=122.5665
+[165/231] 20260824_095712_fault_odom_noise_medium: fixed=498.0318 lstm=259.1607 oracle=269.3194
+[166/231] 20260824_095915: fixed=1.1788 lstm=1.2082 oracle=1.1789
+[167/231] 20260824_095915_fault_imu_bias_large: fixed=12.2629 lstm=12.2700 oracle=12.2420
+[168/231] 20260824_095915_fault_imu_bias_medium: fixed=6.5494 lstm=6.5746 oracle=6.5330
+[169/231] 20260824_095915_fault_imu_bias_small: fixed=17.3615 lstm=17.3150 oracle=17.3667
+[170/231] 20260824_095915_fault_imu_delay_large: fixed=2.7954 lstm=2.8006 oracle=2.7954
+[171/231] 20260824_095915_fault_imu_delay_medium: fixed=1.0914 lstm=1.0948 oracle=1.0913
+[172/231] 20260824_095915_fault_imu_delay_small: fixed=1.0622 lstm=1.0711 oracle=1.0623
+[173/231] 20260824_095915_fault_imu_drift_fast: fixed=12.4293 lstm=12.3250 oracle=12.4022
+[174/231] 20260824_095915_fault_imu_drift_medium: fixed=16.5972 lstm=16.4952 oracle=16.5879
+[175/231] 20260824_095915_fault_imu_drift_slow: fixed=5.8782 lstm=5.8165 oracle=5.8887
+[176/231] 20260824_095915_fault_imu_dropout_long: fixed=3.9000 lstm=4.0412 oracle=6.5757
+[177/231] 20260824_095915_fault_imu_dropout_medium: fixed=3.4693 lstm=3.5139 oracle=4.4314
+[178/231] 20260824_095915_fault_imu_dropout_short: fixed=1.9021 lstm=1.9722 oracle=1.3006
+[179/231] 20260824_095915_fault_imu_noise_extreme: fixed=11.4855 lstm=13.7932 oracle=13.5098
+[180/231] 20260824_095915_fault_imu_noise_high: fixed=12.9406 lstm=14.7438 oracle=13.2245
+[181/231] 20260824_095915_fault_imu_noise_low: fixed=8.1230 lstm=7.5732 oracle=6.8489
+[182/231] 20260824_095915_fault_imu_noise_medium: fixed=11.0359 lstm=12.4349 oracle=11.8756
+[183/231] 20260824_095915_fault_odom_bias_large: fixed=7.3343 lstm=6.4626 oracle=0.8437
+[184/231] 20260824_095915_fault_odom_bias_medium: fixed=2.4985 lstm=2.2705 oracle=0.8928
+[185/231] 20260824_095915_fault_odom_bias_small: fixed=0.8958 lstm=0.9383 oracle=1.0006
+[186/231] 20260824_095915_fault_odom_delay_large: fixed=2.1929 lstm=2.0416 oracle=2.1935
+[187/231] 20260824_095915_fault_odom_delay_medium: fixed=1.3884 lstm=1.3569 oracle=1.3886
+[188/231] 20260824_095915_fault_odom_delay_small: fixed=1.2411 lstm=1.2349 oracle=1.2411
+[189/231] 20260824_095915_fault_odom_drift_fast: fixed=1.3719 lstm=1.3754 oracle=1.3167
+[190/231] 20260824_095915_fault_odom_drift_medium: fixed=1.2876 lstm=1.3100 oracle=1.2658
+[191/231] 20260824_095915_fault_odom_drift_slow: fixed=1.2178 lstm=1.2432 oracle=1.2136
+[192/231] 20260824_095915_fault_odom_dropout_long: fixed=1.7262 lstm=1.7107 oracle=1.1228
+[193/231] 20260824_095915_fault_odom_dropout_medium: fixed=1.4720 lstm=1.4830 oracle=1.1628
+[194/231] 20260824_095915_fault_odom_dropout_short: fixed=1.1499 lstm=1.1563 oracle=1.1389
+[195/231] 20260824_095915_fault_odom_noise_extreme: fixed=2880.0902 lstm=1103.9448 oracle=1042.1586
+[196/231] 20260824_095915_fault_odom_noise_high: fixed=1437.2563 lstm=750.8229 oracle=659.7551
+[197/231] 20260824_095915_fault_odom_noise_low: fixed=236.8404 lstm=182.7625 oracle=179.1773
+[198/231] 20260824_095915_fault_odom_noise_medium: fixed=716.8170 lstm=454.4667 oracle=410.3120
+[199/231] 20260824_100318: fixed=0.9440 lstm=0.9467 oracle=0.9440
+[200/231] 20260824_100318_fault_imu_bias_large: fixed=7.8120 lstm=7.8138 oracle=7.7617
+[201/231] 20260824_100318_fault_imu_bias_medium: fixed=7.1564 lstm=7.1664 oracle=7.1565
+[202/231] 20260824_100318_fault_imu_bias_small: fixed=5.5042 lstm=5.5018 oracle=5.4971
+[203/231] 20260824_100318_fault_imu_delay_large: fixed=2.5257 lstm=2.5287 oracle=2.5257
+[204/231] 20260824_100318_fault_imu_delay_medium: fixed=1.3379 lstm=1.3341 oracle=1.3379
+[205/231] 20260824_100318_fault_imu_delay_small: fixed=1.0037 lstm=1.0027 oracle=1.0037
+[206/231] 20260824_100318_fault_imu_drift_fast: fixed=13.0035 lstm=12.9924 oracle=12.9749
+[207/231] 20260824_100318_fault_imu_drift_medium: fixed=7.0210 lstm=7.0121 oracle=7.0195
+[208/231] 20260824_100318_fault_imu_drift_slow: fixed=2.7178 lstm=2.7127 oracle=2.7186
+[209/231] 20260824_100318_fault_imu_dropout_long: fixed=7.3823 lstm=7.3844 oracle=4.1375
+[210/231] 20260824_100318_fault_imu_dropout_medium: fixed=2.2392 lstm=2.2550 oracle=0.9951
+[211/231] 20260824_100318_fault_imu_dropout_short: fixed=0.9441 lstm=0.9468 oracle=1.0179
+[212/231] 20260824_100318_fault_imu_noise_extreme: fixed=4.0753 lstm=5.3460 oracle=13.5163
+[213/231] 20260824_100318_fault_imu_noise_high: fixed=4.9054 lstm=5.6023 oracle=7.7509
+[214/231] 20260824_100318_fault_imu_noise_low: fixed=1.7062 lstm=2.1367 oracle=1.7894
+[215/231] 20260824_100318_fault_imu_noise_medium: fixed=4.1874 lstm=4.4471 oracle=5.8198
+[216/231] 20260824_100318_fault_odom_bias_large: fixed=7.1269 lstm=6.5799 oracle=0.9778
+[217/231] 20260824_100318_fault_odom_bias_medium: fixed=4.3880 lstm=4.0361 oracle=1.0083
+[218/231] 20260824_100318_fault_odom_bias_small: fixed=2.6434 lstm=2.4759 oracle=1.0111
+[219/231] 20260824_100318_fault_odom_delay_large: fixed=1.0212 lstm=1.0130 oracle=1.0214
+[220/231] 20260824_100318_fault_odom_delay_medium: fixed=1.1009 lstm=1.0982 oracle=1.1010
+[221/231] 20260824_100318_fault_odom_delay_small: fixed=0.9614 lstm=0.9659 oracle=0.9614
+[222/231] 20260824_100318_fault_odom_drift_fast: fixed=1.5695 lstm=1.5035 oracle=1.3948
+[223/231] 20260824_100318_fault_odom_drift_medium: fixed=1.1620 lstm=1.1414 oracle=1.1265
+[224/231] 20260824_100318_fault_odom_drift_slow: fixed=0.9850 lstm=0.9846 oracle=0.9816
+[225/231] 20260824_100318_fault_odom_dropout_long: fixed=1.6684 lstm=1.6022 oracle=3.0329
+[226/231] 20260824_100318_fault_odom_dropout_medium: fixed=1.7390 lstm=1.6287 oracle=2.5315
+[227/231] 20260824_100318_fault_odom_dropout_short: fixed=1.2719 lstm=1.2357 oracle=0.9434
+[228/231] 20260824_100318_fault_odom_noise_extreme: fixed=2167.1421 lstm=738.6340 oracle=711.5293
+[229/231] 20260824_100318_fault_odom_noise_high: fixed=1085.3238 lstm=420.2457 oracle=465.1243
+[230/231] 20260824_100318_fault_odom_noise_low: fixed=180.1475 lstm=133.7513 oracle=133.6304
+[231/231] 20260824_100318_fault_odom_noise_medium: fixed=542.5776 lstm=278.8039 oracle=296.9397
+
+=== beats FIXED, IMU/odom fault sessions ===
+group             heuristic       lstm     oracle
+imu                44/112     32/112     56/112  
+odom               65/112     89/112     76/112  
+imu/bias           15/21       5/21      12/21   
+imu/delay           6/21       6/21      13/21   
+imu/drift           3/21       9/21       9/21   
+imu/dropout        10/21       6/21      14/21   
+imu/noise          10/28       6/28       8/28   
+odom/bias           5/21      20/21      19/21   
+odom/delay         10/21      16/21       5/21   
+odom/drift         10/21      11/21      14/21   
+odom/dropout       12/21      14/21      10/21   
+odom/noise         28/28      28/28      28/28   
+
+=== mean RMSE (m) ===
+          fixed  heuristic     lstm   oracle
+sensor                                      
+imu       5.706      5.982    5.852    5.734
+odom    362.019     17.008  147.817  150.231
+
+no-fault baselines: {'fixed': 1.1632, 'heuristic': 1.1625, 'lstm': 1.1709, 'oracle': 1.1632}
+
+Saved: /home/kushagra/ws_mobile/fix_ws/oracle_results.csv

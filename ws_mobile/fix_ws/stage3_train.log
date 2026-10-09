@@ -1,0 +1,131 @@
+nohup: ignoring input
+=== A.4 sanity checks (D2 labels computed in memory; nothing written) ===
+
+baseline         sensor             small            medium             large   monotonic
+-- train (mean r | fraction r<0.5)
+20260712_141740  imu       0.985 |  0.0%    0.938 |  0.0%    0.832 |  3.7%   yes
+20260712_141740  odom      0.982 |  0.0%    0.922 |  0.0%    0.767 |  0.6%   yes
+20260712_144326  imu       0.976 |  0.0%    0.904 |  0.0%    0.761 |  9.5%   yes
+20260712_144326  odom      0.964 |  0.0%    0.855 |  0.0%    0.653 | 27.2%   yes
+20260824_094119  imu       0.944 |  0.0%    0.807 |  4.3%    0.597 | 44.1%   yes
+20260824_094119  odom      0.966 |  0.0%    0.861 |  0.0%    0.676 | 10.5%   yes
+20260824_095427  imu       0.968 |  0.0%    0.888 |  5.1%    0.728 | 19.6%   yes
+20260824_095427  odom      0.954 |  0.0%    0.815 |  0.0%    0.583 | 33.3%   yes
+20260824_095712  imu       0.980 |  0.0%    0.926 |  0.1%    0.794 | 14.5%   yes
+20260824_095712  odom      0.942 |  0.0%    0.773 |  0.0%    0.538 | 59.8%   yes
+20260824_095915  imu       0.942 |  0.0%    0.802 |  5.3%    0.712 | 16.8%   yes
+20260824_095915  odom      0.946 |  0.0%    0.798 |  0.0%    0.613 | 26.6%   yes
+20260824_100318  imu       0.959 |  0.0%    0.866 |  6.5%    0.743 | 17.5%   yes
+20260824_100318  odom      0.966 |  0.0%    0.856 |  0.0%    0.631 |  8.2%   yes
+-- heldout (mean r | fraction r<0.5)
+20261003_132243  imu       0.982 |  0.0%    0.925 |  0.0%    0.794 | 10.8%   yes
+20261003_132243  odom      0.972 |  0.0%    0.877 |  0.0%    0.659 |  0.0%   yes
+20261003_132822  imu       0.959 |  0.0%    0.846 |  0.0%    0.756 | 14.0%   yes
+20261003_132822  odom      0.977 |  0.0%    0.900 |  0.0%    0.715 |  0.0%   yes
+20261003_133250  imu       0.975 |  0.0%    0.894 |  0.0%    0.707 |  8.9%   yes
+20261003_133250  odom      0.978 |  0.0%    0.905 |  0.0%    0.720 |  0.0%   yes
+
+Training sessions with 0 rows r<1: 0 
+Monotonic baseline-sensor pairs: 14/14 (rule: 14/14)
+Held-out IMU-delay faulty rows (r<0.5): 923 (Stage 3 criterion 1a needs > 0)
+
+A.4 verdict: PASS -> retraining may start (after Kushagra agrees)
+Saved: fix_ws/stage3_check.csv
+Backup: 685 files, 0.25 GB; disk free 6.8 GB
+Fingerprinting 7 fold files (sha256) ...
+Backed up to fix_ws/models_preD2/ ; Stage 1 reference -> fix_ws/stage1_frozen_models.csv
+
+Installed D2 labels in generate_reliability_labels.py
+  START 01_labels
+  OK    01_labels
+  START 02_dataset_stage1
+  OK    02_dataset_stage1
+  START 03_dataset_stage2
+  OK    03_dataset_stage2
+  START 04_lstm_train
+  OK    04_lstm_train
+
+=== evaluating the 7 D2 models on the held-out sessions (heldout_stage1 step6, unchanged) ===
+
+--- model 1/7 (LOBO fold 20260712_141740) ---
+  done 108 sessions
+
+--- model 2/7 (LOBO fold 20260712_144326) ---
+  done 108 sessions
+
+--- model 3/7 (LOBO fold 20260824_094119) ---
+  done 108 sessions
+
+--- model 4/7 (LOBO fold 20260824_095427) ---
+  done 108 sessions
+
+--- model 5/7 (LOBO fold 20260824_095712) ---
+  done 108 sessions
+
+--- model 6/7 (LOBO fold 20260824_095915) ---
+  done 108 sessions
+
+--- model 7/7 (LOBO fold 20260824_100318) ---
+  done 108 sessions
+
+=== H2 / D1: wins vs fixed (mean +/- std over the 7 models) ===
+              heuristic      lstm_linear          lstm_D1
+IMU             11/48        14.6+/-2.4 /48    20.4+/-1.9 /48
+odom            18/48        41.6+/-2.0 /48    41.6+/-2.5 /48
+
+  IMU by fault type (7-model mean wins vs fixed):
+    bias     heuristic 5/9  linear 2.3/9  D1 3.3/9
+    delay    heuristic 0/9  linear 2.0/9  D1 2.0/9
+    drift    heuristic 0/9  linear 2.9/9  D1 6.3/9
+    dropout  heuristic 1/9  linear 3.1/9  D1 4.1/9
+    noise    heuristic 5/12  linear 4.3/12  D1 4.7/12
+
+  odom by fault type (7-model mean wins vs fixed):
+    bias     heuristic 0/9  linear 9.0/9  D1 9.0/9
+    delay    heuristic 0/9  linear 5.0/9  D1 5.4/9
+    drift    heuristic 0/9  linear 8.9/9  D1 8.4/9
+    dropout  heuristic 6/9  linear 6.7/9  D1 6.7/9
+    noise    heuristic 12/12  linear 12.0/12  D1 12.0/12
+
+  IMU-fault mean RMSE: fixed=4.010 linear=4.155 D1=3.987
+  held-out baselines mean RMSE: fixed=0.7242 linear=0.7258 D1=0.7258
+
+H2 verdict: LSTM odom wins 41.6/48 (need > 24 and > heuristic 18) -> PASS
+
+D1 verdict (pre-registered):
+  [FAIL] IMU wins > 50% (20.4/48)
+  [PASS] IMU mean RMSE < fixed (3.987 vs 4.010)
+  [PASS] baselines <= 1% worse (0.7258 vs 0.7242)
+  [PASS] odom wins >= linear - 2 (41.6 vs 41.6)
+  OVERALL: FAIL
+
+=== D3: mid-session IMU bias (reported, no pass/fail) ===
+  wins vs fixed (7-model mean, n=9): linear 4.9, D1 5.6
+  mean RMSE: fixed=3.911 linear=3.909 D1=3.677
+  r_imu < 0.5: first 2 s after onset 20.1%, whole post-onset 1.4%, pre-onset (false) 0.0%
+
+
+========== STAGE 3 (D2) REPORT ==========
+sensor/fault     Stage1 linear  D2 linear  change
+imu/bias                  1.86       2.29   +0.43
+imu/delay                 1.43       2.00   +0.57
+imu/drift                 3.14       2.86   -0.29
+imu/dropout               2.43       3.14   +0.71
+imu/noise                 4.00       4.29   +0.29
+odom/bias                 9.00       9.00   +0.00
+odom/delay                3.57       5.00   +1.43
+odom/drift                9.00       8.86   -0.14
+odom/dropout              6.86       6.71   -0.14
+odom/noise               12.00      12.00   +0.00
+
+  [PASS] 1a held-out IMU-delay faulty rows > 0 (923)
+  [PASS] 1b IMU-delay wins 2.00 >= Stage 1 1.43
+  [PASS] 2  no other type loses > 2 wins
+  (descriptive only) IMU-delay wins vs the >= 5/9 reference: 2.00/9 -> not met
+  (reported) odom-delay wins: Stage 1 3.57 -> D2 5.00
+  (reported) Stage 1 held-out baselines mean RMSE: fixed 0.7242  linear 0.7254
+  (reported) D2 held-out baselines mean RMSE: fixed 0.7242  linear 0.7258
+
+Stage 3 verdict: PASS -> D2 models adopted
+D2 adopted. Backup of the previous state kept in fix_ws/models_preD2/.
+Outputs: fix_ws/stage3_out/heldout_stage1_models.csv (D2 models), fix_ws/models_D2/, fix_ws/stage3_logs/
