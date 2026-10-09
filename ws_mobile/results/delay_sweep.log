@@ -1,0 +1,294 @@
+nohup: ignoring input
+  Created RAW-REDESIGNED delay fault session: 20261003_132243_fault_imu_delay_sw0p05
+    Faulted raw file: imu_20261003_132243_fault_imu_delay_sw0p05.csv
+    Re-ran preprocess_data.py 20261003_132243_fault_imu_delay_sw0p05 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132243_fault_imu_delay_sw0p05.json
+  20261003_132243 imu  0.05 s  RMSE 0.4409  ratio 1.063
+  Created RAW-REDESIGNED delay fault session: 20261003_132243_fault_imu_delay_sw0p1
+    Faulted raw file: imu_20261003_132243_fault_imu_delay_sw0p1.csv
+    Re-ran preprocess_data.py 20261003_132243_fault_imu_delay_sw0p1 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132243_fault_imu_delay_sw0p1.json
+  20261003_132243 imu   0.1 s  RMSE 0.4680  ratio 1.129
+  Created RAW-REDESIGNED delay fault session: 20261003_132243_fault_imu_delay_sw0p25
+    Faulted raw file: imu_20261003_132243_fault_imu_delay_sw0p25.csv
+    Re-ran preprocess_data.py 20261003_132243_fault_imu_delay_sw0p25 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132243_fault_imu_delay_sw0p25.json
+  20261003_132243 imu  0.25 s  RMSE 0.5528  ratio 1.333
+  Created RAW-REDESIGNED delay fault session: 20261003_132243_fault_imu_delay_sw0p5
+    Faulted raw file: imu_20261003_132243_fault_imu_delay_sw0p5.csv
+    Re-ran preprocess_data.py 20261003_132243_fault_imu_delay_sw0p5 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132243_fault_imu_delay_sw0p5.json
+  20261003_132243 imu   0.5 s  RMSE 0.7090  ratio 1.710
+  Created RAW-REDESIGNED delay fault session: 20261003_132243_fault_imu_delay_sw1
+    Faulted raw file: imu_20261003_132243_fault_imu_delay_sw1.csv
+    Re-ran preprocess_data.py 20261003_132243_fault_imu_delay_sw1 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132243_fault_imu_delay_sw1.json
+  20261003_132243 imu     1 s  RMSE 1.0526  ratio 2.539
+  Created RAW-REDESIGNED delay fault session: 20261003_132243_fault_imu_delay_sw1p5
+    Faulted raw file: imu_20261003_132243_fault_imu_delay_sw1p5.csv
+    Re-ran preprocess_data.py 20261003_132243_fault_imu_delay_sw1p5 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132243_fault_imu_delay_sw1p5.json
+  20261003_132243 imu   1.5 s  RMSE 1.4080  ratio 3.396
+  Created RAW-REDESIGNED delay fault session: 20261003_132243_fault_imu_delay_sw2
+    Faulted raw file: imu_20261003_132243_fault_imu_delay_sw2.csv
+    Re-ran preprocess_data.py 20261003_132243_fault_imu_delay_sw2 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132243_fault_imu_delay_sw2.json
+  20261003_132243 imu     2 s  RMSE 1.7607  ratio 4.247
+  Created RAW-REDESIGNED delay fault session: 20261003_132243_fault_imu_delay_sw3
+    Faulted raw file: imu_20261003_132243_fault_imu_delay_sw3.csv
+    Re-ran preprocess_data.py 20261003_132243_fault_imu_delay_sw3 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132243_fault_imu_delay_sw3.json
+  20261003_132243 imu     3 s  RMSE 2.6081  ratio 6.291
+  Created RAW-REDESIGNED delay fault session: 20261003_132243_fault_imu_delay_sw5
+    Faulted raw file: imu_20261003_132243_fault_imu_delay_sw5.csv
+    Re-ran preprocess_data.py 20261003_132243_fault_imu_delay_sw5 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132243_fault_imu_delay_sw5.json
+  20261003_132243 imu     5 s  RMSE 5.2595  ratio 12.686
+  Created RAW-REDESIGNED delay fault session: 20261003_132243_fault_odom_delay_sw0p05
+    Faulted raw file: odom_20261003_132243_fault_odom_delay_sw0p05.csv
+    Re-ran preprocess_data.py 20261003_132243_fault_odom_delay_sw0p05 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132243_fault_odom_delay_sw0p05.json
+  20261003_132243 odom 0.05 s  RMSE 0.4134  ratio 0.997
+  Created RAW-REDESIGNED delay fault session: 20261003_132243_fault_odom_delay_sw0p1
+    Faulted raw file: odom_20261003_132243_fault_odom_delay_sw0p1.csv
+    Re-ran preprocess_data.py 20261003_132243_fault_odom_delay_sw0p1 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132243_fault_odom_delay_sw0p1.json
+  20261003_132243 odom  0.1 s  RMSE 0.4108  ratio 0.991
+  Created RAW-REDESIGNED delay fault session: 20261003_132243_fault_odom_delay_sw0p25
+    Faulted raw file: odom_20261003_132243_fault_odom_delay_sw0p25.csv
+    Re-ran preprocess_data.py 20261003_132243_fault_odom_delay_sw0p25 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132243_fault_odom_delay_sw0p25.json
+  20261003_132243 odom 0.25 s  RMSE 0.4085  ratio 0.985
+  Created RAW-REDESIGNED delay fault session: 20261003_132243_fault_odom_delay_sw0p5
+    Faulted raw file: odom_20261003_132243_fault_odom_delay_sw0p5.csv
+    Re-ran preprocess_data.py 20261003_132243_fault_odom_delay_sw0p5 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132243_fault_odom_delay_sw0p5.json
+  20261003_132243 odom  0.5 s  RMSE 0.4092  ratio 0.987
+  Created RAW-REDESIGNED delay fault session: 20261003_132243_fault_odom_delay_sw1
+    Faulted raw file: odom_20261003_132243_fault_odom_delay_sw1.csv
+    Re-ran preprocess_data.py 20261003_132243_fault_odom_delay_sw1 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132243_fault_odom_delay_sw1.json
+  20261003_132243 odom    1 s  RMSE 0.4500  ratio 1.085
+  Created RAW-REDESIGNED delay fault session: 20261003_132243_fault_odom_delay_sw1p5
+    Faulted raw file: odom_20261003_132243_fault_odom_delay_sw1p5.csv
+    Re-ran preprocess_data.py 20261003_132243_fault_odom_delay_sw1p5 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132243_fault_odom_delay_sw1p5.json
+  20261003_132243 odom  1.5 s  RMSE 0.4849  ratio 1.170
+  Created RAW-REDESIGNED delay fault session: 20261003_132243_fault_odom_delay_sw2
+    Faulted raw file: odom_20261003_132243_fault_odom_delay_sw2.csv
+    Re-ran preprocess_data.py 20261003_132243_fault_odom_delay_sw2 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132243_fault_odom_delay_sw2.json
+  20261003_132243 odom    2 s  RMSE 0.4839  ratio 1.167
+  Created RAW-REDESIGNED delay fault session: 20261003_132243_fault_odom_delay_sw3
+    Faulted raw file: odom_20261003_132243_fault_odom_delay_sw3.csv
+    Re-ran preprocess_data.py 20261003_132243_fault_odom_delay_sw3 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132243_fault_odom_delay_sw3.json
+  20261003_132243 odom    3 s  RMSE 0.5160  ratio 1.245
+  Created RAW-REDESIGNED delay fault session: 20261003_132243_fault_odom_delay_sw5
+    Faulted raw file: odom_20261003_132243_fault_odom_delay_sw5.csv
+    Re-ran preprocess_data.py 20261003_132243_fault_odom_delay_sw5 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132243_fault_odom_delay_sw5.json
+  20261003_132243 odom    5 s  RMSE 0.6394  ratio 1.542
+  Created RAW-REDESIGNED delay fault session: 20261003_132822_fault_imu_delay_sw0p05
+    Faulted raw file: imu_20261003_132822_fault_imu_delay_sw0p05.csv
+    Re-ran preprocess_data.py 20261003_132822_fault_imu_delay_sw0p05 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132822_fault_imu_delay_sw0p05.json
+  20261003_132822 imu  0.05 s  RMSE 0.5229  ratio 1.103
+  Created RAW-REDESIGNED delay fault session: 20261003_132822_fault_imu_delay_sw0p1
+    Faulted raw file: imu_20261003_132822_fault_imu_delay_sw0p1.csv
+    Re-ran preprocess_data.py 20261003_132822_fault_imu_delay_sw0p1 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132822_fault_imu_delay_sw0p1.json
+  20261003_132822 imu   0.1 s  RMSE 0.5737  ratio 1.210
+  Created RAW-REDESIGNED delay fault session: 20261003_132822_fault_imu_delay_sw0p25
+    Faulted raw file: imu_20261003_132822_fault_imu_delay_sw0p25.csv
+    Re-ran preprocess_data.py 20261003_132822_fault_imu_delay_sw0p25 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132822_fault_imu_delay_sw0p25.json
+  20261003_132822 imu  0.25 s  RMSE 0.7375  ratio 1.556
+  Created RAW-REDESIGNED delay fault session: 20261003_132822_fault_imu_delay_sw0p5
+    Faulted raw file: imu_20261003_132822_fault_imu_delay_sw0p5.csv
+    Re-ran preprocess_data.py 20261003_132822_fault_imu_delay_sw0p5 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132822_fault_imu_delay_sw0p5.json
+  20261003_132822 imu   0.5 s  RMSE 1.0526  ratio 2.221
+  Created RAW-REDESIGNED delay fault session: 20261003_132822_fault_imu_delay_sw1
+    Faulted raw file: imu_20261003_132822_fault_imu_delay_sw1.csv
+    Re-ran preprocess_data.py 20261003_132822_fault_imu_delay_sw1 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132822_fault_imu_delay_sw1.json
+  20261003_132822 imu     1 s  RMSE 1.7951  ratio 3.788
+  Created RAW-REDESIGNED delay fault session: 20261003_132822_fault_imu_delay_sw1p5
+    Faulted raw file: imu_20261003_132822_fault_imu_delay_sw1p5.csv
+    Re-ran preprocess_data.py 20261003_132822_fault_imu_delay_sw1p5 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132822_fault_imu_delay_sw1p5.json
+  20261003_132822 imu   1.5 s  RMSE 2.4573  ratio 5.185
+  Created RAW-REDESIGNED delay fault session: 20261003_132822_fault_imu_delay_sw2
+    Faulted raw file: imu_20261003_132822_fault_imu_delay_sw2.csv
+    Re-ran preprocess_data.py 20261003_132822_fault_imu_delay_sw2 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132822_fault_imu_delay_sw2.json
+  20261003_132822 imu     2 s  RMSE 2.8505  ratio 6.014
+  Created RAW-REDESIGNED delay fault session: 20261003_132822_fault_imu_delay_sw3
+    Faulted raw file: imu_20261003_132822_fault_imu_delay_sw3.csv
+    Re-ran preprocess_data.py 20261003_132822_fault_imu_delay_sw3 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132822_fault_imu_delay_sw3.json
+  20261003_132822 imu     3 s  RMSE 3.5431  ratio 7.476
+  Created RAW-REDESIGNED delay fault session: 20261003_132822_fault_imu_delay_sw5
+    Faulted raw file: imu_20261003_132822_fault_imu_delay_sw5.csv
+    Re-ran preprocess_data.py 20261003_132822_fault_imu_delay_sw5 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132822_fault_imu_delay_sw5.json
+  20261003_132822 imu     5 s  RMSE 5.7751  ratio 12.185
+  Created RAW-REDESIGNED delay fault session: 20261003_132822_fault_odom_delay_sw0p05
+    Faulted raw file: odom_20261003_132822_fault_odom_delay_sw0p05.csv
+    Re-ran preprocess_data.py 20261003_132822_fault_odom_delay_sw0p05 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132822_fault_odom_delay_sw0p05.json
+  20261003_132822 odom 0.05 s  RMSE 0.4567  ratio 0.964
+  Created RAW-REDESIGNED delay fault session: 20261003_132822_fault_odom_delay_sw0p1
+    Faulted raw file: odom_20261003_132822_fault_odom_delay_sw0p1.csv
+    Re-ran preprocess_data.py 20261003_132822_fault_odom_delay_sw0p1 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132822_fault_odom_delay_sw0p1.json
+  20261003_132822 odom  0.1 s  RMSE 0.4387  ratio 0.926
+  Created RAW-REDESIGNED delay fault session: 20261003_132822_fault_odom_delay_sw0p25
+    Faulted raw file: odom_20261003_132822_fault_odom_delay_sw0p25.csv
+    Re-ran preprocess_data.py 20261003_132822_fault_odom_delay_sw0p25 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132822_fault_odom_delay_sw0p25.json
+  20261003_132822 odom 0.25 s  RMSE 0.3907  ratio 0.824
+  Created RAW-REDESIGNED delay fault session: 20261003_132822_fault_odom_delay_sw0p5
+    Faulted raw file: odom_20261003_132822_fault_odom_delay_sw0p5.csv
+    Re-ran preprocess_data.py 20261003_132822_fault_odom_delay_sw0p5 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132822_fault_odom_delay_sw0p5.json
+  20261003_132822 odom  0.5 s  RMSE 0.3910  ratio 0.825
+  Created RAW-REDESIGNED delay fault session: 20261003_132822_fault_odom_delay_sw1
+    Faulted raw file: odom_20261003_132822_fault_odom_delay_sw1.csv
+    Re-ran preprocess_data.py 20261003_132822_fault_odom_delay_sw1 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132822_fault_odom_delay_sw1.json
+  20261003_132822 odom    1 s  RMSE 0.5495  ratio 1.159
+  Created RAW-REDESIGNED delay fault session: 20261003_132822_fault_odom_delay_sw1p5
+    Faulted raw file: odom_20261003_132822_fault_odom_delay_sw1p5.csv
+    Re-ran preprocess_data.py 20261003_132822_fault_odom_delay_sw1p5 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132822_fault_odom_delay_sw1p5.json
+  20261003_132822 odom  1.5 s  RMSE 0.8884  ratio 1.875
+  Created RAW-REDESIGNED delay fault session: 20261003_132822_fault_odom_delay_sw2
+    Faulted raw file: odom_20261003_132822_fault_odom_delay_sw2.csv
+    Re-ran preprocess_data.py 20261003_132822_fault_odom_delay_sw2 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132822_fault_odom_delay_sw2.json
+  20261003_132822 odom    2 s  RMSE 0.9245  ratio 1.951
+  Created RAW-REDESIGNED delay fault session: 20261003_132822_fault_odom_delay_sw3
+    Faulted raw file: odom_20261003_132822_fault_odom_delay_sw3.csv
+    Re-ran preprocess_data.py 20261003_132822_fault_odom_delay_sw3 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132822_fault_odom_delay_sw3.json
+  20261003_132822 odom    3 s  RMSE 0.6828  ratio 1.441
+  Created RAW-REDESIGNED delay fault session: 20261003_132822_fault_odom_delay_sw5
+    Faulted raw file: odom_20261003_132822_fault_odom_delay_sw5.csv
+    Re-ran preprocess_data.py 20261003_132822_fault_odom_delay_sw5 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_132822_fault_odom_delay_sw5.json
+  20261003_132822 odom    5 s  RMSE 0.7503  ratio 1.583
+  Created RAW-REDESIGNED delay fault session: 20261003_133250_fault_imu_delay_sw0p05
+    Faulted raw file: imu_20261003_133250_fault_imu_delay_sw0p05.csv
+    Re-ran preprocess_data.py 20261003_133250_fault_imu_delay_sw0p05 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_133250_fault_imu_delay_sw0p05.json
+  20261003_133250 imu  0.05 s  RMSE 1.2570  ratio 0.979
+  Created RAW-REDESIGNED delay fault session: 20261003_133250_fault_imu_delay_sw0p1
+    Faulted raw file: imu_20261003_133250_fault_imu_delay_sw0p1.csv
+    Re-ran preprocess_data.py 20261003_133250_fault_imu_delay_sw0p1 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_133250_fault_imu_delay_sw0p1.json
+  20261003_133250 imu   0.1 s  RMSE 1.2315  ratio 0.959
+  Created RAW-REDESIGNED delay fault session: 20261003_133250_fault_imu_delay_sw0p25
+    Faulted raw file: imu_20261003_133250_fault_imu_delay_sw0p25.csv
+    Re-ran preprocess_data.py 20261003_133250_fault_imu_delay_sw0p25 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_133250_fault_imu_delay_sw0p25.json
+  20261003_133250 imu  0.25 s  RMSE 1.1688  ratio 0.910
+  Created RAW-REDESIGNED delay fault session: 20261003_133250_fault_imu_delay_sw0p5
+    Faulted raw file: imu_20261003_133250_fault_imu_delay_sw0p5.csv
+    Re-ran preprocess_data.py 20261003_133250_fault_imu_delay_sw0p5 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_133250_fault_imu_delay_sw0p5.json
+  20261003_133250 imu   0.5 s  RMSE 1.1418  ratio 0.889
+  Created RAW-REDESIGNED delay fault session: 20261003_133250_fault_imu_delay_sw1
+    Faulted raw file: imu_20261003_133250_fault_imu_delay_sw1.csv
+    Re-ran preprocess_data.py 20261003_133250_fault_imu_delay_sw1 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_133250_fault_imu_delay_sw1.json
+  20261003_133250 imu     1 s  RMSE 1.3013  ratio 1.013
+  Created RAW-REDESIGNED delay fault session: 20261003_133250_fault_imu_delay_sw1p5
+    Faulted raw file: imu_20261003_133250_fault_imu_delay_sw1p5.csv
+    Re-ran preprocess_data.py 20261003_133250_fault_imu_delay_sw1p5 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_133250_fault_imu_delay_sw1p5.json
+  20261003_133250 imu   1.5 s  RMSE 1.6228  ratio 1.264
+  Created RAW-REDESIGNED delay fault session: 20261003_133250_fault_imu_delay_sw2
+    Faulted raw file: imu_20261003_133250_fault_imu_delay_sw2.csv
+    Re-ran preprocess_data.py 20261003_133250_fault_imu_delay_sw2 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_133250_fault_imu_delay_sw2.json
+  20261003_133250 imu     2 s  RMSE 2.2214  ratio 1.730
+  Created RAW-REDESIGNED delay fault session: 20261003_133250_fault_imu_delay_sw3
+    Faulted raw file: imu_20261003_133250_fault_imu_delay_sw3.csv
+    Re-ran preprocess_data.py 20261003_133250_fault_imu_delay_sw3 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_133250_fault_imu_delay_sw3.json
+  20261003_133250 imu     3 s  RMSE 3.8416  ratio 2.992
+  Created RAW-REDESIGNED delay fault session: 20261003_133250_fault_imu_delay_sw5
+    Faulted raw file: imu_20261003_133250_fault_imu_delay_sw5.csv
+    Re-ran preprocess_data.py 20261003_133250_fault_imu_delay_sw5 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_133250_fault_imu_delay_sw5.json
+  20261003_133250 imu     5 s  RMSE 4.0280  ratio 3.137
+  Created RAW-REDESIGNED delay fault session: 20261003_133250_fault_odom_delay_sw0p05
+    Faulted raw file: odom_20261003_133250_fault_odom_delay_sw0p05.csv
+    Re-ran preprocess_data.py 20261003_133250_fault_odom_delay_sw0p05 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_133250_fault_odom_delay_sw0p05.json
+  20261003_133250 odom 0.05 s  RMSE 1.2748  ratio 0.993
+  Created RAW-REDESIGNED delay fault session: 20261003_133250_fault_odom_delay_sw0p1
+    Faulted raw file: odom_20261003_133250_fault_odom_delay_sw0p1.csv
+    Re-ran preprocess_data.py 20261003_133250_fault_odom_delay_sw0p1 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_133250_fault_odom_delay_sw0p1.json
+  20261003_133250 odom  0.1 s  RMSE 1.2593  ratio 0.981
+  Created RAW-REDESIGNED delay fault session: 20261003_133250_fault_odom_delay_sw0p25
+    Faulted raw file: odom_20261003_133250_fault_odom_delay_sw0p25.csv
+    Re-ran preprocess_data.py 20261003_133250_fault_odom_delay_sw0p25 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_133250_fault_odom_delay_sw0p25.json
+  20261003_133250 odom 0.25 s  RMSE 1.2164  ratio 0.947
+  Created RAW-REDESIGNED delay fault session: 20261003_133250_fault_odom_delay_sw0p5
+    Faulted raw file: odom_20261003_133250_fault_odom_delay_sw0p5.csv
+    Re-ran preprocess_data.py 20261003_133250_fault_odom_delay_sw0p5 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_133250_fault_odom_delay_sw0p5.json
+  20261003_133250 odom  0.5 s  RMSE 1.2164  ratio 0.947
+  Created RAW-REDESIGNED delay fault session: 20261003_133250_fault_odom_delay_sw1
+    Faulted raw file: odom_20261003_133250_fault_odom_delay_sw1.csv
+    Re-ran preprocess_data.py 20261003_133250_fault_odom_delay_sw1 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_133250_fault_odom_delay_sw1.json
+  20261003_133250 odom    1 s  RMSE 1.2567  ratio 0.979
+  Created RAW-REDESIGNED delay fault session: 20261003_133250_fault_odom_delay_sw1p5
+    Faulted raw file: odom_20261003_133250_fault_odom_delay_sw1p5.csv
+    Re-ran preprocess_data.py 20261003_133250_fault_odom_delay_sw1p5 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_133250_fault_odom_delay_sw1p5.json
+  20261003_133250 odom  1.5 s  RMSE 1.4897  ratio 1.160
+  Created RAW-REDESIGNED delay fault session: 20261003_133250_fault_odom_delay_sw2
+    Faulted raw file: odom_20261003_133250_fault_odom_delay_sw2.csv
+    Re-ran preprocess_data.py 20261003_133250_fault_odom_delay_sw2 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_133250_fault_odom_delay_sw2.json
+  20261003_133250 odom    2 s  RMSE 1.5128  ratio 1.178
+  Created RAW-REDESIGNED delay fault session: 20261003_133250_fault_odom_delay_sw3
+    Faulted raw file: odom_20261003_133250_fault_odom_delay_sw3.csv
+    Re-ran preprocess_data.py 20261003_133250_fault_odom_delay_sw3 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_133250_fault_odom_delay_sw3.json
+  20261003_133250 odom    3 s  RMSE 1.3796  ratio 1.074
+  Created RAW-REDESIGNED delay fault session: 20261003_133250_fault_odom_delay_sw5
+    Faulted raw file: odom_20261003_133250_fault_odom_delay_sw5.csv
+    Re-ran preprocess_data.py 20261003_133250_fault_odom_delay_sw5 -- regenerated filtered outputs
+    Manifest: fault_meta_20261003_133250_fault_odom_delay_sw5.json
+  20261003_133250 odom    5 s  RMSE 1.0935  ratio 0.852
+
+Moved 1296 sweep files to results/delay_sweep_files/; left in sensor_logs: 0
+session_registry.json unchanged: True
+Reproduction check (0.1/0.5/2.0 s vs existing small/medium/large): max |diff| = 0.00e+00 m -> OK
+
+=== ratio RMSE / baseline (fixed EKF) ===
+delay_s                  0.05   0.10   0.25   0.50   1.00   1.50   2.00   3.00    5.00
+session         sensor                                                                
+20261003_132243 imu     1.063  1.129  1.333  1.710  2.539  3.396  4.247  6.291  12.686
+                odom    0.997  0.991  0.985  0.987  1.085  1.170  1.167  1.245   1.542
+20261003_132822 imu     1.103  1.210  1.556  2.221  3.788  5.185  6.014  7.476  12.185
+                odom    0.964  0.926  0.824  0.825  1.159  1.875  1.951  1.441   1.583
+20261003_133250 imu     0.979  0.959  0.910  0.889  1.013  1.264  1.730  2.992   3.137
+                odom    0.993  0.981  0.947  0.947  0.979  1.160  1.178  1.074   0.852
+
+=== summary ===
+  20261003_132243 imu : lower-than-baseline at none ; sustained >= 5% degradation from 0.05 s ; min ratio 1.063 at 0.05 s
+  20261003_132243 odom: lower-than-baseline at [0.05, 0.1, 0.25, 0.5] ; sustained >= 5% degradation from 1.0 s ; min ratio 0.985 at 0.25 s
+  20261003_132822 imu : lower-than-baseline at none ; sustained >= 5% degradation from 0.05 s ; min ratio 1.103 at 0.05 s
+  20261003_132822 odom: lower-than-baseline at [0.05, 0.1, 0.25, 0.5] ; sustained >= 5% degradation from 1.0 s ; min ratio 0.824 at 0.25 s
+  20261003_133250 imu : lower-than-baseline at [0.05, 0.1, 0.25, 0.5] ; sustained >= 5% degradation from 1.5 s ; min ratio 0.889 at 0.5 s
+  20261003_133250 odom: lower-than-baseline at [0.05, 0.1, 0.25, 0.5] ; sustained >= 5% degradation from never (<= 5 s) s ; min ratio 0.852 at 5 s
+Saved: results/delay_sweep.csv, results/delay_sweep.png/.pdf

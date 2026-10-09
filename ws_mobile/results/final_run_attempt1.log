@@ -1,0 +1,696 @@
+nohup: ignoring input
+test sessions: ['20261005_175524', '20261005_175856', '20261005_180136', '20261005_180357', '20261005_181003']
+training models: ['20260712_141740', '20260712_144326', '20260824_094119', '20260824_095427', '20260824_095712', '20260824_095915', '20260824_100318']
+results: results/final_*
+  Fault matrix: 260 sessions to create (5 baseline(s) x 3 sensor(s), fault-type count varies by sensor)
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_imu_noise_low until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_imu_noise_low
+    Faulted file: imu_filtered_20261005_175524_fault_imu_noise_low.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_imu_noise_low.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_imu_noise_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_imu_noise_medium
+    Faulted file: imu_filtered_20261005_175524_fault_imu_noise_medium.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_imu_noise_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_imu_noise_high until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_imu_noise_high
+    Faulted file: imu_filtered_20261005_175524_fault_imu_noise_high.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_imu_noise_high.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_imu_noise_extreme until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_imu_noise_extreme
+    Faulted file: imu_filtered_20261005_175524_fault_imu_noise_extreme.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_imu_noise_extreme.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_imu_bias_small until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_imu_bias_small
+    Faulted file: imu_filtered_20261005_175524_fault_imu_bias_small.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_imu_bias_small.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_imu_bias_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_imu_bias_medium
+    Faulted file: imu_filtered_20261005_175524_fault_imu_bias_medium.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_imu_bias_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_imu_bias_large until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_imu_bias_large
+    Faulted file: imu_filtered_20261005_175524_fault_imu_bias_large.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_imu_bias_large.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_imu_drift_slow until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_imu_drift_slow
+    Faulted file: imu_filtered_20261005_175524_fault_imu_drift_slow.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_imu_drift_slow.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_imu_drift_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_imu_drift_medium
+    Faulted file: imu_filtered_20261005_175524_fault_imu_drift_medium.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_imu_drift_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_imu_drift_fast until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_imu_drift_fast
+    Faulted file: imu_filtered_20261005_175524_fault_imu_drift_fast.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_imu_drift_fast.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_imu_dropout_short until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_imu_dropout_short
+    Faulted file: imu_filtered_20261005_175524_fault_imu_dropout_short.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_imu_dropout_short.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_imu_dropout_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_imu_dropout_medium
+    Faulted file: imu_filtered_20261005_175524_fault_imu_dropout_medium.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_imu_dropout_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_imu_dropout_long until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_imu_dropout_long
+    Faulted file: imu_filtered_20261005_175524_fault_imu_dropout_long.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_imu_dropout_long.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175524_fault_imu_delay_small
+    Faulted raw file: imu_20261005_175524_fault_imu_delay_small.csv
+    Re-ran preprocess_data.py 20261005_175524_fault_imu_delay_small -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175524_fault_imu_delay_small.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175524_fault_imu_delay_medium
+    Faulted raw file: imu_20261005_175524_fault_imu_delay_medium.csv
+    Re-ran preprocess_data.py 20261005_175524_fault_imu_delay_medium -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175524_fault_imu_delay_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175524_fault_imu_delay_large
+    Faulted raw file: imu_20261005_175524_fault_imu_delay_large.csv
+    Re-ran preprocess_data.py 20261005_175524_fault_imu_delay_large -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175524_fault_imu_delay_large.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_odom_noise_low until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_odom_noise_low
+    Faulted file: odom_filtered_20261005_175524_fault_odom_noise_low.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_odom_noise_low.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_odom_noise_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_odom_noise_medium
+    Faulted file: odom_filtered_20261005_175524_fault_odom_noise_medium.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_odom_noise_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_odom_noise_high until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_odom_noise_high
+    Faulted file: odom_filtered_20261005_175524_fault_odom_noise_high.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_odom_noise_high.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_odom_noise_extreme until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_odom_noise_extreme
+    Faulted file: odom_filtered_20261005_175524_fault_odom_noise_extreme.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_odom_noise_extreme.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_odom_bias_small until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_odom_bias_small
+    Faulted file: odom_filtered_20261005_175524_fault_odom_bias_small.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_odom_bias_small.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_odom_bias_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_odom_bias_medium
+    Faulted file: odom_filtered_20261005_175524_fault_odom_bias_medium.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_odom_bias_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_odom_bias_large until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_odom_bias_large
+    Faulted file: odom_filtered_20261005_175524_fault_odom_bias_large.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_odom_bias_large.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_odom_drift_slow until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_odom_drift_slow
+    Faulted file: odom_filtered_20261005_175524_fault_odom_drift_slow.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_odom_drift_slow.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_odom_drift_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_odom_drift_medium
+    Faulted file: odom_filtered_20261005_175524_fault_odom_drift_medium.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_odom_drift_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_odom_drift_fast until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_odom_drift_fast
+    Faulted file: odom_filtered_20261005_175524_fault_odom_drift_fast.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_odom_drift_fast.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_odom_dropout_short until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_odom_dropout_short
+    Faulted file: odom_filtered_20261005_175524_fault_odom_dropout_short.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_odom_dropout_short.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_odom_dropout_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_odom_dropout_medium
+    Faulted file: odom_filtered_20261005_175524_fault_odom_dropout_medium.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_odom_dropout_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_odom_dropout_long until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_odom_dropout_long
+    Faulted file: odom_filtered_20261005_175524_fault_odom_dropout_long.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_odom_dropout_long.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175524_fault_odom_delay_small
+    Faulted raw file: odom_20261005_175524_fault_odom_delay_small.csv
+    Re-ran preprocess_data.py 20261005_175524_fault_odom_delay_small -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175524_fault_odom_delay_small.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175524_fault_odom_delay_medium
+    Faulted raw file: odom_20261005_175524_fault_odom_delay_medium.csv
+    Re-ran preprocess_data.py 20261005_175524_fault_odom_delay_medium -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175524_fault_odom_delay_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175524_fault_odom_delay_large
+    Faulted raw file: odom_20261005_175524_fault_odom_delay_large.csv
+    Re-ran preprocess_data.py 20261005_175524_fault_odom_delay_large -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175524_fault_odom_delay_large.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_noise_low until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_noise_low
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_noise_low.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_noise_low.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_noise_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_noise_medium
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_noise_medium.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_noise_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_noise_high until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_noise_high
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_noise_high.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_noise_high.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_noise_extreme until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_noise_extreme
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_noise_extreme.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_noise_extreme.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_return_loss_low until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_return_loss_low
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_return_loss_low.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_return_loss_low.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_return_loss_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_return_loss_medium
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_return_loss_medium.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_return_loss_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_return_loss_high until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_return_loss_high
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_return_loss_high.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_return_loss_high.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_return_loss_extreme until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_return_loss_extreme
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_return_loss_extreme.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_return_loss_extreme.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_corruption_mild until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_corruption_mild
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_corruption_mild.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_corruption_mild.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_corruption_moderate until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_corruption_moderate
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_corruption_moderate.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_corruption_moderate.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_corruption_severe until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_corruption_severe
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_corruption_severe.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_corruption_severe.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_scale_error_mild until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_scale_error_mild
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_scale_error_mild.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_scale_error_mild.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_scale_error_moderate until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_scale_error_moderate
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_scale_error_moderate.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_scale_error_moderate.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_scale_error_severe until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_scale_error_severe
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_scale_error_severe.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_scale_error_severe.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_dropout_short until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_dropout_short
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_dropout_short.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_dropout_short.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_dropout_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_dropout_medium
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_dropout_medium.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_dropout_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_dropout_long until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_dropout_long
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_dropout_long.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_dropout_long.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175524_fault_lidar_delay_small
+    Faulted raw file: scan_20261005_175524_fault_lidar_delay_small.csv
+    Re-ran preprocess_data.py 20261005_175524_fault_lidar_delay_small -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175524_fault_lidar_delay_small.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175524_fault_lidar_delay_medium
+    Faulted raw file: scan_20261005_175524_fault_lidar_delay_medium.csv
+    Re-ran preprocess_data.py 20261005_175524_fault_lidar_delay_medium -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175524_fault_lidar_delay_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175524_fault_lidar_delay_large
+    Faulted raw file: scan_20261005_175524_fault_lidar_delay_large.csv
+    Re-ran preprocess_data.py 20261005_175524_fault_lidar_delay_large -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175524_fault_lidar_delay_large.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_imu_noise_low until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_imu_noise_low
+    Faulted file: imu_filtered_20261005_175856_fault_imu_noise_low.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_imu_noise_low.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_imu_noise_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_imu_noise_medium
+    Faulted file: imu_filtered_20261005_175856_fault_imu_noise_medium.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_imu_noise_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_imu_noise_high until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_imu_noise_high
+    Faulted file: imu_filtered_20261005_175856_fault_imu_noise_high.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_imu_noise_high.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_imu_noise_extreme until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_imu_noise_extreme
+    Faulted file: imu_filtered_20261005_175856_fault_imu_noise_extreme.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_imu_noise_extreme.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_imu_bias_small until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_imu_bias_small
+    Faulted file: imu_filtered_20261005_175856_fault_imu_bias_small.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_imu_bias_small.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_imu_bias_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_imu_bias_medium
+    Faulted file: imu_filtered_20261005_175856_fault_imu_bias_medium.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_imu_bias_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_imu_bias_large until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_imu_bias_large
+    Faulted file: imu_filtered_20261005_175856_fault_imu_bias_large.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_imu_bias_large.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_imu_drift_slow until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_imu_drift_slow
+    Faulted file: imu_filtered_20261005_175856_fault_imu_drift_slow.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_imu_drift_slow.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_imu_drift_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_imu_drift_medium
+    Faulted file: imu_filtered_20261005_175856_fault_imu_drift_medium.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_imu_drift_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_imu_drift_fast until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_imu_drift_fast
+    Faulted file: imu_filtered_20261005_175856_fault_imu_drift_fast.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_imu_drift_fast.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_imu_dropout_short until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_imu_dropout_short
+    Faulted file: imu_filtered_20261005_175856_fault_imu_dropout_short.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_imu_dropout_short.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_imu_dropout_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_imu_dropout_medium
+    Faulted file: imu_filtered_20261005_175856_fault_imu_dropout_medium.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_imu_dropout_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_imu_dropout_long until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_imu_dropout_long
+    Faulted file: imu_filtered_20261005_175856_fault_imu_dropout_long.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_imu_dropout_long.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175856_fault_imu_delay_small
+    Faulted raw file: imu_20261005_175856_fault_imu_delay_small.csv
+    Re-ran preprocess_data.py 20261005_175856_fault_imu_delay_small -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175856_fault_imu_delay_small.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175856_fault_imu_delay_medium
+    Faulted raw file: imu_20261005_175856_fault_imu_delay_medium.csv
+    Re-ran preprocess_data.py 20261005_175856_fault_imu_delay_medium -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175856_fault_imu_delay_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175856_fault_imu_delay_large
+    Faulted raw file: imu_20261005_175856_fault_imu_delay_large.csv
+    Re-ran preprocess_data.py 20261005_175856_fault_imu_delay_large -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175856_fault_imu_delay_large.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_odom_noise_low until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_odom_noise_low
+    Faulted file: odom_filtered_20261005_175856_fault_odom_noise_low.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_odom_noise_low.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_odom_noise_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_odom_noise_medium
+    Faulted file: odom_filtered_20261005_175856_fault_odom_noise_medium.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_odom_noise_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_odom_noise_high until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_odom_noise_high
+    Faulted file: odom_filtered_20261005_175856_fault_odom_noise_high.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_odom_noise_high.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_odom_noise_extreme until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_odom_noise_extreme
+    Faulted file: odom_filtered_20261005_175856_fault_odom_noise_extreme.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_odom_noise_extreme.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_odom_bias_small until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_odom_bias_small
+    Faulted file: odom_filtered_20261005_175856_fault_odom_bias_small.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_odom_bias_small.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_odom_bias_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_odom_bias_medium
+    Faulted file: odom_filtered_20261005_175856_fault_odom_bias_medium.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_odom_bias_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_odom_bias_large until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_odom_bias_large
+    Faulted file: odom_filtered_20261005_175856_fault_odom_bias_large.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_odom_bias_large.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_odom_drift_slow until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_odom_drift_slow
+    Faulted file: odom_filtered_20261005_175856_fault_odom_drift_slow.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_odom_drift_slow.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_odom_drift_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_odom_drift_medium
+    Faulted file: odom_filtered_20261005_175856_fault_odom_drift_medium.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_odom_drift_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_odom_drift_fast until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_odom_drift_fast
+    Faulted file: odom_filtered_20261005_175856_fault_odom_drift_fast.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_odom_drift_fast.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_odom_dropout_short until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_odom_dropout_short
+    Faulted file: odom_filtered_20261005_175856_fault_odom_dropout_short.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_odom_dropout_short.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_odom_dropout_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_odom_dropout_medium
+    Faulted file: odom_filtered_20261005_175856_fault_odom_dropout_medium.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_odom_dropout_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_odom_dropout_long until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_odom_dropout_long
+    Faulted file: odom_filtered_20261005_175856_fault_odom_dropout_long.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_odom_dropout_long.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175856_fault_odom_delay_small
+    Faulted raw file: odom_20261005_175856_fault_odom_delay_small.csv
+    Re-ran preprocess_data.py 20261005_175856_fault_odom_delay_small -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175856_fault_odom_delay_small.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175856_fault_odom_delay_medium
+    Faulted raw file: odom_20261005_175856_fault_odom_delay_medium.csv
+    Re-ran preprocess_data.py 20261005_175856_fault_odom_delay_medium -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175856_fault_odom_delay_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175856_fault_odom_delay_large
+    Faulted raw file: odom_20261005_175856_fault_odom_delay_large.csv
+    Re-ran preprocess_data.py 20261005_175856_fault_odom_delay_large -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175856_fault_odom_delay_large.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_noise_low until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_noise_low
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_noise_low.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_noise_low.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_noise_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_noise_medium
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_noise_medium.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_noise_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_noise_high until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_noise_high
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_noise_high.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_noise_high.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_noise_extreme until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_noise_extreme
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_noise_extreme.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_noise_extreme.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_return_loss_low until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_return_loss_low
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_return_loss_low.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_return_loss_low.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_return_loss_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_return_loss_medium
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_return_loss_medium.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_return_loss_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_return_loss_high until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_return_loss_high
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_return_loss_high.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_return_loss_high.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_return_loss_extreme until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_return_loss_extreme
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_return_loss_extreme.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_return_loss_extreme.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_corruption_mild until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_corruption_mild
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_corruption_mild.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_corruption_mild.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_corruption_moderate until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_corruption_moderate
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_corruption_moderate.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_corruption_moderate.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_corruption_severe until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_corruption_severe
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_corruption_severe.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_corruption_severe.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_scale_error_mild until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_scale_error_mild
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_scale_error_mild.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_scale_error_mild.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_scale_error_moderate until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_scale_error_moderate
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_scale_error_moderate.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_scale_error_moderate.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_scale_error_severe until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_scale_error_severe
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_scale_error_severe.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_scale_error_severe.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_dropout_short until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_dropout_short
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_dropout_short.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_dropout_short.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_dropout_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_dropout_medium
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_dropout_medium.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_dropout_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_dropout_long until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_dropout_long
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_dropout_long.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_dropout_long.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175856_fault_lidar_delay_small
+    Faulted raw file: scan_20261005_175856_fault_lidar_delay_small.csv
+    Re-ran preprocess_data.py 20261005_175856_fault_lidar_delay_small -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175856_fault_lidar_delay_small.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175856_fault_lidar_delay_medium
+    Faulted raw file: scan_20261005_175856_fault_lidar_delay_medium.csv
+    Re-ran preprocess_data.py 20261005_175856_fault_lidar_delay_medium -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175856_fault_lidar_delay_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175856_fault_lidar_delay_large
+    Faulted raw file: scan_20261005_175856_fault_lidar_delay_large.csv
+    Re-ran preprocess_data.py 20261005_175856_fault_lidar_delay_large -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175856_fault_lidar_delay_large.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_imu_noise_low until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_imu_noise_low
+    Faulted file: imu_filtered_20261005_180136_fault_imu_noise_low.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_imu_noise_low.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_imu_noise_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_imu_noise_medium
+    Faulted file: imu_filtered_20261005_180136_fault_imu_noise_medium.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_imu_noise_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_imu_noise_high until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_imu_noise_high
+    Faulted file: imu_filtered_20261005_180136_fault_imu_noise_high.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_imu_noise_high.json
+  SKIPPED 20261005_180136/imu/noise/extreme: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/scan_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/scan_filtered_20261005_180136_fault_imu_noise_extreme.csv'
+  SKIPPED 20261005_180136/imu/bias/small: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136_fault_imu_bias_small.csv'
+  SKIPPED 20261005_180136/imu/bias/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136_fault_imu_bias_medium.csv'
+  SKIPPED 20261005_180136/imu/bias/large: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136_fault_imu_bias_large.csv'
+  SKIPPED 20261005_180136/imu/drift/slow: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136_fault_imu_drift_slow.csv'
+  SKIPPED 20261005_180136/imu/drift/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136_fault_imu_drift_medium.csv'
+  SKIPPED 20261005_180136/imu/drift/fast: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136_fault_imu_drift_fast.csv'
+  SKIPPED 20261005_180136/imu/dropout/short: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136_fault_imu_dropout_short.csv'
+  SKIPPED 20261005_180136/imu/dropout/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136_fault_imu_dropout_medium.csv'
+  SKIPPED 20261005_180136/imu/dropout/long: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136_fault_imu_dropout_long.csv'
+  SKIPPED 20261005_180136/imu/delay/small: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_20261005_180136_fault_imu_delay_small.csv'
+  SKIPPED 20261005_180136/imu/delay/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_20261005_180136_fault_imu_delay_medium.csv'
+  SKIPPED 20261005_180136/imu/delay/large: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_20261005_180136_fault_imu_delay_large.csv'
+  SKIPPED 20261005_180136/odom/noise/low: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180136_fault_odom_noise_low.csv'
+  SKIPPED 20261005_180136/odom/noise/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180136_fault_odom_noise_medium.csv'
+  SKIPPED 20261005_180136/odom/noise/high: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180136_fault_odom_noise_high.csv'
+  SKIPPED 20261005_180136/odom/noise/extreme: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180136_fault_odom_noise_extreme.csv'
+  SKIPPED 20261005_180136/odom/bias/small: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180136_fault_odom_bias_small.csv'
+  SKIPPED 20261005_180136/odom/bias/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180136_fault_odom_bias_medium.csv'
+  SKIPPED 20261005_180136/odom/bias/large: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180136_fault_odom_bias_large.csv'
+  SKIPPED 20261005_180136/odom/drift/slow: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180136_fault_odom_drift_slow.csv'
+  SKIPPED 20261005_180136/odom/drift/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180136_fault_odom_drift_medium.csv'
+  SKIPPED 20261005_180136/odom/drift/fast: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180136_fault_odom_drift_fast.csv'
+  SKIPPED 20261005_180136/odom/dropout/short: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180136_fault_odom_dropout_short.csv'
+  SKIPPED 20261005_180136/odom/dropout/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180136_fault_odom_dropout_medium.csv'
+  SKIPPED 20261005_180136/odom/dropout/long: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180136_fault_odom_dropout_long.csv'
+  SKIPPED 20261005_180136/odom/delay/small: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_180136_fault_odom_delay_small.csv'
+  SKIPPED 20261005_180136/odom/delay/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_180136_fault_odom_delay_medium.csv'
+  SKIPPED 20261005_180136/odom/delay/large: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_180136_fault_odom_delay_large.csv'
+  SKIPPED 20261005_180136/lidar/noise/low: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136_fault_lidar_noise_low.csv'
+  SKIPPED 20261005_180136/lidar/noise/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136_fault_lidar_noise_medium.csv'
+  SKIPPED 20261005_180136/lidar/noise/high: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136_fault_lidar_noise_high.csv'
+  SKIPPED 20261005_180136/lidar/noise/extreme: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136_fault_lidar_noise_extreme.csv'
+  SKIPPED 20261005_180136/lidar/return_loss/low: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136_fault_lidar_return_loss_low.csv'
+  SKIPPED 20261005_180136/lidar/return_loss/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136_fault_lidar_return_loss_medium.csv'
+  SKIPPED 20261005_180136/lidar/return_loss/high: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136_fault_lidar_return_loss_high.csv'
+  SKIPPED 20261005_180136/lidar/return_loss/extreme: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136_fault_lidar_return_loss_extreme.csv'
+  SKIPPED 20261005_180136/lidar/corruption/mild: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136_fault_lidar_corruption_mild.csv'
+  SKIPPED 20261005_180136/lidar/corruption/moderate: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136_fault_lidar_corruption_moderate.csv'
+  SKIPPED 20261005_180136/lidar/corruption/severe: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136_fault_lidar_corruption_severe.csv'
+  SKIPPED 20261005_180136/lidar/scale_error/mild: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136_fault_lidar_scale_error_mild.csv'
+  SKIPPED 20261005_180136/lidar/scale_error/moderate: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136_fault_lidar_scale_error_moderate.csv'
+  SKIPPED 20261005_180136/lidar/scale_error/severe: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136_fault_lidar_scale_error_severe.csv'
+  SKIPPED 20261005_180136/lidar/dropout/short: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136_fault_lidar_dropout_short.csv'
+  SKIPPED 20261005_180136/lidar/dropout/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136_fault_lidar_dropout_medium.csv'
+  SKIPPED 20261005_180136/lidar/dropout/long: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180136_fault_lidar_dropout_long.csv'
+  SKIPPED 20261005_180136/lidar/delay/small: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_180136_fault_lidar_delay_small.csv'
+  SKIPPED 20261005_180136/lidar/delay/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_180136_fault_lidar_delay_medium.csv'
+  SKIPPED 20261005_180136/lidar/delay/large: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_180136.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_180136_fault_lidar_delay_large.csv'
+  SKIPPED 20261005_180357/imu/noise/low: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_imu_noise_low.csv'
+  SKIPPED 20261005_180357/imu/noise/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_imu_noise_medium.csv'
+  SKIPPED 20261005_180357/imu/noise/high: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_imu_noise_high.csv'
+  SKIPPED 20261005_180357/imu/noise/extreme: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_imu_noise_extreme.csv'
+  SKIPPED 20261005_180357/imu/bias/small: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_imu_bias_small.csv'
+  SKIPPED 20261005_180357/imu/bias/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_imu_bias_medium.csv'
+  SKIPPED 20261005_180357/imu/bias/large: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_imu_bias_large.csv'
+  SKIPPED 20261005_180357/imu/drift/slow: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_imu_drift_slow.csv'
+  SKIPPED 20261005_180357/imu/drift/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_imu_drift_medium.csv'
+  SKIPPED 20261005_180357/imu/drift/fast: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_imu_drift_fast.csv'
+  SKIPPED 20261005_180357/imu/dropout/short: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_imu_dropout_short.csv'
+  SKIPPED 20261005_180357/imu/dropout/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_imu_dropout_medium.csv'
+  SKIPPED 20261005_180357/imu/dropout/long: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_imu_dropout_long.csv'
+  SKIPPED 20261005_180357/imu/delay/small: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_20261005_180357_fault_imu_delay_small.csv'
+  SKIPPED 20261005_180357/imu/delay/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_20261005_180357_fault_imu_delay_medium.csv'
+  SKIPPED 20261005_180357/imu/delay/large: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_20261005_180357_fault_imu_delay_large.csv'
+  SKIPPED 20261005_180357/odom/noise/low: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180357_fault_odom_noise_low.csv'
+  SKIPPED 20261005_180357/odom/noise/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180357_fault_odom_noise_medium.csv'
+  SKIPPED 20261005_180357/odom/noise/high: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180357_fault_odom_noise_high.csv'
+  SKIPPED 20261005_180357/odom/noise/extreme: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180357_fault_odom_noise_extreme.csv'
+  SKIPPED 20261005_180357/odom/bias/small: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180357_fault_odom_bias_small.csv'
+  SKIPPED 20261005_180357/odom/bias/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180357_fault_odom_bias_medium.csv'
+  SKIPPED 20261005_180357/odom/bias/large: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180357_fault_odom_bias_large.csv'
+  SKIPPED 20261005_180357/odom/drift/slow: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180357_fault_odom_drift_slow.csv'
+  SKIPPED 20261005_180357/odom/drift/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180357_fault_odom_drift_medium.csv'
+  SKIPPED 20261005_180357/odom/drift/fast: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180357_fault_odom_drift_fast.csv'
+  SKIPPED 20261005_180357/odom/dropout/short: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180357_fault_odom_dropout_short.csv'
+  SKIPPED 20261005_180357/odom/dropout/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180357_fault_odom_dropout_medium.csv'
+  SKIPPED 20261005_180357/odom/dropout/long: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_180357_fault_odom_dropout_long.csv'
+  SKIPPED 20261005_180357/odom/delay/small: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_180357_fault_odom_delay_small.csv'
+  SKIPPED 20261005_180357/odom/delay/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_180357_fault_odom_delay_medium.csv'
+  SKIPPED 20261005_180357/odom/delay/large: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_180357_fault_odom_delay_large.csv'
+  SKIPPED 20261005_180357/lidar/noise/low: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_lidar_noise_low.csv'
+  SKIPPED 20261005_180357/lidar/noise/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_lidar_noise_medium.csv'
+  SKIPPED 20261005_180357/lidar/noise/high: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_lidar_noise_high.csv'
+  SKIPPED 20261005_180357/lidar/noise/extreme: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_lidar_noise_extreme.csv'
+  SKIPPED 20261005_180357/lidar/return_loss/low: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_lidar_return_loss_low.csv'
+  SKIPPED 20261005_180357/lidar/return_loss/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_lidar_return_loss_medium.csv'
+  SKIPPED 20261005_180357/lidar/return_loss/high: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_lidar_return_loss_high.csv'
+  SKIPPED 20261005_180357/lidar/return_loss/extreme: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_lidar_return_loss_extreme.csv'
+  SKIPPED 20261005_180357/lidar/corruption/mild: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_lidar_corruption_mild.csv'
+  SKIPPED 20261005_180357/lidar/corruption/moderate: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_lidar_corruption_moderate.csv'
+  SKIPPED 20261005_180357/lidar/corruption/severe: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_lidar_corruption_severe.csv'
+  SKIPPED 20261005_180357/lidar/scale_error/mild: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_lidar_scale_error_mild.csv'
+  SKIPPED 20261005_180357/lidar/scale_error/moderate: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_lidar_scale_error_moderate.csv'
+  SKIPPED 20261005_180357/lidar/scale_error/severe: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_lidar_scale_error_severe.csv'
+  SKIPPED 20261005_180357/lidar/dropout/short: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_lidar_dropout_short.csv'
+  SKIPPED 20261005_180357/lidar/dropout/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_lidar_dropout_medium.csv'
+  SKIPPED 20261005_180357/lidar/dropout/long: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_180357_fault_lidar_dropout_long.csv'
+  SKIPPED 20261005_180357/lidar/delay/small: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_180357_fault_lidar_delay_small.csv'
+  SKIPPED 20261005_180357/lidar/delay/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_180357_fault_lidar_delay_medium.csv'
+  SKIPPED 20261005_180357/lidar/delay/large: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_180357.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_180357_fault_lidar_delay_large.csv'
+  SKIPPED 20261005_181003/imu/noise/low: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_imu_noise_low.csv'
+  SKIPPED 20261005_181003/imu/noise/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_imu_noise_medium.csv'
+  SKIPPED 20261005_181003/imu/noise/high: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_imu_noise_high.csv'
+  SKIPPED 20261005_181003/imu/noise/extreme: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_imu_noise_extreme.csv'
+  SKIPPED 20261005_181003/imu/bias/small: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_imu_bias_small.csv'
+  SKIPPED 20261005_181003/imu/bias/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_imu_bias_medium.csv'
+  SKIPPED 20261005_181003/imu/bias/large: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_imu_bias_large.csv'
+  SKIPPED 20261005_181003/imu/drift/slow: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_imu_drift_slow.csv'
+  SKIPPED 20261005_181003/imu/drift/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_imu_drift_medium.csv'
+  SKIPPED 20261005_181003/imu/drift/fast: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_imu_drift_fast.csv'
+  SKIPPED 20261005_181003/imu/dropout/short: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_imu_dropout_short.csv'
+  SKIPPED 20261005_181003/imu/dropout/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_imu_dropout_medium.csv'
+  SKIPPED 20261005_181003/imu/dropout/long: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_imu_dropout_long.csv'
+  SKIPPED 20261005_181003/imu/delay/small: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_20261005_181003_fault_imu_delay_small.csv'
+  SKIPPED 20261005_181003/imu/delay/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_20261005_181003_fault_imu_delay_medium.csv'
+  SKIPPED 20261005_181003/imu/delay/large: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_20261005_181003_fault_imu_delay_large.csv'
+  SKIPPED 20261005_181003/odom/noise/low: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_181003_fault_odom_noise_low.csv'
+  SKIPPED 20261005_181003/odom/noise/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_181003_fault_odom_noise_medium.csv'
+  SKIPPED 20261005_181003/odom/noise/high: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_181003_fault_odom_noise_high.csv'
+  SKIPPED 20261005_181003/odom/noise/extreme: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_181003_fault_odom_noise_extreme.csv'
+  SKIPPED 20261005_181003/odom/bias/small: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_181003_fault_odom_bias_small.csv'
+  SKIPPED 20261005_181003/odom/bias/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_181003_fault_odom_bias_medium.csv'
+  SKIPPED 20261005_181003/odom/bias/large: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_181003_fault_odom_bias_large.csv'
+  SKIPPED 20261005_181003/odom/drift/slow: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_181003_fault_odom_drift_slow.csv'
+  SKIPPED 20261005_181003/odom/drift/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_181003_fault_odom_drift_medium.csv'
+  SKIPPED 20261005_181003/odom/drift/fast: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_181003_fault_odom_drift_fast.csv'
+  SKIPPED 20261005_181003/odom/dropout/short: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_181003_fault_odom_dropout_short.csv'
+  SKIPPED 20261005_181003/odom/dropout/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_181003_fault_odom_dropout_medium.csv'
+  SKIPPED 20261005_181003/odom/dropout/long: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_filtered_20261005_181003_fault_odom_dropout_long.csv'
+  SKIPPED 20261005_181003/odom/delay/small: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_181003_fault_odom_delay_small.csv'
+  SKIPPED 20261005_181003/odom/delay/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_181003_fault_odom_delay_medium.csv'
+  SKIPPED 20261005_181003/odom/delay/large: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_181003_fault_odom_delay_large.csv'
+  SKIPPED 20261005_181003/lidar/noise/low: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_lidar_noise_low.csv'
+  SKIPPED 20261005_181003/lidar/noise/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_lidar_noise_medium.csv'
+  SKIPPED 20261005_181003/lidar/noise/high: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_lidar_noise_high.csv'
+  SKIPPED 20261005_181003/lidar/noise/extreme: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_lidar_noise_extreme.csv'
+  SKIPPED 20261005_181003/lidar/return_loss/low: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_lidar_return_loss_low.csv'
+  SKIPPED 20261005_181003/lidar/return_loss/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_lidar_return_loss_medium.csv'
+  SKIPPED 20261005_181003/lidar/return_loss/high: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_lidar_return_loss_high.csv'
+  SKIPPED 20261005_181003/lidar/return_loss/extreme: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_lidar_return_loss_extreme.csv'
+  SKIPPED 20261005_181003/lidar/corruption/mild: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_lidar_corruption_mild.csv'
+  SKIPPED 20261005_181003/lidar/corruption/moderate: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_lidar_corruption_moderate.csv'
+  SKIPPED 20261005_181003/lidar/corruption/severe: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_lidar_corruption_severe.csv'
+  SKIPPED 20261005_181003/lidar/scale_error/mild: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_lidar_scale_error_mild.csv'
+  SKIPPED 20261005_181003/lidar/scale_error/moderate: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_lidar_scale_error_moderate.csv'
+  SKIPPED 20261005_181003/lidar/scale_error/severe: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_lidar_scale_error_severe.csv'
+  SKIPPED 20261005_181003/lidar/dropout/short: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_lidar_dropout_short.csv'
+  SKIPPED 20261005_181003/lidar/dropout/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_lidar_dropout_medium.csv'
+  SKIPPED 20261005_181003/lidar/dropout/long: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/odom_filtered_20261005_181003_fault_lidar_dropout_long.csv'
+  SKIPPED 20261005_181003/lidar/delay/small: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_181003_fault_lidar_delay_small.csv'
+  SKIPPED 20261005_181003/lidar/delay/medium: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_181003_fault_lidar_delay_medium.csv'
+  SKIPPED 20261005_181003/lidar/delay/large: [Errno 28] No space left on device: '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_181003.csv' -> '/home/kushagra/ws_mobile/sensor_logs/imu_20261005_181003_fault_lidar_delay_large.csv'
+
+  Done: 107/260 fault sessions created.
+ABORT: generate_all_faults created 107, expected 260

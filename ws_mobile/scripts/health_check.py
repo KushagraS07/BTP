@@ -1,0 +1,406 @@
+#!/usr/bin/env python3
+"""
+health_check.py — run this after recording ANY new session, before it
+ever gets used by rnn_fusion_v2.py or lidar_fusion_v2.py.
+
+On PASS, the session is automatically added to
+session_registry.json's good_sessions.
+
+On FAIL, it is added to excluded_sessions with the specific reason.
+
+WHAT THIS CATCHES
+-----------------
+This checks for flat/degenerate sensor signals, especially the dead-IMU
+failure mode actually observed in this project:
+
+    session 20260714_014615
+    IMU orientation essentially frozen while the robot genuinely turned.
+
+DESIGN: turn-gated IMU checks
+------------------------------
+A session is NOT required to rotate by a fixed amount. Instead:
+
+    commanded ACCUMULATED rotation >= MEANINGFUL_ROTATION_MIN?
+        YES -> verify that IMU orientation/angular-velocity responded
+        NO  -> do not reject the session merely because heading variation
+               or angular velocity variation is small; still catch an
+               unmistakably frozen signal (std exactly zero)
+
+Accumulated rotation (integral of |commanded angular_z| over time), not
+an instantaneous rate threshold, is used to decide "was this a turning
+session" — this is the same physical quantity (radians of rotation)
+being compared against IMU_THETA_RANGE_MIN, so the two sides of the
+comparison are directly comparable. A rate-only threshold (e.g. "did any
+single command sample exceed X rad/s") can misclassify a session with
+brief noise spikes as "turning" despite near-zero net rotation, or miss
+a session with slow-but-sustained rotation that never spikes above a
+rate threshold despite accumulating real heading change.
+
+This prevents a legitimate straight-line / low-rotation session from
+being incorrectly rejected, while still catching the real failure mode.
+
+WHAT THIS DOES NOT YET CATCH
+----------------------------
+An RMSE-based comparison against known-good sessions is intentionally
+NOT part of this health check yet. That belongs to the EKF evaluation /
+Phase 1 comparison rather than the recording-health gate.
+
+Usage:
+    python3 health_check.py <session_name>
+
+or simply:
+
+    python3 health_check.py
+
+to automatically select the latest non-fault session.
+"""
+
+import sys
+import os
+import numpy as np
+import pandas as pd
+
+# Wheel limits: single source of truth is preprocess_data.py (robot.xacro values).
+from preprocess_data import (WHEEL_RADIUS, WHEEL_JOINT_VEL_LIMIT,
+                             HALF_WHEEL_SEPARATION)
+from session_registry import (
+    LOG_DIR,
+    add_good_session,
+    add_excluded_session,
+)
+
+
+# ---------------------------------------------------------------------------
+# Required files
+# ---------------------------------------------------------------------------
+
+REQUIRED_FILES = [
+    'imu_filtered_{s}.csv',
+    'odom_filtered_{s}.csv',
+    'scan_filtered_{s}.csv',
+    'ground_truth_filtered_{s}.csv',
+    'cmd_vel_filtered_{s}.csv',
+]
+# cmd_vel_filtered IS required: the turn-gating logic genuinely depends
+# on it, so a session missing it should be a real health-check failure,
+# not a silently-degraded warning.
+
+
+# ---------------------------------------------------------------------------
+# Thresholds
+# ---------------------------------------------------------------------------
+
+# Minimum ACCUMULATED commanded rotation (radians) for a session to be
+# classified as "turning" and therefore held to the IMU response checks
+# below. A real commanded turn in the known dead-IMU session accumulated
+# far more than this.
+MEANINGFUL_ROTATION_MIN = 0.5   # radians
+
+# If a session genuinely contains turning, the IMU orientation should not
+# remain essentially flat. This sits comfortably above the ~2e-7 rad
+# range of the known dead IMU.
+IMU_THETA_RANGE_MIN = 0.5       # radians
+
+# A genuinely active IMU should show some angular-velocity variation
+# during commanded turning. Applied only when commanded_turn is True.
+ANGVEL_Z_STD_MIN = 0.005        # rad/s
+
+# For a non-turning (straight-line/stationary) session, we don't demand
+# variation — but an EXACTLY zero std (to float precision) is still a
+# real frozen-sensor signature, not a plausible healthy reading.
+FROZEN_STD_ATOL = 1e-12
+
+
+# ---------------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------------
+
+def quat_to_yaw(oz, ow):
+    """
+    Convert the planar quaternion components to yaw. atan2(oz, ow) *2 is
+    appropriate for the planar differential-drive orientation
+    representation used by this project.
+    """
+    return 2.0 * np.arctan2(oz, ow)
+
+
+def load_cmd_vel(session):
+    """
+    Load commanded velocity for a session. Returns None (not a raised
+    error) if unavailable or malformed, so the caller can degrade
+    gracefully instead of crashing the whole health check.
+    """
+    cmd_path = os.path.join(LOG_DIR, f'cmd_vel_filtered_{session}.csv')
+    if not os.path.exists(cmd_path):
+        return None
+
+    cmd = pd.read_csv(cmd_path)
+    if 'angular_z' not in cmd.columns:
+        return None
+
+    return cmd
+
+
+def compute_commanded_rotation(cmd, imu):
+    """
+    Accumulated commanded rotation = integral of |angular_z| dt over the
+    session, in radians. Uses cmd's own timestamps when available
+    (matches the actual command timeline); falls back to the IMU's
+    timestamps as the common session clock otherwise (same fallback
+    pattern used elsewhere in this project's EKF core loop).
+    """
+    omega = pd.to_numeric(cmd['angular_z'], errors='coerce').to_numpy()
+
+    if 'timestamp' in cmd.columns:
+        t = pd.to_numeric(cmd['timestamp'], errors='coerce').to_numpy()
+    elif 'timestamp' in imu.columns:
+        t = pd.to_numeric(imu['timestamp'], errors='coerce').to_numpy()
+        # Lengths may differ from cmd; align to the shorter of the two
+        # so np.diff/np.sum below stay well-defined.
+        n = min(len(t), len(omega))
+        t, omega = t[:n], omega[:n]
+    else:
+        return None, 0.0
+
+    valid = np.isfinite(t) & np.isfinite(omega)
+    t, omega = t[valid], omega[valid]
+    if len(t) < 2:
+        return False, 0.0
+
+    dt = np.diff(t, prepend=t[0])
+    dt[0] = 0.0
+    dt = np.clip(dt, 0.0, 0.5)
+
+    commanded_rotation = float(np.sum(np.abs(omega) * dt))
+    is_turning = commanded_rotation >= MEANINGFUL_ROTATION_MIN
+    return is_turning, commanded_rotation
+
+
+# ---------------------------------------------------------------------------
+# Main health check
+# ---------------------------------------------------------------------------
+
+# Actuator-saturation guard (decision 2026-10-02, fix_ws/SATURATION_FIX.md)
+CMD_SATURATION_WARN_FRAC = 0.10   # warn if >10% of raw command rows were clipped
+CMD_SATURATION_REL_TOL = 1e-6     # float tolerance on the wheel limit
+
+
+def check_cmd_saturation(cmd):
+    """
+    Returns (exec_frac, raw_frac, has_raw): fraction of rows whose wheel
+    speeds (v +/- w*s4) exceed the wheel limit, for the executed commands
+    (linear_x/angular_z) and the original raw commands (linear_x_raw/
+    angular_z_raw, present only if preprocess_data.py's saturation ran).
+    """
+    vmax = WHEEL_RADIUS * WHEEL_JOINT_VEL_LIMIT * (1.0 + CMD_SATURATION_REL_TOL)
+
+    def frac_over(v_col, w_col):
+        v = pd.to_numeric(cmd[v_col], errors='coerce').to_numpy()
+        w = pd.to_numeric(cmd[w_col], errors='coerce').to_numpy()
+        ok = np.isfinite(v) & np.isfinite(w)
+        v, w = v[ok], w[ok]
+        if len(v) == 0:
+            return float('nan')
+        vr, vl = v + w * HALF_WHEEL_SEPARATION, v - w * HALF_WHEEL_SEPARATION
+        return float(((np.abs(vr) > vmax) | (np.abs(vl) > vmax)).mean())
+
+    exec_frac = frac_over('linear_x', 'angular_z')
+    has_raw = 'linear_x_raw' in cmd.columns and 'angular_z_raw' in cmd.columns
+    raw_frac = frac_over('linear_x_raw', 'angular_z_raw') if has_raw else exec_frac
+    return exec_frac, raw_frac, has_raw
+
+
+def check_session(session: str):
+    """
+    Returns (passed: bool, reasons: list[str]). Reasons is empty on PASS.
+    """
+    reasons = []
+
+    # -----------------------------------------------------------------
+    # 1. Required files
+    # -----------------------------------------------------------------
+    missing = [pattern.format(s=session) for pattern in REQUIRED_FILES
+               if not os.path.exists(os.path.join(LOG_DIR, pattern.format(s=session)))]
+    if missing:
+        reasons.append("Missing required files: " + ", ".join(missing))
+        return False, reasons  # can't safely continue without the core files
+
+    # -----------------------------------------------------------------
+    # 2. Load IMU, verify required columns exist
+    # -----------------------------------------------------------------
+    imu = pd.read_csv(os.path.join(LOG_DIR, f'imu_filtered_{session}.csv'))
+    required_imu_columns = ['orient_z', 'orient_w', 'angular_vel_z']
+    missing_imu_columns = [c for c in required_imu_columns if c not in imu.columns]
+    if missing_imu_columns:
+        reasons.append("IMU file missing required columns: " + ", ".join(missing_imu_columns))
+        return False, reasons
+
+    # -----------------------------------------------------------------
+    # 3. Determine whether this was actually a turning session, via
+    #    accumulated commanded rotation (not an instantaneous rate).
+    # -----------------------------------------------------------------
+    cmd = load_cmd_vel(session)
+    commanded_turn = False
+    commanded_rotation = None
+
+    if cmd is None:
+        reasons.append(
+            f"Cannot verify commanded turning: cmd_vel_filtered_{session}.csv "
+            "is missing or has no 'angular_z' column")
+        # Not an automatic FAIL — the checks below simply can't apply the
+        # turning-gated tests and will be skipped with that noted below.
+    else:
+        commanded_turn, commanded_rotation = compute_commanded_rotation(cmd, imu)
+        print(f"  Commanded accumulated rotation: {commanded_rotation:.4f} rad "
+              f"({'>= ' if commanded_turn else '< '}{MEANINGFUL_ROTATION_MIN} rad threshold)")
+
+    # -----------------------------------------------------------------
+    # 3b. Actuator saturation guard (decision 2026-10-02)
+    # -----------------------------------------------------------------
+    if cmd is not None:
+        if 'linear_x' not in cmd.columns:
+            reasons.append(f"cmd_vel_filtered_{session}.csv has no 'linear_x' column")
+        else:
+            exec_frac, raw_frac, has_raw = check_cmd_saturation(cmd)
+            print(f"  cmd_vel wheel-limit check: executed over-limit={exec_frac:.1%}, "
+                  f"raw clipped={raw_frac:.1%} "
+                  f"({'raw columns present' if has_raw else 'NO raw columns'})")
+            if exec_frac > 0:
+                reasons.append(
+                    f"cmd_vel exceeds wheel limits on {exec_frac:.1%} of rows: actuator "
+                    f"saturation was NOT applied. Re-run the patched preprocess_data.py "
+                    f"for this session before using it.")
+            elif raw_frac > CMD_SATURATION_WARN_FRAC:
+                print(f"  WARNING: {raw_frac:.1%} of raw commands were clipped to the wheel "
+                      f"limits (> {CMD_SATURATION_WARN_FRAC:.0%}). Session kept; the "
+                      f"executed-command model is approximate here (SATURATION_FIX.md).")
+
+    # -----------------------------------------------------------------
+    # 4. IMU orientation health
+    # -----------------------------------------------------------------
+    theta = quat_to_yaw(
+        pd.to_numeric(imu['orient_z'], errors='coerce').to_numpy(),
+        pd.to_numeric(imu['orient_w'], errors='coerce').to_numpy(),
+    )
+    theta = theta[np.isfinite(theta)]
+
+    if len(theta) == 0:
+        reasons.append("IMU orientation contains no finite samples")
+    else:
+        # Unwrap before measuring total heading variation so a +/-pi
+        # crossing does not artificially make the range look small.
+        theta_unwrapped = np.unwrap(theta)
+        theta_range = float(theta_unwrapped.max() - theta_unwrapped.min())
+
+        if commanded_turn:
+            if theta_range < IMU_THETA_RANGE_MIN:
+                reasons.append(
+                    f"IMU orientation failed to respond to commanded turning: "
+                    f"IMU theta range={theta_range:.6f} rad, "
+                    f"commanded accumulated rotation={commanded_rotation:.6f} rad "
+                    f"(need IMU range >= {IMU_THETA_RANGE_MIN}) — matches the "
+                    f"dead-IMU signature previously found in session 20260714_014615")
+        else:
+            print(f"  IMU orientation range={theta_range:.6f} rad "
+                  f"(orientation-response test skipped: no significant commanded turning)")
+
+    # -----------------------------------------------------------------
+    # 5. IMU angular velocity health
+    # -----------------------------------------------------------------
+    angvel_z = pd.to_numeric(imu['angular_vel_z'], errors='coerce').dropna().to_numpy()
+
+    if len(angvel_z) == 0:
+        reasons.append("IMU angular_vel_z contains no finite samples")
+    else:
+        angvel_std = float(np.std(angvel_z, ddof=1))
+
+        if commanded_turn:
+            if angvel_std < ANGVEL_Z_STD_MIN:
+                reasons.append(
+                    f"IMU angular_vel_z suspiciously flat during commanded turning: "
+                    f"std={angvel_std:.6f} (need >= {ANGVEL_Z_STD_MIN})")
+        else:
+            # Don't demand variation for a genuinely calm/straight session,
+            # but an exact-zero std is still an unmistakable frozen signal.
+            if np.isclose(angvel_std, 0.0, atol=FROZEN_STD_ATOL):
+                reasons.append(
+                    f"IMU angular_vel_z is exactly flat during a low-rotation "
+                    f"session: std={angvel_std:.6f}")
+            else:
+                print(f"  IMU angular_vel_z std={angvel_std:.6f} "
+                      f"(flatness test relaxed: no significant commanded turning)")
+
+    # -----------------------------------------------------------------
+    # 6. Odometry health
+    # -----------------------------------------------------------------
+    # NOTE: does NOT use std(linear_x) == 0 as a failure condition.
+    # Constant velocity is legitimate for a straight-line trajectory —
+    # that check would reject a healthy recording the same way the old
+    # unconditional IMU check did. Only finite-data presence is checked.
+    odom = pd.read_csv(os.path.join(LOG_DIR, f'odom_filtered_{session}.csv'))
+    if 'linear_x' in odom.columns:
+        odom_linear = pd.to_numeric(odom['linear_x'], errors='coerce').dropna().to_numpy()
+        if len(odom_linear) == 0:
+            reasons.append("Odometry linear_x contains no finite samples")
+
+    # -----------------------------------------------------------------
+    # 7. Explicitly documented limitation — not silently skipped
+    # -----------------------------------------------------------------
+    # NOT YET IMPLEMENTED: an RMSE-based comparison against known-good
+    # sessions. Belongs to the EKF evaluation / Phase 1 comparison, kept
+    # separate from this recording-health gate.
+    # TODO (future): run EKF against this session, compare RMSE against
+    # the established good-session distribution, report anomalous
+    # performance.
+
+    return (len(reasons) == 0), reasons
+
+
+# ---------------------------------------------------------------------------
+# Latest-session detection
+# ---------------------------------------------------------------------------
+
+def find_latest_session() -> str:
+    """
+    Auto-detects the most recently recorded non-fault session. This only
+    decides WHAT to check, not whether it's trusted — check_session()
+    above still determines PASS/FAIL.
+    """
+    candidates = [f for f in os.listdir(LOG_DIR) if f.startswith('imu_filtered_')
+                  and f.endswith('.csv') and '_fault_' not in f]
+    if not candidates:
+        raise FileNotFoundError(f"No imu_filtered_*.csv files found in {LOG_DIR}")
+    latest = max(candidates, key=lambda f: os.path.getctime(os.path.join(LOG_DIR, f)))
+    return latest[len('imu_filtered_'):-len('.csv')]
+
+
+# ---------------------------------------------------------------------------
+# Entry point
+# ---------------------------------------------------------------------------
+
+if __name__ == '__main__':
+    if len(sys.argv) < 2:
+        session = find_latest_session()
+        print(f"No session given — auto-detected most recent recording: {session}\n")
+    else:
+        session = sys.argv[1]
+
+    passed, reasons = check_session(session)
+
+    if passed:
+        add_good_session(session)
+        print(f"\nPASS: {session}")
+        print("  Added to good_sessions in session_registry.json")
+    else:
+        reason_str = '; '.join(reasons)
+        add_excluded_session(session, reason_str)
+        print(f"\nFAIL: {session}")
+        print("  Added to excluded_sessions in session_registry.json")
+        for r in reasons:
+            print(f"  - {r}")
+
+    print("\nNOTE: this checks for flat/degenerate sensor signals.")
+    print("The dead-IMU checks are applied when accumulated commanded")
+    print("rotation shows the robot actually turned meaningfully.")
+    print("It does NOT run an EKF-RMSE comparison. That remains part of")
+    print("the Phase 1 evaluation.")

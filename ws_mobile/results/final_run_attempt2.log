@@ -1,0 +1,1445 @@
+nohup: ignoring input
+test sessions: ['20261005_175524', '20261005_175856', '20261005_180136', '20261005_180357', '20261005_181003']
+training models: ['20260712_141740', '20260712_144326', '20260824_094119', '20260824_095427', '20260824_095712', '20260824_095915', '20260824_100318']
+results: results/final_*
+  Fault matrix: 260 sessions to create (5 baseline(s) x 3 sensor(s), fault-type count varies by sensor)
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_imu_noise_low until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_imu_noise_low
+    Faulted file: imu_filtered_20261005_175524_fault_imu_noise_low.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_imu_noise_low.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_imu_noise_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_imu_noise_medium
+    Faulted file: imu_filtered_20261005_175524_fault_imu_noise_medium.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_imu_noise_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_imu_noise_high until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_imu_noise_high
+    Faulted file: imu_filtered_20261005_175524_fault_imu_noise_high.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_imu_noise_high.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_imu_noise_extreme until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_imu_noise_extreme
+    Faulted file: imu_filtered_20261005_175524_fault_imu_noise_extreme.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_imu_noise_extreme.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_imu_bias_small until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_imu_bias_small
+    Faulted file: imu_filtered_20261005_175524_fault_imu_bias_small.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_imu_bias_small.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_imu_bias_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_imu_bias_medium
+    Faulted file: imu_filtered_20261005_175524_fault_imu_bias_medium.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_imu_bias_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_imu_bias_large until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_imu_bias_large
+    Faulted file: imu_filtered_20261005_175524_fault_imu_bias_large.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_imu_bias_large.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_imu_drift_slow until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_imu_drift_slow
+    Faulted file: imu_filtered_20261005_175524_fault_imu_drift_slow.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_imu_drift_slow.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_imu_drift_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_imu_drift_medium
+    Faulted file: imu_filtered_20261005_175524_fault_imu_drift_medium.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_imu_drift_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_imu_drift_fast until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_imu_drift_fast
+    Faulted file: imu_filtered_20261005_175524_fault_imu_drift_fast.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_imu_drift_fast.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_imu_dropout_short until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_imu_dropout_short
+    Faulted file: imu_filtered_20261005_175524_fault_imu_dropout_short.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_imu_dropout_short.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_imu_dropout_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_imu_dropout_medium
+    Faulted file: imu_filtered_20261005_175524_fault_imu_dropout_medium.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_imu_dropout_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_imu_dropout_long until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_imu_dropout_long
+    Faulted file: imu_filtered_20261005_175524_fault_imu_dropout_long.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_imu_dropout_long.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175524_fault_imu_delay_small
+    Faulted raw file: imu_20261005_175524_fault_imu_delay_small.csv
+    Re-ran preprocess_data.py 20261005_175524_fault_imu_delay_small -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175524_fault_imu_delay_small.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175524_fault_imu_delay_medium
+    Faulted raw file: imu_20261005_175524_fault_imu_delay_medium.csv
+    Re-ran preprocess_data.py 20261005_175524_fault_imu_delay_medium -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175524_fault_imu_delay_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175524_fault_imu_delay_large
+    Faulted raw file: imu_20261005_175524_fault_imu_delay_large.csv
+    Re-ran preprocess_data.py 20261005_175524_fault_imu_delay_large -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175524_fault_imu_delay_large.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_odom_noise_low until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_odom_noise_low
+    Faulted file: odom_filtered_20261005_175524_fault_odom_noise_low.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_odom_noise_low.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_odom_noise_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_odom_noise_medium
+    Faulted file: odom_filtered_20261005_175524_fault_odom_noise_medium.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_odom_noise_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_odom_noise_high until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_odom_noise_high
+    Faulted file: odom_filtered_20261005_175524_fault_odom_noise_high.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_odom_noise_high.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_odom_noise_extreme until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_odom_noise_extreme
+    Faulted file: odom_filtered_20261005_175524_fault_odom_noise_extreme.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_odom_noise_extreme.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_odom_bias_small until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_odom_bias_small
+    Faulted file: odom_filtered_20261005_175524_fault_odom_bias_small.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_odom_bias_small.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_odom_bias_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_odom_bias_medium
+    Faulted file: odom_filtered_20261005_175524_fault_odom_bias_medium.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_odom_bias_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_odom_bias_large until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_odom_bias_large
+    Faulted file: odom_filtered_20261005_175524_fault_odom_bias_large.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_odom_bias_large.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_odom_drift_slow until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_odom_drift_slow
+    Faulted file: odom_filtered_20261005_175524_fault_odom_drift_slow.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_odom_drift_slow.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_odom_drift_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_odom_drift_medium
+    Faulted file: odom_filtered_20261005_175524_fault_odom_drift_medium.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_odom_drift_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_odom_drift_fast until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_odom_drift_fast
+    Faulted file: odom_filtered_20261005_175524_fault_odom_drift_fast.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_odom_drift_fast.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_odom_dropout_short until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_odom_dropout_short
+    Faulted file: odom_filtered_20261005_175524_fault_odom_dropout_short.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_odom_dropout_short.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_odom_dropout_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_odom_dropout_medium
+    Faulted file: odom_filtered_20261005_175524_fault_odom_dropout_medium.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_odom_dropout_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_odom_dropout_long until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_odom_dropout_long
+    Faulted file: odom_filtered_20261005_175524_fault_odom_dropout_long.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_odom_dropout_long.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175524_fault_odom_delay_small
+    Faulted raw file: odom_20261005_175524_fault_odom_delay_small.csv
+    Re-ran preprocess_data.py 20261005_175524_fault_odom_delay_small -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175524_fault_odom_delay_small.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175524_fault_odom_delay_medium
+    Faulted raw file: odom_20261005_175524_fault_odom_delay_medium.csv
+    Re-ran preprocess_data.py 20261005_175524_fault_odom_delay_medium -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175524_fault_odom_delay_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175524_fault_odom_delay_large
+    Faulted raw file: odom_20261005_175524_fault_odom_delay_large.csv
+    Re-ran preprocess_data.py 20261005_175524_fault_odom_delay_large -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175524_fault_odom_delay_large.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_noise_low until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_noise_low
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_noise_low.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_noise_low.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_noise_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_noise_medium
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_noise_medium.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_noise_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_noise_high until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_noise_high
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_noise_high.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_noise_high.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_noise_extreme until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_noise_extreme
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_noise_extreme.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_noise_extreme.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_return_loss_low until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_return_loss_low
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_return_loss_low.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_return_loss_low.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_return_loss_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_return_loss_medium
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_return_loss_medium.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_return_loss_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_return_loss_high until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_return_loss_high
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_return_loss_high.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_return_loss_high.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_return_loss_extreme until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_return_loss_extreme
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_return_loss_extreme.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_return_loss_extreme.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_corruption_mild until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_corruption_mild
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_corruption_mild.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_corruption_mild.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_corruption_moderate until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_corruption_moderate
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_corruption_moderate.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_corruption_moderate.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_corruption_severe until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_corruption_severe
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_corruption_severe.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_corruption_severe.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_scale_error_mild until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_scale_error_mild
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_scale_error_mild.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_scale_error_mild.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_scale_error_moderate until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_scale_error_moderate
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_scale_error_moderate.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_scale_error_moderate.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_scale_error_severe until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_scale_error_severe
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_scale_error_severe.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_scale_error_severe.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_dropout_short until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_dropout_short
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_dropout_short.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_dropout_short.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_dropout_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_dropout_medium
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_dropout_medium.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_dropout_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_lidar_dropout_long until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_lidar_dropout_long
+    Faulted file: scan_filtered_20261005_175524_fault_lidar_dropout_long.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_lidar_dropout_long.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175524_fault_lidar_delay_small
+    Faulted raw file: scan_20261005_175524_fault_lidar_delay_small.csv
+    Re-ran preprocess_data.py 20261005_175524_fault_lidar_delay_small -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175524_fault_lidar_delay_small.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175524_fault_lidar_delay_medium
+    Faulted raw file: scan_20261005_175524_fault_lidar_delay_medium.csv
+    Re-ran preprocess_data.py 20261005_175524_fault_lidar_delay_medium -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175524_fault_lidar_delay_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175524_fault_lidar_delay_large
+    Faulted raw file: scan_20261005_175524_fault_lidar_delay_large.csv
+    Re-ran preprocess_data.py 20261005_175524_fault_lidar_delay_large -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175524_fault_lidar_delay_large.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_imu_noise_low until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_imu_noise_low
+    Faulted file: imu_filtered_20261005_175856_fault_imu_noise_low.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_imu_noise_low.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_imu_noise_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_imu_noise_medium
+    Faulted file: imu_filtered_20261005_175856_fault_imu_noise_medium.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_imu_noise_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_imu_noise_high until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_imu_noise_high
+    Faulted file: imu_filtered_20261005_175856_fault_imu_noise_high.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_imu_noise_high.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_imu_noise_extreme until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_imu_noise_extreme
+    Faulted file: imu_filtered_20261005_175856_fault_imu_noise_extreme.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_imu_noise_extreme.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_imu_bias_small until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_imu_bias_small
+    Faulted file: imu_filtered_20261005_175856_fault_imu_bias_small.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_imu_bias_small.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_imu_bias_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_imu_bias_medium
+    Faulted file: imu_filtered_20261005_175856_fault_imu_bias_medium.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_imu_bias_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_imu_bias_large until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_imu_bias_large
+    Faulted file: imu_filtered_20261005_175856_fault_imu_bias_large.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_imu_bias_large.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_imu_drift_slow until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_imu_drift_slow
+    Faulted file: imu_filtered_20261005_175856_fault_imu_drift_slow.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_imu_drift_slow.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_imu_drift_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_imu_drift_medium
+    Faulted file: imu_filtered_20261005_175856_fault_imu_drift_medium.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_imu_drift_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_imu_drift_fast until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_imu_drift_fast
+    Faulted file: imu_filtered_20261005_175856_fault_imu_drift_fast.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_imu_drift_fast.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_imu_dropout_short until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_imu_dropout_short
+    Faulted file: imu_filtered_20261005_175856_fault_imu_dropout_short.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_imu_dropout_short.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_imu_dropout_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_imu_dropout_medium
+    Faulted file: imu_filtered_20261005_175856_fault_imu_dropout_medium.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_imu_dropout_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_imu_dropout_long until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_imu_dropout_long
+    Faulted file: imu_filtered_20261005_175856_fault_imu_dropout_long.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_imu_dropout_long.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175856_fault_imu_delay_small
+    Faulted raw file: imu_20261005_175856_fault_imu_delay_small.csv
+    Re-ran preprocess_data.py 20261005_175856_fault_imu_delay_small -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175856_fault_imu_delay_small.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175856_fault_imu_delay_medium
+    Faulted raw file: imu_20261005_175856_fault_imu_delay_medium.csv
+    Re-ran preprocess_data.py 20261005_175856_fault_imu_delay_medium -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175856_fault_imu_delay_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175856_fault_imu_delay_large
+    Faulted raw file: imu_20261005_175856_fault_imu_delay_large.csv
+    Re-ran preprocess_data.py 20261005_175856_fault_imu_delay_large -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175856_fault_imu_delay_large.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_odom_noise_low until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_odom_noise_low
+    Faulted file: odom_filtered_20261005_175856_fault_odom_noise_low.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_odom_noise_low.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_odom_noise_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_odom_noise_medium
+    Faulted file: odom_filtered_20261005_175856_fault_odom_noise_medium.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_odom_noise_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_odom_noise_high until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_odom_noise_high
+    Faulted file: odom_filtered_20261005_175856_fault_odom_noise_high.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_odom_noise_high.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_odom_noise_extreme until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_odom_noise_extreme
+    Faulted file: odom_filtered_20261005_175856_fault_odom_noise_extreme.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_odom_noise_extreme.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_odom_bias_small until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_odom_bias_small
+    Faulted file: odom_filtered_20261005_175856_fault_odom_bias_small.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_odom_bias_small.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_odom_bias_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_odom_bias_medium
+    Faulted file: odom_filtered_20261005_175856_fault_odom_bias_medium.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_odom_bias_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_odom_bias_large until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_odom_bias_large
+    Faulted file: odom_filtered_20261005_175856_fault_odom_bias_large.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_odom_bias_large.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_odom_drift_slow until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_odom_drift_slow
+    Faulted file: odom_filtered_20261005_175856_fault_odom_drift_slow.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_odom_drift_slow.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_odom_drift_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_odom_drift_medium
+    Faulted file: odom_filtered_20261005_175856_fault_odom_drift_medium.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_odom_drift_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_odom_drift_fast until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_odom_drift_fast
+    Faulted file: odom_filtered_20261005_175856_fault_odom_drift_fast.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_odom_drift_fast.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_odom_dropout_short until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_odom_dropout_short
+    Faulted file: odom_filtered_20261005_175856_fault_odom_dropout_short.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_odom_dropout_short.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_odom_dropout_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_odom_dropout_medium
+    Faulted file: odom_filtered_20261005_175856_fault_odom_dropout_medium.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_odom_dropout_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_odom_dropout_long until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_odom_dropout_long
+    Faulted file: odom_filtered_20261005_175856_fault_odom_dropout_long.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_odom_dropout_long.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175856_fault_odom_delay_small
+    Faulted raw file: odom_20261005_175856_fault_odom_delay_small.csv
+    Re-ran preprocess_data.py 20261005_175856_fault_odom_delay_small -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175856_fault_odom_delay_small.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175856_fault_odom_delay_medium
+    Faulted raw file: odom_20261005_175856_fault_odom_delay_medium.csv
+    Re-ran preprocess_data.py 20261005_175856_fault_odom_delay_medium -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175856_fault_odom_delay_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175856_fault_odom_delay_large
+    Faulted raw file: odom_20261005_175856_fault_odom_delay_large.csv
+    Re-ran preprocess_data.py 20261005_175856_fault_odom_delay_large -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175856_fault_odom_delay_large.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_noise_low until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_noise_low
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_noise_low.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_noise_low.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_noise_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_noise_medium
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_noise_medium.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_noise_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_noise_high until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_noise_high
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_noise_high.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_noise_high.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_noise_extreme until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_noise_extreme
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_noise_extreme.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_noise_extreme.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_return_loss_low until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_return_loss_low
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_return_loss_low.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_return_loss_low.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_return_loss_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_return_loss_medium
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_return_loss_medium.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_return_loss_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_return_loss_high until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_return_loss_high
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_return_loss_high.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_return_loss_high.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_return_loss_extreme until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_return_loss_extreme
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_return_loss_extreme.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_return_loss_extreme.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_corruption_mild until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_corruption_mild
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_corruption_mild.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_corruption_mild.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_corruption_moderate until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_corruption_moderate
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_corruption_moderate.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_corruption_moderate.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_corruption_severe until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_corruption_severe
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_corruption_severe.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_corruption_severe.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_scale_error_mild until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_scale_error_mild
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_scale_error_mild.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_scale_error_mild.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_scale_error_moderate until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_scale_error_moderate
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_scale_error_moderate.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_scale_error_moderate.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_scale_error_severe until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_scale_error_severe
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_scale_error_severe.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_scale_error_severe.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_dropout_short until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_dropout_short
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_dropout_short.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_dropout_short.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_dropout_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_dropout_medium
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_dropout_medium.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_dropout_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_lidar_dropout_long until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_lidar_dropout_long
+    Faulted file: scan_filtered_20261005_175856_fault_lidar_dropout_long.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_lidar_dropout_long.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175856_fault_lidar_delay_small
+    Faulted raw file: scan_20261005_175856_fault_lidar_delay_small.csv
+    Re-ran preprocess_data.py 20261005_175856_fault_lidar_delay_small -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175856_fault_lidar_delay_small.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175856_fault_lidar_delay_medium
+    Faulted raw file: scan_20261005_175856_fault_lidar_delay_medium.csv
+    Re-ran preprocess_data.py 20261005_175856_fault_lidar_delay_medium -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175856_fault_lidar_delay_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_175856_fault_lidar_delay_large
+    Faulted raw file: scan_20261005_175856_fault_lidar_delay_large.csv
+    Re-ran preprocess_data.py 20261005_175856_fault_lidar_delay_large -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_175856_fault_lidar_delay_large.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_imu_noise_low until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_imu_noise_low
+    Faulted file: imu_filtered_20261005_180136_fault_imu_noise_low.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_imu_noise_low.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_imu_noise_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_imu_noise_medium
+    Faulted file: imu_filtered_20261005_180136_fault_imu_noise_medium.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_imu_noise_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_imu_noise_high until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_imu_noise_high
+    Faulted file: imu_filtered_20261005_180136_fault_imu_noise_high.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_imu_noise_high.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_imu_noise_extreme until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_imu_noise_extreme
+    Faulted file: imu_filtered_20261005_180136_fault_imu_noise_extreme.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_imu_noise_extreme.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_imu_bias_small until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_imu_bias_small
+    Faulted file: imu_filtered_20261005_180136_fault_imu_bias_small.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_imu_bias_small.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_imu_bias_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_imu_bias_medium
+    Faulted file: imu_filtered_20261005_180136_fault_imu_bias_medium.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_imu_bias_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_imu_bias_large until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_imu_bias_large
+    Faulted file: imu_filtered_20261005_180136_fault_imu_bias_large.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_imu_bias_large.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_imu_drift_slow until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_imu_drift_slow
+    Faulted file: imu_filtered_20261005_180136_fault_imu_drift_slow.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_imu_drift_slow.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_imu_drift_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_imu_drift_medium
+    Faulted file: imu_filtered_20261005_180136_fault_imu_drift_medium.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_imu_drift_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_imu_drift_fast until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_imu_drift_fast
+    Faulted file: imu_filtered_20261005_180136_fault_imu_drift_fast.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_imu_drift_fast.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_imu_dropout_short until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_imu_dropout_short
+    Faulted file: imu_filtered_20261005_180136_fault_imu_dropout_short.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_imu_dropout_short.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_imu_dropout_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_imu_dropout_medium
+    Faulted file: imu_filtered_20261005_180136_fault_imu_dropout_medium.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_imu_dropout_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_imu_dropout_long until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_imu_dropout_long
+    Faulted file: imu_filtered_20261005_180136_fault_imu_dropout_long.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_imu_dropout_long.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_180136_fault_imu_delay_small
+    Faulted raw file: imu_20261005_180136_fault_imu_delay_small.csv
+    Re-ran preprocess_data.py 20261005_180136_fault_imu_delay_small -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_180136_fault_imu_delay_small.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_180136_fault_imu_delay_medium
+    Faulted raw file: imu_20261005_180136_fault_imu_delay_medium.csv
+    Re-ran preprocess_data.py 20261005_180136_fault_imu_delay_medium -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_180136_fault_imu_delay_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_180136_fault_imu_delay_large
+    Faulted raw file: imu_20261005_180136_fault_imu_delay_large.csv
+    Re-ran preprocess_data.py 20261005_180136_fault_imu_delay_large -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_180136_fault_imu_delay_large.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_odom_noise_low until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_odom_noise_low
+    Faulted file: odom_filtered_20261005_180136_fault_odom_noise_low.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_odom_noise_low.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_odom_noise_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_odom_noise_medium
+    Faulted file: odom_filtered_20261005_180136_fault_odom_noise_medium.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_odom_noise_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_odom_noise_high until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_odom_noise_high
+    Faulted file: odom_filtered_20261005_180136_fault_odom_noise_high.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_odom_noise_high.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_odom_noise_extreme until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_odom_noise_extreme
+    Faulted file: odom_filtered_20261005_180136_fault_odom_noise_extreme.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_odom_noise_extreme.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_odom_bias_small until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_odom_bias_small
+    Faulted file: odom_filtered_20261005_180136_fault_odom_bias_small.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_odom_bias_small.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_odom_bias_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_odom_bias_medium
+    Faulted file: odom_filtered_20261005_180136_fault_odom_bias_medium.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_odom_bias_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_odom_bias_large until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_odom_bias_large
+    Faulted file: odom_filtered_20261005_180136_fault_odom_bias_large.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_odom_bias_large.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_odom_drift_slow until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_odom_drift_slow
+    Faulted file: odom_filtered_20261005_180136_fault_odom_drift_slow.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_odom_drift_slow.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_odom_drift_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_odom_drift_medium
+    Faulted file: odom_filtered_20261005_180136_fault_odom_drift_medium.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_odom_drift_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_odom_drift_fast until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_odom_drift_fast
+    Faulted file: odom_filtered_20261005_180136_fault_odom_drift_fast.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_odom_drift_fast.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_odom_dropout_short until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_odom_dropout_short
+    Faulted file: odom_filtered_20261005_180136_fault_odom_dropout_short.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_odom_dropout_short.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_odom_dropout_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_odom_dropout_medium
+    Faulted file: odom_filtered_20261005_180136_fault_odom_dropout_medium.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_odom_dropout_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_odom_dropout_long until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_odom_dropout_long
+    Faulted file: odom_filtered_20261005_180136_fault_odom_dropout_long.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_odom_dropout_long.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_180136_fault_odom_delay_small
+    Faulted raw file: odom_20261005_180136_fault_odom_delay_small.csv
+    Re-ran preprocess_data.py 20261005_180136_fault_odom_delay_small -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_180136_fault_odom_delay_small.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_180136_fault_odom_delay_medium
+    Faulted raw file: odom_20261005_180136_fault_odom_delay_medium.csv
+    Re-ran preprocess_data.py 20261005_180136_fault_odom_delay_medium -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_180136_fault_odom_delay_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_180136_fault_odom_delay_large
+    Faulted raw file: odom_20261005_180136_fault_odom_delay_large.csv
+    Re-ran preprocess_data.py 20261005_180136_fault_odom_delay_large -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_180136_fault_odom_delay_large.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_lidar_noise_low until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_lidar_noise_low
+    Faulted file: scan_filtered_20261005_180136_fault_lidar_noise_low.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_lidar_noise_low.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_lidar_noise_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_lidar_noise_medium
+    Faulted file: scan_filtered_20261005_180136_fault_lidar_noise_medium.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_lidar_noise_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_lidar_noise_high until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_lidar_noise_high
+    Faulted file: scan_filtered_20261005_180136_fault_lidar_noise_high.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_lidar_noise_high.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_lidar_noise_extreme until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_lidar_noise_extreme
+    Faulted file: scan_filtered_20261005_180136_fault_lidar_noise_extreme.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_lidar_noise_extreme.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_lidar_return_loss_low until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_lidar_return_loss_low
+    Faulted file: scan_filtered_20261005_180136_fault_lidar_return_loss_low.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_lidar_return_loss_low.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_lidar_return_loss_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_lidar_return_loss_medium
+    Faulted file: scan_filtered_20261005_180136_fault_lidar_return_loss_medium.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_lidar_return_loss_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_lidar_return_loss_high until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_lidar_return_loss_high
+    Faulted file: scan_filtered_20261005_180136_fault_lidar_return_loss_high.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_lidar_return_loss_high.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_lidar_return_loss_extreme until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_lidar_return_loss_extreme
+    Faulted file: scan_filtered_20261005_180136_fault_lidar_return_loss_extreme.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_lidar_return_loss_extreme.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_lidar_corruption_mild until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_lidar_corruption_mild
+    Faulted file: scan_filtered_20261005_180136_fault_lidar_corruption_mild.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_lidar_corruption_mild.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_lidar_corruption_moderate until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_lidar_corruption_moderate
+    Faulted file: scan_filtered_20261005_180136_fault_lidar_corruption_moderate.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_lidar_corruption_moderate.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_lidar_corruption_severe until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_lidar_corruption_severe
+    Faulted file: scan_filtered_20261005_180136_fault_lidar_corruption_severe.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_lidar_corruption_severe.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_lidar_scale_error_mild until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_lidar_scale_error_mild
+    Faulted file: scan_filtered_20261005_180136_fault_lidar_scale_error_mild.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_lidar_scale_error_mild.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_lidar_scale_error_moderate until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_lidar_scale_error_moderate
+    Faulted file: scan_filtered_20261005_180136_fault_lidar_scale_error_moderate.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_lidar_scale_error_moderate.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_lidar_scale_error_severe until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_lidar_scale_error_severe
+    Faulted file: scan_filtered_20261005_180136_fault_lidar_scale_error_severe.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_lidar_scale_error_severe.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_lidar_dropout_short until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_lidar_dropout_short
+    Faulted file: scan_filtered_20261005_180136_fault_lidar_dropout_short.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_lidar_dropout_short.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_lidar_dropout_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_lidar_dropout_medium
+    Faulted file: scan_filtered_20261005_180136_fault_lidar_dropout_medium.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_lidar_dropout_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_lidar_dropout_long until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_lidar_dropout_long
+    Faulted file: scan_filtered_20261005_180136_fault_lidar_dropout_long.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_lidar_dropout_long.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_180136_fault_lidar_delay_small
+    Faulted raw file: scan_20261005_180136_fault_lidar_delay_small.csv
+    Re-ran preprocess_data.py 20261005_180136_fault_lidar_delay_small -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_180136_fault_lidar_delay_small.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_180136_fault_lidar_delay_medium
+    Faulted raw file: scan_20261005_180136_fault_lidar_delay_medium.csv
+    Re-ran preprocess_data.py 20261005_180136_fault_lidar_delay_medium -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_180136_fault_lidar_delay_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_180136_fault_lidar_delay_large
+    Faulted raw file: scan_20261005_180136_fault_lidar_delay_large.csv
+    Re-ran preprocess_data.py 20261005_180136_fault_lidar_delay_large -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_180136_fault_lidar_delay_large.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_imu_noise_low until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_imu_noise_low
+    Faulted file: imu_filtered_20261005_180357_fault_imu_noise_low.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_imu_noise_low.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_imu_noise_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_imu_noise_medium
+    Faulted file: imu_filtered_20261005_180357_fault_imu_noise_medium.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_imu_noise_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_imu_noise_high until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_imu_noise_high
+    Faulted file: imu_filtered_20261005_180357_fault_imu_noise_high.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_imu_noise_high.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_imu_noise_extreme until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_imu_noise_extreme
+    Faulted file: imu_filtered_20261005_180357_fault_imu_noise_extreme.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_imu_noise_extreme.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_imu_bias_small until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_imu_bias_small
+    Faulted file: imu_filtered_20261005_180357_fault_imu_bias_small.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_imu_bias_small.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_imu_bias_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_imu_bias_medium
+    Faulted file: imu_filtered_20261005_180357_fault_imu_bias_medium.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_imu_bias_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_imu_bias_large until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_imu_bias_large
+    Faulted file: imu_filtered_20261005_180357_fault_imu_bias_large.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_imu_bias_large.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_imu_drift_slow until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_imu_drift_slow
+    Faulted file: imu_filtered_20261005_180357_fault_imu_drift_slow.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_imu_drift_slow.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_imu_drift_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_imu_drift_medium
+    Faulted file: imu_filtered_20261005_180357_fault_imu_drift_medium.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_imu_drift_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_imu_drift_fast until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_imu_drift_fast
+    Faulted file: imu_filtered_20261005_180357_fault_imu_drift_fast.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_imu_drift_fast.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_imu_dropout_short until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_imu_dropout_short
+    Faulted file: imu_filtered_20261005_180357_fault_imu_dropout_short.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_imu_dropout_short.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_imu_dropout_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_imu_dropout_medium
+    Faulted file: imu_filtered_20261005_180357_fault_imu_dropout_medium.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_imu_dropout_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_imu_dropout_long until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_imu_dropout_long
+    Faulted file: imu_filtered_20261005_180357_fault_imu_dropout_long.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_imu_dropout_long.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_180357_fault_imu_delay_small
+    Faulted raw file: imu_20261005_180357_fault_imu_delay_small.csv
+    Re-ran preprocess_data.py 20261005_180357_fault_imu_delay_small -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_180357_fault_imu_delay_small.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_180357_fault_imu_delay_medium
+    Faulted raw file: imu_20261005_180357_fault_imu_delay_medium.csv
+    Re-ran preprocess_data.py 20261005_180357_fault_imu_delay_medium -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_180357_fault_imu_delay_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_180357_fault_imu_delay_large
+    Faulted raw file: imu_20261005_180357_fault_imu_delay_large.csv
+    Re-ran preprocess_data.py 20261005_180357_fault_imu_delay_large -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_180357_fault_imu_delay_large.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_odom_noise_low until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_odom_noise_low
+    Faulted file: odom_filtered_20261005_180357_fault_odom_noise_low.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_odom_noise_low.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_odom_noise_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_odom_noise_medium
+    Faulted file: odom_filtered_20261005_180357_fault_odom_noise_medium.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_odom_noise_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_odom_noise_high until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_odom_noise_high
+    Faulted file: odom_filtered_20261005_180357_fault_odom_noise_high.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_odom_noise_high.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_odom_noise_extreme until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_odom_noise_extreme
+    Faulted file: odom_filtered_20261005_180357_fault_odom_noise_extreme.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_odom_noise_extreme.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_odom_bias_small until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_odom_bias_small
+    Faulted file: odom_filtered_20261005_180357_fault_odom_bias_small.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_odom_bias_small.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_odom_bias_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_odom_bias_medium
+    Faulted file: odom_filtered_20261005_180357_fault_odom_bias_medium.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_odom_bias_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_odom_bias_large until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_odom_bias_large
+    Faulted file: odom_filtered_20261005_180357_fault_odom_bias_large.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_odom_bias_large.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_odom_drift_slow until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_odom_drift_slow
+    Faulted file: odom_filtered_20261005_180357_fault_odom_drift_slow.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_odom_drift_slow.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_odom_drift_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_odom_drift_medium
+    Faulted file: odom_filtered_20261005_180357_fault_odom_drift_medium.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_odom_drift_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_odom_drift_fast until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_odom_drift_fast
+    Faulted file: odom_filtered_20261005_180357_fault_odom_drift_fast.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_odom_drift_fast.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_odom_dropout_short until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_odom_dropout_short
+    Faulted file: odom_filtered_20261005_180357_fault_odom_dropout_short.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_odom_dropout_short.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_odom_dropout_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_odom_dropout_medium
+    Faulted file: odom_filtered_20261005_180357_fault_odom_dropout_medium.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_odom_dropout_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_odom_dropout_long until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_odom_dropout_long
+    Faulted file: odom_filtered_20261005_180357_fault_odom_dropout_long.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_odom_dropout_long.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_180357_fault_odom_delay_small
+    Faulted raw file: odom_20261005_180357_fault_odom_delay_small.csv
+    Re-ran preprocess_data.py 20261005_180357_fault_odom_delay_small -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_180357_fault_odom_delay_small.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_180357_fault_odom_delay_medium
+    Faulted raw file: odom_20261005_180357_fault_odom_delay_medium.csv
+    Re-ran preprocess_data.py 20261005_180357_fault_odom_delay_medium -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_180357_fault_odom_delay_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_180357_fault_odom_delay_large
+    Faulted raw file: odom_20261005_180357_fault_odom_delay_large.csv
+    Re-ran preprocess_data.py 20261005_180357_fault_odom_delay_large -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_180357_fault_odom_delay_large.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_lidar_noise_low until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_lidar_noise_low
+    Faulted file: scan_filtered_20261005_180357_fault_lidar_noise_low.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_lidar_noise_low.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_lidar_noise_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_lidar_noise_medium
+    Faulted file: scan_filtered_20261005_180357_fault_lidar_noise_medium.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_lidar_noise_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_lidar_noise_high until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_lidar_noise_high
+    Faulted file: scan_filtered_20261005_180357_fault_lidar_noise_high.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_lidar_noise_high.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_lidar_noise_extreme until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_lidar_noise_extreme
+    Faulted file: scan_filtered_20261005_180357_fault_lidar_noise_extreme.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_lidar_noise_extreme.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_lidar_return_loss_low until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_lidar_return_loss_low
+    Faulted file: scan_filtered_20261005_180357_fault_lidar_return_loss_low.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_lidar_return_loss_low.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_lidar_return_loss_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_lidar_return_loss_medium
+    Faulted file: scan_filtered_20261005_180357_fault_lidar_return_loss_medium.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_lidar_return_loss_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_lidar_return_loss_high until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_lidar_return_loss_high
+    Faulted file: scan_filtered_20261005_180357_fault_lidar_return_loss_high.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_lidar_return_loss_high.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_lidar_return_loss_extreme until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_lidar_return_loss_extreme
+    Faulted file: scan_filtered_20261005_180357_fault_lidar_return_loss_extreme.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_lidar_return_loss_extreme.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_lidar_corruption_mild until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_lidar_corruption_mild
+    Faulted file: scan_filtered_20261005_180357_fault_lidar_corruption_mild.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_lidar_corruption_mild.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_lidar_corruption_moderate until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_lidar_corruption_moderate
+    Faulted file: scan_filtered_20261005_180357_fault_lidar_corruption_moderate.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_lidar_corruption_moderate.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_lidar_corruption_severe until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_lidar_corruption_severe
+    Faulted file: scan_filtered_20261005_180357_fault_lidar_corruption_severe.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_lidar_corruption_severe.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_lidar_scale_error_mild until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_lidar_scale_error_mild
+    Faulted file: scan_filtered_20261005_180357_fault_lidar_scale_error_mild.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_lidar_scale_error_mild.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_lidar_scale_error_moderate until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_lidar_scale_error_moderate
+    Faulted file: scan_filtered_20261005_180357_fault_lidar_scale_error_moderate.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_lidar_scale_error_moderate.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_lidar_scale_error_severe until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_lidar_scale_error_severe
+    Faulted file: scan_filtered_20261005_180357_fault_lidar_scale_error_severe.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_lidar_scale_error_severe.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_lidar_dropout_short until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_lidar_dropout_short
+    Faulted file: scan_filtered_20261005_180357_fault_lidar_dropout_short.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_lidar_dropout_short.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_lidar_dropout_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_lidar_dropout_medium
+    Faulted file: scan_filtered_20261005_180357_fault_lidar_dropout_medium.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_lidar_dropout_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_lidar_dropout_long until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_lidar_dropout_long
+    Faulted file: scan_filtered_20261005_180357_fault_lidar_dropout_long.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_lidar_dropout_long.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_180357_fault_lidar_delay_small
+    Faulted raw file: scan_20261005_180357_fault_lidar_delay_small.csv
+    Re-ran preprocess_data.py 20261005_180357_fault_lidar_delay_small -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_180357_fault_lidar_delay_small.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_180357_fault_lidar_delay_medium
+    Faulted raw file: scan_20261005_180357_fault_lidar_delay_medium.csv
+    Re-ran preprocess_data.py 20261005_180357_fault_lidar_delay_medium -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_180357_fault_lidar_delay_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_180357_fault_lidar_delay_large
+    Faulted raw file: scan_20261005_180357_fault_lidar_delay_large.csv
+    Re-ran preprocess_data.py 20261005_180357_fault_lidar_delay_large -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_180357_fault_lidar_delay_large.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_imu_noise_low until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_imu_noise_low
+    Faulted file: imu_filtered_20261005_181003_fault_imu_noise_low.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_imu_noise_low.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_imu_noise_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_imu_noise_medium
+    Faulted file: imu_filtered_20261005_181003_fault_imu_noise_medium.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_imu_noise_medium.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_imu_noise_high until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_imu_noise_high
+    Faulted file: imu_filtered_20261005_181003_fault_imu_noise_high.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_imu_noise_high.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_imu_noise_extreme until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_imu_noise_extreme
+    Faulted file: imu_filtered_20261005_181003_fault_imu_noise_extreme.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_imu_noise_extreme.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_imu_bias_small until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_imu_bias_small
+    Faulted file: imu_filtered_20261005_181003_fault_imu_bias_small.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_imu_bias_small.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_imu_bias_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_imu_bias_medium
+    Faulted file: imu_filtered_20261005_181003_fault_imu_bias_medium.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_imu_bias_medium.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_imu_bias_large until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_imu_bias_large
+    Faulted file: imu_filtered_20261005_181003_fault_imu_bias_large.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_imu_bias_large.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_imu_drift_slow until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_imu_drift_slow
+    Faulted file: imu_filtered_20261005_181003_fault_imu_drift_slow.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_imu_drift_slow.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_imu_drift_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_imu_drift_medium
+    Faulted file: imu_filtered_20261005_181003_fault_imu_drift_medium.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_imu_drift_medium.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_imu_drift_fast until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_imu_drift_fast
+    Faulted file: imu_filtered_20261005_181003_fault_imu_drift_fast.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_imu_drift_fast.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_imu_dropout_short until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_imu_dropout_short
+    Faulted file: imu_filtered_20261005_181003_fault_imu_dropout_short.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_imu_dropout_short.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_imu_dropout_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_imu_dropout_medium
+    Faulted file: imu_filtered_20261005_181003_fault_imu_dropout_medium.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_imu_dropout_medium.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_imu_dropout_long until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_imu_dropout_long
+    Faulted file: imu_filtered_20261005_181003_fault_imu_dropout_long.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_imu_dropout_long.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_181003_fault_imu_delay_small
+    Faulted raw file: imu_20261005_181003_fault_imu_delay_small.csv
+    Re-ran preprocess_data.py 20261005_181003_fault_imu_delay_small -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_181003_fault_imu_delay_small.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_181003_fault_imu_delay_medium
+    Faulted raw file: imu_20261005_181003_fault_imu_delay_medium.csv
+    Re-ran preprocess_data.py 20261005_181003_fault_imu_delay_medium -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_181003_fault_imu_delay_medium.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_181003_fault_imu_delay_large
+    Faulted raw file: imu_20261005_181003_fault_imu_delay_large.csv
+    Re-ran preprocess_data.py 20261005_181003_fault_imu_delay_large -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_181003_fault_imu_delay_large.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_odom_noise_low until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_odom_noise_low
+    Faulted file: odom_filtered_20261005_181003_fault_odom_noise_low.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_odom_noise_low.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_odom_noise_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_odom_noise_medium
+    Faulted file: odom_filtered_20261005_181003_fault_odom_noise_medium.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_odom_noise_medium.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_odom_noise_high until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_odom_noise_high
+    Faulted file: odom_filtered_20261005_181003_fault_odom_noise_high.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_odom_noise_high.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_odom_noise_extreme until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_odom_noise_extreme
+    Faulted file: odom_filtered_20261005_181003_fault_odom_noise_extreme.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_odom_noise_extreme.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_odom_bias_small until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_odom_bias_small
+    Faulted file: odom_filtered_20261005_181003_fault_odom_bias_small.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_odom_bias_small.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_odom_bias_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_odom_bias_medium
+    Faulted file: odom_filtered_20261005_181003_fault_odom_bias_medium.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_odom_bias_medium.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_odom_bias_large until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_odom_bias_large
+    Faulted file: odom_filtered_20261005_181003_fault_odom_bias_large.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_odom_bias_large.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_odom_drift_slow until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_odom_drift_slow
+    Faulted file: odom_filtered_20261005_181003_fault_odom_drift_slow.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_odom_drift_slow.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_odom_drift_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_odom_drift_medium
+    Faulted file: odom_filtered_20261005_181003_fault_odom_drift_medium.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_odom_drift_medium.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_odom_drift_fast until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_odom_drift_fast
+    Faulted file: odom_filtered_20261005_181003_fault_odom_drift_fast.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_odom_drift_fast.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_odom_dropout_short until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_odom_dropout_short
+    Faulted file: odom_filtered_20261005_181003_fault_odom_dropout_short.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_odom_dropout_short.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_odom_dropout_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_odom_dropout_medium
+    Faulted file: odom_filtered_20261005_181003_fault_odom_dropout_medium.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_odom_dropout_medium.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_odom_dropout_long until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_odom_dropout_long
+    Faulted file: odom_filtered_20261005_181003_fault_odom_dropout_long.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_odom_dropout_long.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_181003_fault_odom_delay_small
+    Faulted raw file: odom_20261005_181003_fault_odom_delay_small.csv
+    Re-ran preprocess_data.py 20261005_181003_fault_odom_delay_small -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_181003_fault_odom_delay_small.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_181003_fault_odom_delay_medium
+    Faulted raw file: odom_20261005_181003_fault_odom_delay_medium.csv
+    Re-ran preprocess_data.py 20261005_181003_fault_odom_delay_medium -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_181003_fault_odom_delay_medium.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_181003_fault_odom_delay_large
+    Faulted raw file: odom_20261005_181003_fault_odom_delay_large.csv
+    Re-ran preprocess_data.py 20261005_181003_fault_odom_delay_large -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_181003_fault_odom_delay_large.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_lidar_noise_low until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_lidar_noise_low
+    Faulted file: scan_filtered_20261005_181003_fault_lidar_noise_low.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_lidar_noise_low.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_lidar_noise_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_lidar_noise_medium
+    Faulted file: scan_filtered_20261005_181003_fault_lidar_noise_medium.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_lidar_noise_medium.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_lidar_noise_high until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_lidar_noise_high
+    Faulted file: scan_filtered_20261005_181003_fault_lidar_noise_high.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_lidar_noise_high.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_lidar_noise_extreme until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_lidar_noise_extreme
+    Faulted file: scan_filtered_20261005_181003_fault_lidar_noise_extreme.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_lidar_noise_extreme.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_lidar_return_loss_low until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_lidar_return_loss_low
+    Faulted file: scan_filtered_20261005_181003_fault_lidar_return_loss_low.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_lidar_return_loss_low.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_lidar_return_loss_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_lidar_return_loss_medium
+    Faulted file: scan_filtered_20261005_181003_fault_lidar_return_loss_medium.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_lidar_return_loss_medium.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_lidar_return_loss_high until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_lidar_return_loss_high
+    Faulted file: scan_filtered_20261005_181003_fault_lidar_return_loss_high.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_lidar_return_loss_high.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_lidar_return_loss_extreme until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_lidar_return_loss_extreme
+    Faulted file: scan_filtered_20261005_181003_fault_lidar_return_loss_extreme.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_lidar_return_loss_extreme.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_lidar_corruption_mild until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_lidar_corruption_mild
+    Faulted file: scan_filtered_20261005_181003_fault_lidar_corruption_mild.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_lidar_corruption_mild.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_lidar_corruption_moderate until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_lidar_corruption_moderate
+    Faulted file: scan_filtered_20261005_181003_fault_lidar_corruption_moderate.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_lidar_corruption_moderate.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_lidar_corruption_severe until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_lidar_corruption_severe
+    Faulted file: scan_filtered_20261005_181003_fault_lidar_corruption_severe.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_lidar_corruption_severe.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_lidar_scale_error_mild until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_lidar_scale_error_mild
+    Faulted file: scan_filtered_20261005_181003_fault_lidar_scale_error_mild.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_lidar_scale_error_mild.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_lidar_scale_error_moderate until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_lidar_scale_error_moderate
+    Faulted file: scan_filtered_20261005_181003_fault_lidar_scale_error_moderate.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_lidar_scale_error_moderate.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_lidar_scale_error_severe until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_lidar_scale_error_severe
+    Faulted file: scan_filtered_20261005_181003_fault_lidar_scale_error_severe.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_lidar_scale_error_severe.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_lidar_dropout_short until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_lidar_dropout_short
+    Faulted file: scan_filtered_20261005_181003_fault_lidar_dropout_short.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_lidar_dropout_short.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_lidar_dropout_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_lidar_dropout_medium
+    Faulted file: scan_filtered_20261005_181003_fault_lidar_dropout_medium.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_lidar_dropout_medium.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_lidar_dropout_long until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_lidar_dropout_long
+    Faulted file: scan_filtered_20261005_181003_fault_lidar_dropout_long.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_lidar_dropout_long.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_181003_fault_lidar_delay_small
+    Faulted raw file: scan_20261005_181003_fault_lidar_delay_small.csv
+    Re-ran preprocess_data.py 20261005_181003_fault_lidar_delay_small -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_181003_fault_lidar_delay_small.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_181003_fault_lidar_delay_medium
+    Faulted raw file: scan_20261005_181003_fault_lidar_delay_medium.csv
+    Re-ran preprocess_data.py 20261005_181003_fault_lidar_delay_medium -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_181003_fault_lidar_delay_medium.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it
+  Created RAW-REDESIGNED delay fault session: 20261005_181003_fault_lidar_delay_large
+    Faulted raw file: scan_20261005_181003_fault_lidar_delay_large.csv
+    Re-ran preprocess_data.py 20261005_181003_fault_lidar_delay_large -- regenerated filtered outputs
+    Manifest: fault_meta_20261005_181003_fault_lidar_delay_large.json
+
+  Done: 260/260 fault sessions created.
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_imu_biasmid_small until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_imu_biasmid_small
+    Faulted file: imu_filtered_20261005_175524_fault_imu_biasmid_small.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_imu_biasmid_small.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_imu_biasmid_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_imu_biasmid_medium
+    Faulted file: imu_filtered_20261005_175524_fault_imu_biasmid_medium.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_imu_biasmid_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175524.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175524_fault_imu_biasmid_large until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175524_fault_imu_biasmid_large
+    Faulted file: imu_filtered_20261005_175524_fault_imu_biasmid_large.csv
+    Other files copied unchanged from 20261005_175524
+    Manifest: fault_meta_20261005_175524_fault_imu_biasmid_large.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_imu_biasmid_small until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_imu_biasmid_small
+    Faulted file: imu_filtered_20261005_175856_fault_imu_biasmid_small.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_imu_biasmid_small.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_imu_biasmid_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_imu_biasmid_medium
+    Faulted file: imu_filtered_20261005_175856_fault_imu_biasmid_medium.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_imu_biasmid_medium.json
+  NOTE: no rnn_smoothed_output_20261005_175856.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_175856_fault_imu_biasmid_large until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_175856_fault_imu_biasmid_large
+    Faulted file: imu_filtered_20261005_175856_fault_imu_biasmid_large.csv
+    Other files copied unchanged from 20261005_175856
+    Manifest: fault_meta_20261005_175856_fault_imu_biasmid_large.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_imu_biasmid_small until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_imu_biasmid_small
+    Faulted file: imu_filtered_20261005_180136_fault_imu_biasmid_small.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_imu_biasmid_small.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_imu_biasmid_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_imu_biasmid_medium
+    Faulted file: imu_filtered_20261005_180136_fault_imu_biasmid_medium.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_imu_biasmid_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180136.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180136_fault_imu_biasmid_large until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180136_fault_imu_biasmid_large
+    Faulted file: imu_filtered_20261005_180136_fault_imu_biasmid_large.csv
+    Other files copied unchanged from 20261005_180136
+    Manifest: fault_meta_20261005_180136_fault_imu_biasmid_large.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_imu_biasmid_small until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_imu_biasmid_small
+    Faulted file: imu_filtered_20261005_180357_fault_imu_biasmid_small.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_imu_biasmid_small.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_imu_biasmid_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_imu_biasmid_medium
+    Faulted file: imu_filtered_20261005_180357_fault_imu_biasmid_medium.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_imu_biasmid_medium.json
+  NOTE: no rnn_smoothed_output_20261005_180357.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_180357_fault_imu_biasmid_large until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_180357_fault_imu_biasmid_large
+    Faulted file: imu_filtered_20261005_180357_fault_imu_biasmid_large.csv
+    Other files copied unchanged from 20261005_180357
+    Manifest: fault_meta_20261005_180357_fault_imu_biasmid_large.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_imu_biasmid_small until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_imu_biasmid_small
+    Faulted file: imu_filtered_20261005_181003_fault_imu_biasmid_small.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_imu_biasmid_small.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_imu_biasmid_medium until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_imu_biasmid_medium
+    Faulted file: imu_filtered_20261005_181003_fault_imu_biasmid_medium.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_imu_biasmid_medium.json
+  NOTE: no rnn_smoothed_output_20261005_181003.csv found -- skipped copying it (lidar_fusion_v2.py won't be runnable on 20261005_181003_fault_imu_biasmid_large until this baseline's RNN fusion stage has been run at least once)
+  Created fault session: 20261005_181003_fault_imu_biasmid_large
+    Faulted file: imu_filtered_20261005_181003_fault_imu_biasmid_large.csv
+    Other files copied unchanged from 20261005_181003
+    Manifest: fault_meta_20261005_181003_fault_imu_biasmid_large.json
+step1 OK: 260 standard + 15 biasmid fault sessions
+  ekf 15/175
+  ekf 30/175
+  ekf 45/175
+  ekf 60/175
+  ekf 75/175
+  ekf 90/175
+  ekf 105/175
+  ekf 120/175
+  ekf 135/175
+  ekf 150/175
+  ekf 165/175
+step2 OK: EKF on 175 fault sessions
+found 8 candidate baseline sessions, running health_check gate:
+  Commanded accumulated rotation: 19.4603 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=1.7% (raw columns present)
+  20260712_141740: PASS
+  Commanded accumulated rotation: 13.5249 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=7.5% (raw columns present)
+  20260712_144326: PASS
+  Commanded accumulated rotation: 15.2765 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=0.0% (NO raw columns)
+  20260714_014615: FAIL (IMU orientation failed to respond to commanded turning: IMU theta range=0.000000 rad, commanded accumulated rotation=15.276486 rad (need IMU range >= 0.5) — matches the dead-IMU signature previously found in session 20260714_014615)
+  Commanded accumulated rotation: 78.6733 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=98.6% (raw columns present)
+  WARNING: 98.6% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  20260824_094119: PASS
+  Commanded accumulated rotation: 33.3239 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=100.0% (raw columns present)
+  WARNING: 100.0% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  20260824_095427: PASS
+  Commanded accumulated rotation: 25.6286 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=99.5% (raw columns present)
+  WARNING: 99.5% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  20260824_095712: PASS
+  Commanded accumulated rotation: 67.1143 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=100.0% (raw columns present)
+  WARNING: 100.0% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  20260824_095915: PASS
+  Commanded accumulated rotation: 47.8286 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=100.0% (raw columns present)
+  WARNING: 100.0% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  20260824_100318: PASS
+-> 7/8 sessions passed and will be used as baselines
+
+Traceback (most recent call last):
+  File "/home/kushagra/ws_mobile/scripts/evaluate_heldout.py", line 606, in <module>
+    main()
+  File "/home/kushagra/ws_mobile/scripts/evaluate_heldout.py", line 600, in main
+    {'mark-test': lambda: cmd_mark_test(a.sessions), 'stage1': lambda: cmd_stage1(a),
+  File "/home/kushagra/ws_mobile/scripts/evaluate_heldout.py", line 600, in <lambda>
+    {'mark-test': lambda: cmd_mark_test(a.sessions), 'stage1': lambda: cmd_stage1(a),
+                                                                       ^^^^^^^^^^^^^
+  File "/home/kushagra/ws_mobile/scripts/evaluate_heldout.py", line 364, in cmd_stage1
+    steps[k](tests)
+  File "/home/kushagra/ws_mobile/scripts/evaluate_heldout.py", line 180, in s3_labels
+    G.process_baseline_session(b)
+  File "/home/kushagra/ws_mobile/scripts/generate_reliability_labels.py", line 226, in process_baseline_session
+    df = n_rows_for_session(session)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kushagra/ws_mobile/scripts/generate_reliability_labels.py", line 89, in n_rows_for_session
+    raise FileNotFoundError(f"Missing ekf_fused_output for session: {session}")
+FileNotFoundError: Missing ekf_fused_output for session: 20261005_175524

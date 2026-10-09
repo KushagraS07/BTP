@@ -1,0 +1,275 @@
+nohup: ignoring input
+test sessions: ['20261005_175524', '20261005_175856', '20261005_180136', '20261005_180357', '20261005_181003']
+training models: ['20260712_141740', '20260712_144326', '20260824_094119', '20260824_095427', '20260824_095712', '20260824_095915', '20260824_100318']
+results: results/final_*
+found 8 candidate baseline sessions, running health_check gate:
+  Commanded accumulated rotation: 19.4603 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=1.7% (raw columns present)
+  20260712_141740: PASS
+  Commanded accumulated rotation: 13.5249 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=7.5% (raw columns present)
+  20260712_144326: PASS
+  Commanded accumulated rotation: 15.2765 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=0.0% (NO raw columns)
+  20260714_014615: FAIL (IMU orientation failed to respond to commanded turning: IMU theta range=0.000000 rad, commanded accumulated rotation=15.276486 rad (need IMU range >= 0.5) — matches the dead-IMU signature previously found in session 20260714_014615)
+  Commanded accumulated rotation: 78.6733 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=98.6% (raw columns present)
+  WARNING: 98.6% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  20260824_094119: PASS
+  Commanded accumulated rotation: 33.3239 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=100.0% (raw columns present)
+  WARNING: 100.0% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  20260824_095427: PASS
+  Commanded accumulated rotation: 25.6286 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=99.5% (raw columns present)
+  WARNING: 99.5% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  20260824_095712: PASS
+  Commanded accumulated rotation: 67.1143 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=100.0% (raw columns present)
+  WARNING: 100.0% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  20260824_095915: PASS
+  Commanded accumulated rotation: 47.8286 rad (>= 0.5 rad threshold)
+  cmd_vel wheel-limit check: executed over-limit=0.0%, raw clipped=100.0% (raw columns present)
+  WARNING: 100.0% of raw commands were clipped to the wheel limits (> 10%). Session kept; the executed-command model is approximate here (SATURATION_FIX.md).
+  20260824_100318: PASS
+-> 7/8 sessions passed and will be used as baselines
+
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524.csv (n=2704, baseline)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856.csv (n=2834, baseline)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136.csv (n=2716, baseline)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357.csv (n=2640, baseline)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003.csv (n=2807, baseline)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_imu_noise_low.csv (n=2704, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_imu_noise_medium.csv (n=2704, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_imu_noise_high.csv (n=2704, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_imu_noise_extreme.csv (n=2704, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_imu_bias_small.csv (n=2704, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_imu_bias_medium.csv (n=2704, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_imu_bias_large.csv (n=2704, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_imu_drift_slow.csv (n=2704, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_imu_drift_medium.csv (n=2704, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_imu_drift_fast.csv (n=2704, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_imu_dropout_short.csv (n=2704, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_imu_dropout_medium.csv (n=2704, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_imu_dropout_long.csv (n=2704, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_imu_delay_small.csv (n=2704, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_imu_delay_medium.csv (n=2704, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_imu_delay_large.csv (n=2704, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_odom_noise_low.csv (n=2704, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_odom_noise_medium.csv (n=2704, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_odom_noise_high.csv (n=2704, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_odom_noise_extreme.csv (n=2704, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_odom_bias_small.csv (n=2704, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_odom_bias_medium.csv (n=2704, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_odom_bias_large.csv (n=2704, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_odom_drift_slow.csv (n=2704, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_odom_drift_medium.csv (n=2704, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_odom_drift_fast.csv (n=2704, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_odom_dropout_short.csv (n=2704, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_odom_dropout_medium.csv (n=2704, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_odom_dropout_long.csv (n=2704, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_odom_delay_small.csv (n=2704, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_odom_delay_medium.csv (n=2704, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175524_fault_odom_delay_large.csv (n=2704, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_imu_noise_low.csv (n=2834, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_imu_noise_medium.csv (n=2834, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_imu_noise_high.csv (n=2834, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_imu_noise_extreme.csv (n=2834, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_imu_bias_small.csv (n=2834, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_imu_bias_medium.csv (n=2834, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_imu_bias_large.csv (n=2834, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_imu_drift_slow.csv (n=2834, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_imu_drift_medium.csv (n=2834, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_imu_drift_fast.csv (n=2834, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_imu_dropout_short.csv (n=2834, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_imu_dropout_medium.csv (n=2834, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_imu_dropout_long.csv (n=2834, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_imu_delay_small.csv (n=2834, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_imu_delay_medium.csv (n=2834, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_imu_delay_large.csv (n=2834, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_odom_noise_low.csv (n=2834, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_odom_noise_medium.csv (n=2834, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_odom_noise_high.csv (n=2834, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_odom_noise_extreme.csv (n=2834, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_odom_bias_small.csv (n=2834, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_odom_bias_medium.csv (n=2834, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_odom_bias_large.csv (n=2834, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_odom_drift_slow.csv (n=2834, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_odom_drift_medium.csv (n=2834, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_odom_drift_fast.csv (n=2834, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_odom_dropout_short.csv (n=2834, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_odom_dropout_medium.csv (n=2834, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_odom_dropout_long.csv (n=2834, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_odom_delay_small.csv (n=2834, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_odom_delay_medium.csv (n=2834, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_175856_fault_odom_delay_large.csv (n=2834, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_imu_noise_low.csv (n=2716, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_imu_noise_medium.csv (n=2716, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_imu_noise_high.csv (n=2716, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_imu_noise_extreme.csv (n=2716, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_imu_bias_small.csv (n=2716, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_imu_bias_medium.csv (n=2716, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_imu_bias_large.csv (n=2716, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_imu_drift_slow.csv (n=2716, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_imu_drift_medium.csv (n=2716, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_imu_drift_fast.csv (n=2716, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_imu_dropout_short.csv (n=2716, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_imu_dropout_medium.csv (n=2716, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_imu_dropout_long.csv (n=2716, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_imu_delay_small.csv (n=2716, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_imu_delay_medium.csv (n=2716, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_imu_delay_large.csv (n=2716, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_odom_noise_low.csv (n=2716, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_odom_noise_medium.csv (n=2716, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_odom_noise_high.csv (n=2716, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_odom_noise_extreme.csv (n=2716, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_odom_bias_small.csv (n=2716, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_odom_bias_medium.csv (n=2716, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_odom_bias_large.csv (n=2716, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_odom_drift_slow.csv (n=2716, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_odom_drift_medium.csv (n=2716, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_odom_drift_fast.csv (n=2716, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_odom_dropout_short.csv (n=2716, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_odom_dropout_medium.csv (n=2716, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_odom_dropout_long.csv (n=2716, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_odom_delay_small.csv (n=2716, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_odom_delay_medium.csv (n=2716, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180136_fault_odom_delay_large.csv (n=2716, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_imu_noise_low.csv (n=2640, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_imu_noise_medium.csv (n=2640, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_imu_noise_high.csv (n=2640, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_imu_noise_extreme.csv (n=2640, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_imu_bias_small.csv (n=2640, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_imu_bias_medium.csv (n=2640, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_imu_bias_large.csv (n=2640, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_imu_drift_slow.csv (n=2640, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_imu_drift_medium.csv (n=2640, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_imu_drift_fast.csv (n=2640, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_imu_dropout_short.csv (n=2640, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_imu_dropout_medium.csv (n=2640, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_imu_dropout_long.csv (n=2640, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_imu_delay_small.csv (n=2640, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_imu_delay_medium.csv (n=2640, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_imu_delay_large.csv (n=2640, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_odom_noise_low.csv (n=2640, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_odom_noise_medium.csv (n=2640, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_odom_noise_high.csv (n=2640, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_odom_noise_extreme.csv (n=2640, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_odom_bias_small.csv (n=2640, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_odom_bias_medium.csv (n=2640, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_odom_bias_large.csv (n=2640, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_odom_drift_slow.csv (n=2640, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_odom_drift_medium.csv (n=2640, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_odom_drift_fast.csv (n=2640, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_odom_dropout_short.csv (n=2640, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_odom_dropout_medium.csv (n=2640, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_odom_dropout_long.csv (n=2640, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_odom_delay_small.csv (n=2640, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_odom_delay_medium.csv (n=2640, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_180357_fault_odom_delay_large.csv (n=2640, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_imu_noise_low.csv (n=2807, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_imu_noise_medium.csv (n=2807, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_imu_noise_high.csv (n=2807, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_imu_noise_extreme.csv (n=2807, sensor=imu, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_imu_bias_small.csv (n=2807, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_imu_bias_medium.csv (n=2807, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_imu_bias_large.csv (n=2807, sensor=imu, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_imu_drift_slow.csv (n=2807, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_imu_drift_medium.csv (n=2807, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_imu_drift_fast.csv (n=2807, sensor=imu, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_imu_dropout_short.csv (n=2807, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_imu_dropout_medium.csv (n=2807, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_imu_dropout_long.csv (n=2807, sensor=imu, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_imu_delay_small.csv (n=2807, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_imu_delay_medium.csv (n=2807, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_imu_delay_large.csv (n=2807, sensor=imu, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_odom_noise_low.csv (n=2807, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_odom_noise_medium.csv (n=2807, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_odom_noise_high.csv (n=2807, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_odom_noise_extreme.csv (n=2807, sensor=odom, fault_type=noise)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_odom_bias_small.csv (n=2807, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_odom_bias_medium.csv (n=2807, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_odom_bias_large.csv (n=2807, sensor=odom, fault_type=bias)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_odom_drift_slow.csv (n=2807, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_odom_drift_medium.csv (n=2807, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_odom_drift_fast.csv (n=2807, sensor=odom, fault_type=drift)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_odom_dropout_short.csv (n=2807, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_odom_dropout_medium.csv (n=2807, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_odom_dropout_long.csv (n=2807, sensor=odom, fault_type=dropout)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_odom_delay_small.csv (n=2807, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_odom_delay_medium.csv (n=2807, sensor=odom, fault_type=delay)
+wrote /home/kushagra/ws_mobile/sensor_logs/reliability_labels_20261005_181003_fault_odom_delay_large.csv (n=2807, sensor=odom, fault_type=delay)
+step3 OK: labels
+  features 20/180
+  features 40/180
+  features 60/180
+  features 80/180
+  features 100/180
+  features 120/180
+  features 140/180
+  features 160/180
+  features 180/180
+step4 OK: features for 180 sessions
+
+=== H0: clean EKF RMSE ===
+  20261005_175524: 0.4854 m
+  20261005_175856: 2.0183 m
+  20261005_180136: 0.4837 m
+  20261005_180357: 0.9245 m
+  20261005_181003: 0.3711 m
+
+=== H1: fault validation (worst severity >= 1.05x baseline) ===
+  [PASS] 20261005_175524/imu/noise: low=2.288, medium=3.294, high=3.717, extreme=3.755  ratio=7.735
+  [PASS] 20261005_175524/imu/bias: small=5.498, medium=1.784, large=3.406  ratio=7.016
+  [PASS] 20261005_175524/imu/drift: slow=3.215, medium=5.985, fast=6.554  ratio=13.501
+  [PASS] 20261005_175524/imu/dropout: short=0.671, medium=0.673, long=1.572  ratio=3.238
+  [UP] 20261005_175524/imu/delay: base=0.485 small=0.532 medium=0.776 large=2.183
+  [PASS] 20261005_175524/odom/noise: low=255.252, medium=767.089, high=1534.771, extreme=3069.870  ratio=6323.846
+  [PASS] 20261005_175524/odom/bias: small=2.253, medium=3.471, large=5.229  ratio=10.771
+  [PASS] 20261005_175524/odom/drift: slow=0.666, medium=1.065, fast=1.659  ratio=3.418
+  [PASS] 20261005_175524/odom/dropout: short=0.659, medium=0.877, long=0.722  ratio=1.487
+  [UP] 20261005_175524/odom/delay: base=0.485 small=0.517 medium=0.566 large=0.573
+  [PASS] 20261005_175856/imu/noise: low=2.111, medium=4.629, high=4.281, extreme=4.644  ratio=2.301
+  [PASS] 20261005_175856/imu/bias: small=6.136, medium=4.453, large=6.719  ratio=3.329
+  [PASS] 20261005_175856/imu/drift: slow=1.943, medium=6.743, fast=9.843  ratio=4.877
+  [PASS] 20261005_175856/imu/dropout: short=1.718, medium=2.788, long=7.335  ratio=3.634
+  [UP] 20261005_175856/imu/delay: base=2.018 small=2.027 medium=2.094 large=2.762
+  [PASS] 20261005_175856/odom/noise: low=520.248, medium=1560.015, high=3118.507, extreme=6231.414  ratio=3087.426
+  [PASS] 20261005_175856/odom/bias: small=3.491, medium=5.834, large=9.464  ratio=4.689
+  [PASS] 20261005_175856/odom/drift: slow=2.139, medium=2.398, fast=2.809  ratio=1.392
+  [FAIL] 20261005_175856/odom/dropout: short=1.980, medium=2.295, long=1.154  ratio=0.572
+  [NOT UP] 20261005_175856/odom/delay: base=2.018 small=2.003 medium=1.935 large=1.754
+  [PASS] 20261005_180136/imu/noise: low=3.704, medium=5.393, high=5.568, extreme=5.329  ratio=11.018
+  [PASS] 20261005_180136/imu/bias: small=7.936, medium=2.801, large=5.579  ratio=11.534
+  [PASS] 20261005_180136/imu/drift: slow=2.892, medium=4.766, fast=10.054  ratio=20.785
+  [PASS] 20261005_180136/imu/dropout: short=0.725, medium=5.657, long=11.471  ratio=23.715
+  [UP] 20261005_180136/imu/delay: base=0.484 small=0.567 medium=0.884 large=2.235
+  [PASS] 20261005_180136/odom/noise: low=230.435, medium=693.100, high=1386.893, extreme=2773.833  ratio=5734.558
+  [PASS] 20261005_180136/odom/bias: small=2.932, medium=3.875, large=5.816  ratio=12.023
+  [PASS] 20261005_180136/odom/drift: slow=0.632, medium=0.967, fast=1.494  ratio=3.089
+  [PASS] 20261005_180136/odom/dropout: short=0.885, medium=0.803, long=1.440  ratio=2.977
+  [UP] 20261005_180136/odom/delay: base=0.484 small=0.481 medium=0.573 large=0.769
+  [PASS] 20261005_180357/imu/noise: low=3.945, medium=7.604, high=7.248, extreme=6.681  ratio=7.227
+  [PASS] 20261005_180357/imu/bias: small=11.071, medium=6.653, large=11.544  ratio=12.487
+  [PASS] 20261005_180357/imu/drift: slow=6.709, medium=18.132, fast=13.889  ratio=15.024
+  [PASS] 20261005_180357/imu/dropout: short=0.925, medium=1.073, long=1.858  ratio=2.010
+  [UP] 20261005_180357/imu/delay: base=0.924 small=0.920 medium=0.904 large=1.992
+  [PASS] 20261005_180357/odom/noise: low=671.257, medium=2017.338, high=4037.020, extreme=8078.328  ratio=8738.334
+  [PASS] 20261005_180357/odom/bias: small=3.158, medium=4.952, large=8.680  ratio=9.389
+  [PASS] 20261005_180357/odom/drift: slow=1.180, medium=1.741, fast=2.576  ratio=2.787
+  [PASS] 20261005_180357/odom/dropout: short=0.770, medium=0.859, long=1.103  ratio=1.193
+  [NOT UP] 20261005_180357/odom/delay: base=0.924 small=0.852 medium=0.816 large=0.913
+  [PASS] 20261005_181003/imu/noise: low=4.654, medium=6.649, high=6.669, extreme=6.926  ratio=18.663
+  [PASS] 20261005_181003/imu/bias: small=11.077, medium=4.020, large=7.827  ratio=21.090
+  [PASS] 20261005_181003/imu/drift: slow=7.690, medium=19.047, fast=10.247  ratio=27.613
+  [PASS] 20261005_181003/imu/dropout: short=0.377, medium=2.875, long=9.075  ratio=24.455
+  [UP] 20261005_181003/imu/delay: base=0.371 small=0.416 medium=0.694 large=1.504
+  [PASS] 20261005_181003/odom/noise: low=824.921, medium=2478.368, high=4958.379, extreme=9917.802  ratio=26725.496
+  [PASS] 20261005_181003/odom/bias: small=2.388, medium=3.709, large=8.430  ratio=22.716
+  [PASS] 20261005_181003/odom/drift: slow=0.541, medium=1.200, fast=2.117  ratio=5.704
+  [PASS] 20261005_181003/odom/dropout: short=0.556, medium=0.535, long=1.404  ratio=3.783
+  [UP] 20261005_181003/odom/delay: base=0.371 small=0.420 medium=0.564 large=0.675
+
+H1: degradation 39/40 (need >= 37), delay up 8/10 (need >= 9) -> FAIL
+
+--- model 1/7 (LOBO fold 20260712_141740) ---

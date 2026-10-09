@@ -1,0 +1,6 @@
+id,kind,test,value,rule,result,note
+C1,confirmatory,"odom-fault wins vs fixed (wins counted per model, then averaged over the 7 models)",LSTM 71.3+/-1.3/80; heuristic 29/80,> 40 and > heuristic,PASS,"reported, not part of the rule: per fault session on the 7-model mean RMSE LSTM 72/80, heuristic 29/80"
+C2,confirmatory,"odom-fault median % change in RMSE, LSTM vs fixed","-8.5% [-12.5, -5.4] (cluster CI [-10.8, -5.7], reported)",upper 95% CI < 0,PASS,
+C3,confirmatory,"no-fault baselines: mean RMSE, LSTM vs fixed","fixed 0.8566, LSTM 0.8576 (+0.11%)",<= +1%,PASS,
+P1,prediction,"IMU-fault median % change, LSTM vs fixed (prediction: negligible)","+0.01% [-0.01, +0.02]",|median| <= 1%,PASS,
+P2,prediction,odom noise: heuristic beats LSTM (prediction: complementarity),"LSTM -52.0%, heuristic -94.9%, LSTM vs heuristic median +867.0% [+653.9, +1078.1]",heuristic median < LSTM median and lower CI of LSTM-vs-heuristic > 0,PASS,
