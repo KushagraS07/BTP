@@ -1,0 +1,168 @@
+nohup: ignoring input
+== 2026-10-10 22:06:23 train_slip (jobs 3)
+P_slip LOBO over 8 sessions: ['20261010_130530', '20261010_131512', '20261010_143058', '20261010_143931', '20261010_145610', '20261010_150047', '20261010_150428', '20261010_152122']
+  [slip 20261010_143058] epoch  1/15 fit 0.7439 val 0.6852
+  [slip 20261010_131512] epoch  1/15 fit 0.7307 val 0.6770
+  [slip 20261010_130530] epoch  1/15 fit 0.7307 val 0.2431
+  [slip 20261010_143058] epoch  2/15 fit 0.4756 val 0.5907
+  [slip 20261010_131512] epoch  2/15 fit 0.4073 val 0.4922
+  [slip 20261010_130530] epoch  2/15 fit 0.4073 val 0.3875
+  [slip 20261010_143058] epoch  3/15 fit 0.3675 val 0.5326
+  [slip 20261010_131512] epoch  3/15 fit 0.2985 val 0.4714
+  [slip 20261010_130530] epoch  3/15 fit 0.2985 val 0.2472
+  [slip 20261010_143058] epoch  4/15 fit 0.2964 val 0.6123
+  [slip 20261010_131512] epoch  4/15 fit 0.2311 val 0.5960
+  [slip 20261010_130530] epoch  4/15 fit 0.2311 val 0.5205
+  [slip 20261010_143058] epoch  5/15 fit 0.2146 val 0.4507
+  [slip 20261010_131512] epoch  5/15 fit 0.1815 val 0.6628
+  [slip 20261010_130530] epoch  5/15 fit 0.1815 val 0.6383
+  [slip 20261010_143058] epoch  6/15 fit 0.1912 val 0.5647
+  [slip 20261010_131512] epoch  6/15 fit 0.1584 val 0.4301
+  [slip 20261010_130530] epoch  6/15 fit 0.1584 val 0.5513
+  [slip 20261010_143058] epoch  7/15 fit 0.1751 val 0.5263
+  [slip 20261010_131512] epoch  7/15 fit 0.1390 val 0.6951
+  [slip 20261010_130530] epoch  7/15 fit 0.1390 val 0.4813
+  [slip 20261010_143058] epoch  8/15 fit 0.1408 val 0.6818
+  [slip 20261010_131512] epoch  8/15 fit 0.1132 val 0.6714
+  [slip 20261010_130530] epoch  8/15 fit 0.1132 val 0.5177
+  [slip 20261010_143058] epoch  9/15 fit 0.1274 val 0.7894
+  [slip 20261010_131512] epoch  9/15 fit 0.1284 val 0.5215
+  [slip 20261010_130530] epoch  9/15 fit 0.1284 val 0.3257
+  [slip 20261010_143058] epoch 10/15 fit 0.1137 val 1.4020
+  [slip 20261010_131512] epoch 10/15 fit 0.1282 val 0.8892
+  [slip 20261010_130530] epoch 10/15 fit 0.1282 val 0.3034
+  [slip 20261010_143058] epoch 11/15 fit 0.1464 val 0.5485
+  [slip 20261010_131512] epoch 11/15 fit 0.1105 val 0.9821
+  [slip 20261010_130530] epoch 11/15 fit 0.1105 val 0.2406
+  [slip 20261010_143058] epoch 12/15 fit 0.0952 val 0.7545
+  [slip 20261010_131512] epoch 12/15 fit 0.0832 val 1.0134
+  [slip 20261010_130530] epoch 12/15 fit 0.0832 val 0.3329
+  [slip 20261010_143058] epoch 13/15 fit 0.0821 val 0.6817
+  [slip 20261010_131512] epoch 13/15 fit 0.0774 val 0.6890
+  [slip 20261010_130530] epoch 13/15 fit 0.0774 val 0.3386
+  [slip 20261010_143058] epoch 14/15 fit 0.0711 val 0.8853
+  [slip 20261010_131512] epoch 14/15 fit 0.1647 val 0.5057
+  [slip 20261010_130530] epoch 14/15 fit 0.1647 val 0.5855
+  [slip 20261010_143058] epoch 15/15 fit 0.0692 val 0.6134
+  [slip 20261010_131512] epoch 15/15 fit 0.1010 val 0.9068
+  [slip 20261010_130530] epoch 15/15 fit 0.1010 val 0.3586
+  [slip 20261010_143931] epoch  1/15 fit 0.7233 val 1.0918
+  [slip 20261010_145610] epoch  1/15 fit 0.7119 val 0.7379
+  [slip 20261010_150047] epoch  1/15 fit 0.7574 val 0.8951
+  [slip 20261010_143931] epoch  2/15 fit 0.4814 val 0.9084
+  [slip 20261010_145610] epoch  2/15 fit 0.4143 val 0.6310
+  [slip 20261010_150047] epoch  2/15 fit 0.4351 val 0.7002
+  [slip 20261010_143931] epoch  3/15 fit 0.3439 val 0.7726
+  [slip 20261010_145610] epoch  3/15 fit 0.3182 val 0.6553
+  [slip 20261010_150047] epoch  3/15 fit 0.3049 val 0.6650
+  [slip 20261010_143931] epoch  4/15 fit 0.2633 val 0.9093
+  [slip 20261010_145610] epoch  4/15 fit 0.2563 val 0.4919
+  [slip 20261010_150047] epoch  4/15 fit 0.2942 val 0.6248
+  [slip 20261010_143931] epoch  5/15 fit 0.2309 val 0.7914
+  [slip 20261010_145610] epoch  5/15 fit 0.2457 val 0.5383
+  [slip 20261010_150047] epoch  5/15 fit 0.1976 val 0.7165
+  [slip 20261010_143931] epoch  6/15 fit 0.1732 val 0.6718
+  [slip 20261010_145610] epoch  6/15 fit 0.2099 val 0.5841
+  [slip 20261010_150047] epoch  6/15 fit 0.1728 val 0.6379
+  [slip 20261010_143931] epoch  7/15 fit 0.1506 val 0.9221
+  [slip 20261010_145610] epoch  7/15 fit 0.1704 val 0.4816
+  [slip 20261010_150047] epoch  7/15 fit 0.1461 val 0.7632
+  [slip 20261010_143931] epoch  8/15 fit 0.1423 val 0.7775
+  [slip 20261010_145610] epoch  8/15 fit 0.1453 val 0.4892
+  [slip 20261010_150047] epoch  8/15 fit 0.1249 val 0.7321
+  [slip 20261010_143931] epoch  9/15 fit 0.1121 val 1.3010
+  [slip 20261010_145610] epoch  9/15 fit 0.1689 val 0.5264
+  [slip 20261010_150047] epoch  9/15 fit 0.1089 val 0.7907
+  [slip 20261010_143931] epoch 10/15 fit 0.0934 val 1.1044
+  [slip 20261010_150047] epoch 10/15 fit 0.0924 val 0.6469
+  [slip 20261010_145610] epoch 10/15 fit 0.1771 val 0.4892
+  [slip 20261010_143931] epoch 11/15 fit 0.1014 val 0.7709
+  [slip 20261010_150047] epoch 11/15 fit 0.1052 val 0.6441
+  [slip 20261010_145610] epoch 11/15 fit 0.1274 val 0.5484
+  [slip 20261010_143931] epoch 12/15 fit 0.1008 val 0.6564
+  [slip 20261010_150047] epoch 12/15 fit 0.0863 val 1.0706
+  [slip 20261010_145610] epoch 12/15 fit 0.1106 val 0.6021
+  [slip 20261010_143931] epoch 13/15 fit 0.0866 val 0.6812
+  [slip 20261010_150047] epoch 13/15 fit 0.0929 val 0.9792
+  [slip 20261010_145610] epoch 13/15 fit 0.1121 val 1.1204
+  [slip 20261010_143931] epoch 14/15 fit 0.0906 val 0.6811
+  [slip 20261010_150047] epoch 14/15 fit 0.0728 val 0.9532
+  [slip 20261010_145610] epoch 14/15 fit 0.1182 val 0.8546
+  [slip 20261010_143931] epoch 15/15 fit 0.0892 val 0.6141
+  [slip 20261010_150047] epoch 15/15 fit 0.0627 val 1.2472
+  [slip 20261010_145610] epoch 15/15 fit 0.1063 val 1.3550
+  [slip 20261010_150428] epoch  1/15 fit 0.7675 val 0.7885
+  [slip 20261010_152122] epoch  1/15 fit 0.7612 val 0.8073
+  [slip 20261010_150428] epoch  2/15 fit 0.4644 val 0.6393
+  [slip 20261010_152122] epoch  2/15 fit 0.6106 val 0.8221
+  [slip 20261010_150428] epoch  3/15 fit 0.3348 val 0.5299
+  [slip 20261010_152122] epoch  3/15 fit 0.4439 val 0.7519
+  [slip 20261010_150428] epoch  4/15 fit 0.2530 val 0.5554
+  [slip 20261010_152122] epoch  4/15 fit 0.3905 val 0.7899
+  [slip 20261010_150428] epoch  5/15 fit 0.2206 val 0.5112
+  [slip 20261010_152122] epoch  5/15 fit 0.3804 val 0.6224
+  [slip 20261010_150428] epoch  6/15 fit 0.1782 val 0.5246
+  [slip 20261010_152122] epoch  6/15 fit 0.2989 val 0.5743
+  [slip 20261010_150428] epoch  7/15 fit 0.2433 val 0.5262
+  [slip 20261010_152122] epoch  7/15 fit 0.2360 val 0.5709
+  [slip 20261010_150428] epoch  8/15 fit 0.2251 val 0.4538
+  [slip 20261010_152122] epoch  8/15 fit 0.1937 val 0.5665
+  [slip 20261010_150428] epoch  9/15 fit 0.1602 val 0.6140
+  [slip 20261010_152122] epoch  9/15 fit 0.1659 val 0.5998
+  [slip 20261010_150428] epoch 10/15 fit 0.1323 val 0.5826
+  [slip 20261010_152122] epoch 10/15 fit 0.1478 val 0.5867
+  [slip 20261010_150428] epoch 11/15 fit 0.1213 val 0.5386
+  [slip 20261010_152122] epoch 11/15 fit 0.1266 val 0.6635
+  [slip 20261010_150428] epoch 12/15 fit 0.1326 val 0.4389
+  [slip 20261010_152122] epoch 12/15 fit 0.1260 val 0.8122
+  [slip 20261010_150428] epoch 13/15 fit 0.1122 val 0.5035
+  [slip 20261010_152122] epoch 13/15 fit 0.1018 val 0.7643
+  [slip 20261010_150428] epoch 14/15 fit 0.0949 val 0.5764
+  [slip 20261010_152122] epoch 14/15 fit 0.0874 val 0.8152
+  [slip 20261010_150428] epoch 15/15 fit 0.0983 val 0.5500
+  [slip 20261010_152122] epoch 15/15 fit 0.0790 val 0.8497
+
+       held_out             val  best_epoch  slip_share_clean  auc_clean  brier_clean  auc_all  brier_all  false_alarm_clean
+20261010_130530 20261010_131512          11            0.1889     0.9406       0.0563   0.9458     0.0593             0.0479
+20261010_131512 20261010_130530           6            0.0113     0.8767       0.1192   0.8812     0.1127             0.1296
+20261010_143058 20261010_130530           5            0.0541     0.8611       0.1109   0.8686     0.1113             0.1717
+20261010_143931 20261010_130530          15            0.1300     0.9216       0.0592   0.9185     0.0635             0.0483
+20261010_145610 20261010_130530           7            0.0926     0.9650       0.0288   0.9563     0.0543             0.0290
+20261010_150047 20261010_130530           4            0.2392     0.9309       0.0786   0.9136     0.0914             0.0700
+20261010_150428 20261010_130530          12            0.0799     0.9595       0.0215   0.9554     0.0331             0.0154
+20261010_152122 20261010_130530           8            0.1002     0.9737       0.0398   0.9687     0.0456             0.0576
+
+DEVELOPMENT P_slip (held out): AUC clean mean 0.929 (min 0.861); AUC all runs mean 0.926; false alarm (P>=0.5, no slip) clean mean 7.1 %
+== 2026-10-11 00:15:21 closed loop integration (jobs 3)
+8 sessions with rel + slip models
+
+DEVELOPMENT integration, CLEAN runs (EKF9 position RMSE, m):
+          model  slip_pct  p_auc  p_high_pct  fixed  pslip  lstm  full  oracle_full
+20261010_130530    18.888  0.941      20.084  0.238  0.280 0.109 0.127        0.112
+20261010_131512     1.131  0.877      13.788  0.042  0.099 0.019 0.054        0.031
+20261010_143058     5.413  0.861      18.640  2.173  2.162 1.898 1.858        0.119
+20261010_143931    12.997  0.922      14.586  0.549  1.133 0.204 0.226        0.137
+20261010_145610     9.263  0.965      11.000  0.307  0.452 0.146 0.104        0.136
+20261010_150047    23.921  0.931      24.038  1.373  2.892 0.369 0.361        0.162
+20261010_150428     7.985  0.959       8.168  0.191  0.176 0.126 0.099        0.086
+20261010_152122    10.024  0.974      14.604  0.488  0.467 0.151 0.143        0.090
+means: fixed 0.670  pslip 0.958  lstm 0.378  full 0.372  oracle_full 0.109
+
+DEVELOPMENT integration, FAULT runs (mean RMSE, m):
+                 fixed   pslip   lstm   full  oracle_full
+sensor type                                              
+imu    bias     11.908  12.189  3.023  3.086        2.192
+       drift     5.799   5.830  3.201  3.272        2.338
+       dropout   3.047   2.855  1.699  1.582        0.384
+       noise     3.347   3.251  1.790  1.804        0.616
+odom   bias     14.109  12.726  1.357  1.231        1.400
+       drift     5.186   5.034  1.165  1.094        0.980
+       dropout   1.908   2.560  1.337  1.444        0.154
+       noise     1.278   1.682  0.863  0.720        0.282
+pslip vs fixed [clean]: wins 3/8, median change +32.4 %
+pslip vs fixed [fault]: wins 86/208, median change +2.5 %
+full vs lstm [clean]: wins 5/8, median change -2.0 %
+full vs lstm [fault]: wins 114/208, median change -1.0 %
+full vs fixed [clean]: wins 7/8, median change -53.7 %
+full vs fixed [fault]: wins 163/208, median change -51.9 %
+== 2026-10-11 00:24:08 ALL DONE
