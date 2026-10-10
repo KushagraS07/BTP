@@ -1,0 +1,54 @@
+# PROVISIONAL detector parameters — development only, NOT calibrated.
+# Source: session 20261003_022102 (flat floor, 13 stops), 0.5 s windows, see docs/decisions.md.
+# Final values come from the calibration pipeline (build step 7) on separate calibration runs.
+detector:
+  status: provisional
+  imu_rate_hz: 50.0
+
+  eps_cmd: 1.0e-6
+  settle_delay: 0.3            # all 13 stops settled in 0.08-0.24 s
+
+  # Tier 3 — Tests C/D (dev): changed-beam fraction still = 0.000 (p99), moving >= 0.036 (p1)
+  lidar_changed_thresh: 0.02
+  lidar_max_age: 0.25          # 2.5 scan periods at 10 Hz
+
+  # stuck detection — Tests C/D with a synthetic 0.3 m/s wheel claim on real still data:
+  # out1-out0 >= 0.177 once claim >= 0.2 m; still out0 p99 0.045
+  stuck_enable: true
+  stuck_min_claim: 0.2
+  stuck_margin: 0.1
+  stuck_max_out0: 0.05
+  stuck_min_ref_age: 0.5
+
+  n_frozen: 10                 # 0.2 s of bit-identical IMU samples (noise makes this impossible when healthy)
+
+  r_imu_min: 0.5               # unused until the LSTM exists
+  r_odom_min: 0.5              # below this the odometry gate is skipped (faulty wheels must not block ZUPT)
+  p_slip_max: 0.5
+
+  odom_v_eps: 1.0e-3
+  odom_w_eps: 1.0e-3
+
+  window: 25                   # 0.5 s at 50 Hz
+  var_floor:                   # (0.5*sigma_SDF)^2
+    gyro_z: 1.9e-5
+    accel_x: 1.0e-8
+    accel_y: 1.0e-8
+  flat:                        # ~ still p99 (7.0e-8 / 1.26e-4) with margin
+    gyro_z: 1.5e-4
+    accel_x: 1.0e-7
+    accel_y: 1.0e-7
+  veto:                        # well inside the moving distribution
+    gyro_z: 1.0e-3
+    accel_x: 1.0e-4
+    accel_y: 1.0e-5
+
+  acc_mean_thresh: 0.05        # still: |mean| ~1e-4; slide on mu=0.1 patch: 0.53
+
+  n_confirm: 5                 # 0.1 s
+  c_min: 0.5
+  r0_scale: 1.0
+  rmax_scale: 100.0
+  max_update_rate_hz: 50.0      # = IMU rate (no limit); 10 Hz caused heading jumps, see decisions 2026-10-05
+
+  stall_warn_time: 3.0

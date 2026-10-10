@@ -104,6 +104,11 @@ xmlns:xacro="http://www.ros.org/wiki/xacro">
     </inertial>
 </xacro:macro>
 
+<!-- launch args (defaults = original robot); added for the full system, ported from Paper_ws -->
+<xacro:arg name="gyro_bias_z" default="0.0000075"/>
+<xacro:arg name="imu_rate" default="50"/>
+<xacro:arg name="odom_rate" default="50"/>
+
 <xacro:include filename="$(find mobile_robot)/model/robot.gazebo"/>
 
 <!-- We need to have this link otherwise Gazebo will complain -->

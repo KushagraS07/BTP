@@ -46,7 +46,7 @@
         <odom_topic>odom</odom_topic>
         <frame_id>odom</frame_id>
         <child_frame_id>base_footprint</child_frame_id>
-        <odom_publisher_frequency>100</odom_publisher_frequency>
+        <odom_publish_frequency>$(arg odom_rate)</odom_publish_frequency>   <!-- was misspelled 'odom_publisher_frequency' (ignored, plugin default ~50 Hz) -->
 
 </plugin>
 
@@ -137,7 +137,7 @@
   <sensor name="imu_sensor" type="imu">
 
     <always_on>true</always_on>
-    <update_rate>50</update_rate>          <!-- Changed from 100 to 50 Hz -->
+    <update_rate>$(arg imu_rate)</update_rate>   <!-- launch arg imu_rate (default 50) -->
     <visualize>false</visualize>
     <topic>imu</topic>
     <gz_frame_id>imu_link</gz_frame_id>   <!-- Added for ROS bridge -->
@@ -150,35 +150,36 @@
 
       <angular_velocity>
         <x><noise type="gaussian">
-          <mean>0.0</mean><stddev>0.00873</stddev>
+          <mean>0.0</mean><stddev>${0.00873 * ($(arg imu_rate) / 50.0) ** 0.5}</stddev>
           <bias_mean>0.0000075</bias_mean><bias_stddev>0.0000008</bias_stddev>
         </noise></x>
         <y><noise type="gaussian">
-          <mean>0.0</mean><stddev>0.00873</stddev>
+          <mean>0.0</mean><stddev>${0.00873 * ($(arg imu_rate) / 50.0) ** 0.5}</stddev>
           <bias_mean>0.0000075</bias_mean><bias_stddev>0.0000008</bias_stddev>
         </noise></y>
         <z><noise type="gaussian">
-          <mean>0.0</mean><stddev>0.00873</stddev>
-          <bias_mean>0.0000075</bias_mean><bias_stddev>0.0000008</bias_stddev>
+          <mean>0.0</mean><stddev>${0.00873 * ($(arg imu_rate) / 50.0) ** 0.5}</stddev>
+          <!-- gyro z bias: launch arg gyro_bias_z (default = original 0.0000075) -->
+          <bias_mean>$(arg gyro_bias_z)</bias_mean><bias_stddev>0.0000008</bias_stddev>
         </noise></z>
       </angular_velocity>
 
       <linear_acceleration>
         <x><noise type="gaussian">
          <mean>0.0</mean>
-         <stddev>0.0002</stddev>
+         <stddev>${0.0002 * ($(arg imu_rate) / 50.0) ** 0.5}</stddev>
          <bias_mean>0.0001</bias_mean>
          <bias_stddev>0.00001</bias_stddev>
         </noise></x>
         <y><noise type="gaussian">
          <mean>0.0</mean>
-         <stddev>0.0002</stddev>
+         <stddev>${0.0002 * ($(arg imu_rate) / 50.0) ** 0.5}</stddev>
          <bias_mean>0.0001</bias_mean>
          <bias_stddev>0.00001</bias_stddev>
         </noise></y>
         <z><noise type="gaussian">
          <mean>0.0</mean>
-         <stddev>0.0002</stddev>
+         <stddev>${0.0002 * ($(arg imu_rate) / 50.0) ** 0.5}</stddev>
          <bias_mean>0.0001</bias_mean>
          <bias_stddev>0.00001</bias_stddev>
         </noise></z>

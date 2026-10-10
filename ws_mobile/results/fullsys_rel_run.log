@@ -1,0 +1,191 @@
+nohup: ignoring input
+== 2026-10-10 15:51:39 build_dataset (jobs 3)
+8 sessions pass fs_check: ['20261010_130530', '20261010_131512', '20261010_143058', '20261010_143931', '20261010_145610', '20261010_150047', '20261010_150428', '20261010_152122']
+216 runs (clean + 26 faults per session)
+  10/216  (4 s)
+  20/216  (7 s)
+  30/216  (10 s)
+  40/216  (13 s)
+  50/216  (16 s)
+  60/216  (19 s)
+  70/216  (23 s)
+  80/216  (26 s)
+  90/216  (30 s)
+  100/216  (33 s)
+  110/216  (37 s)
+  120/216  (40 s)
+  130/216  (44 s)
+  140/216  (47 s)
+  150/216  (51 s)
+  160/216  (55 s)
+  170/216  (59 s)
+  180/216  (62 s)
+  190/216  (66 s)
+  200/216  (70 s)
+  210/216  (73 s)
+  216/216  (75 s)
+
+integrity check (development): worst severity RMSE / clean RMSE >= 1.05
+  63/64 pass; below 1.05: ['20261010_143058 imu dropout x1.01']
+wrote 216 files to /home/kushagra/ws_mobile/fullsys_logs/features
+== 2026-10-10 15:53:04 train (jobs 3)
+dev sessions (8): ['20261010_130530', '20261010_131512', '20261010_143058', '20261010_143931', '20261010_145610', '20261010_150047', '20261010_150428', '20261010_152122']
+/home/kushagra/ws_mobile/fullsys/learning/train.py:130: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:838.)
+  tot += float(loss) * len(b)
+/home/kushagra/ws_mobile/fullsys/learning/train.py:130: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:838.)
+  tot += float(loss) * len(b)
+/home/kushagra/ws_mobile/fullsys/learning/train.py:130: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:838.)
+  tot += float(loss) * len(b)
+  [20261010_143058] epoch  1/15 fit 0.03818 val 0.02771
+  [20261010_131512] epoch  1/15 fit 0.04045 val 0.03183
+  [20261010_130530] epoch  1/15 fit 0.04045 val 0.03055
+  [20261010_143058] epoch  2/15 fit 0.01901 val 0.02587
+  [20261010_131512] epoch  2/15 fit 0.02090 val 0.02525
+  [20261010_130530] epoch  2/15 fit 0.02090 val 0.02378
+  [20261010_143058] epoch  3/15 fit 0.01750 val 0.02359
+  [20261010_131512] epoch  3/15 fit 0.01793 val 0.02454
+  [20261010_130530] epoch  3/15 fit 0.01793 val 0.02651
+  [20261010_143058] epoch  4/15 fit 0.01557 val 0.02357
+  [20261010_131512] epoch  4/15 fit 0.01709 val 0.02332
+  [20261010_130530] epoch  4/15 fit 0.01709 val 0.02353
+  [20261010_143058] epoch  5/15 fit 0.01447 val 0.02620
+  [20261010_131512] epoch  5/15 fit 0.01656 val 0.02600
+  [20261010_130530] epoch  5/15 fit 0.01656 val 0.02369
+  [20261010_143058] epoch  6/15 fit 0.01470 val 0.02209
+  [20261010_131512] epoch  6/15 fit 0.01604 val 0.02318
+  [20261010_130530] epoch  6/15 fit 0.01604 val 0.02415
+  [20261010_143058] epoch  7/15 fit 0.01332 val 0.02009
+  [20261010_131512] epoch  7/15 fit 0.01547 val 0.02285
+  [20261010_130530] epoch  7/15 fit 0.01547 val 0.02348
+  [20261010_143058] epoch  8/15 fit 0.01248 val 0.02006
+  [20261010_131512] epoch  8/15 fit 0.01465 val 0.02450
+  [20261010_130530] epoch  8/15 fit 0.01465 val 0.02546
+  [20261010_143058] epoch  9/15 fit 0.01329 val 0.02097
+  [20261010_131512] epoch  9/15 fit 0.01623 val 0.02626
+  [20261010_130530] epoch  9/15 fit 0.01623 val 0.02808
+  [20261010_143058] epoch 10/15 fit 0.01210 val 0.02065
+  [20261010_131512] epoch 10/15 fit 0.01481 val 0.02384
+  [20261010_130530] epoch 10/15 fit 0.01481 val 0.02344
+  [20261010_143058] epoch 11/15 fit 0.01247 val 0.02165
+  [20261010_131512] epoch 11/15 fit 0.01366 val 0.02325
+  [20261010_130530] epoch 11/15 fit 0.01366 val 0.02410
+  [20261010_143058] epoch 12/15 fit 0.01185 val 0.02116
+  [20261010_131512] epoch 12/15 fit 0.01312 val 0.02206
+  [20261010_130530] epoch 12/15 fit 0.01312 val 0.02262
+  [20261010_143058] epoch 13/15 fit 0.01230 val 0.02206
+  [20261010_131512] epoch 13/15 fit 0.01267 val 0.02178
+  [20261010_130530] epoch 13/15 fit 0.01267 val 0.02319
+  [20261010_143058] epoch 14/15 fit 0.01200 val 0.02184
+  [20261010_131512] epoch 14/15 fit 0.01331 val 0.02162
+  [20261010_130530] epoch 14/15 fit 0.01331 val 0.02279
+  [20261010_143058] epoch 15/15 fit 0.01227 val 0.02068
+  [20261010_131512] epoch 15/15 fit 0.01285 val 0.02216
+  [20261010_130530] epoch 15/15 fit 0.01285 val 0.02352
+  [20261010_143931] epoch  1/15 fit 0.03830 val 0.02868
+  [20261010_145610] epoch  1/15 fit 0.04233 val 0.03358
+  [20261010_150047] epoch  1/15 fit 0.03975 val 0.02937
+  [20261010_143931] epoch  2/15 fit 0.01874 val 0.02630
+  [20261010_145610] epoch  2/15 fit 0.02091 val 0.02579
+  [20261010_150047] epoch  2/15 fit 0.02012 val 0.02713
+  [20261010_143931] epoch  3/15 fit 0.01721 val 0.02568
+  [20261010_145610] epoch  3/15 fit 0.01800 val 0.02458
+  [20261010_150047] epoch  3/15 fit 0.01907 val 0.02630
+  [20261010_143931] epoch  4/15 fit 0.01768 val 0.02552
+  [20261010_145610] epoch  4/15 fit 0.01956 val 0.02471
+  [20261010_150047] epoch  4/15 fit 0.01731 val 0.02518
+  [20261010_143931] epoch  5/15 fit 0.01757 val 0.03094
+  [20261010_145610] epoch  5/15 fit 0.01668 val 0.02354
+  [20261010_150047] epoch  5/15 fit 0.01634 val 0.02383
+  [20261010_143931] epoch  6/15 fit 0.01599 val 0.02386
+  [20261010_145610] epoch  6/15 fit 0.01569 val 0.02461
+  [20261010_150047] epoch  6/15 fit 0.01529 val 0.02302
+  [20261010_143931] epoch  7/15 fit 0.01448 val 0.02419
+  [20261010_145610] epoch  7/15 fit 0.01561 val 0.02243
+  [20261010_150047] epoch  7/15 fit 0.01462 val 0.02243
+  [20261010_143931] epoch  8/15 fit 0.01409 val 0.02431
+  [20261010_150047] epoch  8/15 fit 0.01417 val 0.02305
+  [20261010_145610] epoch  8/15 fit 0.01523 val 0.02257
+  [20261010_143931] epoch  9/15 fit 0.01378 val 0.02310
+  [20261010_150047] epoch  9/15 fit 0.01457 val 0.02543
+  [20261010_145610] epoch  9/15 fit 0.01428 val 0.02181
+  [20261010_143931] epoch 10/15 fit 0.01355 val 0.02339
+  [20261010_150047] epoch 10/15 fit 0.01503 val 0.02239
+  [20261010_145610] epoch 10/15 fit 0.01391 val 0.02177
+  [20261010_143931] epoch 11/15 fit 0.01286 val 0.02338
+  [20261010_150047] epoch 11/15 fit 0.01341 val 0.02165
+  [20261010_145610] epoch 11/15 fit 0.01335 val 0.02150
+  [20261010_143931] epoch 12/15 fit 0.01358 val 0.02445
+  [20261010_150047] epoch 12/15 fit 0.01301 val 0.02246
+  [20261010_145610] epoch 12/15 fit 0.01307 val 0.02311
+  [20261010_143931] epoch 13/15 fit 0.01308 val 0.02365
+  [20261010_150047] epoch 13/15 fit 0.01327 val 0.02022
+  [20261010_145610] epoch 13/15 fit 0.01306 val 0.02354
+  [20261010_143931] epoch 14/15 fit 0.01301 val 0.02456
+  [20261010_150047] epoch 14/15 fit 0.01319 val 0.02239
+  [20261010_145610] epoch 14/15 fit 0.01322 val 0.02366
+  [20261010_143931] epoch 15/15 fit 0.01375 val 0.02486
+  [20261010_150047] epoch 15/15 fit 0.01329 val 0.02227
+  [20261010_145610] epoch 15/15 fit 0.01329 val 0.02125
+  [20261010_150428] epoch  1/15 fit 0.04002 val 0.02765
+  [20261010_152122] epoch  1/15 fit 0.04090 val 0.02865
+  [20261010_150428] epoch  2/15 fit 0.01928 val 0.02816
+  [20261010_152122] epoch  2/15 fit 0.02057 val 0.02530
+  [20261010_150428] epoch  3/15 fit 0.01759 val 0.02399
+  [20261010_152122] epoch  3/15 fit 0.01838 val 0.02449
+  [20261010_150428] epoch  4/15 fit 0.01644 val 0.02290
+  [20261010_152122] epoch  4/15 fit 0.02003 val 0.03232
+  [20261010_150428] epoch  5/15 fit 0.01828 val 0.02395
+  [20261010_152122] epoch  5/15 fit 0.01745 val 0.02133
+  [20261010_150428] epoch  6/15 fit 0.01574 val 0.02202
+  [20261010_152122] epoch  6/15 fit 0.01581 val 0.02133
+  [20261010_150428] epoch  7/15 fit 0.01518 val 0.02332
+  [20261010_152122] epoch  7/15 fit 0.01530 val 0.02401
+  [20261010_150428] epoch  8/15 fit 0.01480 val 0.02066
+  [20261010_152122] epoch  8/15 fit 0.01540 val 0.02237
+  [20261010_150428] epoch  9/15 fit 0.01405 val 0.02413
+  [20261010_152122] epoch  9/15 fit 0.01475 val 0.02165
+  [20261010_150428] epoch 10/15 fit 0.01457 val 0.02158
+  [20261010_152122] epoch 10/15 fit 0.01414 val 0.02028
+  [20261010_150428] epoch 11/15 fit 0.01461 val 0.02187
+  [20261010_152122] epoch 11/15 fit 0.01384 val 0.02091
+  [20261010_150428] epoch 12/15 fit 0.01406 val 0.02056
+  [20261010_152122] epoch 12/15 fit 0.01491 val 0.02227
+  [20261010_150428] epoch 13/15 fit 0.01328 val 0.01984
+  [20261010_152122] epoch 13/15 fit 0.01410 val 0.02144
+  [20261010_150428] epoch 14/15 fit 0.01287 val 0.02043
+  [20261010_152122] epoch 14/15 fit 0.01408 val 0.02071
+  [20261010_150428] epoch 15/15 fit 0.01331 val 0.02010
+  [20261010_152122] epoch 15/15 fit 0.01291 val 0.01893
+
+       held_out             val  best_epoch  best_val  rmse_imu  rmse_odom  one_imu  one_odom  mean_imu  mean_odom  n_fit_windows  n_test_windows
+20261010_130530 20261010_131512          12    0.0226    0.1631     0.1323   0.3683    0.3516    0.3231     0.3123         127656           89019
+20261010_131512 20261010_130530          14    0.0216    0.1527     0.1492   0.3664    0.3466    0.3227     0.3081         127656           86994
+20261010_143058 20261010_130530           8    0.0201    0.1569     0.2612   0.3634    0.3536    0.3211     0.3142         125064           99927
+20261010_143931 20261010_130530           9    0.0231    0.1547     0.1422   0.3621    0.3669    0.3195     0.3233         124254          104004
+20261010_145610 20261010_130530          15    0.0212    0.1316     0.1321   0.3603    0.3554    0.3187     0.3151         124794          101277
+20261010_150047 20261010_130530          13    0.0202    0.1485     0.1447   0.3715    0.3680    0.3244     0.3228         122310          113805
+20261010_150428 20261010_130530          13    0.0198    0.1296     0.1186   0.3720    0.3577    0.3255     0.3168         121662          117018
+20261010_152122 20261010_130530          15    0.0189    0.1247     0.0765   0.3466    0.3699    0.3090     0.3248         124686          101844
+
+DEVELOPMENT (open loop, r error): mean RMSE r_imu 0.1452 (always-1 0.3638, fit-mean 0.3205); r_odom 0.1446 (always-1 0.3587, fit-mean 0.3172)
+== 2026-10-10 17:34:17 closed loop (jobs 3)
+8 models
+
+DEVELOPMENT closed loop (EKF9 position RMSE, m; mean over held-out fault runs):
+                   n  lstm_beats_fixed  oracle_beats_fixed   fixed   lstm  oracle
+sensor type                                                                      
+imu    bias     24.0              23.0                21.0  11.908  2.332   2.926
+       drift    24.0              20.0                20.0   5.799  3.004   2.495
+       dropout  24.0              14.0                22.0   3.047  1.600   1.045
+       noise    32.0              18.0                19.0   3.347  1.877   1.498
+odom   bias     24.0              24.0                23.0  14.109  1.030   1.636
+       drift    24.0              20.0                24.0   5.186  1.306   1.262
+       dropout  24.0              15.0                19.0   1.908  2.082   0.705
+       noise    32.0              18.0                26.0   1.278  0.842   0.739
+
+clean runs: fixed 0.670  lstm 0.895  oracle 0.670  (lstm/fixed +33.5 %)
+fault runs: lstm beats fixed in 152/208; median change -43.4 %
+== 2026-10-10 17:39:01 ALL DONE

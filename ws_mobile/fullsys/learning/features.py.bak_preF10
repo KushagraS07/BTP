@@ -1,0 +1,109 @@
+"""
+Per-step LSTM features for the EKF9 reliability model (FINDINGS_fullsys.md F7).
+
+A PARALLEL fixed-R EKF9 run (IMU-driven, NHC + ZUPT/ZARU via the stationarity detector, wheels
+and gyro at their nominal R, no LiDAR in v1) is replayed over a (possibly faulted) session. Its
+innovations are features; the LSTM output never feeds back into this run (as in Phase 3B), so
+training and run-time inputs are the same computation.
+
+One feature row per IMU sample (50 Hz after block averaging). Odometry values / innovations are
+zero-order-held (latest at or before the IMU time).
+
+  odom_innov_v, odom_innov_w, odom_nis    latest wheel update innovation (z - h) and NIS
+  gyro_innov, gyro_nis                    gyro update innovation and NIS at this sample
+  gyro_z                                  raw gyro z (as delivered to the filter)
+  acc_x, acc_y, acc_z                     raw accelerometer, clipped to +-ACC_CLIP (D6)
+  odom_v, odom_w                          latest wheel speeds
+  wheel_imu_dis                           odom_w - gyro_z
+  acc_z_var, acc_x_hp_var                 terrain cues: variance over the last VAR_WIN samples of
+                                          acc_z and of high-passed acc_x (acc_x - its mean over
+                                          the same window)
+Labels r_imu (at the IMU sample) and r_odom (zero-order-held) are added by build().
+"""
+import numpy as np
+import pandas as pd
+
+from zupt.core.detector import Evidence, ImuSample, StationarityDetector, gravity_compensated_horizontal
+from zupt.ekf.ekf9 import Ekf9
+from zupt.replay import quat_to_rpy
+
+ACC_CLIP = 25.0      # m/s^2, D6 (Phase 2 FINDINGS: largest true acceleration seen 22 m/s^2)
+VAR_WIN = 25         # samples (0.5 s at 50 Hz), same window as the detector
+FEATURES = ['odom_innov_v', 'odom_innov_w', 'odom_nis', 'gyro_innov', 'gyro_nis', 'gyro_z',
+            'acc_x', 'acc_y', 'acc_z', 'odom_v', 'odom_w', 'wheel_imu_dis', 'acc_z_var', 'acc_x_hp_var']
+
+
+def _rolling_var(x, w):
+    s = pd.Series(x)
+    return s.rolling(w, min_periods=1).var(ddof=0).fillna(0.0).values
+
+
+def run_fixed_ekf9(imu, odom, cmd, gt, det_cfg, p9):
+    """Fixed-R EKF9 replay; returns per-IMU-sample innovations and the filter pose."""
+    roll, pitch, _ = quat_to_rpy(imu.orient_x, imu.orient_y, imu.orient_z, imu.orient_w)
+    roll, pitch = roll.values, pitch.values
+    ax, ay, az = imu.linear_acc_x.values, imu.linear_acc_y.values, imu.linear_acc_z.values
+    gz = imu.angular_vel_z.values
+    _, _, gyaw = quat_to_rpy(gt.gt_orient_x, gt.gt_orient_y, gt.gt_orient_z, gt.gt_orient_w)
+    f = Ekf9(p9, gt.gt_x.iat[0], gt.gt_y.iat[0], float(gyaw.iat[0]))
+    det = StationarityDetector(det_cfg, have_lidar=False, logger=lambda *_: None)
+    ov, ow = odom.linear_x.values, odom.angular_z.values
+    ev = sorted([(t, 0, k) for k, t in enumerate(imu.t.values)] +
+                [(t, 1, k) for k, t in enumerate(odom.t.values)])
+    ct = cmd.t.values if cmd is not None and len(cmd) else np.array([])
+    n = len(imu)
+    out = np.zeros((n, 7))       # odom_innov_v, odom_innov_w, odom_nis, gyro_innov, gyro_nis, x, y
+    last_odom = (np.nan, np.nan, np.nan)
+    lo = None
+    for tt, kind, k in ev:
+        f.predict(tt)
+        if kind == 1:
+            innov, nis = f.update_odom(ov[k], ow[k])
+            last_odom = (float(innov[0]), float(innov[1]), float(nis))
+            lo = (ov[k], ow[k])
+            continue
+        hx, hy = gravity_compensated_horizontal(ax[k], ay[k], az[k], roll[k], pitch[k])
+        f.set_accel(hx, hy)
+        gi, gnis = f.update_gyro(gz[k])
+        f.update_nhc(0.0)
+        e = Evidence()
+        ci = np.searchsorted(ct, tt, side='right') - 1
+        if ci >= 0:
+            e.v_cmd, e.w_cmd = cmd.linear_x.iat[ci], cmd.angular_z.iat[ci]
+        if lo is not None:
+            e.v_odom, e.w_odom = lo
+        o = det.step(ImuSample(tt, gz[k], ax[k], ay[k], az[k], roll[k], pitch[k]), e)
+        if o.apply_update:
+            f.update_zupt(o.r_scale)
+            f.update_zaru(o.r_scale)
+        out[k] = (*last_odom, float(gi[0]), float(gnis), f.x[0], f.x[1])
+    return out
+
+
+def build(fr, cmd, gt, det_cfg, p9):
+    """fr = learning.faults.FaultResult. Returns a DataFrame: t, FEATURES, r_imu, r_odom, ekf_x, ekf_y."""
+    imu, odom = fr.imu, fr.odom
+    inn = run_fixed_ekf9(imu, odom, cmd, gt, det_cfg, p9)
+    t = imu.t.values
+    oi = np.clip(np.searchsorted(odom.t.values, t, side='right') - 1, 0, len(odom) - 1)
+    has_odom = np.searchsorted(odom.t.values, t, side='right') > 0
+    ax = np.clip(imu.linear_acc_x.values, -ACC_CLIP, ACC_CLIP)
+    ay = np.clip(imu.linear_acc_y.values, -ACC_CLIP, ACC_CLIP)
+    az = np.clip(imu.linear_acc_z.values, -ACC_CLIP, ACC_CLIP)
+    gz = imu.angular_vel_z.values
+    ov = np.where(has_odom, odom.linear_x.values[oi], 0.0)
+    ow = np.where(has_odom, odom.angular_z.values[oi], 0.0)
+    hp = ax - pd.Series(ax).rolling(VAR_WIN, min_periods=1).mean().values
+    d = pd.DataFrame({
+        't': t,
+        'odom_innov_v': np.nan_to_num(inn[:, 0]), 'odom_innov_w': np.nan_to_num(inn[:, 1]),
+        'odom_nis': np.nan_to_num(inn[:, 2]), 'gyro_innov': inn[:, 3], 'gyro_nis': inn[:, 4],
+        'gyro_z': gz, 'acc_x': ax, 'acc_y': ay, 'acc_z': az, 'odom_v': ov, 'odom_w': ow,
+        'wheel_imu_dis': ow - gz, 'acc_z_var': _rolling_var(az, VAR_WIN),
+        'acc_x_hp_var': _rolling_var(hp, VAR_WIN),
+        'r_imu': fr.r_imu, 'r_odom': np.where(has_odom, fr.r_odom[oi], 1.0),
+        'ekf_x': inn[:, 5], 'ekf_y': inn[:, 6],
+    })
+    if not np.all(np.isfinite(d[FEATURES].values)):
+        raise ValueError('non-finite feature values')
+    return d

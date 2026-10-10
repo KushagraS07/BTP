@@ -1,0 +1,131 @@
+#!/usr/bin/env python3
+"""
+build_dataset.py -- F7 step 3: features + labels for every dev session x (clean + 26 faults).
+
+Sessions: config/dev_sessions.txt ("<session> <world>" per line, '#' comments). Each one must
+pass tools/fs_check.py (KEEP) or the build ABORTS -- nothing else is selected implicitly.
+Output: <ws_mobile>/fullsys_logs/features/<name>.npz  (columns, data, manifest json string)
+        <ws_mobile>/fullsys_logs/features/summary.csv  (rows, fixed-EKF9 RMSE per run)
+Also prints the Phase 2-style integrity check (development): for every session x sensor x fault
+type, the worst severity must raise the fixed EKF9 position RMSE to >= 1.05 x the clean RMSE.
+Usage: OMP_NUM_THREADS=1 python3 learning/build_dataset.py [--jobs N] [--only SESSION ...]
+"""
+import argparse
+import json
+import multiprocessing as mp
+import os
+import subprocess
+import sys
+import time
+
+import numpy as np
+import pandas as pd
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(HERE, '..'))
+from zupt import paths as _P  # noqa: E402
+
+FEAT_DIR = os.path.join(_P.WS, 'fullsys_logs', 'features')
+DEV_LIST = os.path.join(_P.CONFIG, 'dev_sessions.txt')
+DET = os.path.join(_P.CONFIG, 'zupt_params_dev.yaml')
+EKF9 = os.path.join(_P.CONFIG, 'ekf9_params_dev.yaml')
+H1_RATIO = 1.05
+
+
+def read_list(path):
+    out = []
+    for line in open(path):
+        line = line.split('#')[0].strip()
+        if line:
+            s, w = line.split()
+            out.append((s, w))
+    return out
+
+
+def keep(session, world, data):
+    p = subprocess.run([sys.executable, os.path.join(HERE, '..', 'tools', 'fs_check.py'), session,
+                        '--data', data, '--world', world], capture_output=True, text=True)
+    return 'KEEP' in p.stdout, p.stdout
+
+
+def work(args):
+    session, data, name = args
+    from zupt.core.config import load_config
+    from zupt.ekf.ekf9 import load_ekf9_params
+    from zupt.replay import load_session
+    from learning.faults import all_faults, clean, inject
+    from learning.features import build
+    import contextlib
+    import io
+    with contextlib.redirect_stdout(io.StringIO()):
+        sess = load_session(data, session)
+    cfg, p9 = load_config(DET), load_ekf9_params(EKF9)
+    gt = sess[3]
+    faults = {f.name: f for f in all_faults(session)}
+    fr = clean(sess) if name == session else inject(sess, faults[name])
+    d = build(fr, sess[2], gt, cfg, p9)
+    gx, gy = np.interp(d.t, gt.t, gt.gt_x), np.interp(d.t, gt.t, gt.gt_y)
+    rmse = float(np.sqrt(np.mean((d.ekf_x - gx) ** 2 + (d.ekf_y - gy) ** 2)))
+    man = dict(fr.manifest, session=session, name=name, rmse_fixed_ekf9=rmse)
+    np.savez_compressed(os.path.join(FEAT_DIR, f'{name}.npz'), columns=np.array(list(d.columns), dtype=str),
+                        data=d.values.astype(np.float64), manifest=json.dumps(man))
+    return dict(name=name, session=session, sensor=man.get('sensor'), type=man.get('type'),
+                severity=man.get('severity'), rows=len(d), rmse=rmse)
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--jobs', type=int, default=1)
+    ap.add_argument('--data', default=_P.DATA)
+    ap.add_argument('--list', default=DEV_LIST)
+    ap.add_argument('--only', nargs='*')
+    ap.add_argument('--skip-check', action='store_true', help='testing only (synthetic / foreign data)')
+    a = ap.parse_args()
+    sessions = read_list(a.list)
+    if a.only:
+        sessions = [x for x in sessions if x[0] in a.only]
+    for s, w in sessions:
+        if not a.skip_check:
+            ok, txt = keep(s, w, a.data)
+            if not ok:
+                sys.exit(f'ABORT: {s} does not pass fs_check (F5/F5a):\n{txt}')
+    print(f'{len(sessions)} sessions pass fs_check: {[s for s, _ in sessions]}', flush=True)
+    os.makedirs(FEAT_DIR, exist_ok=True)
+    from learning.faults import all_faults
+    tasks = [(s, a.data, s) for s, _ in sessions] + [(s, a.data, f.name) for s, _ in sessions for f in all_faults(s)]
+    print(f'{len(tasks)} runs (clean + 26 faults per session)', flush=True)
+    t0 = time.time()
+    rows = []
+    if a.jobs <= 1:
+        it = map(work, tasks)
+    else:
+        pool = mp.get_context('fork').Pool(a.jobs)
+        it = pool.imap(work, tasks)
+    for i, r in enumerate(it, 1):
+        rows.append(r)
+        if i % 10 == 0 or i == len(tasks):
+            print(f'  {i}/{len(tasks)}  ({time.time() - t0:.0f} s)', flush=True)
+    # summary over ALL feature files on disk (also those from earlier --only runs)
+    import glob
+    allrows = []
+    for p in sorted(glob.glob(os.path.join(FEAT_DIR, '*.npz'))):
+        m = json.loads(str(np.load(p)['manifest']))
+        allrows.append(dict(name=m['name'], session=m['session'], sensor=m.get('sensor'), type=m.get('type'),
+                            severity=m.get('severity'), rmse=m['rmse_fixed_ekf9']))
+    df = pd.DataFrame(allrows)
+    df.to_csv(os.path.join(FEAT_DIR, 'summary.csv'), index=False)
+    print('\nintegrity check (development): worst severity RMSE / clean RMSE >= 1.05')
+    base = df[df.type == 'clean'].set_index('session').rmse
+    fails, total = [], 0
+    worst = {'noise': 'extreme', 'bias': 'large', 'drift': 'fast', 'dropout': 'long'}
+    for (s, sen, ft), g in df[df.type != 'clean'].groupby(['session', 'sensor', 'type']):
+        total += 1
+        r = float(g[g.severity == worst[ft]].rmse.iloc[0]) / base[s]
+        if r < H1_RATIO:
+            fails.append(f'{s} {sen} {ft} x{r:.2f}')
+    print(f'  {total - len(fails)}/{total} pass' + (f'; below 1.05: {fails}' if fails else ''))
+    print(f'wrote {len(df)} files to {FEAT_DIR}')
+
+
+if __name__ == '__main__':
+    main()

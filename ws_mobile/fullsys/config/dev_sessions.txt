@@ -1,0 +1,10 @@
+# Development sessions for the EKF9 reliability LSTM (FINDINGS_fullsys.md F6). "<session> <world>"
+# Every session must pass tools/fs_check.py (F5/F5a) or learning/build_dataset.py aborts.
+20261010_130530 terrain   # D1 lane 1 ice
+20261010_131512 terrain   # D2 lane 3 rumble strips
+20261010_143058 terrain   # D3 lane 4 ramp + icy descent (slide)
+20261010_143931 terrain   # D4 lane 5 mixed
+20261010_145610 indoor    # D5 corridor -> north
+20261010_150047 indoor    # D6 south -> corridor
+20261010_150428 indoor    # D7 north -> corridor
+20261010_152122 indoor    # D8 corridor -> south
