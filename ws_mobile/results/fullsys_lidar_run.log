@@ -1,0 +1,38 @@
+nohup: ignoring input
+== 2026-10-11 01:02:50 closed loop LiDAR (jobs 3)
+8 sessions with rel models
+
+DEVELOPMENT LiDAR, CLEAN runs (EKF9 position RMSE, m; fixed/lstm = no LiDAR, F10):
+          model  fixed  lstm  fixed_L  fixed_L5c  lstm_L  lstm_L5c  oracle_L  seg5c_fixed  seg5c_lstm
+20261010_130530  0.238 0.109    0.232      0.191   0.136     0.127     0.143        0.090       0.090
+20261010_131512  0.042 0.019    0.055      0.055   0.037     0.037     0.028        0.000       0.000
+20261010_143058  2.173 1.898    1.551      0.114   0.422     0.077     0.090        0.046       0.046
+20261010_143931  0.549 0.204    0.475      0.263   0.229     0.199     0.212        0.045       0.045
+20261010_145610  0.307 0.146    0.323      0.323   0.091     0.091     0.116        0.000       0.000
+20261010_150047  1.373 0.369    0.901      0.670   0.492     0.479     0.408        0.073       0.073
+20261010_150428  0.191 0.126    0.207      0.207   0.134     0.134     0.122        0.000       0.000
+20261010_152122  0.488 0.151    0.508      0.242   0.152     0.099     0.084        0.049       0.049
+means: fixed 0.670  lstm 0.378  fixed_L 0.532  fixed_L5c 0.258  lstm_L 0.212  lstm_L5c 0.155  oracle_L 0.150
+
+DEVELOPMENT LiDAR, FAULT runs (mean RMSE, m):
+                 fixed   lstm  fixed_L  fixed_L5c  lstm_L  lstm_L5c  oracle_L
+sensor type                                                                  
+imu    bias     11.908  3.023    8.066      8.226   1.627     1.656     1.580
+       drift     5.799  3.201    3.664      3.937   1.961     2.009     1.479
+       dropout   3.047  1.699    2.409      2.191   0.795     0.751     0.186
+       noise     3.347  1.790    2.282      2.269   0.443     0.438     0.284
+odom   bias     14.109  1.357    8.581      5.461   0.652     0.576     0.802
+       drift     5.186  1.165    3.246      2.248   0.530     0.418     0.546
+       dropout   1.908  1.337    1.343      0.288   0.756     0.178     0.158
+       noise     1.278  0.863    0.990      0.960   0.507     0.479     0.439
+fixed_L vs fixed [clean]: wins 4/8, median change +0.8 %
+fixed_L vs fixed [fault]: wins 185/208, median change -29.5 %
+lstm_L vs fixed_L [clean]: wins 8/8, median change -48.6 %
+lstm_L vs fixed_L [fault]: wins 188/208, median change -67.4 %
+lstm_L5c vs fixed_L5c [clean]: wins 8/8, median change -33.6 %
+lstm_L5c vs fixed_L5c [fault]: wins 185/208, median change -58.1 %
+lstm_L5c vs lstm_L [clean]: wins 5/8, median change -4.7 %
+lstm_L5c vs lstm_L [fault]: wins 94/208, median change +0.0 %
+fixed_L5c vs fixed_L [clean]: wins 5/8, median change -21.6 %
+fixed_L5c vs fixed_L [fault]: wins 83/208, median change +0.0 %
+== 2026-10-11 01:47:35 ALL DONE
