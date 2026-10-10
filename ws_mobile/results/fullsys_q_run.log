@@ -1,0 +1,34 @@
+nohup: ignoring input
+== 2026-10-11 03:10:00 closed loop Q(t) (jobs 3)
+8 sessions with rel + slip models
+regression vs F12 lstm_L5c: max |diff| = 4.44e-16 m over 216 runs
+
+DEVELOPMENT Q(t), CLEAN runs (EKF9 + reliability + LiDAR + 5c, position RMSE, m):
+          model  base   A_q  A_all   B_q
+20261010_130530 0.127 0.123  0.115 0.123
+20261010_131512 0.037 0.040  0.044 0.042
+20261010_143058 0.077 0.077  0.071 0.077
+20261010_143931 0.199 0.197  0.123 0.214
+20261010_145610 0.091 0.080  0.051 0.101
+20261010_150047 0.479 0.483  0.361 0.472
+20261010_150428 0.134 0.134  0.096 0.134
+20261010_152122 0.099 0.113  0.092 0.098
+means: base 0.155  A_q 0.156  A_all 0.119  B_q 0.158
+
+DEVELOPMENT Q(t), FAULT runs (mean RMSE, m):
+                 base    A_q  A_all    B_q
+sensor type                               
+imu    bias     1.656  1.360  1.286  1.304
+       drift    2.009  1.634  1.657  1.485
+       dropout  0.751  0.556  0.496  0.585
+       noise    0.438  0.408  0.399  0.361
+odom   bias     0.576  0.580  0.555  0.577
+       drift    0.418  0.424  0.410  0.419
+       dropout  0.178  0.179  0.168  0.179
+       noise    0.479  0.485  0.476  0.479
+
+Decision rule (F13): adopt only if clean wins >= 6/8, fault wins >= 125/208 (60 %), median change <= -3 % on both.
+A_q    vs base: clean 5/8 median -0.1 %; faults 134/208 median -0.4 % -> not adopted
+A_all  vs base: clean 7/8 median -16.9 %; faults 158/208 median -11.4 % -> ADOPT
+B_q    vs base: clean 5/8 median -0.0 %; faults 159/208 median -0.7 % -> not adopted
+== 2026-10-11 04:19:55 ALL DONE
