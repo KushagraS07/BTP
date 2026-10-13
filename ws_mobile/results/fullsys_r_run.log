@@ -1,0 +1,167 @@
+nohup: ignoring input
+== 2026-10-14 01:15:58 R1 std faults + runtime
+R1 on feature set "std" (/home/kushagra/ws_mobile/fullsys_logs/features); 8 held-out models
+
+DEVELOPMENT R1 detection quality (rows pooled over held-out sessions; flag: r < 0.5 / NIS > chi2 99 %):
+sensor  detector      truth   auc  precision  recall    f1  clean_false_alarm
+   imu learned_r      fault 0.959      0.990   0.719 0.833              0.002
+   imu  nis_chi2      fault 0.780      0.639   0.476 0.545              0.014
+  odom learned_r      fault 0.876      0.674   0.789 0.727              0.120
+  odom learned_r gate_label 0.942      0.813   0.882 0.846              0.120
+  odom  nis_chi2      fault 0.860      0.532   0.753 0.623              0.083
+  odom  nis_chi2 gate_label 0.887      0.626   0.821 0.710              0.083
+
+DEVELOPMENT R1 detection delay (onset -> first flag; median over detected runs):
+                detected          median_delay_s          flagged_share_in_fault         
+detector       learned_r nis_chi2      learned_r nis_chi2              learned_r nis_chi2
+sensor type                                                                              
+imu    bias        24/24    24/24           0.12     0.01                  0.803    0.279
+       drift       23/24    24/24           7.52     7.75                  0.511    0.240
+       dropout     13/24     6/24           2.30     3.67                  0.161    0.028
+       noise       32/32    32/32           0.05     0.01                  0.907    0.898
+odom   bias        24/24    24/24           0.04     0.02                  0.878    0.821
+       drift       24/24    24/24           1.15     1.34                  0.625    0.560
+       dropout     23/24    21/24           1.47     2.04                  0.366    0.312
+       noise       32/32    32/32           0.04     0.02                  0.918    0.926
+
+DEVELOPMENT R1 runtime (session 20261010_130530, 1 thread; ms per step, median / p95):
+  rel_lstm             0.745 /   0.751
+  slip_lstm            0.731 /   0.737
+  filter_step_fixed    1.640 (mean)
+  filter_step_chi2     1.670 (mean)
+  2 LSTMs (p95) + hybrid filter step (mean) = 3.158 ms vs 20 ms budget at 50 Hz -> OK
+look criteria [imu]: AUC learned 0.959 vs NIS 0.780; clean false alarm learned 0.0023 vs NIS 0.0144
+look criteria [odom]: AUC learned 0.876 vs NIS 0.860; clean false alarm learned 0.1204 vs NIS 0.0826
+== 2026-10-14 01:17:33 R1 sigma faults
+R1 on feature set "_sigma" (/home/kushagra/ws_mobile/fullsys_logs/features_sigma); 8 held-out models
+
+DEVELOPMENT R1 detection quality (rows pooled over held-out sessions; flag: r < 0.5 / NIS > chi2 99 %):
+sensor  detector      truth   auc  precision  recall    f1  clean_false_alarm
+   imu learned_r      fault 0.669      0.733   0.021 0.042              0.002
+   imu  nis_chi2      fault 0.576      0.432   0.068 0.118              0.014
+  odom learned_r      fault 0.800      0.568   0.505 0.535              0.120
+  odom learned_r gate_label 0.936      0.895   0.737 0.808              0.120
+  odom  nis_chi2      fault 0.864      0.634   0.456 0.531              0.083
+  odom  nis_chi2 gate_label 0.942      0.938   0.625 0.750              0.083
+
+DEVELOPMENT R1 detection delay (onset -> first flag; median over detected runs):
+                detected          median_delay_s          flagged_share_in_fault         
+detector       learned_r nis_chi2      learned_r nis_chi2              learned_r nis_chi2
+sensor type                                                                              
+imu    bias        12/24    21/24          19.02     9.79                  0.009    0.017
+       drift        9/24    21/24          22.24    11.54                  0.004    0.017
+       dropout     13/24     6/24           2.30     3.67                  0.161    0.028
+       noise       13/32    31/32          18.90     0.37                  0.007    0.142
+odom   bias        24/24    24/24           0.07     0.02                  0.571    0.429
+       drift       24/24    24/24           1.15     1.34                  0.334    0.245
+       dropout     23/24    21/24           1.47     2.04                  0.366    0.312
+       noise       32/32    32/32           0.13     0.03                  0.614    0.647
+look criteria [imu]: AUC learned 0.669 vs NIS 0.576; clean false alarm learned 0.0023 vs NIS 0.0144
+look criteria [odom]: AUC learned 0.800 vs NIS 0.864; clean false alarm learned 0.1204 vs NIS 0.0826
+== 2026-10-14 01:18:59 R2 build features (faults that end)
+8 sessions pass fs_check: ['20261010_130530', '20261010_131512', '20261010_143058', '20261010_143931', '20261010_145610', '20261010_150047', '20261010_150428', '20261010_152122']
+216 runs (clean + 26 faults per session)
+  10/216  (4 s)
+  20/216  (7 s)
+  30/216  (10 s)
+  40/216  (14 s)
+  50/216  (17 s)
+  60/216  (20 s)
+  70/216  (25 s)
+  80/216  (29 s)
+  90/216  (33 s)
+  100/216  (38 s)
+  110/216  (42 s)
+  120/216  (45 s)
+  130/216  (50 s)
+  140/216  (54 s)
+  150/216  (57 s)
+  160/216  (62 s)
+  170/216  (66 s)
+  180/216  (70 s)
+  190/216  (75 s)
+  200/216  (79 s)
+  210/216  (82 s)
+  216/216  (85 s)
+
+integrity check (development): worst severity RMSE / clean RMSE >= 1.05
+  60/64 pass; below 1.05: ['20261010_143058 imu dropout x1.00', '20261010_143058 imu noise x0.64', '20261010_143931 imu dropout x1.02', '20261010_143931 odom noise x0.98']
+F10 slip label (% of rows, clean runs): 20261010_130530 18.9, 20261010_131512 1.1, 20261010_143058 5.4, 20261010_143931 13.0, 20261010_145610 9.3, 20261010_150047 23.9, 20261010_150428 8.0, 20261010_152122 10.0
+wrote 216 files to /home/kushagra/ws_mobile/fullsys_logs/features_end
+== 2026-10-14 01:20:34 R2 closed loop
+R2: 8 sessions, fault set "_end", methods ['fixed', 'chi2', 'sage_husa', 'ours', 'hybrid']
+regression clean runs vs F14: max |diff| = 1.11e-16 m over 40 rows
+
+DEVELOPMENT R2 (faults end after <= 15 s) means over fault runs:
+            rmse  rmse_after  err_at_end  final_err  diverged
+method                                                       
+fixed      1.962       2.791       2.374      3.331     0.389
+chi2       0.666       0.994       0.552      1.150     0.173
+sage_husa  0.700       1.047       0.567      1.291     0.216
+ours       0.443       0.628       0.470      0.709     0.144
+hybrid     0.375       0.531       0.375      0.593     0.120
+
+RMSE after the fault, by sensor/type (mean):
+method          fixed   chi2  sage_husa   ours  hybrid
+sensor type                                           
+imu    bias     9.635  0.702      1.165  1.109   0.807
+       drift    6.728  3.099      2.825  1.733   1.686
+       dropout  2.694  2.393      2.691  0.554   0.510
+       noise    2.351  0.309      0.306  0.378   0.174
+odom   bias     0.389  0.468      0.444  0.365   0.332
+       drift    0.447  0.483      0.485  0.335   0.344
+       dropout  0.354  0.266      0.282  0.219   0.182
+       noise    0.605  0.594      0.580  0.468   0.383
+
+RMSE after the fault, by session (mean; D6 = 150047, D7 = 150428):
+method           fixed   chi2  sage_husa   ours  hybrid
+model                                                  
+20261010_130530  1.574  0.593      0.350  0.415   0.340
+20261010_131512  1.164  0.242      0.138  0.223   0.162
+20261010_143058  1.453  0.203      0.103  0.489   0.262
+20261010_143931  1.491  0.492      0.372  0.280   0.283
+20261010_145610  2.910  1.505      1.614  0.703   0.660
+20261010_150047  5.299  2.273      2.493  1.645   1.529
+20261010_150428  5.960  1.760      1.927  0.799   0.582
+20261010_152122  2.476  0.885      1.378  0.474   0.430
+
+Learned r of the faulted sensor (ours): detection and recovery
+               detected  det_delay_med_s recovered  rec_delay_med_s  gated_after_mean
+sensor type                                                                          
+imu    bias       24/24             0.12     24/24             0.43             0.088
+       drift      24/24             4.54     24/24             0.18             0.025
+       dropout    10/24             1.58     10/24             0.06             0.021
+       noise      32/32             0.05     32/32             0.24             0.014
+odom   bias       24/24             0.04     24/24             1.48             0.137
+       drift      24/24             1.15     24/24             1.50             0.124
+       dropout    23/24             1.47     23/24             1.05             0.125
+       noise      32/32             0.03     32/32             1.04             0.116
+
+look criteria: median recovery delay 0.67 s (<= 2 s?); hybrid after-fault RMSE below fixed in 188/208 fault runs (90 %, >= 60 %?)
+== 2026-10-14 02:46:54 R1 on ending faults
+R1 on feature set "_end" (/home/kushagra/ws_mobile/fullsys_logs/features_end); 8 held-out models
+
+DEVELOPMENT R1 detection quality (rows pooled over held-out sessions; flag: r < 0.5 / NIS > chi2 99 %):
+sensor  detector      truth   auc  precision  recall    f1  clean_false_alarm
+   imu learned_r      fault 0.915      0.862   0.637 0.732              0.002
+   imu  nis_chi2      fault 0.773      0.485   0.469 0.477              0.014
+  odom learned_r      fault 0.844      0.360   0.750 0.486              0.120
+  odom learned_r gate_label 0.932      0.771   0.846 0.807              0.120
+  odom  nis_chi2      fault 0.875      0.337   0.714 0.458              0.083
+  odom  nis_chi2 gate_label 0.907      0.660   0.735 0.695              0.083
+
+DEVELOPMENT R1 detection delay (onset -> first flag; median over detected runs):
+                detected          median_delay_s          flagged_share_in_fault         
+detector       learned_r nis_chi2      learned_r nis_chi2              learned_r nis_chi2
+sensor type                                                                              
+imu    bias        24/24    24/24           0.12     0.01                  0.790    0.414
+       drift       24/24    24/24           4.54     4.34                  0.464    0.248
+       dropout     10/24     4/24           1.58     2.44                  0.145    0.021
+       noise       32/32    32/32           0.05     0.01                  0.899    0.898
+odom   bias        24/24    24/24           0.04     0.02                  0.882    0.831
+       drift       24/24    24/24           1.15     1.34                  0.636    0.575
+       dropout     23/24    21/24           1.47     2.04                  0.365    0.307
+       noise       32/32    32/32           0.03     0.02                  0.925    0.928
+look criteria [imu]: AUC learned 0.915 vs NIS 0.773; clean false alarm learned 0.0023 vs NIS 0.0144
+look criteria [odom]: AUC learned 0.844 vs NIS 0.875; clean false alarm learned 0.1204 vs NIS 0.0826
+== 2026-10-14 02:48:22 ALL DONE

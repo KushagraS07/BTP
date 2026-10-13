@@ -35,7 +35,12 @@ ONSET_LO, ONSET_HI = 0.20, 0.60
 UNIT = os.environ.get('FULLSYS_FAULT_UNIT', 'std')
 if UNIT not in ('std', 'sigma'):
     raise ValueError(f'FULLSYS_FAULT_UNIT must be std or sigma, not {UNIT}')
-SUFFIX = '' if UNIT == 'std' else '_sigma'
+# R2: FULLSYS_FAULT_WINDOW=end -> every fault is active for END_DUR s after onset, then removed.
+WINDOW = os.environ.get('FULLSYS_FAULT_WINDOW', 'open')
+if WINDOW not in ('open', 'end'):
+    raise ValueError(f'FULLSYS_FAULT_WINDOW must be open or end, not {WINDOW}')
+END_DUR = 15.0
+SUFFIX = ('' if UNIT == 'std' else '_sigma') + ('' if WINDOW == 'open' else '_end')
 R0_KEY = {'angular_vel_z': 'r_gyro', 'linear_x': 'r_odom_v', 'angular_z': 'r_odom_w'}
 
 
@@ -92,7 +97,8 @@ def inject(sess, fault):
     df_name, cols = SIGNALS[fault.sensor]
     df = frames[df_name]
     t = df.t.values
-    after = t >= onset
+    tend = onset + END_DUR if WINDOW == 'end' else np.inf
+    after = (t >= onset) & (t < tend)
     sev = fault.value
     stats = {}
     sig = sigma_r0() if UNIT == 'sigma' else None
@@ -104,10 +110,11 @@ def inject(sess, fault):
         elif fault.ftype == 'bias':
             x[after] += sev * std
         elif fault.ftype == 'drift':
-            ramp = np.clip((t - onset) / (t1 - onset), 0.0, 1.0)
+            ramp = np.clip((t - onset) / (min(t1, tend) - onset), 0.0, 1.0)
+            ramp[t >= tend] = 0.0
             x += sev * std * ramp
         elif fault.ftype == 'dropout':
-            end = onset + sev * (t1 - t0)
+            end = min(onset + sev * (t1 - t0), tend)
             hold = (t >= onset) & (t < end)
             if hold.any():
                 x[hold] = x[np.argmax(hold)]
@@ -118,21 +125,24 @@ def inject(sess, fault):
 
     def label(tt):
         r = np.ones(len(tt))
-        a = tt >= onset
+        a = (tt >= onset) & (tt < tend)
         if fault.ftype in ('noise', 'bias'):
             r[a] = 1.0 / (1.0 + sev)
         elif fault.ftype == 'drift':
-            ramp = np.clip((tt - onset) / (t1 - onset), 0.0, 1.0)
+            ramp = np.clip((tt - onset) / (min(t1, tend) - onset), 0.0, 1.0)
+            ramp[tt >= tend] = 0.0
             r = 1.0 / (1.0 + sev * ramp)
         elif fault.ftype == 'dropout':
-            r[(tt >= onset) & (tt < onset + sev * (t1 - t0))] = 0.0
+            r[(tt >= onset) & (tt < min(onset + sev * (t1 - t0), tend))] = 0.0
         return r
 
     r_imu = label(imu.t.values) if fault.sensor == 'imu' else np.ones(len(imu))
     r_odom = label(odom.t.values) if fault.sensor == 'odom' else np.ones(len(odom))
     manifest = dict(fault=fault.name, sensor=fault.sensor, type=fault.ftype, severity=fault.severity,
                     value=sev, onset=float(onset), session_t0=float(t0), session_t1=float(t1),
-                    seed=fault.seed, columns=stats)
+                    seed=fault.seed, columns=stats, window=WINDOW, end=float(min(tend, t1)),
+                    fault_end=float(min(onset + sev * (t1 - t0), tend, t1)) if fault.ftype == 'dropout'
+                    else float(min(tend, t1)))
     return FaultResult(imu, odom, r_imu, r_odom, manifest)
 
 
