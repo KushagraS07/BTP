@@ -30,6 +30,9 @@ from learning.baselines import metrics  # noqa: E402
 from zupt import paths as _P  # noqa: E402
 
 GS, GT, BETA, ALPHA, RATIO = 0.7, 0.6, 2.0, 2.5, 50.0
+VARIANT = os.environ.get('FULLSYS_LI_VARIANT', 'li')   # 'li_det': our detector for ZUPT, classifier for NHC
+if VARIANT not in ('li', 'li_det'):
+    raise ValueError(VARIANT)
 
 
 def run(sess, odom, scans, det_cfg, p9, gate5c=None, ps=None, pt=None):
@@ -159,9 +162,10 @@ def work(args):
         s2 = (fr.imu, fr.odom, sess[2], sess[3])
         base = dict(model=h, run=name, type=fr.manifest.get('type'), sensor=fr.manifest.get('sensor'),
                     severity=fr.manifest.get('severity'))
-        res = dict(base, method='li', share_ps=float((pr[:, 0] >= GS).mean()),
+        res = dict(base, method=VARIANT, share_ps=float((pr[:, 0] >= GS).mean()),
                    share_pt=float((pr[:, 2] >= GT).mean()))
-        res.update(with_5c(s2, fr.odom, scans, cfg, p9, seg, ps=pr[:, 0], pt=pr[:, 2]))
+        ps_in = None if VARIANT == 'li_det' else pr[:, 0]
+        res.update(with_5c(s2, fr.odom, scans, cfg, p9, seg, ps=ps_in, pt=pr[:, 2]))
         rows.append(res)
         if with_fixed:
             r2 = dict(base, method='fixed_check')
@@ -188,7 +192,7 @@ def main():
             out = pool.map(work, tasks)
     df = pd.DataFrame([r for rows in out for r in rows])
     os.makedirs(RES, exist_ok=True)
-    df.to_csv(os.path.join(RES, 'fullsys_li_baseline.csv'), index=False)
+    df.to_csv(os.path.join(RES, 'fullsys_li_baseline.csv' if VARIANT == 'li' else 'fullsys_li_det.csv'), index=False)
     bp = os.path.join(RES, 'fullsys_baselines.csv')
     if not os.path.exists(bp):
         print('fullsys_baselines.csv not found: comparison with ours skipped')
@@ -198,8 +202,8 @@ def main():
         m = df[df.method == 'fixed_check'].merge(b[b.method == 'fixed'][['run', 'rmse']], on='run', suffixes=('', '_f14'))
         print(f'regression hooks-off vs F14 fixed: max |diff| = {np.abs(m.rmse - m.rmse_f14).max():.2e} m '
               f'over {len(m)} runs')
-    li = df[df.method == 'li'][['run', 'type', 'sensor', 'rmse', 'max_err', 'head_rmse_deg', 'diverged']]
-    allm = pd.concat([b[b.method.isin(['fixed', 'ours', 'hybrid'])], df[df.method == 'li']])
+    li = df[df.method == VARIANT][['run', 'type', 'sensor', 'rmse', 'max_err', 'head_rmse_deg', 'diverged']]
+    allm = pd.concat([b[b.method.isin(['fixed', 'ours', 'hybrid'])], df[df.method == VARIANT]])
     agg = allm.assign(group=np.where(allm.type == 'clean', 'clean', 'fault')).groupby(['group', 'method']).agg(
         rmse=('rmse', 'mean'), max_err=('max_err', 'mean'), head_deg=('head_rmse_deg', 'mean'),
         rpe5s=('rpe5s', 'mean'), diverged=('diverged', 'mean'), nees_in95=('nees_in95', 'mean'))
@@ -210,10 +214,10 @@ def main():
         o = b[b.method == meth][['run', 'rmse']].rename(columns={'rmse': 'ref'})
         m = li.merge(o, on='run')
         for nm, s in (('clean', m[m.type == 'clean']), ('fault', m[m.type != 'clean'])):
-            print(f'{meth} vs li [{nm}]: {meth} wins {int((s.ref < s.rmse).sum())}/{len(s)}, '
+            print(f'{meth} vs {VARIANT} [{nm}]: {meth} wins {int((s.ref < s.rmse).sum())}/{len(s)}, '
                   f'median change {100 * np.median(s.ref / s.rmse - 1):+.1f} %')
-    print(f"li: P_s>=0.7 share {df[df.method=='li'].share_ps.mean():.3f}, P_t>=0.6 share "
-          f"{df[df.method=='li'].share_pt.mean():.3f}")
+    print(f"{VARIANT}: P_s>=0.7 share {df[df.method==VARIANT].share_ps.mean():.3f}, P_t>=0.6 share "
+          f"{df[df.method==VARIANT].share_pt.mean():.3f}")
 
 
 if __name__ == '__main__':

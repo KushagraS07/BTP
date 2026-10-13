@@ -35,9 +35,10 @@ from learning.features import FEATURES  # noqa: E402
 
 from learning.faults import SUFFIX as _FS  # noqa: E402  (A1: features_sigma for the sigma set)
 FEAT_DIR = os.path.join(_P.WS, 'fullsys_logs', 'features' + _FS)
-MODEL_DIR = os.path.join(_P.WS, 'fullsys_logs', 'models')
-RES = os.path.join(_P.WS, 'results')
-WINDOW, HIDDEN, LAYERS, LR, BATCH, SEED, CLEAN_W = 50, 64, 1, 1e-3, 256, 42, 5.0
+from learning.runcfg import RES_SUB, SEED, SEED_SFX  # noqa: E402  (A3)
+MODEL_DIR = os.path.join(_P.WS, 'fullsys_logs', 'models' + SEED_SFX)
+RES = os.path.join(_P.WS, 'results', RES_SUB)
+WINDOW, HIDDEN, LAYERS, LR, BATCH, CLEAN_W = 50, 64, 1, 1e-3, 256, 5.0
 LABELS = ['r_imu', 'r_odom']
 
 

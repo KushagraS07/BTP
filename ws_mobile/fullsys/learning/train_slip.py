@@ -23,7 +23,8 @@ sys.path.insert(0, os.path.join(HERE, '..'))
 from learning.features import FEATURES  # noqa: E402
 from learning.train import FEAT_DIR, MODEL_DIR, RES  # noqa: E402
 
-WINDOW, HIDDEN, LR, BATCH, EPOCHS, SEED, STRIDE = 50, 64, 1e-3, 256, 15, 42, 5
+from learning.runcfg import SEED  # noqa: E402  (A3)
+WINDOW, HIDDEN, LR, BATCH, EPOCHS, STRIDE = 50, 64, 1e-3, 256, 15, 5
 
 
 class SlipLSTM(nn.Module):

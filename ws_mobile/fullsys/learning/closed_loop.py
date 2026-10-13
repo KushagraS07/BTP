@@ -33,8 +33,9 @@ from zupt import paths as _P  # noqa: E402
 
 from learning.faults import SUFFIX as _FS  # noqa: E402  (A1: features_sigma for the sigma set)
 FEAT_DIR = os.path.join(_P.WS, 'fullsys_logs', 'features' + _FS)
-MODEL_DIR = os.path.join(_P.WS, 'fullsys_logs', 'models')
-RES = os.path.join(_P.WS, 'results')
+from learning.runcfg import RES_SUB, SEED_SFX  # noqa: E402  (A3)
+MODEL_DIR = os.path.join(_P.WS, 'fullsys_logs', 'models' + SEED_SFX)
+RES = os.path.join(_P.WS, 'results', RES_SUB)
 DET = os.path.join(_P.CONFIG, 'zupt_params_dev.yaml')
 EKF9 = os.path.join(_P.CONFIG, 'ekf9_params_dev.yaml')
 GATE = 0.5          # D6: update skipped below this reliability
