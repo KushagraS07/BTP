@@ -1,0 +1,69 @@
+nohup: ignoring input
+== 2026-10-12 11:27:04 baselines (jobs 3)
+8 sessions; methods: ['fixed', 'chi2', 'sage_husa', 'heuristic', 'ours', 'hybrid', 'oracle', 'odom_only', 'imu_only', 'no_pslip', 'no_5c']
+regression fixed vs fullsys_lidar_closed_loop.csv:fixed_L5c: max |diff| = 7.11e-15 m over 216 runs
+regression no_pslip vs fullsys_lidar_closed_loop.csv:lstm_L5c: max |diff| = 4.44e-16 m over 216 runs
+regression ours vs fullsys_q_closed_loop.csv:A_all: max |diff| = 4.44e-16 m over 216 runs
+
+DEVELOPMENT F14 summary (means over runs; nees = median of run means; diverged/skip = share):
+                  rmse  max_err  final  head_deg  rpe5s  diverged      nees  nees_in95  nis_odom_hi  nis_gyro_hi  odom_skip  gyro_skip
+group method                                                                                                                          
+clean chi2       0.183    0.362  0.326     1.362  0.065     0.000     7.901      0.658        0.007        0.004      0.113      0.021
+      fixed      0.258    0.426  0.375     0.767  0.083     0.000    30.512      0.388        0.069        0.021      0.038      0.000
+      heuristic  0.275    0.467  0.424     0.847  0.081     0.000    28.104      0.395        0.028        0.021      0.077      0.000
+      hybrid     0.104    0.187  0.144     0.875  0.036     0.000     3.047      0.768        0.004        0.001      0.132      0.003
+      imu_only   0.272    0.489  0.468     1.284  0.084     0.000    28.602      0.397        0.055        0.017      0.038      0.002
+      no_5c      0.176    0.300  0.264     0.852  0.056     0.000     8.641      0.658        0.018        0.002      0.119      0.002
+      no_pslip   0.155    0.291  0.238     0.813  0.051     0.000     5.931      0.706        0.018        0.022      0.123      0.002
+      odom_only  0.119    0.209  0.170     0.874  0.037     0.000     3.723      0.766        0.014        0.002      0.123      0.000
+      oracle     0.089    0.168  0.119     0.819  0.030     0.000     3.801      0.763        0.012        0.007      0.112      0.000
+      ours       0.119    0.209  0.170     0.877  0.037     0.000     3.713      0.766        0.014        0.002      0.123      0.002
+      sage_husa  0.205    0.494  0.463     2.071  0.081     0.125     7.595      0.627        0.031        0.015      0.038      0.000
+fault chi2       0.895    2.253  2.128    10.887  0.370     0.341    22.836      0.565        0.017        0.012      0.302      0.194
+      fixed      3.076    7.101  6.362    24.334  1.225     0.673  1531.280      0.308        0.343        0.205      0.064      0.000
+      heuristic  2.997    6.592  5.779    20.156  1.170     0.505   228.019      0.343        0.096        0.139      0.380      0.000
+      hybrid     0.565    1.349  1.163     5.987  0.231     0.255    10.436      0.646        0.008        0.004      0.322      0.193
+      imu_only   1.685    4.177  3.836    13.363  0.738     0.505   228.030      0.338        0.222        0.102      0.061      0.182
+      no_5c      0.753    1.687  1.429     6.841  0.300     0.284    43.367      0.498        0.046        0.014      0.282      0.182
+      no_pslip   0.786    1.824  1.607     8.343  0.314     0.293    26.867      0.548        0.040        0.037      0.299      0.182
+      odom_only  2.088    4.393  3.770    17.921  0.748     0.442    53.631      0.539        0.140        0.120      0.300      0.000
+      oracle     0.560    1.258  1.090     4.674  0.223     0.197     7.003      0.666        0.049        0.032      0.272      0.174
+      ours       0.662    1.540  1.327     6.687  0.269     0.264    21.484      0.583        0.034        0.014      0.299      0.182
+      sage_husa  0.876    2.236  2.039    11.504  0.375     0.365    21.039      0.497        0.039        0.132      0.064      0.000
+
+DEVELOPMENT F14 FAULT runs, mean RMSE by fault group:
+method           chi2  fixed  heuristic  hybrid  imu_only  no_5c  no_pslip  odom_only  oracle   ours  sage_husa
+sensor type                                                                                                    
+imu    bias     1.184  8.226      7.724   1.082     1.546  1.254     1.656      8.439   1.475  1.286      1.118
+       drift    1.841  3.937      4.337   1.485     1.849  1.598     2.009      3.813   1.398  1.657      1.312
+       dropout  1.995  2.191      2.146   0.424     0.702  0.539     0.751      1.577   0.092  0.496      2.170
+       noise    0.301  2.269      6.951   0.177     0.696  0.403     0.438      1.882   0.166  0.399      0.365
+odom   bias     0.579  5.461      0.785   0.499     5.509  0.637     0.576      0.555   0.651  0.555      0.763
+       drift    0.724  2.248      0.564   0.445     2.306  0.529     0.418      0.410   0.434  0.410      0.709
+       dropout  0.196  0.288      0.252   0.138     0.345  0.756     0.178      0.162   0.093  0.168      0.210
+       noise    0.625  0.960      0.675   0.438     1.065  0.505     0.479      0.475   0.369  0.476      0.616
+
+DEVELOPMENT F14 ours vs each method (wins of ours, median change of ours):
+  ours vs fixed      [clean]: ours wins 8/648, median change +nan %
+  ours vs fixed      [fault]: ours wins 190/2592, median change +nan %
+  ours vs chi2       [clean]: ours wins 6/648, median change +nan %
+  ours vs chi2       [fault]: ours wins 137/2592, median change +nan %
+  ours vs sage_husa  [clean]: ours wins 5/648, median change +nan %
+  ours vs sage_husa  [fault]: ours wins 113/2592, median change +nan %
+  ours vs heuristic  [clean]: ours wins 8/648, median change +nan %
+  ours vs heuristic  [fault]: ours wins 184/2592, median change +nan %
+  ours vs hybrid     [clean]: ours wins 1/648, median change +nan %
+  ours vs hybrid     [fault]: ours wins 37/2592, median change +nan %
+  ours vs oracle     [clean]: ours wins 1/648, median change +nan %
+  ours vs oracle     [fault]: ours wins 61/2592, median change +nan %
+  ours vs odom_only  [clean]: ours wins 4/648, median change +nan %
+  ours vs odom_only  [fault]: ours wins 136/2592, median change +nan %
+  ours vs imu_only   [clean]: ours wins 8/648, median change +nan %
+  ours vs imu_only   [fault]: ours wins 174/2592, median change +nan %
+  ours vs no_pslip   [clean]: ours wins 7/648, median change +nan %
+  ours vs no_pslip   [fault]: ours wins 158/2592, median change +nan %
+  ours vs no_5c      [clean]: ours wins 5/648, median change +nan %
+  ours vs no_5c      [fault]: ours wins 98/2592, median change +nan %
+
+Decision rule (F14) hybrid vs ours: clean 7/648 +nan %; faults 170/2592 +nan % -> not adopted
+== 2026-10-12 14:47:20 ALL DONE

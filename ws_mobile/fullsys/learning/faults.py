@@ -16,6 +16,8 @@ Labels (Phase 2 convention, scripts/generate_reliability_labels.py), r = 1 befor
 The other sensor's label is 1 everywhere. Labels are returned on each sensor's own timeline.
 """
 from dataclasses import dataclass, field
+import math
+import os
 import zlib
 
 import numpy as np
@@ -28,6 +30,20 @@ SEVERITY = {
 }
 SIGNALS = {'imu': ('imu', ['angular_vel_z']), 'odom': ('odom', ['linear_x', 'angular_z'])}
 ONSET_LO, ONSET_HI = 0.20, 0.60
+# A1: FULLSYS_FAULT_UNIT=sigma scales faults by sigma = sqrt(R0) of the channel (ekf9_params_dev.yaml)
+# instead of the signal's own std; names get SUFFIX, onsets stay those of the std set.
+UNIT = os.environ.get('FULLSYS_FAULT_UNIT', 'std')
+if UNIT not in ('std', 'sigma'):
+    raise ValueError(f'FULLSYS_FAULT_UNIT must be std or sigma, not {UNIT}')
+SUFFIX = '' if UNIT == 'std' else '_sigma'
+R0_KEY = {'angular_vel_z': 'r_gyro', 'linear_x': 'r_odom_v', 'angular_z': 'r_odom_w'}
+
+
+def sigma_r0():
+    from zupt import paths as _P
+    from zupt.ekf.ekf9 import load_ekf9_params
+    p9 = load_ekf9_params(os.path.join(_P.CONFIG, 'ekf9_params_dev.yaml'))
+    return {c: math.sqrt(getattr(p9, k)) for c, k in R0_KEY.items()}
 
 
 @dataclass
@@ -39,7 +55,7 @@ class Fault:
 
     @property
     def name(self):
-        return f'{self.session}_fault_{self.sensor}_{self.ftype}_{self.severity}'
+        return f'{self.session}_fault{SUFFIX}_{self.sensor}_{self.ftype}_{self.severity}'
 
     @property
     def value(self):
@@ -47,7 +63,7 @@ class Fault:
 
     @property
     def seed(self):
-        return zlib.crc32(self.name.encode())
+        return zlib.crc32(f'{self.session}_fault_{self.sensor}_{self.ftype}_{self.severity}'.encode())
 
 
 @dataclass
@@ -79,9 +95,10 @@ def inject(sess, fault):
     after = t >= onset
     sev = fault.value
     stats = {}
+    sig = sigma_r0() if UNIT == 'sigma' else None
     for c in cols:
         x = df[c].values.astype(float).copy()
-        std = float(np.std(x))
+        std = float(np.std(x)) if sig is None else sig[c]
         if fault.ftype == 'noise':
             x[after] += rng.normal(0.0, sev * std, int(after.sum()))
         elif fault.ftype == 'bias':
@@ -97,7 +114,7 @@ def inject(sess, fault):
         else:
             raise ValueError(fault.ftype)
         df[c] = x
-        stats[c] = {'std': std}
+        stats[c] = {'std': std, 'unit': UNIT}
 
     def label(tt):
         r = np.ones(len(tt))

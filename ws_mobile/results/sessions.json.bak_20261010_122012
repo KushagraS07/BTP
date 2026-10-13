@@ -1,0 +1,32 @@
+{
+  "sessions": {
+    "20261009_215016": {
+      "role": "check",
+      "note": "1 kHz IMU logger/integration check, straight starts/stops",
+      "health_check_passed": true,
+      "files": 21,
+      "added": "2026-10-09T21:51:27"
+    },
+    "20261009_215432": {
+      "role": "check",
+      "note": "1 kHz IMU check 2, reduced load",
+      "health_check_passed": true,
+      "files": 21,
+      "added": "2026-10-09T21:55:40"
+    },
+    "20261009_222654": {
+      "role": "check",
+      "note": "R1 terrain lane 1 ice, imu 1000, odom 100",
+      "health_check_passed": true,
+      "files": 21,
+      "added": "2026-10-09T22:28:20"
+    },
+    "20261009_222927": {
+      "role": "check",
+      "note": "R2 gyro-bias variant 0.01, imu 1000",
+      "health_check_passed": true,
+      "files": 21,
+      "added": "2026-10-09T22:30:29"
+    }
+  }
+}

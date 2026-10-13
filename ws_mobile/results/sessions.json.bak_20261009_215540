@@ -1,0 +1,11 @@
+{
+  "sessions": {
+    "20261009_215016": {
+      "role": "check",
+      "note": "1 kHz IMU logger/integration check, straight starts/stops",
+      "health_check_passed": true,
+      "files": 21,
+      "added": "2026-10-09T21:51:27"
+    }
+  }
+}

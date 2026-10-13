@@ -1,0 +1,22 @@
+A2 statistics (development): hybrid vs each method; q = median change of hybrid (%), 95 % cluster-bootstrap CI over sessions, sessions where hybrid better, exact Wilcoxon over sessions, Holm.
+group          comparison     q    lo    hi  sess_better  n_sess  runs      p  p_holm
+clean     hybrid vs fixed -56.8 -65.8 -42.2            8       8     8 0.0078  0.1562
+clean      hybrid vs chi2 -23.6 -54.8 -10.7            8       8     8 0.0078  0.1562
+clean hybrid vs sage_husa -29.5 -47.2   9.9            5       8     8 0.1484  0.5469
+clean hybrid vs heuristic -57.3 -68.5 -41.8            8       8     8 0.0078  0.1562
+clean      hybrid vs ours -11.3 -20.9  -1.1            7       8     8 0.1094  0.5469
+clean    hybrid vs oracle   3.8   0.3  24.1            1       8     8 0.1484  0.5469
+clean hybrid vs odom_only -11.3 -20.8  -1.3            7       8     8 0.1094  0.5469
+clean  hybrid vs imu_only -58.0 -63.5 -42.7            8       8     8 0.0078  0.1562
+clean  hybrid vs no_pslip -25.8 -40.4 -12.8            8       8     8 0.0078  0.1562
+clean     hybrid vs no_5c -24.2 -44.2  -6.7            7       8     8 0.0391  0.2344
+fault     hybrid vs fixed -71.1 -82.5 -58.9            8       8   208 0.0078  0.1562
+fault      hybrid vs chi2 -32.0 -39.4 -15.1            8       8   208 0.0078  0.1562
+fault hybrid vs sage_husa -21.0 -35.2  -8.4            7       8   208 0.0156  0.1562
+fault hybrid vs heuristic -54.3 -61.4 -47.6            8       8   208 0.0078  0.1562
+fault      hybrid vs ours  -7.6 -11.0  -5.4            8       8   208 0.0078  0.1562
+fault    hybrid vs oracle   8.6  -1.9  20.9            3       8   208 0.2500  0.5469
+fault hybrid vs odom_only -11.3 -19.7  -7.3            8       8   208 0.0078  0.1562
+fault  hybrid vs imu_only -57.5 -64.8 -46.8            8       8   208 0.0078  0.1562
+fault  hybrid vs no_pslip -25.5 -33.8 -19.0            8       8   208 0.0078  0.1562
+fault     hybrid vs no_5c -19.7 -27.7 -12.6            8       8   208 0.0078  0.1562

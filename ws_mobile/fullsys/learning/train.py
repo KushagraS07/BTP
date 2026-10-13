@@ -33,7 +33,8 @@ sys.path.insert(0, os.path.join(HERE, '..'))
 from zupt import paths as _P  # noqa: E402
 from learning.features import FEATURES  # noqa: E402
 
-FEAT_DIR = os.path.join(_P.WS, 'fullsys_logs', 'features')
+from learning.faults import SUFFIX as _FS  # noqa: E402  (A1: features_sigma for the sigma set)
+FEAT_DIR = os.path.join(_P.WS, 'fullsys_logs', 'features' + _FS)
 MODEL_DIR = os.path.join(_P.WS, 'fullsys_logs', 'models')
 RES = os.path.join(_P.WS, 'results')
 WINDOW, HIDDEN, LAYERS, LR, BATCH, SEED, CLEAN_W = 50, 64, 1, 1e-3, 256, 42, 5.0

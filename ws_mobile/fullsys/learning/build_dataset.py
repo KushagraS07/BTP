@@ -25,7 +25,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..'))
 from zupt import paths as _P  # noqa: E402
 
-FEAT_DIR = os.path.join(_P.WS, 'fullsys_logs', 'features')
+from learning.faults import SUFFIX as _FS  # noqa: E402  (A1: features_sigma for the sigma set)
+FEAT_DIR = os.path.join(_P.WS, 'fullsys_logs', 'features' + _FS)
 DEV_LIST = os.path.join(_P.CONFIG, 'dev_sessions.txt')
 DET = os.path.join(_P.CONFIG, 'zupt_params_dev.yaml')
 EKF9 = os.path.join(_P.CONFIG, 'ekf9_params_dev.yaml')
