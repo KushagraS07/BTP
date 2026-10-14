@@ -1,0 +1,182 @@
+nohup: ignoring input
+== 2026-10-14 22:20:15 build LiDAR features
+  20261010_130530: 51 runs
+  20261010_131512: 51 runs
+  20261010_143058: 51 runs
+  20261010_143931: 51 runs
+  20261010_145610: 51 runs
+  20261010_150047: 51 runs
+  20261010_150428: 51 runs
+  20261010_152122: 51 runs
+L2 features: 200 training runs, 152750 scans, unreliable share 48.7 %
+== 2026-10-14 22:32:23 train r_LiDAR
+  [rL 20261010_143058] epoch  1/15 val 0.3251
+  [rL 20261010_130530] epoch  1/15 val 0.2980
+  [rL 20261010_131512] epoch  1/15 val 0.2777
+  [rL 20261010_143058] epoch  2/15 val 0.2378
+  [rL 20261010_130530] epoch  2/15 val 0.2454
+  [rL 20261010_131512] epoch  2/15 val 0.2274
+  [rL 20261010_143058] epoch  3/15 val 0.2237
+  [rL 20261010_130530] epoch  3/15 val 0.2144
+  [rL 20261010_131512] epoch  3/15 val 0.1920
+  [rL 20261010_143058] epoch  4/15 val 0.1975
+  [rL 20261010_130530] epoch  4/15 val 0.2054
+  [rL 20261010_131512] epoch  4/15 val 0.1873
+  [rL 20261010_143058] epoch  5/15 val 0.1964
+  [rL 20261010_130530] epoch  5/15 val 0.2243
+  [rL 20261010_131512] epoch  5/15 val 0.1960
+  [rL 20261010_143058] epoch  6/15 val 0.1868
+  [rL 20261010_130530] epoch  6/15 val 0.2291
+  [rL 20261010_131512] epoch  6/15 val 0.1986
+  [rL 20261010_143058] epoch  7/15 val 0.1973
+  [rL 20261010_130530] epoch  7/15 val 0.1773
+  [rL 20261010_131512] epoch  7/15 val 0.1799
+  [rL 20261010_143058] epoch  8/15 val 0.1863
+  [rL 20261010_130530] epoch  8/15 val 0.1881
+  [rL 20261010_131512] epoch  8/15 val 0.1811
+  [rL 20261010_143058] epoch  9/15 val 0.1851
+  [rL 20261010_130530] epoch  9/15 val 0.1740
+  [rL 20261010_131512] epoch  9/15 val 0.1769
+  [rL 20261010_143058] epoch 10/15 val 0.1880
+  [rL 20261010_130530] epoch 10/15 val 0.1670
+  [rL 20261010_131512] epoch 10/15 val 0.1692
+  [rL 20261010_143058] epoch 11/15 val 0.1868
+  [rL 20261010_130530] epoch 11/15 val 0.1751
+  [rL 20261010_131512] epoch 11/15 val 0.1752
+  [rL 20261010_143058] epoch 12/15 val 0.2020
+  [rL 20261010_130530] epoch 12/15 val 0.1839
+  [rL 20261010_131512] epoch 12/15 val 0.1708
+  [rL 20261010_143058] epoch 13/15 val 0.1777
+  [rL 20261010_130530] epoch 13/15 val 0.1734
+  [rL 20261010_131512] epoch 13/15 val 0.1718
+  [rL 20261010_143058] epoch 14/15 val 0.1970
+  [rL 20261010_130530] epoch 14/15 val 0.1676
+  [rL 20261010_131512] epoch 14/15 val 0.1852
+  [rL 20261010_143058] epoch 15/15 val 0.2210
+  [rL 20261010_130530] epoch 15/15 val 0.1662
+  [rL 20261010_131512] epoch 15/15 val 0.1830
+  [rL 20261010_143931] epoch  1/15 val 0.2970
+  [rL 20261010_145610] epoch  1/15 val 0.2803
+  [rL 20261010_150047] epoch  1/15 val 0.2973
+  [rL 20261010_143931] epoch  2/15 val 0.2274
+  [rL 20261010_150047] epoch  2/15 val 0.2020
+  [rL 20261010_145610] epoch  2/15 val 0.2018
+  [rL 20261010_143931] epoch  3/15 val 0.2181
+  [rL 20261010_150047] epoch  3/15 val 0.1936
+  [rL 20261010_145610] epoch  3/15 val 0.1853
+  [rL 20261010_143931] epoch  4/15 val 0.2016
+  [rL 20261010_150047] epoch  4/15 val 0.1916
+  [rL 20261010_145610] epoch  4/15 val 0.1701
+  [rL 20261010_143931] epoch  5/15 val 0.2281
+  [rL 20261010_150047] epoch  5/15 val 0.1816
+  [rL 20261010_145610] epoch  5/15 val 0.1675
+  [rL 20261010_143931] epoch  6/15 val 0.2463
+  [rL 20261010_150047] epoch  6/15 val 0.2139
+  [rL 20261010_145610] epoch  6/15 val 0.1953
+  [rL 20261010_143931] epoch  7/15 val 0.2486
+  [rL 20261010_150047] epoch  7/15 val 0.1863
+  [rL 20261010_145610] epoch  7/15 val 0.1742
+  [rL 20261010_143931] epoch  8/15 val 0.2284
+  [rL 20261010_150047] epoch  8/15 val 0.2044
+  [rL 20261010_145610] epoch  8/15 val 0.1843
+  [rL 20261010_143931] epoch  9/15 val 0.2142
+  [rL 20261010_150047] epoch  9/15 val 0.1868
+  [rL 20261010_145610] epoch  9/15 val 0.1719
+  [rL 20261010_143931] epoch 10/15 val 0.2204
+  [rL 20261010_150047] epoch 10/15 val 0.1935
+  [rL 20261010_145610] epoch 10/15 val 0.1628
+  [rL 20261010_143931] epoch 11/15 val 0.2030
+  [rL 20261010_150047] epoch 11/15 val 0.1761
+  [rL 20261010_145610] epoch 11/15 val 0.2070
+  [rL 20261010_143931] epoch 12/15 val 0.2288
+  [rL 20261010_150047] epoch 12/15 val 0.1925
+  [rL 20261010_145610] epoch 12/15 val 0.2315
+  [rL 20261010_143931] epoch 13/15 val 0.2092
+  [rL 20261010_150047] epoch 13/15 val 0.2064
+  [rL 20261010_145610] epoch 13/15 val 0.1838
+  [rL 20261010_143931] epoch 14/15 val 0.2316
+  [rL 20261010_150047] epoch 14/15 val 0.2210
+  [rL 20261010_145610] epoch 14/15 val 0.1932
+  [rL 20261010_143931] epoch 15/15 val 0.2787
+  [rL 20261010_150047] epoch 15/15 val 0.2469
+  [rL 20261010_145610] epoch 15/15 val 0.1891
+  [rL 20261010_150428] epoch  1/15 val 0.2698
+  [rL 20261010_152122] epoch  1/15 val 0.2643
+  [rL 20261010_150428] epoch  2/15 val 0.2160
+  [rL 20261010_152122] epoch  2/15 val 0.2108
+  [rL 20261010_150428] epoch  3/15 val 0.2197
+  [rL 20261010_152122] epoch  3/15 val 0.1934
+  [rL 20261010_150428] epoch  4/15 val 0.1885
+  [rL 20261010_152122] epoch  4/15 val 0.1858
+  [rL 20261010_150428] epoch  5/15 val 0.1931
+  [rL 20261010_152122] epoch  5/15 val 0.1802
+  [rL 20261010_150428] epoch  6/15 val 0.1937
+  [rL 20261010_152122] epoch  6/15 val 0.1913
+  [rL 20261010_150428] epoch  7/15 val 0.1745
+  [rL 20261010_152122] epoch  7/15 val 0.1673
+  [rL 20261010_150428] epoch  8/15 val 0.1749
+  [rL 20261010_152122] epoch  8/15 val 0.1856
+  [rL 20261010_150428] epoch  9/15 val 0.1706
+  [rL 20261010_152122] epoch  9/15 val 0.1927
+  [rL 20261010_150428] epoch 10/15 val 0.1634
+  [rL 20261010_152122] epoch 10/15 val 0.1939
+  [rL 20261010_150428] epoch 11/15 val 0.1830
+  [rL 20261010_152122] epoch 11/15 val 0.2112
+  [rL 20261010_150428] epoch 12/15 val 0.1765
+  [rL 20261010_152122] epoch 12/15 val 0.2021
+  [rL 20261010_150428] epoch 13/15 val 0.1933
+  [rL 20261010_152122] epoch 13/15 val 0.1865
+  [rL 20261010_150428] epoch 14/15 val 0.1862
+  [rL 20261010_152122] epoch 14/15 val 0.1905
+  [rL 20261010_150428] epoch 15/15 val 0.1731
+  [rL 20261010_152122] epoch 15/15 val 0.1911
+
+DEVELOPMENT r_LiDAR LOBO (held out):
+       held_out  best_epoch  auc_clean  flag_clean  auc_lidar  flag_lidar  recall_lidar  false_alarm_lidar  auc_overlap  flag_overlap  recall_overlap  false_alarm_overlap
+20261010_130530          15        NaN       0.161      0.980       0.512         0.919              0.064        0.987         0.482           0.909                0.047
+20261010_131512          10        NaN       0.090      0.989       0.482         0.898              0.046        0.971         0.493           0.904                0.091
+20261010_143058          13        NaN       0.217      0.981       0.521         0.951              0.087        0.977         0.466           0.996                0.093
+20261010_143931           4        NaN       0.210      0.970       0.488         0.864              0.087        0.980         0.535           0.960                0.128
+20261010_145610          10        NaN       0.196      0.970       0.559         0.938              0.145        0.989         0.544           0.980                0.140
+20261010_150047          11        NaN       0.242      0.864       0.579         0.813              0.314        0.915         0.629           0.901                0.349
+20261010_150428          10        NaN       0.170      0.942       0.583         0.904              0.228        0.952         0.681           0.953                0.312
+20261010_152122           7        NaN       0.063      0.971       0.435         0.847              0.026        0.963         0.444           0.866                0.094
+means: auc_clean nan  flag_clean 0.169  auc_lidar 0.958  flag_lidar 0.520  recall_lidar 0.892  false_alarm_lidar 0.125  auc_overlap 0.967  flag_overlap 0.534  recall_overlap 0.934  false_alarm_overlap 0.157
+== 2026-10-14 22:38:46 closed loop
+
+DEVELOPMENT r_LiDAR closed loop (hybrid_stale_rL vs hybrid_stale; F14 set vs F14 hybrid):
+          rmse  rmse_ref  diverged  rl_flag  rl_flag_active
+set                                                        
+clean    0.150     0.104     0.000    0.169             NaN
+f14      0.829     0.565     0.312    0.216             NaN
+lidar    0.136     0.125     0.000    0.520           0.904
+overlap  0.884     1.001     0.250    0.534           0.937
+
+LiDAR-fault runs by type (mean RMSE rL / ref):
+           rmse  rmse_ref
+ltype                    
+freeze    0.155     0.128
+loss      0.130     0.119
+noise     0.122     0.129
+scale     0.151     0.132
+spurious  0.123     0.116
+
+Overlap runs (mean RMSE rL / ref):
+                       rmse  rmse_ref
+ltype  osensor otype                 
+freeze imu     bias   2.075     1.676
+       odom    bias   0.396     0.411
+               drift  0.301     0.316
+noise  imu     bias   1.907     1.935
+       odom    bias   0.254     0.961
+               drift  0.540     1.983
+scale  imu     bias   1.490     0.644
+       odom    bias   0.679     0.640
+               drift  0.318     0.444
+  clean   : rL wins 3/8, median change +4.2 %
+  lidar   : rL wins 59/120, median change +0.0 %
+  overlap : rL wins 39/72, median change -1.9 %
+  f14     : rL wins 59/208, median change +17.8 %
+
+Rule (3) r_LiDAR: gain on LiDAR or overlap runs: False; clean +4.2 %; F14 +17.8 % -> not adopted
+== 2026-10-14 23:17:11 ALL DONE

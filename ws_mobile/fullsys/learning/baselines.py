@@ -25,7 +25,7 @@ from learning.closed_loop import DET, EKF9, FEAT_DIR, GATE, MODEL_DIR, RES, pred
 from learning.closed_loop_lidar import SEG  # noqa: E402
 from zupt import paths as _P  # noqa: E402
 
-CHI2_99 = {1: 6.635, 2: 9.210}
+CHI2_99 = {1: 6.635, 2: 9.210, 3: 11.345}
 CHI2_95 = {1: 3.841, 2: 5.991}
 NEES_BAND = (0.216, 9.348)       # chi2(3) 2.5 % / 97.5 %
 SH_B, SH_LO, SH_HI = 0.98, 0.1, 1000.0
@@ -51,7 +51,7 @@ class SageHusa:
 
 
 def run(sess, odom, scans, det_cfg, p9, r_imu, r_odom_imu, gate5c=None, q=None, s=None,
-        chi2=False, sage=False):
+        chi2=False, sage=False, lidar='on', scan_skip=None, stale=False):
     from zupt.core.detector import Evidence, ImuSample, StationarityDetector, gravity_compensated_horizontal
     from zupt.core.lidar import scan_points
     from zupt.core.scan_match import make_reference
@@ -67,9 +67,16 @@ def run(sess, odom, scans, det_cfg, p9, r_imu, r_odom_imu, gate5c=None, q=None, 
     f = EkfLidar(p9, gt.gt_x.iat[0], gt.gt_y.iat[0], float(gyaw.iat[0]), None)
     ov, ow, to = odom.linear_x.values, odom.angular_z.values, odom.t.values
     g5 = np.zeros(len(odom), bool) if gate5c is None else gate5c
-    lev = lidar_evidence(scans, odom)
+    lev = lidar_evidence(scans, odom) if lidar != 'off' else []
+    skipm = None if scan_skip is None else np.asarray(scan_skip, bool)
+    if stale:       # a scan identical to the previous one is stale (real returns always carry noise)
+        rv = scans.ranges.values
+        st = np.r_[False, rv[1:] == rv[:-1]]
+        skipm = st if skipm is None else (skipm | st)
+    if skipm is not None and lidar != 'off':
+        lev = [e for e, sk in zip(lev, skipm) if not sk]     # skipped scans: LiDAR evidence ignored too
     lt = np.array([e.t for e in lev])
-    det = StationarityDetector(det_cfg, have_lidar=True, logger=lambda *_: None)
+    det = StationarityDetector(det_cfg, have_lidar=lidar != 'off', logger=lambda *_: None)
     ti = imu.t.values
     ev = ([(tt, 0, k) for k, tt in enumerate(ti)] + [(tt, 1, k) for k, tt in enumerate(to)] +
           [(tt, 2, k) for k, tt in enumerate(scans.t.values)])
@@ -80,7 +87,7 @@ def run(sess, odom, scans, det_cfg, p9, r_imu, r_odom_imu, gate5c=None, q=None, 
     PP = np.zeros((n, 3, 3))
     ST, HX = np.zeros(n, bool), np.zeros(n)
     nis_o, nis_g = [], []
-    cnt = dict(odom=0, odom_skip=0, gyro=0, gyro_skip=0)
+    cnt = dict(odom=0, odom_skip=0, gyro=0, gyro_skip=0, lidar=0, lidar_skip=0)
     sh_o = SageHusa([p9.r_odom_v, p9.r_odom_w]) if sage else None
     sh_g = SageHusa([p9.r_gyro]) if sage else None
     idx3 = [IX, IY, ITH]
@@ -124,7 +131,27 @@ def run(sess, odom, scans, det_cfg, p9, r_imu, r_odom_imu, gate5c=None, q=None, 
             a = (scans.angle_min.iat[k], scans.angle_increment.iat[k],
                  scans.range_min.iat[k], scans.range_max.iat[k])
             pts, _, _ = scan_points(r, *a)
-            f.scan(pts, make_reference(r, *a))
+            if lidar == 'off':
+                continue
+            if lidar == 'on' and skipm is None:
+                f.scan(pts, make_reference(r, *a))
+                continue
+            from zupt.core.scan_match import match
+            res = None
+            if f.ref is not None and len(pts):
+                res = match(f.ref, pts, init=f.predicted_relative(), cfg=f.sm_cfg)
+                if res.ok:
+                    cnt['lidar'] += 1
+                    skip = skipm is not None and bool(skipm[k])
+                    if not skip and lidar == 'chi2':
+                        skip = lidar_nis(f, res.pose, res.cov) > CHI2_99[3]
+                    if skip:
+                        cnt['lidar_skip'] += 1
+                    else:
+                        f.update_relative_pose(res.pose, res.cov)
+            f.last_match = res
+            f.ref = make_reference(r, *a)
+            f._clone()
             continue
         hx, hy = gravity_compensated_horizontal(ax[k], ay[k], az[k], roll[k], pitch[k])
         f.set_accel(hx, hy)
@@ -172,6 +199,23 @@ def run(sess, odom, scans, det_cfg, p9, r_imu, r_odom_imu, gate5c=None, q=None, 
         PP[k] = f.P[np.ix_(idx3, idx3)]
     return dict(t=ti, hx=HX, gz=gz, st=ST, X=X, Y=Y, TH=TH, PP=PP, nis_o=np.array(nis_o),
                 nis_g=np.array(nis_g), cnt=cnt)
+
+
+def lidar_nis(f, z, R):
+    """NIS of the scan-match relative-pose measurement (same h, H as EkfLidar.update_relative_pose)."""
+    from zupt.ekf.ekf9 import ITH, IX, IY, wrap
+    from zupt.ekf.ekf_lidar import ITHC, IXC, IYC
+    h = f.predicted_relative()
+    dx, dy = f.x[IX] - f.x[IXC], f.x[IY] - f.x[IYC]
+    c, s = math.cos(f.x[ITHC]), math.sin(f.x[ITHC])
+    H = np.zeros((3, f.n))
+    H[0, IX], H[0, IY], H[0, IXC], H[0, IYC], H[0, ITHC] = c, s, -c, -s, -s * dx + c * dy
+    H[1, IX], H[1, IY], H[1, IXC], H[1, IYC], H[1, ITHC] = -s, c, s, -c, -c * dx - s * dy
+    H[2, ITH], H[2, ITHC] = 1.0, -1.0
+    nu = np.asarray(z, float) - h
+    nu[2] = wrap(nu[2])
+    S = H @ f.P @ H.T + np.asarray(R, float)
+    return float(nu @ np.linalg.solve(S, nu))
 
 
 def metrics(o, gt):

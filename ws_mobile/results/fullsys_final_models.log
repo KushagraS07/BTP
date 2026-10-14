@@ -1,0 +1,55 @@
+nohup: ignoring input
+== 2026-10-15 00:41:27 FINAL models: rel slip li
+FINAL models ['rel', 'slip', 'li']: dev sessions ['20261010_130530', '20261010_131512', '20261010_143058', '20261010_143931', '20261010_145610', '20261010_150047', '20261010_150428', '20261010_152122'] (val = first)
+/home/kushagra/ws_mobile/fullsys/learning/../learning/train.py:132: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:838.)
+  tot += float(loss) * len(b)
+  [slip FINAL] epoch  1/15 fit 0.7134 val 0.7145
+  [FINAL] epoch  1/15 fit 0.05679 val 0.05077
+  [slip FINAL] epoch  2/15 fit 0.4153 val 0.5630
+  [FINAL] epoch  2/15 fit 0.03297 val 0.04294
+  [slip FINAL] epoch  3/15 fit 0.3102 val 0.4556
+  [FINAL] epoch  3/15 fit 0.02801 val 0.03999
+  [slip FINAL] epoch  4/15 fit 0.2292 val 0.4281
+  [FINAL] epoch  4/15 fit 0.02600 val 0.03935
+  [li FINAL] epoch  1/15 fit 0.3466 val 0.3028
+  [slip FINAL] epoch  5/15 fit 0.1830 val 0.4669
+  [FINAL] epoch  5/15 fit 0.02435 val 0.03596
+  [slip FINAL] epoch  6/15 fit 0.1523 val 0.6163
+  [FINAL] epoch  6/15 fit 0.02271 val 0.03604
+  [slip FINAL] epoch  7/15 fit 0.1682 val 0.4694
+  [FINAL] epoch  7/15 fit 0.02088 val 0.03369
+  [slip FINAL] epoch  8/15 fit 0.1411 val 0.5244
+  [FINAL] epoch  8/15 fit 0.01909 val 0.03377
+  [li FINAL] epoch  2/15 fit 0.1485 val 0.3471
+  [slip FINAL] epoch  9/15 fit 0.1472 val 0.4870
+  [FINAL] epoch  9/15 fit 0.01845 val 0.03698
+  [slip FINAL] epoch 10/15 fit 0.1110 val 0.5093
+  [FINAL] epoch 10/15 fit 0.02063 val 0.03407
+  [slip FINAL] epoch 11/15 fit 0.0921 val 0.5689
+  [FINAL] epoch 11/15 fit 0.01891 val 0.03444
+  [slip FINAL] epoch 12/15 fit 0.0919 val 0.4890
+  [FINAL] epoch 12/15 fit 0.01896 val 0.03424
+  [li FINAL] epoch  3/15 fit 0.1167 val 0.3375
+  [slip FINAL] epoch 13/15 fit 0.0824 val 0.5474
+  [FINAL] epoch 13/15 fit 0.01685 val 0.03688
+  [slip FINAL] epoch 14/15 fit 0.0950 val 0.4884
+  [FINAL] epoch 14/15 fit 0.01608 val 0.03599
+  [slip FINAL] epoch 15/15 fit 0.0702 val 0.5707
+  [FINAL] epoch 15/15 fit 0.01662 val 0.03546
+  [li FINAL] epoch  4/15 fit 0.1069 val 0.3449
+  [li FINAL] epoch  5/15 fit 0.0938 val 0.4483
+  [li FINAL] epoch  6/15 fit 0.0874 val 0.3898
+  [li FINAL] epoch  7/15 fit 0.0839 val 0.4181
+  [li FINAL] epoch  8/15 fit 0.0773 val 0.4634
+  [li FINAL] epoch  9/15 fit 0.0783 val 0.4370
+  [li FINAL] epoch 10/15 fit 0.0754 val 0.4457
+  [li FINAL] epoch 11/15 fit 0.0779 val 0.5324
+  [li FINAL] epoch 12/15 fit 0.0740 val 0.5069
+  [li FINAL] epoch 13/15 fit 0.0738 val 0.5363
+  [li FINAL] epoch 14/15 fit 0.0708 val 0.5806
+  [li FINAL] epoch 15/15 fit 0.0694 val 0.4018
+  rel_FINAL.pt written; best epoch 7
+  slip_FINAL.pt written; best epoch 4
+  li_FINAL.pt written; best epoch 1
+== 2026-10-15 02:48:28 ALL DONE

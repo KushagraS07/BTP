@@ -1,0 +1,67 @@
+nohup: ignoring input
+== 2026-10-14 17:05:53 L closed loop (jobs 3)
+L: 8 sessions, methods ['fixed', 'hybrid', 'hybrid_chi2L', 'hybrid_stale', 'hybrid_chi2L_stale', 'lidar_off', 'oracle_L']
+regression clean fixed/hybrid vs F14: max |diff| = 8.33e-17 m over 16 rows
+
+DEVELOPMENT L means (rmse / max_err / diverged) by set and method:
+                             rmse  max_err  diverged
+set     method                                      
+clean   fixed               0.258    0.426     0.000
+        hybrid              0.104    0.187     0.000
+        hybrid_chi2L        0.101    0.217     0.000
+        hybrid_chi2L_stale  0.101    0.217     0.000
+        hybrid_stale        0.104    0.187     0.000
+        lidar_off           0.123    0.297     0.000
+        oracle_L            0.104    0.187     0.000
+f14     hybrid_chi2L        1.114    2.671     0.370
+lidar   fixed               0.840    1.595     0.225
+        hybrid              0.626    1.258     0.150
+        hybrid_chi2L        0.412    0.729     0.125
+        hybrid_chi2L_stale  0.112    0.252     0.000
+        hybrid_stale        0.125    0.275     0.008
+        lidar_off           0.123    0.297     0.000
+        oracle_L            0.123    0.286     0.008
+overlap fixed               5.776   13.715     1.000
+        hybrid              2.172    5.039     0.625
+        hybrid_chi2L        1.724    3.892     0.583
+        hybrid_chi2L_stale  1.172    3.114     0.431
+        hybrid_stale        1.001    2.823     0.444
+        lidar_off           0.936    2.384     0.167
+        oracle_L            0.833    2.224     0.264
+
+LiDAR-fault runs, mean RMSE by type / severity:
+method              fixed  hybrid  hybrid_chi2L  hybrid_stale  hybrid_chi2L_stale  lidar_off  oracle_L
+ltype    lseverity                                                                                    
+freeze   long       3.803   4.142         2.158         0.165               0.110      0.123     0.165
+         medium     2.333   2.586         1.686         0.110               0.097      0.123     0.110
+         short      1.044   1.176         0.966         0.109               0.103      0.123     0.108
+loss     high       0.259   0.123         0.112         0.123               0.112      0.123     0.123
+         low        0.265   0.106         0.099         0.106               0.099      0.123     0.115
+         medium     0.263   0.127         0.122         0.127               0.122      0.123     0.129
+noise    high       0.691   0.127         0.115         0.127               0.115      0.123     0.121
+         low        0.717   0.113         0.105         0.113               0.105      0.123     0.119
+         medium     0.773   0.147         0.139         0.147               0.139      0.123     0.120
+scale    high       0.270   0.138         0.133         0.138               0.133      0.123     0.129
+         low        0.261   0.107         0.100         0.107               0.100      0.123     0.121
+         medium     0.270   0.150         0.124         0.150               0.124      0.123     0.117
+spurious high       0.746   0.119         0.113         0.119               0.113      0.123     0.117
+         low        0.337   0.106         0.101         0.106               0.101      0.123     0.125
+         medium     0.565   0.122         0.104         0.122               0.104      0.123     0.126
+
+Overlap runs, mean RMSE by combination:
+method                 fixed  hybrid  hybrid_chi2L  hybrid_stale  hybrid_chi2L_stale  lidar_off  oracle_L
+ltype  osensor otype                                                                                     
+freeze imu     bias    6.181   4.479         2.774         1.676               2.088      2.153     1.677
+       odom    bias    5.840   4.155         2.497         0.411               0.366      0.260     0.411
+               drift   4.653   4.301         2.455         0.316               0.311      0.395     0.317
+noise  imu     bias    3.493   1.935         2.167         1.935               2.167      2.153     1.906
+       odom    bias   11.991   0.961         0.950         0.961               0.950      0.260     0.255
+               drift   6.135   1.983         2.028         1.983               2.028      0.395     0.543
+scale  imu     bias    7.349   0.644         1.609         0.644               1.609      2.153     1.512
+       odom    bias    4.474   0.640         0.590         0.640               0.590      0.260     0.483
+               drift   1.869   0.444         0.442         0.444               0.442      0.395     0.393
+
+Rule (1a) hybrid_chi2L vs hybrid: LiDAR faults wins 75/120, median -3.1 %; clean median -3.0 %; F14 faults median +20.8 % -> not adopted
+Rule (1b) hybrid_stale vs hybrid: freeze runs wins 23/24, median -94.9 %; clean median +0.0 %; other LiDAR faults median +0.0 % -> ADOPT
+Rule (2) design D = hybrid_stale: oracle_L vs D median -0.0 % (<= -10 %?); D worse than lidar_off on 57 % of LiDAR-fault runs (>= 25 %?) -> BUILD learned r_LiDAR
+== 2026-10-14 19:38:43 ALL DONE
