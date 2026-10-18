@@ -1,0 +1,8 @@
+Ubuntu 24.04.4 LTS
+aarch64
+1
+ROS_DISTRO=jazzy
+8.11.0
+Python 3.12.3
+torch 2.12.1+cu130 numpy 1.26.4 pandas 3.0.3 scipy 1.11.4
+cores_all=6
