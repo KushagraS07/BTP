@@ -1,0 +1,26 @@
+2026-10-10 12:21:31 D1 20261010_121804 kept in fullsys_logs as role dev but FAILS F5 quality rule (IMU missing 3.0 % > 1 %); re-record with 6 VM cores
+2026-10-10 12:59:55 D1 20261010_125637 FAILS F5 (duration ~55 s < 60 s; IMU missing 0.3 %, check PASS 0.001); re-record
+2026-10-10 13:04:44 D1 20261010_130123 FAILS F5 (duration 56.3 s < 60 s; IMU 0.2 %, check PASS); sim runs ~0.6x real time in terrain world at 1 kHz
+2026-10-10 13:11:17 D1 20261010_130530 KEEP (66.9 s, IMU 0.2 %, check 0.000)
+2026-10-10 13:23:47 D2 20261010_131512 KEEP under F5a (65.4 s, IMU 0.2 %, flat check 0.000; 5 strip events excluded)
+2026-10-10 14:28:43 D3 20261010_142525 FAILS F5 (duration 49.3 s < 60 s; IMU 0.3 %, flat check 0.007); re-record
+2026-10-10 14:35:53 D3 20261010_143058 KEEP under F5a (75.0 s, IMU 0.3 %, flat check 0.000; incl. slide down icy ramp)
+2026-10-10 14:54:08 D4 20261010_143931 KEEP under F5a (78.1 s, IMU 0.3 %, flat check 0.003; 2 strip events excluded)
+2026-10-10 14:58:34 D5 20261010_145610 KEEP (76.1 s, IMU 0.1 %, check 0.000)
+2026-10-10 15:03:16 D6 20261010_150047 KEEP (85.3 s, IMU 0.2 %, check 0.003)
+2026-10-10 15:07:09 D7 20261010_150428 KEEP (87.7 s, IMU 0.4 %, check 0.007)
+2026-10-10 15:20:43 D8 20261010_151742 FAILS F5 (IMU missing 1.8 % > 1 %; 75.9 s, check 0.001); re-record
+2026-10-10 15:24:14 D8 20261010_152122 KEEP (76.4 s, IMU 0.8 %, check 0.002)
+2026-10-17 15:59:22 D9 20261017_155638 KEEP (74.2 s, IMU 0.3 %, check 0.000)
+2026-10-17 16:03:55 D10 20261017_160044 KEEP (90.6 s, IMU 0.0 %, check 0.000)
+2026-10-17 16:10:29 D11 20261017_160809 FAIL (50.3 s, 2 flat events; stuck on icy ramp, cannot climb mu 0.1)
+2026-10-17 16:15:31 D11 20261017_161215 KEEP (74.3 s, IMU 0.1 %, 4 flat ev 0.000; icy-ramp stuck attempt)
+2026-10-17 16:20:27 D12 20261017_161659 KEEP (94.3 s, IMU 0.2 %, 8 flat ev 0.006)
+2026-10-17 16:28:39 D13 20261017_162528 FAIL (IMU 1.2 %, 1 flat event)
+2026-10-17 16:35:00 D13 20261017_163057 FAIL (1 flat event: stops on low friction / after turns not counted by check)
+2026-10-17 16:41:28 D13 20261017_163826 KEEP (104.5 s, IMU 0.2 %, 6 flat ev 0.000)
+2026-10-17 16:47:14 D14 20261017_164350 KEEP (119.3 s, IMU 0.2 %, 9 flat ev 0.000)
+2026-10-17 16:51:29 C1 20261017_164819 KEEP calib (90.4 s, IMU 0.1 %, 7 flat ev 0.000)
+2026-10-17 16:55:11 C2 20261017_165239 KEEP calib (65.4 s, IMU 0.1 %, 9 flat ev 0.000)
+2026-10-17 17:00:18 C3 20261017_165656 FAIL (121.4 s > 120; all else PASS)
+2026-10-17 17:04:46 C3 20261017_170052 KEEP calib (110.2 s, IMU 0.4 %, 12 flat ev 0.000)

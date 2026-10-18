@@ -1,0 +1,4 @@
+# Calibration sessions (FINDINGS C1 / C1b). "<session> <world>"
+20261017_164819 terrain   # C1 lane 0 smooth
+20261017_165239 terrain   # C2 lane 2 mild
+20261017_170052 indoor    # C3 south 180 turn, strip stops, north stop

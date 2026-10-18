@@ -1,0 +1,165 @@
+{
+  "sessions": {
+    "20261009_215016": {
+      "role": "check",
+      "note": "1 kHz IMU logger/integration check, straight starts/stops",
+      "health_check_passed": true,
+      "files": 21,
+      "added": "2026-10-09T21:51:27"
+    },
+    "20261009_215432": {
+      "role": "check",
+      "note": "1 kHz IMU check 2, reduced load",
+      "health_check_passed": true,
+      "files": 21,
+      "added": "2026-10-09T21:55:40"
+    },
+    "20261009_222654": {
+      "role": "check",
+      "note": "R1 terrain lane 1 ice, imu 1000, odom 100",
+      "health_check_passed": true,
+      "files": 21,
+      "added": "2026-10-09T22:28:20"
+    },
+    "20261009_222927": {
+      "role": "check",
+      "note": "R2 gyro-bias variant 0.01, imu 1000",
+      "health_check_passed": true,
+      "files": 21,
+      "added": "2026-10-09T22:30:29"
+    },
+    "20261010_121804": {
+      "role": "dev",
+      "note": "D1 terrain lane 1 ice, there and back, 4 stops out (3 on ice) + turn on ice + 2 back",
+      "health_check_passed": true,
+      "files": 21,
+      "added": "2026-10-10T12:20:13"
+    },
+    "20261010_125637": {
+      "role": "dev",
+      "note": "D1 re-record (6 cores) terrain lane 1 ice, there and back",
+      "health_check_passed": true,
+      "files": 21,
+      "added": "2026-10-10T12:59:03"
+    },
+    "20261010_130123": {
+      "role": "dev",
+      "note": "D1 (3rd) terrain lane 1 ice, there and back",
+      "health_check_passed": true,
+      "files": 21,
+      "added": "2026-10-10T13:03:58"
+    },
+    "20261010_130530": {
+      "role": "dev",
+      "note": "D1 (4th) terrain lane 1 ice, there and back",
+      "health_check_passed": true,
+      "files": 21,
+      "added": "2026-10-10T13:08:38"
+    },
+    "20261010_131512": {
+      "role": "dev",
+      "note": "D2 terrain lane 3 rough strips, there and back",
+      "health_check_passed": true,
+      "files": 21,
+      "added": "2026-10-10T13:18:17"
+    },
+    "20261010_142525": {
+      "role": "dev",
+      "note": "D3 terrain lane 4 ramp up/plateau/icy ramp down (slid to the bottom after stopping on ice), one way + turn",
+      "health_check_passed": true,
+      "files": 21,
+      "added": "2026-10-10T14:28:04"
+    },
+    "20261010_143058": {
+      "role": "dev",
+      "note": "D3 (2nd) terrain lane 4 ramp up/plateau/icy ramp down incl. slide, one way + turn",
+      "health_check_passed": true,
+      "files": 21,
+      "added": "2026-10-10T14:35:22"
+    },
+    "20261010_143931": {
+      "role": "dev",
+      "note": "D4 terrain lane 5 mixed (ice/strips/mild/severe), there and back",
+      "health_check_passed": true,
+      "files": 21,
+      "added": "2026-10-10T14:53:16"
+    },
+    "20261010_145610": {
+      "role": "dev",
+      "note": "D5 indoor slip: corridor (2 stops, 180 turn on patch) -> strip -> north stop, 1 kHz",
+      "health_check_passed": true,
+      "files": 21,
+      "added": "2026-10-10T14:58:02"
+    },
+    "20261010_150047": {
+      "role": "dev",
+      "note": "D6 indoor slip: strip -> south (2 stops, 180 turn on patch) -> strip -> corridor stop, 1 kHz",
+      "health_check_passed": true,
+      "files": 21,
+      "added": "2026-10-10T15:02:55"
+    },
+    "20261010_150428": {
+      "role": "dev",
+      "note": "D7 indoor slip: strip -> north (2 stops, 180 turn on patch) -> strip -> corridor stop, 1 kHz",
+      "health_check_passed": true,
+      "files": 21,
+      "added": "2026-10-10T15:06:40"
+    },
+    "20261010_151742": {
+      "role": "dev",
+      "note": "D8 indoor slip: corridor (2 stops, 180 turn on patch) -> strip -> south stop, 1 kHz",
+      "health_check_passed": true,
+      "files": 21,
+      "added": "2026-10-10T15:19:40"
+    },
+    "20261010_152122": {
+      "role": "dev",
+      "note": "D8 (2nd) indoor slip: corridor (2 stops, 180 turn on patch) -> strip -> south stop, 1 kHz",
+      "health_check_passed": true,
+      "files": 21,
+      "added": "2026-10-10T15:23:19"
+    },
+    "20261017_155638": {
+      "role": "dev",
+      "note": "D9 terrain lane 1 ice REVERSED, 2 stops on ice, turn, back",
+      "health_check_passed": true,
+      "files": 21,
+      "added": "2026-10-17T15:58:56"
+    },
+    "20261017_160044": {
+      "role": "dev",
+      "note": "D10 terrain lane 3 strips at higher speed, turn, back",
+      "health_check_passed": true,
+      "files": 21,
+      "added": "2026-10-17T16:03:29"
+    },
+    "20261017_160809": {
+      "role": "dev",
+      "note": "D11 terrain lane 4 ramp REVERSED (up icy ramp), plateau stop, down, turn",
+      "health_check_passed": true,
+      "files": 21,
+      "added": "2026-10-17T16:09:42"
+    },
+    "20261017_161215": {
+      "role": "dev",
+      "note": "D11 (2nd) terrain lane 4 reversed: icy-ramp climb attempt (stuck, wheel spin ~10 s), back down, flat stops, turn",
+      "health_check_passed": true,
+      "files": 21,
+      "added": "2026-10-17T16:14:26"
+    },
+    "20261017_161659": {
+      "role": "dev",
+      "note": "D12 terrain lane 5 mixed: long stops on ice/mild/severe, quick 180 turns, back non-stop",
+      "health_check_passed": true,
+      "files": 21,
+      "added": "2026-10-17T16:19:47"
+    },
+    "20261017_162528": {
+      "role": "dev",
+      "note": "D13 indoor slip: north patch turn -> strip -> south (180 turn + stop on patch), faster",
+      "health_check_passed": true,
+      "files": 21,
+      "added": "2026-10-17T16:28:05"
+    }
+  }
+}

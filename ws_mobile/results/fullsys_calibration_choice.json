@@ -1,0 +1,46 @@
+{
+  "frozen": {
+    "gate": 0.5,
+    "chi2": "both99",
+    "pslip": 0.5,
+    "k": 50.0,
+    "rl_gate": 0.5
+  },
+  "current": {
+    "gate": 0.5,
+    "chi2": "both99",
+    "pslip": 0.5,
+    "k": 50.0,
+    "rl_gate": 0.5
+  },
+  "baselines": {
+    "chi2": {
+      "chi2": "both95"
+    },
+    "sage_husa": {
+      "b": 0.98
+    },
+    "li": {
+      "gs": 0.7,
+      "gt": 0.6
+    }
+  },
+  "baselines_current": {
+    "chi2": {
+      "chi2": "both99"
+    },
+    "sage_husa": {
+      "b": 0.98
+    },
+    "li": {
+      "gs": 0.7,
+      "gt": 0.6
+    }
+  },
+  "rlidar": false,
+  "sessions": [
+    "20261017_164819",
+    "20261017_165239",
+    "20261017_170052"
+  ]
+}

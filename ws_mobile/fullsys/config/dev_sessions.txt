@@ -8,3 +8,9 @@
 20261010_150047 indoor    # D6 south -> corridor
 20261010_150428 indoor    # D7 north -> corridor
 20261010_152122 indoor    # D8 corridor -> south
+20261017_155638 terrain   # D9 lane 1 ice reversed
+20261017_160044 terrain   # D10 lane 3 strips faster
+20261017_161215 terrain   # D11 lane 4 icy-ramp climb attempt (stuck)
+20261017_161659 terrain   # D12 lane 5 mixed, long stops, quick turns
+20261017_163826 indoor    # D13 strip/north/south, turns on patches, faster
+20261017_164350 indoor    # D14 long still, 360 spins on patches

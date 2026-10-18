@@ -1,0 +1,17 @@
+{
+  "good_sessions": [
+    "20260712_141740",
+    "20260712_144326",
+    "20260824_094119",
+    "20260824_095427",
+    "20260824_095712",
+    "20260824_095915",
+    "20260824_100318",
+    "20261017_165239"
+  ],
+  "excluded_sessions": {
+    "20260714_014615": "IMU orientation failed to respond to commanded turning: IMU theta range=0.000000 rad, commanded accumulated rotation=15.276486 rad (need IMU range >= 0.5) \u2014 matches the dead-IMU signature previously found in session 20260714_014615",
+    "20260823_092638": "Missing required files: imu_filtered_20260823_092638.csv, odom_filtered_20260823_092638.csv, scan_filtered_20260823_092638.csv, ground_truth_filtered_20260823_092638.csv, cmd_vel_filtered_20260823_092638.csv",
+    "20260824_092707": "IMU orientation failed to respond to commanded turning: IMU theta range=0.000000 rad, commanded accumulated rotation=7.863720 rad (need IMU range >= 0.5) \u2014 matches the dead-IMU signature previously found in session 20260714_014615"
+  }
+}

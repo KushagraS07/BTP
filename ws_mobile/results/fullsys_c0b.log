@@ -1,0 +1,129 @@
+nohup: ignoring input
+== 2026-10-17 17:05:45 C0 models backed up
+../fullsys_logs/models/li_FINAL_c0.pt
+../fullsys_logs/models/rel_FINAL_c0.pt
+../fullsys_logs/models/slip_FINAL_c0.pt
+== 2026-10-17 17:05:45 features D9-D14
+6 sessions pass fs_check: ['20261017_155638', '20261017_160044', '20261017_161215', '20261017_161659', '20261017_163826', '20261017_164350']
+162 runs (clean + 26 faults per session)
+  10/162  (10 s)
+  20/162  (18 s)
+  30/162  (26 s)
+  40/162  (35 s)
+  50/162  (44 s)
+  60/162  (52 s)
+  70/162  (60 s)
+  80/162  (67 s)
+  90/162  (78 s)
+  100/162  (89 s)
+  110/162  (100 s)
+  120/162  (113 s)
+  130/162  (124 s)
+  140/162  (136 s)
+  150/162  (149 s)
+  160/162  (161 s)
+  162/162  (163 s)
+
+integrity check (development): worst severity RMSE / clean RMSE >= 1.05
+  109/112 pass; below 1.05: ['20261010_143058 imu dropout x1.01', '20261017_161215 imu noise x0.96', '20261017_163826 odom dropout x1.03']
+F10 slip label (% of rows, clean runs): 20261017_155638 4.6, 20261017_160044 0.6, 20261017_161215 16.4, 20261017_161659 5.9, 20261017_163826 13.2, 20261017_164350 7.2
+wrote 378 files to /home/kushagra/ws_mobile/fullsys_logs/features
+== 2026-10-17 17:08:48 FINAL models on D1-D14
+FINAL models ['rel', 'slip', 'li']: dev sessions ['20261010_130530', '20261010_131512', '20261010_143058', '20261010_143931', '20261010_145610', '20261010_150047', '20261010_150428', '20261010_152122', '20261017_155638', '20261017_160044', '20261017_161215', '20261017_161659', '20261017_163826', '20261017_164350'] (val = first)
+/home/kushagra/ws_mobile/fullsys/learning/../learning/train.py:132: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:838.)
+  tot += float(loss) * len(b)
+  [slip FINAL] epoch  1/15 fit 0.5570 val 0.6652
+  [FINAL] epoch  1/15 fit 0.04316 val 0.05636
+  [slip FINAL] epoch  2/15 fit 0.2718 val 0.5544
+  [FINAL] epoch  2/15 fit 0.02781 val 0.04383
+  [slip FINAL] epoch  3/15 fit 0.2174 val 0.6539
+  [FINAL] epoch  3/15 fit 0.02333 val 0.03837
+  [slip FINAL] epoch  4/15 fit 0.1680 val 0.5757
+  [FINAL] epoch  4/15 fit 0.02037 val 0.03717
+  [li FINAL] epoch  1/15 fit 0.2545 val 0.2298
+  [slip FINAL] epoch  5/15 fit 0.1499 val 0.5466
+  [FINAL] epoch  5/15 fit 0.01909 val 0.03854
+  [slip FINAL] epoch  6/15 fit 0.1341 val 0.5620
+  [FINAL] epoch  6/15 fit 0.01817 val 0.03475
+  [slip FINAL] epoch  7/15 fit 0.1211 val 0.5448
+  [FINAL] epoch  7/15 fit 0.01765 val 0.03548
+  [slip FINAL] epoch  8/15 fit 0.1411 val 0.6056
+  [FINAL] epoch  8/15 fit 0.01675 val 0.03272
+  [slip FINAL] epoch  9/15 fit 0.1066 val 0.6739
+  [FINAL] epoch  9/15 fit 0.01789 val 0.03654
+  [li FINAL] epoch  2/15 fit 0.1396 val 0.2890
+  [slip FINAL] epoch 10/15 fit 0.0883 val 0.7014
+  [FINAL] epoch 10/15 fit 0.01630 val 0.03717
+  [slip FINAL] epoch 11/15 fit 0.0899 val 0.5653
+  [FINAL] epoch 11/15 fit 0.01572 val 0.03606
+  [slip FINAL] epoch 12/15 fit 0.0921 val 0.6194
+  [FINAL] epoch 12/15 fit 0.01539 val 0.03239
+  [slip FINAL] epoch 13/15 fit 0.0732 val 0.7084
+  [FINAL] epoch 13/15 fit 0.01493 val 0.03158
+  [li FINAL] epoch  3/15 fit 0.1142 val 0.2856
+  [slip FINAL] epoch 14/15 fit 0.1032 val 0.6963
+  [FINAL] epoch 14/15 fit 0.01631 val 0.03619
+  [slip FINAL] epoch 15/15 fit 0.0646 val 0.7670
+  [FINAL] epoch 15/15 fit 0.01540 val 0.03394
+  [li FINAL] epoch  4/15 fit 0.1056 val 0.3146
+  [li FINAL] epoch  5/15 fit 0.0974 val 0.3312
+  [li FINAL] epoch  6/15 fit 0.0976 val 0.3169
+  [li FINAL] epoch  7/15 fit 0.0898 val 0.3663
+  [li FINAL] epoch  8/15 fit 0.0885 val 0.3749
+  [li FINAL] epoch  9/15 fit 0.0846 val 0.4069
+  [li FINAL] epoch 10/15 fit 0.0835 val 0.4002
+  [li FINAL] epoch 11/15 fit 0.0828 val 0.4240
+  [li FINAL] epoch 12/15 fit 0.0802 val 0.4163
+  [li FINAL] epoch 13/15 fit 0.0794 val 0.3812
+  [li FINAL] epoch 14/15 fit 0.0770 val 0.4568
+  [li FINAL] epoch 15/15 fit 0.0760 val 0.4561
+  rel_FINAL.pt written; best epoch 13
+  slip_FINAL.pt written; best epoch 7
+  li_FINAL.pt written; best epoch 1
+== 2026-10-18 01:16:09 calibration
+== 2026-10-18 01:16:09 calibration features
+3 sessions pass fs_check: ['20261017_164819', '20261017_165239', '20261017_170052']
+81 runs (clean + 26 faults per session)
+  10/81  (10 s)
+  20/81  (19 s)
+  30/81  (27 s)
+  40/81  (34 s)
+  50/81  (41 s)
+  60/81  (51 s)
+  70/81  (63 s)
+  80/81  (76 s)
+  81/81  (76 s)
+
+integrity check (development): worst severity RMSE / clean RMSE >= 1.05
+  133/136 pass; below 1.05: ['20261010_143058 imu dropout x1.01', '20261017_161215 imu noise x0.96', '20261017_163826 odom dropout x1.03']
+F10 slip label (% of rows, clean runs): 20261017_164819 1.4, 20261017_165239 4.1, 20261017_170052 8.6
+wrote 459 files to /home/kushagra/ws_mobile/fullsys_logs/features
+== 2026-10-18 01:17:38 calibration closed loop 
+C1 calibration: sessions ['20261017_164819', '20261017_165239', '20261017_170052']; variants hybrid 10, chi2 3, sage_husa 3, li 5; r_LiDAR False
+
+CALIBRATION scores (median RMSE change vs current over all runs; guard: clean <= +2 %, no extra diverged runs):
+
+[hybrid] current {'gate': 0.5, 'chi2': 'both99', 'pslip': 0.5, 'k': 50.0, 'rl_gate': 0.5}
+  G1_gate: gate=0.3: +0.3 % (clean +2.8 %, div +4, not eligible)  gate=0.7: -0.8 % (clean -1.2 %, div -4, not eligible) -> gate = 0.5
+  G2_chi2: chi2=gyro99: +1.3 % (clean +31.8 %, div +3, not eligible)  chi2=both999: +1.2 % (clean +17.1 %, div +1, not eligible)  chi2=gyro999: +1.6 % (clean +31.8 %, div +4, not eligible) -> chi2 = both99
+  G3_pslip: pslip=0.3: -0.1 % (clean -2.7 %, div -1, not eligible)  pslip=0.7: -0.0 % (clean +0.4 %, div -1, not eligible) -> pslip = 0.5
+  G4_k: k=0.0: -2.1 % (clean -2.3 %, div +1, not eligible)  k=100.0: -0.0 % (clean +12.9 %, div +1, not eligible) -> k = 50.0
+
+[chi2] current {'chi2': 'both99'}
+  B_chi2: chi2=both95: -3.9 % (clean -8.1 %, div -1)  chi2=both999: +0.5 % (clean +3.0 %, div +1, not eligible) -> chi2 = both95
+
+[sage_husa] current {'b': 0.98}
+  B_sh_b: b=0.95: -3.8 % (clean -9.3 %, div +1, not eligible)  b=0.99: +7.2 % (clean +10.2 %, div +1, not eligible) -> b = 0.98
+
+[li] current {'gs': 0.7, 'gt': 0.6}
+  L1_gs: gs=0.6: +0.3 % (clean +4.4 %, div +4, not eligible)  gs=0.8: +0.2 % (clean -0.5 %, div +1, not eligible) -> gs = 0.7
+  L2_gt: gt=0.5: -0.0 % (clean +0.0 %, div +0, not eligible)  gt=0.7: -0.0 % (clean -0.1 %, div +0, not eligible) -> gt = 0.6
+
+FROZEN parameters:
+  hybrid: {'gate': 0.5, 'chi2': 'both99', 'pslip': 0.5, 'k': 50.0, 'rl_gate': 0.5}
+  chi2: {'chi2': 'both95'}
+  sage_husa: {'b': 0.98}
+  li: {'gs': 0.7, 'gt': 0.6}
+== 2026-10-18 15:58:34 ALL DONE
+== 2026-10-18 15:58:34 C0B ALL DONE
