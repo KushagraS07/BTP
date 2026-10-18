@@ -1141,6 +1141,34 @@ recordings C1–C3 (raw_cal/*.tgz, 43 / 30 / 56 MB). Development recordings (4.4
 (re-run part of the calibration on C1 and compare RMSE with fullsys_calibration.csv) and T4 recording check (one
 C1-route recording: fs_check KEEP, sensor noise / gyro bias similar to C1). All final sessions on that one laptop.
 
+## FR — final-run pipeline: design (logged 2026-10-18 20:30 IST, before any final-test data exists)
+Analysis code for the confirmatory run; the pre-registration document will reference it by commit hash and may only
+add the route list / world details, not change the analysis.
+**Inputs:** `config/test_sessions.txt` (explicit list; every session must pass fs_check; the script ABORTS if any
+test session is also in dev_sessions.txt or cal_sessions.txt); models rel / slip / li `_FINAL.pt` (C0b); frozen
+values from `results/fullsys_calibration_choice.json` (hybrid: gate 0.5, χ² wheels + gyro 99 %, P_slip 0.5, k 50;
+χ² baseline 95 %; Sage–Husa b 0.98; Li 0.7 / 0.6). Seed 42 only.
+**Methods:** primary — hybrid (+ stale-scan check), fixed, χ² (95 %), Sage–Husa, Li (classifier ZUPT + NHC schedule).
+Ablations of hybrid, one part removed at a time: −reliability (r = 1), −P_slip (no Q / NHC / detector use), −χ²,
+−stale check, −5c (one pass), −LiDAR (scan updates off).
+**Sets per test session:** main = clean + 26 F7 (std) faults [primary + ablations]; sigma = 26 A1 σ-scaled faults;
+end = 26 R2 ending faults (also RMSE after the fault ends); lidar = 15 LiDAR faults + 9 overlaps [primary + −stale,
+−LiDAR]; unseen = 18 E faults. All methods run with identical inputs; output `results/final/final_<set>.csv`.
+**Statistics (`final_stats.py`, A2 method):** q = median over runs of RMSE_hybrid / RMSE_X − 1; 95 % cluster bootstrap
+over sessions (10 000, seed 0); exact two-sided Wilcoxon over per-session median log ratios. **Primary family** =
+main-set FAULT runs, hybrid vs fixed / χ² / Sage–Husa / Li (4 tests, Holm). Per comparison: CONFIRMED if q < 0 AND
+CI upper bound < 0 AND Holm-adjusted p < 0.05. No-harm check: main clean runs, hybrid vs fixed (reported with CI).
+Everything else is secondary (CI + unadjusted p, no claims beyond description).
+**FR implemented (2026-10-18 21:10 IST, cloud workspace):** `learning/final_eval.py`, `learning/final_stats.py`,
+`learning/run_final.sh` (resumable; logs commit, uncommitted-file count and checksums of the test list, models and
+frozen JSON first). Mock test (Paper_ws session 024700, reduced fault lists, mock models): all five sets run; regression
+vs the development / calibration code on the same run — hybrid, fixed, χ² (95 %), Sage–Husa, Li, one-pass: max |diff|
+2.2e-16 m; ablations change the result (−stale 0 on data without frozen scans, as expected). Statistics: synthetic
+16-session data with hybrid 30 % better than fixed / χ² / Sage–Husa and tied with Li → CONFIRMED ×3, NOT CONFIRMED
+(tie) ×1; exact Wilcoxon for 16 sessions ≈ 3 min. Mock numbers not used. sha256: final_eval.py 39e28f38c6cb1413,
+final_stats.py e21e49122ced3607, run_final.sh 8205c68c6e287643, package fr.tgz c7e1382e32e0e230.
+VM commit 2470c81 (FR installed); GitHub backup eaeafe7.
+
 ## Next
 F14 result → log + backup; F14b run (run_li.sh) → log; generalization (held-out fault magnitude); reliability
 vs threshold detector + latency; LiDAR faults + r_LiDAR, overlapping / ending faults; calibration sessions →
